@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.han.ica.oose.boterbloem</groupId>
-    <artifactId>zorgrit</artifactId>
+    <artifactId>Zorgrit-Boterbloem</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>zorgrit</name>
@@ -14,7 +14,7 @@
 
 
     <build>
-        <finalName>zorgrit</finalName>
+        <finalName>Zorgrit-Boterbloem</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -23,6 +23,22 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.8</version>
+                <configuration>
+                    <destFile>${basedir}/target/jacoco.exec</destFile>
+                    <dataFile>${basedir}/target/jacoco.exec</dataFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -108,5 +124,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    
+
 </project>
