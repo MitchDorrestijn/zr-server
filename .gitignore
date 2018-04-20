@@ -1,4 +1,7 @@
-.idea/
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.ipr
 *.iml
 target/
 out/
