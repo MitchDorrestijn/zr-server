@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PongController {
 
     @RequestMapping(value = "/pong", method = RequestMethod.GET)
-    @CrossOrigin(origins = "http://localhost:3000") //TODO change me!
+    @CrossOrigin(origins = "http://localhost:3000")
     public String pong() {
         return "pong";
     }
