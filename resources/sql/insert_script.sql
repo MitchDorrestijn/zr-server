@@ -49,7 +49,7 @@ INSERT INTO `driver` (driverId, verification, utility) VALUES
   (12, FALSE, 'rolstoel'),
   (13, FALSE, 'rollator');
 
-INSERT INTO `drivercar` (driverId, utility, numberPlate, numberOfPassengers) VALUES
+INSERT INTO `driverCar` (driverId, utility, numberPlate, numberOfPassengers) VALUES
   (1, 'rollator', 'fg-56-rj', 4),
   (4, 'scootmobiel', 'gh-81-ac', 2),
   (9, 'rolstoel', 'af-83-dc', 1),
@@ -57,12 +57,12 @@ INSERT INTO `drivercar` (driverId, utility, numberPlate, numberOfPassengers) VAL
   (10, 'scootmobiel', 'nf-24-fe', 3),
   (11, 'scootmobiel', 'nf-26-fd', 3);
 
-INSERT INTO `clientlimitation` (clientId, limitation) VALUES
+INSERT INTO `clientLimitation` (clientId, limitation) VALUES
   (2, 'zware/Fysieke handicap'),
   (3, 'ouderen'),
   (6, 'ouderen');
 
-INSERT INTO `driveravailability` (driverId, startDateTime, endDateTime) VALUES
+INSERT INTO `driverAvailability` (driverId, startDateTime, endDateTime) VALUES
   (1, '2018-01-03 12:00:00', '2019-01-03 13:00:00'),
   (4, '2018-02-03 12:00:00', '2019-01-03 13:00:00'),
   (8, '2018-01-03 12:00:00', '2019-01-03 13:00:00'),
@@ -72,18 +72,18 @@ INSERT INTO `driveravailability` (driverId, startDateTime, endDateTime) VALUES
   (12, '2018-01-03 12:00:00', '2019-01-03 17:00:00'),
   (13, '2018-01-03 14:00:00', '2018-02-03 15:00:00');
 
-INSERT INTO `driverlimitationmanageable` (driverId, limitation) VALUES
+INSERT INTO `driverLimitationManageable` (driverId, limitation) VALUES
   (1, 'geestelijk gehandicapten'),
   (4, 'ouderen');
 
-INSERT INTO `clientdriverpreference` (clientId, driverId) VALUES
+INSERT INTO `clientDriverPreference` (clientId, driverId) VALUES
   (2, 4),
   (3, 8),
   (5, 4),
   (6, 12),
   (7, 10);
 
-INSERT INTO `driverclientpreference` (driverId, clientId) VALUES
+INSERT INTO `driverClientPreference` (driverId, clientId) VALUES
   (1, 3),
   (4, 2),
   (8, 5),
@@ -92,21 +92,21 @@ INSERT INTO `driverclientpreference` (driverId, clientId) VALUES
   (12, 2),
   (13, 3);
 
-INSERT INTO `careinstitution` (name) VALUES
+INSERT INTO `careInstitution` (name) VALUES
   ('Reinearde'),
   ('Cordaan'),
   ('IrisZorg'),
   ('IZZ'),
   ('NedRAI');
 
-INSERT INTO `clientcareinstitution` (clientId, careInstitutionId) VALUES
+INSERT INTO `clientCareInstitution` (clientId, careInstitutionId) VALUES
   (2, 1),
   (3, 2),
   (5, 3),
   (6, 5),
   (7, 4);
 
-INSERT INTO `drivercareinstitution` (driverId, careInstitutionId) VALUES
+INSERT INTO `driverCareInstitution` (driverId, careInstitutionId) VALUES
   (1, 2),
   (4, 1),
   (8, 5),
@@ -131,10 +131,10 @@ VALUES
   (6, NULL, '2018-12-08 09:16:00', 'Velperplein 5, Arnhem', 'Raamsteeg 46, Amsterdam', 1, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 3450),
   (7, NULL, '2018-01-06 11:00:00', 'Steenstraat 8, Arnhem', 'Kalverstraat 8, Amsterdam', 0, 0, TRUE, FALSE, 'rollator', NULL, FALSE, FALSE, 30, 8650);
 
-INSERT INTO `ridecanceledbydriver` (rideId, driverId, cancelledDate) VALUES
+INSERT INTO `rideCanceledByDriver` (rideId, driverId, cancelledDate) VALUES
   (3, 1, '2018-01-01 12:00:00');
 
-INSERT INTO `rideproposedfordriver` (rideId, driverId) VALUES
+INSERT INTO `rideProposedForDriver` (rideId, driverId) VALUES
   (6, 4),
   (7, 4),
   (6, 1),
@@ -144,14 +144,14 @@ INSERT INTO `rideproposedfordriver` (rideId, driverId) VALUES
   (10, 9),
   (11, 10);
 
-INSERT INTO `ridematchesstate` (rideId, status, matched) VALUES
+INSERT INTO `rideMatchesState` (rideId, status, matched) VALUES
   (6, 'CARE_INSTITUTION', FALSE),
   (5, 'CARE_INSTITUTION', TRUE);
 
-INSERT INTO `ridematchesrejected` (rideId, driverId) VALUES
+INSERT INTO `rideMatchesRejected` (rideId, driverId) VALUES
   (5, 1);
 
-INSERT INTO `ridematchescache` (rideId, driverId) VALUES
+INSERT INTO `rideMatchesCache` (rideId, driverId) VALUES
   (2, 4),
   (2, 1),
   (5, 4);
