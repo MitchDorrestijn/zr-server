@@ -3,13 +3,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class PasswordEncoderGenerator {
     public static void main(String[] args) {
-        int i =0;
-        while (i<10){
-            String password = "123456";
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String hasedPassword = passwordEncoder.encode(password);
-            System.out.println(hasedPassword);
-            i++;
+        PasswordEncoderGenerator g = new PasswordEncoderGenerator();
+        String test = g.getNewPassword();
+        System.out.println(test);
         }
+
+    /**
+     * function creates a new hashed password
+     * @return new hashed password to be stored in database
+     */
+    public String getNewPassword(){
+        String password = "123456"; // dit wordt het wachtwoord wat de user aangeeft bij het registreren
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(password);
+        return hashedPassword;
     }
 }
