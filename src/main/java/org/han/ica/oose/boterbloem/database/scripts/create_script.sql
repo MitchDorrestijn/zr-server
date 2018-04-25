@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 );
 
 -- -----------------------------------------------------
--- Table client
+-- Table Client
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `client` (
   clientId               INT(11)      NOT NULL,
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `driverLimitationManageable` (
 );
 
 -- -----------------------------------------------------
--- Table clientDriverPreference
+-- Table ClientDriverPreference
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `clientDriverPreference` (
   clientId INT(11) NOT NULL,
