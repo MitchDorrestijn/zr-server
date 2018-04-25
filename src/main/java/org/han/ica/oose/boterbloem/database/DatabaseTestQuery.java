@@ -13,7 +13,7 @@ public class DatabaseTestQuery {
         connection = ConnectionFactory.getConnection();
     }
 
-    public String getCompanion() {
+    public String getCompanion() throws SQLException {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT companion FROM client WHERE clientId = ?");
             stmt.setInt(1, 2);
