@@ -1,4 +1,6 @@
-package org.han.ica.oose.boterbloem.SQL;
+package org.han.ica.oose.boterbloem;
+
+import org.han.ica.oose.boterbloem.database.DatabaseTestQuery;
 
 import java.sql.SQLException;
 

@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.SQL;
+package org.han.ica.oose.boterbloem.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

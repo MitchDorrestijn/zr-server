@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.SQL;
+package org.han.ica.oose.boterbloem.database;
 
 import java.io.IOException;
 import java.io.InputStream;
