@@ -4,7 +4,7 @@ public class Client {
     private int clientId;
     private String companion;
     private String utility;
-    private boolean driverPreferenceF;
+    private boolean driverPreferenceForced;
 
     public int getClientId() {
         return clientId;
@@ -31,10 +31,10 @@ public class Client {
     }
 
     public boolean isDriverPreferenceF() {
-        return driverPreferenceF;
+        return driverPreferenceForced;
     }
 
     public void setDriverPreferenceF(boolean driverPreferenceF) {
-        this.driverPreferenceF = driverPreferenceF;
+        this.driverPreferenceForced = driverPreferenceF;
     }
 }

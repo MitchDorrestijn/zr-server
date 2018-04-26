@@ -15,7 +15,7 @@ public class User {
     private String password;
     private String passwordSalt;
     private Date dateOfBirth;
-    private boolean firstTimeProfileChec;
+    private boolean firstTimeProfileCheck;
 
     public int getId() {
         return id;
@@ -114,10 +114,10 @@ public class User {
     }
 
     public boolean isFirstTimeProfileChec() {
-        return firstTimeProfileChec;
+        return firstTimeProfileCheck;
     }
 
     public void setFirstTimeProfileChec(boolean firstTimeProfileChec) {
-        this.firstTimeProfileChec = firstTimeProfileChec;
+        this.firstTimeProfileCheck = firstTimeProfileChec;
     }
 }
