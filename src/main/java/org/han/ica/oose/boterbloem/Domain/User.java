@@ -19,7 +19,7 @@ public class User {
     private String password;
     private String passwordSalt;
     private Date dateOfBirth;
-    private boolean firstTimeProfileChec;
+    private boolean firstTimeProfileCheck;
 
     /**
      * Getter for property 'id'.
@@ -243,7 +243,7 @@ public class User {
      * @return Value for property 'firstTimeProfileChec'.
      */
     public boolean isFirstTimeProfileChec() {
-        return firstTimeProfileChec;
+        return firstTimeProfileCheck;
     }
 
     /**
@@ -252,6 +252,6 @@ public class User {
      * @param firstTimeProfileChec Value to set for property 'firstTimeProfileChec'.
      */
     public void setFirstTimeProfileChec(boolean firstTimeProfileChec) {
-        this.firstTimeProfileChec = firstTimeProfileChec;
+        this.firstTimeProfileCheck = firstTimeProfileChec;
     }
 }
