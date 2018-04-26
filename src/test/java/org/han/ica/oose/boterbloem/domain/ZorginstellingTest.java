@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.Domain;
+package org.han.ica.oose.boterbloem.domain;
 
 import org.junit.Before;
 import org.junit.Test;

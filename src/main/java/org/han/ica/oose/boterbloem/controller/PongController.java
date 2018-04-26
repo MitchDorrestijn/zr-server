@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.Controller;
+package org.han.ica.oose.boterbloem.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
