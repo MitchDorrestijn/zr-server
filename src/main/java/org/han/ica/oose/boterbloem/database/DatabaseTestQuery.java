@@ -14,8 +14,9 @@ public class DatabaseTestQuery {
     }
 
     /**
+     * Deze class is een enorme code smell! Waar wordt dit voor gebruikt? want geen safe delete omdat het in een test wordt gebruikt. Waarom staat deze classe dan hier?
+     * Moet je straks even naar kijken Mitch!?
      *
-     * @return
      */
     public String getCompanion() {
         try {
