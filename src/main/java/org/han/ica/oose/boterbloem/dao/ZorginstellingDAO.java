@@ -1,6 +1,6 @@
-package org.han.ica.oose.boterbloem.DAO;
+package org.han.ica.oose.boterbloem.dao;
 
-import org.han.ica.oose.boterbloem.Domain.Zorginstelling;
+import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,11 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Class for handling the CRUD operations on Zorginstelling
  */
 public class ZorginstellingDAO extends DAO implements IZorginstellingDAO{
+
+    private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
     /**
      * {@inheritDoc}
      */
@@ -52,7 +55,7 @@ public class ZorginstellingDAO extends DAO implements IZorginstellingDAO{
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
-        return null;
+        return zorginstellingen;
     }
 
     /**
@@ -95,7 +98,7 @@ public class ZorginstellingDAO extends DAO implements IZorginstellingDAO{
         } catch (SQLException e ) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
-        return null;
+        return zorginstellingen;
     }
 
     /**

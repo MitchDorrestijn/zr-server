@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.DAO;
+package org.han.ica.oose.boterbloem.dao;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 

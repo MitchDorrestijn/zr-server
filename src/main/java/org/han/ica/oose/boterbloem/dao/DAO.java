@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.DAO;
+package org.han.ica.oose.boterbloem.dao;
 
 import org.han.ica.oose.boterbloem.configuration.DatabaseConfig;
 
@@ -13,7 +13,8 @@ import java.sql.Connection;
  * Class for establishing, handling and closing the database connection
  */
 public class DAO implements IDAO {
-    protected static final Logger LOGGER = Logger.getLogger(DAO.class.getName());
+
+    private static final Logger LOGGER = Logger.getLogger(DAO.class.getName());
     protected static final int VALID_CONNECTION_TIMEOUT = 2;
     protected Connection connection;
 
@@ -58,11 +59,12 @@ public class DAO implements IDAO {
 
     /**
      * Establishes the connection with the database
+     *
      * @param databaseConfig The configuration settings of the database
      */
     private void makeConnection(DatabaseConfig databaseConfig) {
         try {
-            if(databaseConfig.getUser() == null || databaseConfig.getPass() == null) {
+            if (databaseConfig.getUser() == null || databaseConfig.getPass() == null) {
                 connection = (DriverManager.getConnection(databaseConfig.getConnectionString()));
             } else {
                 connection = (DriverManager.getConnection(databaseConfig.getConnectionString() + "user=" + databaseConfig.getUser() + "&password=" + databaseConfig.getPass()));
@@ -74,18 +76,20 @@ public class DAO implements IDAO {
 
     /**
      * Loads the databasedriver based on a given String
+     *
      * @param driver
      */
     private void loadDatabaseDriver(String driver) {
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
-            LOGGER.log(Level.SEVERE, "Couldn't find the database driver");
+            LOGGER.log(Level.SEVERE, "Couldn't find the database driver", e);
         }
     }
 
     /**
      * Returns the Connection
+     *
      * @return
      */
     private Connection getConnection() {

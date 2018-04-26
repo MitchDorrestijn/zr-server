@@ -1,9 +1,9 @@
-package org.han.ica.oose.boterbloem.Domain;
+package org.han.ica.oose.boterbloem.domain;
 
 import java.util.Date;
 
 /**
- * User who uses the system
+ * Representative domain class for a user
  */
 public class User {
 

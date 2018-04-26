@@ -1,6 +1,6 @@
-package org.han.ica.oose.boterbloem.DAO;
+package org.han.ica.oose.boterbloem.dao;
 
-import org.han.ica.oose.boterbloem.Domain.Zorginstelling;
+import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
 import java.util.List;
 

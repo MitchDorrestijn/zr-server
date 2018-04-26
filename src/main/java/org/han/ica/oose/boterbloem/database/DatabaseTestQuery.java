@@ -13,7 +13,12 @@ public class DatabaseTestQuery {
         connection = ConnectionFactory.getConnection();
     }
 
-    public String getCompanion() throws SQLException {
+    /**
+     * Deze class is een enorme code smell! Waar wordt dit voor gebruikt? want geen safe delete omdat het in een test wordt gebruikt. Waarom staat deze classe dan hier?
+     * Moet je straks even naar kijken Mitch!?
+     *
+     */
+    public String getCompanion() {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT companion FROM client WHERE clientId = ?");
             stmt.setInt(1, 2);
