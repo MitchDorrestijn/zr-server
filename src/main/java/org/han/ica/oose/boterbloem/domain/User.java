@@ -242,7 +242,7 @@ public class User {
      *
      * @return Value for property 'firstTimeProfileChec'.
      */
-    public boolean isFirstTimeProfileChec() {
+    public boolean isFirstTimeProfileCheck() {
         return firstTimeProfileCheck;
     }
 
@@ -251,7 +251,7 @@ public class User {
      *
      * @param firstTimeProfileChec Value to set for property 'firstTimeProfileChec'.
      */
-    public void setFirstTimeProfileChec(boolean firstTimeProfileChec) {
+    public void setFirstTimeProfileCheck(boolean firstTimeProfileChec) {
         this.firstTimeProfileCheck = firstTimeProfileChec;
     }
 }
