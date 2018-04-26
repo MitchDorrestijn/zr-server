@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,7 +44,7 @@ public class ConnectionFactory {
             Class.forName(jcdbDriver);
             return DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);
         } catch (ClassNotFoundException e) {
-            LOGGER.log(Level.WARNING, e.getMessage());
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
         }
 
         return null;

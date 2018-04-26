@@ -12,7 +12,7 @@ public class User {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String Street;
+    private String street;
     private int houseNumber;
     private int zipCode;
     private String residence;
@@ -117,7 +117,7 @@ public class User {
      * @return Value for property 'street'.
      */
     public String getStreet() {
-        return Street;
+        return street;
     }
 
     /**
@@ -126,7 +126,7 @@ public class User {
      * @param street Value to set for property 'street'.
      */
     public void setStreet(String street) {
-        Street = street;
+        street = street;
     }
 
     /**
