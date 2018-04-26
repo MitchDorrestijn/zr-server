@@ -1,6 +1,8 @@
 package org.han.ica.oose.boterbloem.dao;
 
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,9 +15,14 @@ import java.util.logging.Logger;
 /**
  * Class for handling the CRUD operations on Zorginstelling
  */
+@Component
 public class ZorginstellingDAO extends DAO implements IZorginstellingDAO{
-
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
+
+    @Autowired
+    public ZorginstellingDAO(){
+
+    }
     /**
      * {@inheritDoc}
      */
