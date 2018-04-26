@@ -126,7 +126,7 @@ public class User {
      * @param street Value to set for property 'street'.
      */
     public void setStreet(String street) {
-        street = street;
+        this.street = street;
     }
 
     /**
