@@ -13,10 +13,7 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class ClientTest {
 
-    //    private int clientId;
-//    private String companion;
-//    private String utility;
-//    private boolean driverPreferenceForced;
+
     @Test
     public void testSetter_setsClientId() throws NoSuchFieldException, IllegalAccessException {
         //given
