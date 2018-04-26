@@ -8,7 +8,7 @@
     <artifactId>zorgrit</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>zorgrit</name>
+    <name>zorgrit-boterbloem-server</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -114,7 +114,7 @@
     </dependencies>
 
     <build>
-        <finalName>zorgrit</finalName>
+        <finalName>zorgrit-boterbloem-server</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
