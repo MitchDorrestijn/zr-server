@@ -16,7 +16,7 @@ public class PostZorginstellingController {
 
     protected static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(DAO.class.getName());
 
-    private Zorgin zorginstellingService;
+    private ZorginstellingService zorginstellingService;
 
     @Autowired
     PostZorginstellingController(){

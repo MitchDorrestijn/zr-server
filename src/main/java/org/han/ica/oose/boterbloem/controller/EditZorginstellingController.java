@@ -1,8 +1,9 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.Service.ZorginstellingService;
+import org.han.ica.oose.boterbloem.service.ZorginstellingService;
 import org.han.ica.oose.boterbloem.dao.DAO;
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
+import org.han.ica.oose.boterbloem.service.ZorginstellingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.logging.Level;
 public class EditZorginstellingController {
     protected static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(DAO.class.getName());
 
-    private ZorginstellingService zorginstellingService = new ZorginstellingService();
+    private ZorginstellingService zorginstellingService;
 
     @Autowired
     EditZorginstellingController(){
