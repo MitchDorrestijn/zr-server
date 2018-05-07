@@ -19,6 +19,8 @@ public class ZorginstellingService implements IZorginstellingService{
      */
     @Override
     public Zorginstelling findById(int id) throws SQLException {
+        System.out.println("service layer bereikt");
+//        System.out.println(DAO.getByID(id));
         return (DAO.getByID(id));
     }
 

@@ -2,9 +2,7 @@ package org.han.ica.oose.boterbloem.dao;
 
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,6 +14,11 @@ import java.util.logging.Logger;
 public class ZorginstellingDAO extends DAO implements IZorginstellingDAO{
 
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
+    private Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/zorgrit?useSSL=false", "root", "Test123!");
+
+    public ZorginstellingDAO() throws SQLException {
+    }
+
     /**
      * {@inheritDoc}
      */
