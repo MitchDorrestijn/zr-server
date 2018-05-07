@@ -44,12 +44,14 @@ public class ZorginstellingDAOTest {
     public void getByID() {
         Zorginstelling zorginstelling = dao.getByID(1);
         assertEquals(1, zorginstelling.getId());
+        assertNotEquals(2, zorginstelling.getId());
     }
 
     @Test
     public void getByName() {
         List<Zorginstelling> zorginstellingen = dao.getByName("Reinearde");
         assertEquals("Reinearde", zorginstellingen.get(0).getName());
+        assertNotEquals("Cordaan", zorginstellingen.get(0).getName());
     }
 
     @After
