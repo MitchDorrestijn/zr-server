@@ -8,6 +8,10 @@ import java.util.List;
 
 public class ZorginstellingService {
 
+    public ZorginstellingService(){
+        // Empty constructor
+    }
+
     /**
      * Finds and returns a Zorginstelling using the given ID
      *
