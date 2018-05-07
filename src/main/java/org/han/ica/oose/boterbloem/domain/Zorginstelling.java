@@ -17,6 +17,9 @@ public class Zorginstelling {
         this.name = name;
     }
 
+    public Zorginstelling(){
+        // empty constructor
+    }
     /**
      * Getter for property 'id'.
      *
