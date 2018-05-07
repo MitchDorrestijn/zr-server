@@ -131,7 +131,9 @@ public class ZorginstellingDAO extends DAO implements IZorginstellingDAO{
         }
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateZorginstellingWithId(int id, String newName) {
         try (PreparedStatement ps = getPreparedStatement(

@@ -27,6 +27,7 @@ public class EditZorginstellingController {
     @CrossOrigin
     @RequestMapping(value = "/zorginstelling/{id}/edit", method = RequestMethod.PUT)
 
+
     public ResponseEntity<?> updateUser(@PathVariable int  id, @RequestBody Zorginstelling zorginstelling) {
 
         Zorginstelling currentZorginstellling = null;
