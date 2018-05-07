@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 public class ZorginstellingDAO extends DAO implements IZorginstellingDAO{
 
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
-    private Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/zorgrit?useSSL=false", "root", "Test123!");
 
     public ZorginstellingDAO() throws SQLException {
     }
