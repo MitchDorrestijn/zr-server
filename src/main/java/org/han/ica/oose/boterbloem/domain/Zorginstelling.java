@@ -1,8 +1,11 @@
 package org.han.ica.oose.boterbloem.domain;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Representative domain class for a Zorginstelling
  */
+@Component
 public class Zorginstelling {
     private int id;
     private String name;
