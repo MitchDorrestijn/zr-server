@@ -130,4 +130,17 @@ public class ZorginstellingDAO extends DAO implements IZorginstellingDAO{
             LOGGER.log(Level.INFO, e.toString(), e);
         }
     }
+
+
+    @Override
+    public void updateZorginstellingWithId(int id, String newName) {
+        try (PreparedStatement ps = getPreparedStatement(
+                "UPDATE careinstitution SET name = ? WHERE id = ?")){
+            ps.setString(1,newName);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.log(Level.INFO, e.toString(), e);
+        }
+    }
 }
