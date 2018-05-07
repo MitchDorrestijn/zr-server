@@ -1,7 +1,7 @@
 package org.han.ica.oose.boterbloem;
 
 import org.han.ica.oose.boterbloem.dao.ZorginstellingDAO;
-import org.han.ica.oose.boterbloem.service.ZorginstellingService;
+import org.han.ica.oose.boterbloem.Service.ZorginstellingService;
 
 import java.sql.SQLException;
 

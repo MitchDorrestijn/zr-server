@@ -10,11 +10,11 @@ import java.util.logging.Logger;
  */
 public class DatabaseConfig {
     private static final Logger LOGGER = Logger.getLogger(DatabaseConfig.class.getName());
-    private static final String PROPERTIES_FILE_PATH = "database.properties";
-    private static final String PROPERTIES_DRIVER_KEY = "dn";
-    private static final String PROPERTIES_CONNECTION_STRING_KEY = "url";
-    private static final String USER = "user";
-    private static final String PASS = "pwd";
+    private static final String PROPERTIES_FILE_PATH = "db.properties";
+    private static final String PROPERTIES_DRIVER_KEY = "driver";
+    private static final String PROPERTIES_URL = "url";
+    private static final String USER = "username";
+    private static final String PASS = "password";
 
     private Properties properties;
 
@@ -45,6 +45,6 @@ public class DatabaseConfig {
     }
 
     public String getConnectionString() {
-        return properties.getProperty(PROPERTIES_CONNECTION_STRING_KEY);
+        return properties.getProperty(PROPERTIES_URL);
     }
 }

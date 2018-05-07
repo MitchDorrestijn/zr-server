@@ -27,4 +27,11 @@ public class ZorginstellingService {
         ZorginstellingDAO DAO = new ZorginstellingDAO();
         DAO.updateZorginstellingWithId(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
     }
+
+    public boolean checkIfExists(Zorginstelling zorginstelling) {
+        return false;
+    }
+
+    public void saveZorginstelling(Zorginstelling zorginstelling) {
+    }
 }
