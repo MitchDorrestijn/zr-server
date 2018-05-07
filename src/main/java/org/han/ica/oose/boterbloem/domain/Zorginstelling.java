@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.domain;
 
+
 import org.springframework.stereotype.Component;
 
 /**

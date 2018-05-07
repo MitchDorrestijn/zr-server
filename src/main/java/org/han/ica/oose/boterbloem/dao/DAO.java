@@ -63,6 +63,9 @@ public class DAO implements IDAO {
      * @param databaseConfig The configuration settings of the database
      */
     private void makeConnection(DatabaseConfig databaseConfig) {
+        System.out.println(databaseConfig.getUser());
+        System.out.println(databaseConfig.getPass());
+        System.out.println(databaseConfig.getConnectionString());
         try {
             if (databaseConfig.getUser() == null || databaseConfig.getPass() == null) {
                 connection = (DriverManager.getConnection(databaseConfig.getConnectionString()));
