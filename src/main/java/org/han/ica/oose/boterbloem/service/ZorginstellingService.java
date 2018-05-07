@@ -1,33 +1,30 @@
-package org.han.ica.oose.boterbloem.service;
+package org.han.ica.oose.boterbloem.Service;
 
-import com.sun.istack.internal.logging.Logger;
 import org.han.ica.oose.boterbloem.dao.ZorginstellingDAO;
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
-import java.util.List;
-import java.util.Objects;
+import java.sql.SQLException;
 
+public class ZorginstellingService {
 
-public class ZorginstellingService implements IZorginstellingService{
-
-    private ZorginstellingDAO DAO;
-
-    @Override
-    public boolean checkIfExists(Zorginstelling zorginstelling) {
-        List<Zorginstelling> allInstellingen = DAO.getByName(zorginstelling.getName());
-        for (Zorginstelling instellingen : allInstellingen) {
-            if (Objects.equals(zorginstelling.getName(), instellingen.getName())) {
-                return true;
-            }
-        }
-        return false;
+    /**
+     * Finds and returns a Zorginstelling using the given ID
+     * @param id ID of the zorginstelling
+     * @return The zorginstelling that was found using the ID
+     * @throws SQLException
+     */
+    public Zorginstelling findById(int id) throws SQLException {
+        ZorginstellingDAO DAO = new ZorginstellingDAO();
+        return (DAO.getByID(id));
     }
 
-
-    @Override
-    public void saveZorginstelling(Zorginstelling zorginstelling) {
-        if (checkIfExists(zorginstelling)){
-            DAO.create(zorginstelling);
-        }
+    /**
+     *
+     * @param zorginstelling Zorgstelling that needs a update
+     * @throws SQLException
+     */
+    public void updateZorginstelling(Zorginstelling zorginstelling) throws SQLException {
+        ZorginstellingDAO DAO = new ZorginstellingDAO();
+        DAO.updateZorginstellingWithId(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
     }
 }
