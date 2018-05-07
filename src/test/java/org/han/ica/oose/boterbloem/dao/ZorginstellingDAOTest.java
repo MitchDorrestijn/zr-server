@@ -17,8 +17,10 @@ public class ZorginstellingDAOTest {
     private ZorginstellingDAO dao;
 
     @Before
-    public void setup() {
+    public void setup() throws Exception {
         dao = new ZorginstellingDAO();
+        dao.dao.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/create_script.sql'").execute();
+        dao.dao.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/insert_script.sql'").execute();
     }
 
     @Test
