@@ -24,8 +24,12 @@ public class ZorginstellingDAOTest {
     }
 
     @Test
+    public void hadConnection() {
+        assertTrue(dao.dao.hasConnection());
+    }
+
+    @Test
     public void create() {
-        System.out.println(dao.dao.hasConnection());
         dao.create(new Zorginstelling(6, "Prothese"));
         Zorginstelling temp = dao.getByID(6);
         assertEquals(6, temp.getId());
