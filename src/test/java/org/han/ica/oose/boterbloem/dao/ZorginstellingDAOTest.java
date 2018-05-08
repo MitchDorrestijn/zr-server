@@ -85,6 +85,18 @@ public class ZorginstellingDAOTest {
         assertTrue(dao.getByName("Prothese").size() == 0);
     }
 
+    @Test
+    public void updateZorginstelling() {
+        dao.create(new Zorginstelling(6, "Prothese"));
+        Zorginstelling temp = dao.getByID(6);
+        assertEquals(6, temp.getId());
+        assertEquals("Prothese", temp.getName());
+
+        dao.updateZorginstelling(6, "ProthesesVoorIedereen");
+        temp = dao.getByID(6);
+        assertEquals("ProthesesVoorIedereen", temp.getName());
+    }
+
     @After
     public void tearDown() {
         dao.dao.closeConnection();
