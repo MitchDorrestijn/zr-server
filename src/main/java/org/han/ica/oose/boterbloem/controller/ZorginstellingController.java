@@ -35,8 +35,6 @@ public class ZorginstellingController {
         }*/
 
         zorginstellingService.saveZorginstelling(zorginstelling);
-
-
         HttpHeaders headers = new HttpHeaders();
         return new ResponseEntity<String>(headers,HttpStatus.CREATED);
     }
