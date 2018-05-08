@@ -30,8 +30,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public void create(Zorginstelling zorginstelling) {
         try (PreparedStatement ps = dao.getPreparedStatement(
-                "INSERT INTO careInstitution (id, name) VALUES (DEFAULT, ?)")) {
-        //    ps.setInt(1, zorginstelling.getId());
+                "INSERT INTO careInstitution (name) VALUES (?)")) {
             ps.setString(1, zorginstelling.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -91,6 +90,8 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
              ResultSet rs = ps.executeQuery()) {
             while(rs.next()) {
                 Zorginstelling zorginstelling = new Zorginstelling(
+                        rs.getInt("id"),
+                        rs.getString("name")
                 );
                 zorginstellingen.add(zorginstelling);
             }

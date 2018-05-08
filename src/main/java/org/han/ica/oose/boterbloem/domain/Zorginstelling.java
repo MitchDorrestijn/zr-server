@@ -18,11 +18,12 @@ public class Zorginstelling {
     }
 
     @JsonCreator
-    public Zorginstelling(@JsonProperty("id") int id, @JsonProperty("name") String name){
+    public Zorginstelling(@JsonProperty("id") int id, @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
-
     }
+        
+
     /**
      * Getter for property 'id'.
      *
@@ -57,5 +58,10 @@ public class Zorginstelling {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Id: [" + id + "], Name: [" + name + "]";
     }
 }

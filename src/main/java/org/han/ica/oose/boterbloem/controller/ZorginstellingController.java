@@ -36,14 +36,13 @@ public class ZorginstellingController {
 
         zorginstellingService.saveZorginstelling(zorginstelling);
 
+
         HttpHeaders headers = new HttpHeaders();
         return new ResponseEntity<String>(headers,HttpStatus.CREATED);
     }
 
     @CrossOrigin
     @RequestMapping(value = "/zorginstelling/{id}/edit", method = RequestMethod.PUT)
-
-
     public ResponseEntity<?> updateUser(@PathVariable int  id, @RequestBody Zorginstelling zorginstelling) {
 
         Zorginstelling currentZorginstellling = null;

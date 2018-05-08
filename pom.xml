@@ -10,7 +10,6 @@
 
     <name>zorgrit-boterbloem-server</name>
     <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -115,6 +114,12 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.9.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.196</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
