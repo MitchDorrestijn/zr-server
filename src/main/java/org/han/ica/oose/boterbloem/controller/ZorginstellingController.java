@@ -21,7 +21,7 @@ public class ZorginstellingController {
 
     protected static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(DAO.class.getName());
 
-    private ZorginstellingService zorginstellingService = new ZorginstellingService();
+    protected ZorginstellingService zorginstellingService = new ZorginstellingService();
 
     @Autowired
     ZorginstellingController() {
@@ -44,6 +44,7 @@ public class ZorginstellingController {
         HttpHeaders headers = new HttpHeaders();
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
+
 
     @CrossOrigin
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
@@ -68,14 +69,13 @@ public class ZorginstellingController {
      * @param id
      * @return Zorginstelling
      */
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Zorginstelling getZorginstelling(@PathVariable String id) throws SQLException {
         int y = Integer.parseInt(id);
         Zorginstelling zorginstelling = new Zorginstelling();
         try {
             zorginstelling = zorginstellingService.findById(y);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
         return zorginstelling;
@@ -93,7 +93,7 @@ public class ZorginstellingController {
         List<Zorginstelling> zorginstellingen = new ArrayList<>();
         try {
             zorginstellingen = zorginstellingService.getAllZorginstellingen();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
         return zorginstellingen;
