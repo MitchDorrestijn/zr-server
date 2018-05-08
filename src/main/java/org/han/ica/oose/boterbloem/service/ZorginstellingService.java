@@ -8,7 +8,6 @@ import java.util.List;
 public class ZorginstellingService {
     ZorginstellingDAO zorginstellingDAO = new ZorginstellingDAO();
 
-
     public ZorginstellingService(){
         // Empty constructor
     }
@@ -33,11 +32,12 @@ public class ZorginstellingService {
 
     /**
      *
-     * @param zorginstelling thats going to be added to the database
+     * @param zorginstelling that's going to be added to the database
      */
     public void saveZorginstelling(Zorginstelling zorginstelling) {
         zorginstellingDAO.create(zorginstelling);
     }
+    
     /**
      *
      * @return List of all zorginstellingen
