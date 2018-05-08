@@ -21,8 +21,8 @@ public class Zorginstelling {
     public Zorginstelling(@JsonProperty("id") int id, @JsonProperty("name") String name){
         this.id = id;
         this.name = name;
+        
 
-    }
     /**
      * Getter for property 'id'.
      *

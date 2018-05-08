@@ -1,19 +1,20 @@
-package org.han.ica.oose.boterbloem.service;
+package org.han.ica.oose.boterbloem.Service;
 
-import org.han.ica.oose.boterbloem.dao.DAO;
 import org.han.ica.oose.boterbloem.dao.ZorginstellingDAO;
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Objects;
-import java.util.logging.Logger;
 
 public class ZorginstellingService {
-    ZorginstellingDAO DAO = new ZorginstellingDAO();
+
+    public ZorginstellingService(){
+        // Empty constructor
+    }
 
     /**
      * Finds and returns a Zorginstelling using the given ID
+     *
      * @param id ID of the zorginstelling
      * @return The zorginstelling that was found using the ID
      * @throws SQLException
@@ -24,25 +25,21 @@ public class ZorginstellingService {
     }
 
     /**
-     *
      * @param zorginstelling Zorgstelling that needs a update
      * @throws SQLException
      */
     public void updateZorginstelling(Zorginstelling zorginstelling) throws SQLException {
-        DAO.updateZorginstellingWithId(zorginstelling.getId(),zorginstelling.getName());
+        ZorginstellingDAO DAO = new ZorginstellingDAO();
+        DAO.updateZorginstellingWithId(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
     }
 
-    public boolean checkIfExists(Zorginstelling zorginstelling) {
-        List<Zorginstelling> instellingen = DAO.getAllZorginstellingen();
-        for (Zorginstelling stellingen : instellingen){
-            if (Objects.equals(stellingen.getName(), zorginstelling.getName())) {
-                return false;
-            }
-        }
-        return true;
-    }
 
-    public void saveZorginstelling(Zorginstelling zorginstelling) {
-            DAO.create(zorginstelling);
+    /**
+     *
+     * @return List of all zorginstellingen
+     */
+    public List<Zorginstelling> getAllZorginstellingen() throws SQLException {
+        ZorginstellingDAO DAO = new ZorginstellingDAO();
+        return DAO.getAllZorginstellingen();
     }
 }
