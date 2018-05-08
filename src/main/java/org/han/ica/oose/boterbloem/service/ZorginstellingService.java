@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class ZorginstellingService {
-    ZorginstellingDAO DAO = new ZorginstellingDAO();
+
+    private static final ZorginstellingDAO DAO = new ZorginstellingDAO();
 
     /**
      * Finds and returns a Zorginstelling using the given ID
