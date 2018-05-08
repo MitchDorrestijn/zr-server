@@ -59,4 +59,9 @@ public class Zorginstelling {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Id: [" + id + "], Name: [" + name + "]";
+    }
 }
