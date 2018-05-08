@@ -1,12 +1,10 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.service.ZorginstellingService;
 import org.han.ica.oose.boterbloem.dao.DAO;
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 import org.han.ica.oose.boterbloem.service.ZorginstellingService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +13,31 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 
 @RestController
-public class EditZorginstellingController {
+public class ZorginstellingController {
+
     protected static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(DAO.class.getName());
 
     private ZorginstellingService zorginstellingService = new ZorginstellingService();
 
     @Autowired
-    EditZorginstellingController(){
+    ZorginstellingController(){
 
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/zorginstelling/addZorginstelling", method = RequestMethod.POST)
+
+    public ResponseEntity<?> addZorginstelling(@RequestBody Zorginstelling zorginstelling){
+
+      /*  if (zorginstellingService.checkIfExists(zorginstelling)){
+            LOGGER.log(Level.SEVERE,"Zorginstelling met deze naam bestaat al " + zorginstelling.getName());
+            return new ResponseEntity<Object>(HttpStatus.CONFLICT);
+        }*/
+
+        zorginstellingService.saveZorginstelling(zorginstelling);
+
+        HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity<String>(headers,HttpStatus.CREATED);
     }
 
     @CrossOrigin
