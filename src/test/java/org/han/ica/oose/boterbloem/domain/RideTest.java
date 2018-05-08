@@ -195,4 +195,345 @@ public class RideTest {
         //then
         assertEquals("field wasn't retrieved properly", result, date);
     }
+
+    @Test
+    public void testSetter_setsDropOffLocation() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setDropOffLocation("Location");
+        //when
+        final Field field = testRide.getClass().getDeclaredField("dropOffLocation");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), "Location");
+
+    }
+
+    @Test
+    public void testGetter_getsDropOffLocation() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("dropOffLocation");
+        field.setAccessible(true);
+        field.set(testRide, "Location");
+
+        //when
+        final String result = testRide.getDropOffLocation();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, "Location");
+    }
+
+    @Test
+    public void testSetter_setsDuration() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setDuration(5);
+        //when
+        final Field field = testRide.getClass().getDeclaredField("duration");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), 5);
+
+    }
+
+    @Test
+    public void testGetter_getsDuration() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("duration");
+        field.setAccessible(true);
+        field.set(testRide, 5);
+
+        //when
+        final int result = testRide.getDuration();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, 5);
+    }
+
+    @Test
+    public void testSetter_setsDistance() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setDistance(5);
+        //when
+        final Field field = testRide.getClass().getDeclaredField("distance");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), 5);
+
+    }
+
+    @Test
+    public void testGetter_getsDistance() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("distance");
+        field.setAccessible(true);
+        field.set(testRide, 5);
+
+        //when
+        final int result = testRide.getDistance();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, 5);
+    }
+
+    @Test
+    public void testSetter_setsNumberOfCompanions() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setNumerOfCompanions(5);
+        //when
+        final Field field = testRide.getClass().getDeclaredField("numberOfCompanions");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), 5);
+
+    }
+
+    @Test
+    public void testGetter_getsNumberOfCompanions() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("numberOfCompanions");
+        field.setAccessible(true);
+        field.set(testRide, 5);
+
+        //when
+        final int result = testRide.getNumerOfCompanions();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, 5);
+    }
+
+    @Test
+    public void testSetter_setsNumberOfLuggage() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setNumerOfLuggage(5);
+        //when
+        final Field field = testRide.getClass().getDeclaredField("numberOfLuggage");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), 5);
+
+    }
+
+    @Test
+    public void testGetter_getsNumberOfLuggage() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("numberOfLuggage");
+        field.setAccessible(true);
+        field.set(testRide, 5);
+
+        //when
+        final int result = testRide.getNumerOfLuggage();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, 5);
+    }
+
+    @Test
+    public void testSetter_setsReturnRide() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setReturnRide(true);
+        //when
+        final Field field = testRide.getClass().getDeclaredField("returnRide");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), true);
+
+    }
+
+    @Test
+    public void testGetter_getsReturnRide() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("returnRide");
+        field.setAccessible(true);
+        field.set(testRide, true);
+
+        //when
+        final boolean result = testRide.isReturnRide();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, true);
+    }
+
+    @Test
+    public void testSetter_setsCallService() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setCallService(true);
+        //when
+        final Field field = testRide.getClass().getDeclaredField("callService");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), true);
+
+    }
+
+    @Test
+    public void testGetter_getsCallService() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("callService");
+        field.setAccessible(true);
+        field.set(testRide, true);
+
+        //when
+        final boolean result = testRide.isCallService();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, true);
+    }
+
+    @Test
+    public void testSetter_setsUtility() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setUtility("Something");
+        //when
+        final Field field = testRide.getClass().getDeclaredField("utility");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), "Something");
+
+    }
+
+    @Test
+    public void testGetter_getsUtility() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("utility");
+        field.setAccessible(true);
+        field.set(testRide, "Something");
+
+        //when
+        final String result = testRide.getUtility();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, "Something");
+    }
+
+    @Test
+    public void testSetter_setsRepeatingRideId() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setRepeatingRideId(5);
+        //when
+        final Field field = testRide.getClass().getDeclaredField("repeatingRideId");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), 5);
+
+    }
+
+    @Test
+    public void testGetter_getsRepeatingRideId() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("repeatingRideId");
+        field.setAccessible(true);
+        field.set(testRide, 5);
+
+        //when
+        final int result = testRide.getRepeatingRideId();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, 5);
+    }
+
+    @Test
+    public void testSetter_setsCancelledByClient() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setCancelledByClient(true);
+        //when
+        final Field field = testRide.getClass().getDeclaredField("cancelledByClient");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), true);
+
+    }
+
+    @Test
+    public void testGetter_getsCancelledByClient() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("cancelledByClient");
+        field.setAccessible(true);
+        field.set(testRide, true);
+
+        //when
+        final boolean result = testRide.isCancelledByClient();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, true);
+    }
+    @Test
+    public void testSetter_setsExecuted() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        testRide.setExecuted(true);
+        //when
+        final Field field = testRide.getClass().getDeclaredField("executed");
+        field.setAccessible(true);
+
+        //then
+        assertEquals("Fields didn't match", field.get(testRide), true);
+
+    }
+
+    @Test
+    public void testGetter_getsExecuted() throws NoSuchFieldException, IllegalAccessException {
+        //given
+        final Ride testRide = new Ride();
+
+        final Field field = testRide.getClass().getDeclaredField("executed");
+        field.setAccessible(true);
+        field.set(testRide, true);
+
+        //when
+        final boolean result = testRide.isExecuted();
+
+        //then
+        assertEquals("field wasn't retrieved properly", result, true);
+    }
+
 }

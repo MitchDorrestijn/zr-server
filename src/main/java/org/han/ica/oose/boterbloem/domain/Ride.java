@@ -12,6 +12,18 @@ public class Ride {
     private int preferedCareInstitution;
     private int preferedDriver;
     private Date pickUpDateTime;
+    private String pickUpLocation;
+    private String dropOffLocation;
+    private int duration;
+    private int distance;
+    private int numberOfCompanions;
+    private int numberOfLuggage;
+    private boolean returnRide;
+    private boolean callService;
+    private String utility;
+    private int repeatingRideId;
+    private boolean cancelledByClient;
+    private boolean executed;
 
     /**
      * Getter for property 'id'.
@@ -199,7 +211,7 @@ public class Ride {
      * @return Value for property 'numerOfCompanions'.
      */
     public int getNumerOfCompanions() {
-        return numerOfCompanions;
+        return numberOfCompanions;
     }
 
     /**
@@ -208,7 +220,7 @@ public class Ride {
      * @param numerOfCompanions Value to set for property 'numerOfCompanions'.
      */
     public void setNumerOfCompanions(int numerOfCompanions) {
-        this.numerOfCompanions = numerOfCompanions;
+        this.numberOfCompanions = numerOfCompanions;
     }
 
     /**
@@ -217,7 +229,7 @@ public class Ride {
      * @return Value for property 'numerOfLuggage'.
      */
     public int getNumerOfLuggage() {
-        return numerOfLuggage;
+        return numberOfLuggage;
     }
 
     /**
@@ -226,7 +238,7 @@ public class Ride {
      * @param numerOfLuggage Value to set for property 'numerOfLuggage'.
      */
     public void setNumerOfLuggage(int numerOfLuggage) {
-        this.numerOfLuggage = numerOfLuggage;
+        this.numberOfLuggage = numerOfLuggage;
     }
 
     /**
@@ -337,16 +349,5 @@ public class Ride {
         this.executed = executed;
     }
 
-    private String pickUpLocation;
-    private String dropOffLocation;
-    private int duration;
-    private int distance;
-    private int numerOfCompanions;
-    private int numerOfLuggage;
-    private boolean returnRide;
-    private boolean callService;
-    private String utility;
-    private int repeatingRideId;
-    private boolean cancelledByClient;
-    private boolean executed;
+
 }

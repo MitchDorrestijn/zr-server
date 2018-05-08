@@ -20,7 +20,7 @@ public class ZorginstellingController {
 
     protected static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(DAO.class.getName());
 
-    private ZorginstellingService zorginstellingService = new ZorginstellingService();
+    protected ZorginstellingService zorginstellingService = new ZorginstellingService();
 
     @Autowired
     ZorginstellingController() {
