@@ -18,9 +18,10 @@ public class Zorginstelling {
     }
 
     @JsonCreator
-    public Zorginstelling(@JsonProperty("id") int id, @JsonProperty("name") String name){
+    public Zorginstelling(@JsonProperty("id") int id, @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
+    }
         
 
     /**

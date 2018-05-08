@@ -31,7 +31,6 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     public void create(Zorginstelling zorginstelling) {
         try (PreparedStatement ps = dao.getPreparedStatement(
                 "INSERT INTO careInstitution (id, name) VALUES (DEFAULT, ?)")) {
-        //    ps.setInt(1, zorginstelling.getId());
             ps.setString(1, zorginstelling.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
