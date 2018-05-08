@@ -14,7 +14,7 @@ public class Zorginstelling {
     private String name;
 
     public Zorginstelling(){
-
+        // empty constructor
     }
 
     @JsonCreator
