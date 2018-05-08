@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ZorginstellingService {
 
-    public ZorginstellingService(){
+    public ZorginstellingService() {
         // Empty constructor
     }
 
@@ -35,7 +35,6 @@ public class ZorginstellingService {
 
 
     /**
-     *
      * @return List of all zorginstellingen
      */
     public List<Zorginstelling> getAllZorginstellingen() throws SQLException {
