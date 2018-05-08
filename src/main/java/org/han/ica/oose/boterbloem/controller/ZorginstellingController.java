@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/zorginstelling")
 public class ZorginstellingController {
 
@@ -27,21 +28,23 @@ public class ZorginstellingController {
 
     }
 
-//    @CrossOrigin
-//    @RequestMapping(value = "/app", method = RequestMethod.POST)
-//
-//    public ResponseEntity<?> addZorginstelling(@RequestBody Zorginstelling zorginstelling){
-//
-//      /*  if (zorginstellingService.checkIfExists(zorginstelling)){
-//            LOGGER.log(Level.SEVERE,"Zorginstelling met deze naam bestaat al " + zorginstelling.getName());
-//            return new ResponseEntity<Object>(HttpStatus.CONFLICT);
-//        }*/
-//
-//        zorginstellingService.saveZorginstelling(zorginstelling);
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        return new ResponseEntity<String>(headers,HttpStatus.CREATED);
-//    }
+    @CrossOrigin
+    @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
+
+    public ResponseEntity<?> addZorginstelling(@RequestBody Zorginstelling zorginstelling) {
+
+      /*  if (zorginstellingService.checkIfExists(zorginstelling)){
+            LOGGER.log(Level.SEVERE,"Zorginstelling met deze naam bestaat al " + zorginstelling.getName());
+            return new ResponseEntity<Object>(HttpStatus.CONFLICT);
+        }*/
+
+        zorginstellingService.saveZorginstelling(zorginstelling);
+
+
+        HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+    }
+
 
     @CrossOrigin
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
@@ -53,7 +56,7 @@ public class ZorginstellingController {
             currentZorginstellling = zorginstellingService.findById(id);
             currentZorginstellling.setName(zorginstelling.getName());
             zorginstellingService.updateZorginstelling(currentZorginstellling);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
 
@@ -72,7 +75,7 @@ public class ZorginstellingController {
         Zorginstelling zorginstelling = new Zorginstelling();
         try {
             zorginstelling = zorginstellingService.findById(y);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
         return zorginstelling;
@@ -90,7 +93,7 @@ public class ZorginstellingController {
         List<Zorginstelling> zorginstellingen = new ArrayList<>();
         try {
             zorginstellingen = zorginstellingService.getAllZorginstellingen();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
         return zorginstellingen;
