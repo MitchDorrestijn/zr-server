@@ -30,9 +30,9 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public void create(Zorginstelling zorginstelling) {
         try (PreparedStatement ps = dao.getPreparedStatement(
-                "INSERT INTO careInstitution (id, name) VALUES (?, ?)")) {
-            ps.setInt(1, zorginstelling.getId());
-            ps.setString(2, zorginstelling.getName());
+                "INSERT INTO careInstitution (id, name) VALUES (DEFAULT, ?)")) {
+        //    ps.setInt(1, zorginstelling.getId());
+            ps.setString(1, zorginstelling.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
@@ -49,10 +49,9 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
         try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careinstitution");
              ResultSet rs = ps.executeQuery()) {
             while(rs.next()) {
-                Zorginstelling zorginstelling = new Zorginstelling(
-                        rs.getInt("id"),
-                        rs.getString("name")
-                );
+                String foundName = rs.getString("name");
+                int foundId = rs.getInt("id");
+                Zorginstelling zorginstelling = new Zorginstelling(foundId,foundName);
                 zorginstellingen.add(zorginstelling);
             }
             return zorginstellingen;
@@ -68,13 +67,12 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public Zorginstelling getByID(int id) {
         Zorginstelling zorginstelling;
-        try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careinstitution WHERE id = " + id);
+        try (PreparedStatement ps = dao.getPreparedStatement("select * from careinstitution WHERE id =" + id);
              ResultSet rs = ps.executeQuery()){
             while(rs.next()) {
-                zorginstelling = new Zorginstelling(
-                        rs.getInt("id"),
-                        rs.getString("name")
-                );
+                String foundName = rs.getString("name");
+                int foundID  = rs.getInt("id");
+                zorginstelling = new Zorginstelling(foundID,foundName); // andere constructor wordt hier gebruikt, bij mij deed de oude het niet
                 return zorginstelling;
             }
         } catch (SQLException e) {
@@ -93,8 +91,6 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
              ResultSet rs = ps.executeQuery()) {
             while(rs.next()) {
                 Zorginstelling zorginstelling = new Zorginstelling(
-                        rs.getInt("id"),
-                        rs.getString("name")
                 );
                 zorginstellingen.add(zorginstelling);
             }
@@ -139,8 +135,8 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
      * {@inheritDoc}
      */
     @Override
-    public void updateZorginstellingWithId(int id, String newName) {
-        try (PreparedStatement ps = getPreparedStatement(
+    public void updateZorginstellingWithId(int id, String newName){
+        try (PreparedStatement ps = dao.getPreparedStatement(
                 "UPDATE careinstitution SET name = ? WHERE id = ?")){
             ps.setString(1,newName);
             ps.setInt(2, id);

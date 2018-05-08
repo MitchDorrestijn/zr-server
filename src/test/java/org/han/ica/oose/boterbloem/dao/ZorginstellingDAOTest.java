@@ -30,7 +30,12 @@ public class ZorginstellingDAOTest {
 
     @Test
     public void create() {
+<<<<<<< HEAD
         dao.create(new Zorginstelling(6, "Prothese"));
+=======
+        System.out.println(dao.dao.hasConnection());
+        //dao.create(new Zorginstelling(6, "Prothese"));
+>>>>>>> 189cc2843bcc1eabcd20ddac91f40ffc02faab7e
         Zorginstelling temp = dao.getByID(6);
         assertEquals(6, temp.getId());
         assertEquals("Prothese", dao.getByName("Prothese").get(0).getName());
