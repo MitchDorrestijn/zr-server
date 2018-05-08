@@ -1,13 +1,11 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.dao.DAO;
 import org.han.ica.oose.boterbloem.dao.ZorginstellingDAO;
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.Logger;
 
 public class ZorginstellingService {
     ZorginstellingDAO DAO = new ZorginstellingDAO();
