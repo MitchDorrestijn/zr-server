@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.Service;
+package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 

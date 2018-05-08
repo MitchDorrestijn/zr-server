@@ -2,7 +2,7 @@ package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.dao.DAO;
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
-import org.han.ica.oose.boterbloem.Service.ZorginstellingService;
+import org.han.ica.oose.boterbloem.service.ZorginstellingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
