@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/zorginstelling")
 public class ZorginstellingController {
 
