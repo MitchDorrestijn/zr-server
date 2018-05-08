@@ -37,7 +37,7 @@ public class ZorginstellingService {
 
     /**
      *
-     * @param zorginstelling thats gonna be added to the database
+     * @param zorginstelling thats going to be added to the database
      */
     public void saveZorginstelling(Zorginstelling zorginstelling) {
         DAO.create(zorginstelling);
