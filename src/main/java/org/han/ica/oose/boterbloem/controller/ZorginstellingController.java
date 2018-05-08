@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.logging.Level;
 
 @RestController
@@ -51,7 +50,7 @@ public class ZorginstellingController {
             currentZorginstellling = zorginstellingService.findById(id);
             currentZorginstellling.setName(zorginstelling.getName());
             zorginstellingService.updateZorginstelling(currentZorginstellling);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
 
