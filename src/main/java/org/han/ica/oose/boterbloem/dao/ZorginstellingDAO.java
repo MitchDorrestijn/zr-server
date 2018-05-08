@@ -1,9 +1,6 @@
 package org.han.ica.oose.boterbloem.dao;
 
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -71,7 +68,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
             while(rs.next()) {
                 String foundName = rs.getString("name");
                 int foundID  = rs.getInt("id");
-                zorginstelling = new Zorginstelling(foundID,foundName); // andere constructor wordt hier gebruikt, bij mij deed de oude het niet
+                zorginstelling = new Zorginstelling(foundID,foundName);
                 return zorginstelling;
             }
         } catch (SQLException e) {

@@ -3,7 +3,6 @@ package org.han.ica.oose.boterbloem.controller;
 import org.han.ica.oose.boterbloem.service.ZorginstellingService;
 import org.han.ica.oose.boterbloem.dao.DAO;
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;

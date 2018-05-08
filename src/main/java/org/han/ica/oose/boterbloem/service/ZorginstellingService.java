@@ -19,18 +19,18 @@ public class ZorginstellingService {
      * @return The zorginstelling that was found using the ID
      * @throws SQLException
      */
-    public Zorginstelling findById(int id) throws SQLException {
-        ZorginstellingDAO DAO = new ZorginstellingDAO();
-        return (DAO.getByID(id));
+    public Zorginstelling findById(int id) {
+        ZorginstellingDAO dao = new ZorginstellingDAO();
+        return (dao.getByID(id));
     }
 
     /**
      * @param zorginstelling Zorgstelling that needs a update
      * @throws SQLException
      */
-    public void updateZorginstelling(Zorginstelling zorginstelling) throws SQLException {
-        ZorginstellingDAO DAO = new ZorginstellingDAO();
-        DAO.updateZorginstellingWithId(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
+    public void updateZorginstelling(Zorginstelling zorginstelling)  {
+        ZorginstellingDAO dao = new ZorginstellingDAO();
+        dao.updateZorginstellingWithId(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
     }
 
 
@@ -38,8 +38,8 @@ public class ZorginstellingService {
      *
      * @return List of all zorginstellingen
      */
-    public List<Zorginstelling> getAllZorginstellingen() throws SQLException {
-        ZorginstellingDAO DAO = new ZorginstellingDAO();
-        return DAO.getAllZorginstellingen();
+    public List<Zorginstelling> getAllZorginstellingen() {
+        ZorginstellingDAO dao = new ZorginstellingDAO();
+        return dao.getAllZorginstellingen();
     }
 }
