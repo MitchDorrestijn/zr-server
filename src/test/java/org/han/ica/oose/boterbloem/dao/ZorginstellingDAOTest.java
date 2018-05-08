@@ -60,6 +60,30 @@ public class ZorginstellingDAOTest {
         assertNotEquals("Cordaan", zorginstellingen.get(0).getName());
     }
 
+    @Test
+    public void deleteByID() {
+        dao.create(new Zorginstelling(6, "Prothese"));
+        Zorginstelling temp = dao.getByID(6);
+        assertEquals(6, temp.getId());
+        assertEquals("Prothese", temp.getName());
+
+        dao.deleteById(6);
+        assertNotEquals(6, dao.getByID(6));
+        assertTrue(dao.getByName("Prothese").size() == 0);
+    }
+
+    @Test
+    public void deleteByName(){
+        dao.create(new Zorginstelling(6, "Prothese"));
+        Zorginstelling temp = dao.getByID(6);
+        assertEquals(6, temp.getId());
+        assertEquals("Prothese", temp.getName());
+
+        dao.deleteByName("Prothese");
+        assertNotEquals(6, dao.getByID(6));
+        assertTrue(dao.getByName("Prothese").size() == 0);
+    }
+
     @After
     public void tearDown() {
         dao.dao.closeConnection();
