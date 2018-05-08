@@ -24,26 +24,24 @@ public class ZorginstellingController {
 
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "/zorginstelling/app", method = RequestMethod.POST)
-
-    public ResponseEntity<?> addZorginstelling(@RequestBody Zorginstelling zorginstelling){
-
-      /*  if (zorginstellingService.checkIfExists(zorginstelling)){
-            LOGGER.log(Level.SEVERE,"Zorginstelling met deze naam bestaat al " + zorginstelling.getName());
-            return new ResponseEntity<Object>(HttpStatus.CONFLICT);
-        }*/
-
-        zorginstellingService.saveZorginstelling(zorginstelling);
-
-        HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<String>(headers,HttpStatus.CREATED);
-    }
+//    @CrossOrigin
+//    @RequestMapping(value = "/zorginstelling/app", method = RequestMethod.POST)
+//
+//    public ResponseEntity<?> addZorginstelling(@RequestBody Zorginstelling zorginstelling){
+//
+//      /*  if (zorginstellingService.checkIfExists(zorginstelling)){
+//            LOGGER.log(Level.SEVERE,"Zorginstelling met deze naam bestaat al " + zorginstelling.getName());
+//            return new ResponseEntity<Object>(HttpStatus.CONFLICT);
+//        }*/
+//
+//        zorginstellingService.saveZorginstelling(zorginstelling);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        return new ResponseEntity<String>(headers,HttpStatus.CREATED);
+//    }
 
     @CrossOrigin
     @RequestMapping(value = "/zorginstelling/{id}/edit", method = RequestMethod.PUT)
-
-
     public ResponseEntity<?> updateUser(@PathVariable int  id, @RequestBody Zorginstelling zorginstelling) {
 
         Zorginstelling currentZorginstellling = null;

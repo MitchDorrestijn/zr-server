@@ -71,7 +71,8 @@ public class DAO implements IDAO {
                 System.out.println(databaseConfig.getConnectionString());
                 System.out.println(databaseConfig.getUser());
                 System.out.println(databaseConfig.getPass());
-                 connection = (DriverManager.getConnection("jdbc:mysql://localhost/zorgrit?useSSL=false","root","Test123!")); //deze String trekt ie wel maar dat andere niet
+                connection = (DriverManager.getConnection(databaseConfig.getConnectionString(), databaseConfig.getUser(), databaseConfig.getPass()));
+   //              connection = (DriverManager.getConnection("jdbc:mysql://localhost/zorgrit?useSSL=false","root","root")); //deze String trekt ie wel maar dat andere niet
 //               connection = (DriverManager.getConnection(databaseConfig.getConnectionString() + "user=" + databaseConfig.getUser() + "&password=" + databaseConfig.getPass()));
             }
         } catch (SQLException e) {
