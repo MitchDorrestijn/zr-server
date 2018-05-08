@@ -5,13 +5,15 @@ import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
-public class ZorginstellingService {
+public class ZorginstellingService  {
+    ZorginstellingDAO DAO = new ZorginstellingDAO();
 
-    public ZorginstellingService() {
+
+    public ZorginstellingService(){
         // Empty constructor
     }
-
     /**
      * Finds and returns a Zorginstelling using the given ID
      *
@@ -33,8 +35,15 @@ public class ZorginstellingService {
         DAO.updateZorginstellingWithId(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
     }
 
-
     /**
+     *
+     * @param zorginstelling thats going to be added to the database
+     */
+    public void saveZorginstelling(Zorginstelling zorginstelling) {
+        DAO.create(zorginstelling);
+    }
+    /**
+     *
      * @return List of all zorginstellingen
      */
     public List<Zorginstelling> getAllZorginstellingen() throws SQLException {
