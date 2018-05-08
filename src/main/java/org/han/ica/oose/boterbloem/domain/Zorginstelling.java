@@ -1,5 +1,8 @@
 package org.han.ica.oose.boterbloem.domain;
 
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,10 +13,16 @@ public class Zorginstelling {
     private int id;
     private String name;
 
-    public Zorginstelling(int id, String name) {
+    public Zorginstelling(){
+        // empty constructor
+    }
+
+    @JsonCreator
+    public Zorginstelling(@JsonProperty("id") int id, @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
     }
+        
 
     /**
      * Getter for property 'id'.
@@ -49,5 +58,10 @@ public class Zorginstelling {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Id: [" + id + "], Name: [" + name + "]";
     }
 }

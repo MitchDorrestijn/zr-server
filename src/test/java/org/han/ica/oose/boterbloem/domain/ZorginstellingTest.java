@@ -11,11 +11,11 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ZorginstellingTest {
-    Zorginstelling zorginstelling;
+    private Zorginstelling zorginstelling;
 
     @Before
     public void setUp() throws Exception {
-        zorginstelling = new Zorginstelling(1, "Ziekenhuis de prothese");
+         zorginstelling = new Zorginstelling(1, "Ziekenhuis de prothese");
     }
 
     @Test

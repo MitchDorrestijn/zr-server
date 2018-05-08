@@ -63,10 +63,12 @@ public class DAO implements IDAO {
      * @param databaseConfig The configuration settings of the database
      */
     private void makeConnection(DatabaseConfig databaseConfig) {
+
         try {
             if (databaseConfig.getUser() == null || databaseConfig.getPass() == null) {
                 connection = (DriverManager.getConnection(databaseConfig.getConnectionString()));
             } else {
+                connection = (DriverManager.getConnection("jdbc:mysql://localhost/zorgrit?useSSL=false","root","Test123!"));
                 connection = (DriverManager.getConnection(databaseConfig.getConnectionString() + "user=" + databaseConfig.getUser() + "&password=" + databaseConfig.getPass()));
             }
         } catch (SQLException e) {

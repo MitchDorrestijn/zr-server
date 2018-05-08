@@ -1,9 +1,6 @@
 package org.han.ica.oose.boterbloem.dao;
 
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,9 +27,8 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public void create(Zorginstelling zorginstelling) {
         try (PreparedStatement ps = dao.getPreparedStatement(
-                "INSERT INTO careInstitution (id, name) VALUES (?, ?)")) {
-            ps.setInt(1, zorginstelling.getId());
-            ps.setString(2, zorginstelling.getName());
+                "INSERT INTO careInstitution (name) VALUES (?)")) {
+            ps.setString(1, zorginstelling.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
@@ -49,10 +45,9 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
         try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careinstitution");
              ResultSet rs = ps.executeQuery()) {
             while(rs.next()) {
-                Zorginstelling zorginstelling = new Zorginstelling(
-                        rs.getInt("id"),
-                        rs.getString("name")
-                );
+                String foundName = rs.getString("name");
+                int foundId = rs.getInt("id");
+                Zorginstelling zorginstelling = new Zorginstelling(foundId,foundName);
                 zorginstellingen.add(zorginstelling);
             }
             return zorginstellingen;
@@ -68,13 +63,12 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public Zorginstelling getByID(int id) {
         Zorginstelling zorginstelling;
-        try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careinstitution WHERE id = " + id);
+        try (PreparedStatement ps = dao.getPreparedStatement("select * from careinstitution WHERE id =" + id);
              ResultSet rs = ps.executeQuery()){
             while(rs.next()) {
-                zorginstelling = new Zorginstelling(
-                        rs.getInt("id"),
-                        rs.getString("name")
-                );
+                String foundName = rs.getString("name");
+                int foundID  = rs.getInt("id");
+                zorginstelling = new Zorginstelling(foundID,foundName);
                 return zorginstelling;
             }
         } catch (SQLException e) {
@@ -129,6 +123,21 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
                 "DELETE FROM careinstitution "
                         + "WHERE name = ? ")){
             ps.setString(1, name);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.log(Level.INFO, e.toString(), e);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateZorginstellingWithId(int id, String newName){
+        try (PreparedStatement ps = dao.getPreparedStatement(
+                "UPDATE careinstitution SET name = ? WHERE id = ?")){
+            ps.setString(1,newName);
+            ps.setInt(2, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.log(Level.INFO, e.toString(), e);
