@@ -62,7 +62,7 @@ public class DAO implements IDAO {
      *
      * @param databaseConfig The configuration settings of the database
      */
-    public void makeConnection(DatabaseConfig databaseConfig) {
+    private void makeConnection(DatabaseConfig databaseConfig) {
 
         try {
             if (databaseConfig.getUser() == null || databaseConfig.getPass() == null) {
