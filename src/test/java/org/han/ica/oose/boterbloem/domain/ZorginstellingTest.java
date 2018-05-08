@@ -15,7 +15,8 @@ public class ZorginstellingTest {
 
     @Before
     public void setUp() throws Exception {
-         zorginstelling = new Zorginstelling(1, "Ziekenhuis de prothese");
+        zorginstelling = new Zorginstelling(1, "Ziekenhuis de prothese");
+
     }
 
     @Test
