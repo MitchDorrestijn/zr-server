@@ -133,7 +133,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
      * {@inheritDoc}
      */
     @Override
-    public void updateZorginstellingWithId(int id, String newName){
+    public void updateZorginstelling(int id, String newName){
         try (PreparedStatement ps = dao.getPreparedStatement(
                 "UPDATE careinstitution SET name = ? WHERE id = ?")){
             ps.setString(1,newName);

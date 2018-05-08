@@ -25,9 +25,9 @@ public class ZorginstellingService {
     /**
      * @param zorginstelling Zorgstelling that needs a update
      */
-    public void updateZorginstelling(Zorginstelling zorginstelling)  {
+    public void updateZorginstelling(Zorginstelling zorginstelling) {
         ZorginstellingDAO dao = new ZorginstellingDAO();
-        dao.updateZorginstellingWithId(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
+        dao.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
     }
 
     /**

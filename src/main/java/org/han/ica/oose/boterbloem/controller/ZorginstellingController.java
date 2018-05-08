@@ -9,9 +9,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 @RestController
+@RequestMapping("/zorginstelling")
 public class ZorginstellingController {
 
     protected static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(DAO.class.getName());
@@ -19,14 +23,14 @@ public class ZorginstellingController {
     private ZorginstellingService zorginstellingService = new ZorginstellingService();
 
     @Autowired
-    ZorginstellingController(){
+    ZorginstellingController() {
 
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/zorginstelling/addZorginstelling", method = RequestMethod.POST)
+    @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
 
-    public ResponseEntity<?> addZorginstelling(@RequestBody Zorginstelling zorginstelling){
+    public ResponseEntity<?> addZorginstelling(@RequestBody Zorginstelling zorginstelling) {
 
       /*  if (zorginstellingService.checkIfExists(zorginstelling)){
             LOGGER.log(Level.SEVERE,"Zorginstelling met deze naam bestaat al " + zorginstelling.getName());
@@ -37,12 +41,12 @@ public class ZorginstellingController {
 
 
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<String>(headers,HttpStatus.CREATED);
+        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/zorginstelling/{id}/edit", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateUser(@PathVariable int  id, @RequestBody Zorginstelling zorginstelling) {
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody Zorginstelling zorginstelling) {
 
         Zorginstelling currentZorginstellling = null;
 
@@ -56,4 +60,42 @@ public class ZorginstellingController {
 
         return new ResponseEntity<Zorginstelling>(currentZorginstellling, HttpStatus.OK);
     }
+
+    /**
+     * Method for returning a zorginstelling
+     *
+     * @param id
+     * @return Zorginstelling
+     */
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Zorginstelling getZorginstelling(@PathVariable String id) throws SQLException {
+        int y = Integer.parseInt(id);
+        Zorginstelling zorginstelling = new Zorginstelling();
+        try {
+            zorginstelling = zorginstellingService.findById(y);
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return zorginstelling;
+    }
+
+    /**
+     * Method for returning all zorginstellignen
+     *
+     * @return List of zorginstellingen
+     * @throws SQLException
+     */
+
+    @RequestMapping(value = "/zorginstellingen", method = RequestMethod.GET)
+    public List<Zorginstelling> getAllZorginstelling() throws SQLException {
+        List<Zorginstelling> zorginstellingen = new ArrayList<>();
+        try {
+            zorginstellingen = zorginstellingService.getAllZorginstellingen();
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return zorginstellingen;
+    }
+
 }
