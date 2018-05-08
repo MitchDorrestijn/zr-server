@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
-public class ZorginstellingService {
+public class ZorginstellingService  {
     ZorginstellingDAO DAO = new ZorginstellingDAO();
 
 
