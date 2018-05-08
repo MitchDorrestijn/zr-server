@@ -35,7 +35,10 @@ public class ZorginstellingService {
         DAO.updateZorginstellingWithId(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
     }
 
-
+    /**
+     *
+     * @param zorginstelling thats gonna be added to the database
+     */
     public void saveZorginstelling(Zorginstelling zorginstelling) {
         DAO.create(zorginstelling);
     }
