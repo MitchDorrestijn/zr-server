@@ -47,15 +47,6 @@ public class ZorginstellingServiceTest {
         zorginstellingen.add(zorginstellingE);
     }
 
-    /*
-
-       @Test
-    public void getAllZorginstellingenTets() throws SQLException {
-        when(zorginstellingService.getAllZorginstellingen()).thenReturn(zorginstellingen);
-        List<Zorginstelling> testZorginstellingen = zorginstellingController.getAllZorginstelling();
-        assertEquals(5, testZorginstellingen.size());
-    }
-     */
 
     @Test
     public void getAllZorginstellingen() throws SQLException{
