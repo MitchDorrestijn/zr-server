@@ -54,4 +54,23 @@ public class ZorginstellingControllerTests {
         Zorginstelling testZorginstelling = zorginstellingController.getZorginstelling("1");
         assertEquals("instellingA", testZorginstelling.getName());
     }
+
+
+    @Test
+    public void updateZorginstellingTest() throws SQLException{
+        when(zorginstellingService.findById(1)).thenReturn(zorginstellingA);
+        Zorginstelling testZorginstelling = zorginstellingController.getZorginstelling("1");
+        testZorginstelling.setName("new name");
+        zorginstellingController.updateUser(1,testZorginstelling);
+        assertEquals("new name", testZorginstelling.getName());
+    }
+
+    @Test
+    public void addZorgInstelling() throws SQLException{
+        Zorginstelling zorginstellingZ = new Zorginstelling(6, "instellingZ");
+        zorginstellingController.addZorginstelling(zorginstellingZ);
+        when(zorginstellingService.findById(6)).thenReturn(zorginstellingZ);
+        Zorginstelling testZorginstelling = zorginstellingController.getZorginstelling("6");
+        assertEquals("instellingZ", testZorginstelling.getName());
+    }
 }

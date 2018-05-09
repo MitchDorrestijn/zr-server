@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public class ZorginstellingService {
-    ZorginstellingDAO zorginstellingDAO = new ZorginstellingDAO();
+    private ZorginstellingDAO zorginstellingDAO = new ZorginstellingDAO();
 
     public ZorginstellingService(){
         // Empty constructor

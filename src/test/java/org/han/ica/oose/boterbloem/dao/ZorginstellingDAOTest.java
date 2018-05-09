@@ -64,7 +64,6 @@ public class ZorginstellingDAOTest {
     }
 
     @Test
-<<<<<<< HEAD
     public void updateZorgInstellingWithIdRegular(){
         Zorginstelling originalName = dao.getByID(1);
         assertEquals("Reinearde", originalName.getName());
@@ -76,7 +75,7 @@ public class ZorginstellingDAOTest {
         assertNotEquals("Cordaan", originalName.getName());
     }
 
-=======
+    @Test
     public void deleteByID() {
         dao.create(new Zorginstelling(6, "Prothese"));
         Zorginstelling temp = dao.getByID(6);
@@ -111,7 +110,6 @@ public class ZorginstellingDAOTest {
         temp = dao.getByID(6);
         assertEquals("ProthesesVoorIedereen", temp.getName());
     }
->>>>>>> development
 
     @After
     public void tearDown() {
