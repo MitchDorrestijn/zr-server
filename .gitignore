@@ -1,4 +1,7 @@
-.idea/
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.ipr
 *.iml
 target/
 out/
@@ -7,3 +10,5 @@ out/
 bin/
 .classpath
 .project
+.DS_Store
+src/main/resources/db.properties
