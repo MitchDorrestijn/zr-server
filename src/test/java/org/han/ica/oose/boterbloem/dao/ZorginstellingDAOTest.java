@@ -1,12 +1,14 @@
 package org.han.ica.oose.boterbloem.dao;
 
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
+import org.han.ica.oose.boterbloem.service.ZorginstellingService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +61,18 @@ public class ZorginstellingDAOTest {
         List<Zorginstelling> zorginstellingen = dao.getByName("Reinearde");
         assertEquals("Reinearde", zorginstellingen.get(0).getName());
         assertNotEquals("Cordaan", zorginstellingen.get(0).getName());
+    }
+
+    @Test
+    public void updateZorgInstellingWithIdRegular(){
+        Zorginstelling originalName = dao.getByID(1);
+        assertEquals("Reinearde", originalName.getName());
+    }
+
+    @Test
+    public void updateZorgInstellingWithIdFailed(){
+        Zorginstelling originalName = dao.getByID(1);
+        assertNotEquals("Cordaan", originalName.getName());
     }
 
     @Test

@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class ZorginstellingDAO implements IZorginstellingDAO{
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
-    protected DAO dao;
+    public DAO dao;
 
     public ZorginstellingDAO() {
         dao = new DAO();
