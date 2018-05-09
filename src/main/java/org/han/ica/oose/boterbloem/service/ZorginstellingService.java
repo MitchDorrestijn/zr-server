@@ -5,13 +5,13 @@ import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
 import java.util.List;
 
+public class ZorginstellingService implements IZorginstellingService{
+    ZorginstellingDAO zorginstellingDAO = new ZorginstellingDAO();
 
-public class ZorginstellingService {
-    private ZorginstellingDAO zorginstellingDAO = new ZorginstellingDAO();
-
-    public ZorginstellingService(){
+    public ZorginstellingService() {
         // Empty constructor
     }
+
     /**
      * Finds and returns a Zorginstelling using the given ID
      *
@@ -31,20 +31,31 @@ public class ZorginstellingService {
         dao.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
     }
 
+    @Override
+    public boolean checkIfExists(Zorginstelling zorginstelling) {
+        return false;
+    }
+
     /**
-     *
      * @param zorginstelling that's going to be added to the database
      */
     public void saveZorginstelling(Zorginstelling zorginstelling) {
         zorginstellingDAO.create(zorginstelling);
     }
-    
+
     /**
-     *
      * @return List of all zorginstellingen
      */
-    public List<Zorginstelling> getAllZorginstellingen() {
+    public List <Zorginstelling> getAllZorginstellingen() {
         ZorginstellingDAO dao = new ZorginstellingDAO();
         return dao.getAllZorginstellingen();
+    }
+
+    /**
+     * @param zorginstelling = Zorginstelling
+     */
+    public void deleteZorginstellingById(Zorginstelling zorginstelling) {
+        ZorginstellingDAO DAO = new ZorginstellingDAO();
+        DAO.deleteById(zorginstelling.getId());
     }
 }

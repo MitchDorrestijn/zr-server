@@ -37,7 +37,7 @@ public class DAO implements IDAO {
     public void closeConnection() {
         try {
             getConnection().close();
-        } catch (SQLException e) {
+        } catch ( SQLException e ) {
             LOGGER.log(Level.SEVERE, "There is a problem closing the database connection", e);
         }
     }
@@ -50,7 +50,7 @@ public class DAO implements IDAO {
         try {
             getConnection().isValid(VALID_CONNECTION_TIMEOUT);
             return true;
-        } catch (Exception e) {
+        } catch ( Exception e ) {
             LOGGER.log(Level.SEVERE, "Problem with database connection", e);
             return false;
         }
@@ -71,7 +71,7 @@ public class DAO implements IDAO {
                 connection = (DriverManager.getConnection("jdbc:mysql://localhost/zorgrit?useSSL=false","root","Test123!"));
                 connection = (DriverManager.getConnection(databaseConfig.getConnectionString() + "user=" + databaseConfig.getUser() + "&password=" + databaseConfig.getPass()));
             }
-        } catch (SQLException e) {
+        } catch ( SQLException e ) {
             LOGGER.log(Level.SEVERE, "Couldn't connect to the database", e);
         }
     }
@@ -84,7 +84,7 @@ public class DAO implements IDAO {
     private void loadDatabaseDriver(String driver) {
         try {
             Class.forName(driver);
-        } catch (ClassNotFoundException e) {
+        } catch ( ClassNotFoundException e ) {
             LOGGER.log(Level.SEVERE, "Couldn't find the database driver", e);
         }
     }

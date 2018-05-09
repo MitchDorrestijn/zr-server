@@ -12,6 +12,7 @@ public interface IZorginstellingService {
 
     boolean checkIfExists(Zorginstelling zorginstelling);
 
-
     void saveZorginstelling(Zorginstelling zorginstelling);
+
+    void deleteZorginstellingById(Zorginstelling zorginstelling);
 }

@@ -27,7 +27,7 @@ public class ZorginstellingControllerTests {
     private List<Zorginstelling> zorginstellingen = new ArrayList<>();
 
     private ZorginstellingController zorginstellingController = new ZorginstellingController();
-    ZorginstellingService zorginstellingService = mock(ZorginstellingService.class);
+    private ZorginstellingService zorginstellingService = mock(ZorginstellingService.class);
 
 
     @Before
@@ -61,7 +61,7 @@ public class ZorginstellingControllerTests {
         when(zorginstellingService.findById(1)).thenReturn(zorginstellingA);
         Zorginstelling testZorginstelling = zorginstellingController.getZorginstelling("1");
         testZorginstelling.setName("new name");
-        zorginstellingController.updateUser(1,testZorginstelling);
+        zorginstellingController.updateZorginstelling(1,testZorginstelling);
         assertEquals("new name", testZorginstelling.getName());
     }
 
