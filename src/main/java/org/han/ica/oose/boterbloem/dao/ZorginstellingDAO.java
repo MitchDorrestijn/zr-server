@@ -42,7 +42,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public List<Zorginstelling> getAllZorginstellingen() {
         List<Zorginstelling> zorginstellingen = new ArrayList<>();
-        try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careinstitution");
+        try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careInstitution");
              ResultSet rs = ps.executeQuery()) {
             while(rs.next()) {
                 String foundName = rs.getString("name");
@@ -63,7 +63,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public Zorginstelling getByID(int id) {
         Zorginstelling zorginstelling;
-        try (PreparedStatement ps = dao.getPreparedStatement("select * from careinstitution WHERE id =" + id);
+        try (PreparedStatement ps = dao.getPreparedStatement("select * from careInstitution WHERE id =" + id);
              ResultSet rs = ps.executeQuery()){
             while(rs.next()) {
                 String foundName = rs.getString("name");
@@ -83,7 +83,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public List<Zorginstelling> getByName(String name) {
         List<Zorginstelling> zorginstellingen = new ArrayList<>();
-        try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careinstitution WHERE name = '" + name + "'");
+        try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careInstitution WHERE name = '" + name + "'");
              ResultSet rs = ps.executeQuery()) {
             while(rs.next()) {
                 Zorginstelling zorginstelling = new Zorginstelling(
@@ -105,7 +105,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public void deleteById(int id) {
         try (PreparedStatement ps = dao.getPreparedStatement(
-                "DELETE FROM careinstitution "
+                "DELETE FROM careInstitution "
                         + "WHERE id = ? ")){
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -120,7 +120,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public void deleteByName(String name) {
         try (PreparedStatement ps = dao.getPreparedStatement(
-                "DELETE FROM careinstitution "
+                "DELETE FROM careInstitution "
                         + "WHERE name = ? ")){
             ps.setString(1, name);
             ps.executeUpdate();
@@ -135,7 +135,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     @Override
     public void updateZorginstelling(int id, String newName){
         try (PreparedStatement ps = dao.getPreparedStatement(
-                "UPDATE careinstitution SET name = ? WHERE id = ?")){
+                "UPDATE careInstitution SET name = ? WHERE id = ?")){
             ps.setString(1,newName);
             ps.setInt(2, id);
             ps.executeUpdate();

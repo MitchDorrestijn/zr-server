@@ -27,7 +27,7 @@ public class ZorginstellingControllerTests {
     private List<Zorginstelling> zorginstellingen = new ArrayList<>();
 
     private ZorginstellingController zorginstellingController = new ZorginstellingController();
-    ZorginstellingService zorginstellingService = mock(ZorginstellingService.class);
+    private ZorginstellingService zorginstellingService = mock(ZorginstellingService.class);
 
 
     @Before
