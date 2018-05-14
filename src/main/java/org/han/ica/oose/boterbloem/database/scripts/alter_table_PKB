@@ -1,0 +1,4 @@
+
+ALTER TABLE client
+ADD PKB int
+UPDATE client SET PKB = 500
