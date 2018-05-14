@@ -52,7 +52,6 @@ public class ZorginstellingService implements IZorginstellingService {
      */
 
     public void deleteZorginstellingById(int zorginstellingID) {
-
         zorginstellingDAO.deleteById(zorginstellingID);
     }
 }
