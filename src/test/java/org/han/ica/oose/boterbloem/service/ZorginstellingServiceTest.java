@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -21,8 +22,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -38,9 +42,7 @@ public class ZorginstellingServiceTest {
     private List<Zorginstelling> zorginstellingen = new ArrayList<>();
 
     private ZorginstellingService zorginstellingService = new ZorginstellingService();
-    private DAO dao = mock(DAO.class);
     private ZorginstellingDAO zorginstellingDAO = mock(ZorginstellingDAO.class);
-    private Connection connection = mock(Connection.class);
 
 
     @Before
@@ -52,8 +54,6 @@ public class ZorginstellingServiceTest {
         zorginstellingen.add(zorginstellingC);
         zorginstellingen.add(zorginstellingD);
         zorginstellingen.add(zorginstellingE);
-        dao.setConnection(connection);
-        zorginstellingDAO.dao = dao;
         zorginstellingService.zorginstellingDAO = zorginstellingDAO;
     }
 
@@ -66,13 +66,45 @@ public class ZorginstellingServiceTest {
     }
 
     @Test
-    public void addZorginstelling() throws SQLException{
-
-        Zorginstelling zorginstellingZ = new Zorginstelling(6, "instellingZ");
-        zorginstellingService.saveZorginstelling(zorginstellingZ);
-        when(zorginstellingService.findById(6)).thenReturn(zorginstellingZ);
-        Zorginstelling testZorginstelling = zorginstellingService.findById(6);
-        assertEquals("instellingZ", testZorginstelling.getName());
+    public void whenCreateNoException() {
+        // When
+        zorginstellingService.saveZorginstelling(zorginstellingA);
     }
+
+    @Test
+    public void whenCreateIsTriggered_thenEntityIsCreated() {
+        // When
+
+        this.zorginstellingService.saveZorginstelling(zorginstellingA);
+
+        // Then
+        ArgumentCaptor<Zorginstelling> argument = ArgumentCaptor.forClass(Zorginstelling.class);
+        verify(zorginstellingDAO).create(argument.capture());
+        assertEquals(zorginstellingA.getName(), argument.getValue().getName());
+    }
+
+    @Test
+    public void whenUpdateNoException() {
+        zorginstellingService.updateZorginstelling(zorginstellingA);
+    }
+
+    @Test
+    public void whenUpdateIsTriggered_ThenEntityUpdated() {
+        this.zorginstellingService.updateZorginstelling(zorginstellingA);
+
+        ArgumentCaptor<Zorginstelling> argument = ArgumentCaptor.forClass(Zorginstelling.class);
+        verify(zorginstellingDAO).updateZorginstelling(argument.capture());
+        assertEquals(zorginstellingA.getName(), argument.getValue().getName());
+    }
+
+    @Test
+    public void findByIdTest(){
+        when(zorginstellingDAO.getByID(1)).thenReturn(zorginstellingA);
+        Zorginstelling zorginstelling = zorginstellingService.findById(1);
+
+        assertEquals(zorginstellingA.getName(), zorginstelling.getName());
+
+    }
+
 }
 

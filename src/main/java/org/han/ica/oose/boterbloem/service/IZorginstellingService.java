@@ -10,7 +10,6 @@ public interface IZorginstellingService {
 
     void updateZorginstelling(Zorginstelling zorginstelling) throws SQLException;
 
-    boolean checkIfExists(Zorginstelling zorginstelling);
 
     void saveZorginstelling(Zorginstelling zorginstelling);
 

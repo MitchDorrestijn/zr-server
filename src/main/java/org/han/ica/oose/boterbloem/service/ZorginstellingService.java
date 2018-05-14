@@ -28,13 +28,9 @@ public class ZorginstellingService implements IZorginstellingService {
      * @param zorginstelling Zorgstelling that needs a update
      */
     public void updateZorginstelling(Zorginstelling zorginstelling) {
-        zorginstellingDAO.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
+        zorginstellingDAO.updateZorginstelling(zorginstelling); // hij moet de geposte naam hier zetten
     }
 
-    @Override
-    public boolean checkIfExists(Zorginstelling zorginstelling) {
-        return false;
-    }
 
     /**
      * @param zorginstelling that's going to be added to the database

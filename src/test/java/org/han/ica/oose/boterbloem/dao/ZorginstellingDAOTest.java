@@ -105,8 +105,8 @@ public class ZorginstellingDAOTest {
         Zorginstelling temp = dao.getByID(6);
         assertEquals(6, temp.getId());
         assertEquals("Prothese", temp.getName());
-
-        dao.updateZorginstelling(6, "ProthesesVoorIedereen");
+        Zorginstelling zorginstelling = new Zorginstelling(6,"ProthesesVoorIedereen");
+        dao.updateZorginstelling(zorginstelling);
         temp = dao.getByID(6);
         assertEquals("ProthesesVoorIedereen", temp.getName());
     }

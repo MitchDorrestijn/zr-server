@@ -32,15 +32,11 @@ public class ZorginstellingController {
      */
     @CrossOrigin
     @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
-    public ResponseEntity <?> addZorginstelling(@RequestBody Zorginstelling zorginstelling) {
-//        if (zorginstellingService.checkIfExists(zorginstelling)) {
-//            LOGGER.log(Level.SEVERE, "Zorginstelling met deze naam bestaat al " + zorginstelling.getName());
-//            return new ResponseEntity <Object>(HttpStatus.CONFLICT);
-//        }
+    public ResponseEntity<?> addZorginstelling(@RequestBody Zorginstelling zorginstelling) {
 
         zorginstellingService.saveZorginstelling(zorginstelling);
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity <String>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
 
     /**
@@ -63,29 +59,29 @@ public class ZorginstellingController {
      * @return List of zorginstellingen
      */
     @RequestMapping(value = "/zorginstellingen", method = RequestMethod.GET)
-    public List <Zorginstelling> getAllZorginstelling() {
-        List <Zorginstelling> zorginstellingen = new ArrayList <>();
+    public List<Zorginstelling> getAllZorginstelling() {
+        List<Zorginstelling> zorginstellingen = new ArrayList<>();
         zorginstellingen = zorginstellingService.getAllZorginstellingen();
         return zorginstellingen;
     }
 
     /**
-     * @param id of Zorginstelling
+     * @param id             of Zorginstelling
      * @param zorginstelling Zorginstelling
      * @return Zorginstelling
      */
     @CrossOrigin
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
-    public ResponseEntity <?> updateZorginstelling(@PathVariable int id, @RequestBody Zorginstelling zorginstelling) {
+    public ResponseEntity<?> updateZorginstelling(@PathVariable int id, @RequestBody Zorginstelling zorginstelling) {
         Zorginstelling currentZorginstellling = null;
         try {
             currentZorginstellling = zorginstellingService.findById(id);
             currentZorginstellling.setName(zorginstelling.getName());
             zorginstellingService.updateZorginstelling(currentZorginstellling);
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
-        return new ResponseEntity <Zorginstelling>(currentZorginstellling, HttpStatus.OK);
+        return new ResponseEntity<Zorginstelling>(currentZorginstellling, HttpStatus.OK);
     }
 
     /**
@@ -94,13 +90,13 @@ public class ZorginstellingController {
      */
     @CrossOrigin
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity <?> deleteZorginstelling(@PathVariable int id) {
+    public ResponseEntity<?> deleteZorginstelling(@PathVariable int id) {
         Zorginstelling zorginstelling = zorginstellingService.findById(id);
         if (zorginstelling == null) {
             LOGGER.info("Unable to delete. Zorginstelling with id not found." + id);
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         zorginstellingService.deleteZorginstellingById(zorginstelling);
-        return new ResponseEntity <Zorginstelling>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Zorginstelling>(HttpStatus.NO_CONTENT);
     }
 }
