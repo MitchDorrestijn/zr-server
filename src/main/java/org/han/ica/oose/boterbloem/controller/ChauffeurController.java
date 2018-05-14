@@ -24,8 +24,14 @@ public class ChauffeurController {
 
     @Autowired
     ChauffeurController() {
+        //Empty constructor
     }
-    
+
+    /**
+     * Method for returning all chauffeurs
+     *
+     * @return List of chauffeurs
+     */
     @RequestMapping(value = "/chauffeurs", method = RequestMethod.GET)
     public List<Chauffeur> getAllChauffeurs() {
         List <Chauffeur> chauffeurs = new ArrayList<>();
