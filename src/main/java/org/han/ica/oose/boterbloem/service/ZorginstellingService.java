@@ -5,7 +5,8 @@ import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
 import java.util.List;
 
-public class ZorginstellingService implements IZorginstellingService{
+public class ZorginstellingService implements IZorginstellingService {
+
     ZorginstellingDAO zorginstellingDAO = new ZorginstellingDAO();
 
     public ZorginstellingService() {
@@ -19,24 +20,18 @@ public class ZorginstellingService implements IZorginstellingService{
      * @return The zorginstelling that was found using the ID
      */
     public Zorginstelling findById(int id) {
-        ZorginstellingDAO dao = new ZorginstellingDAO();
-        return (dao.getByID(id));
+        return (zorginstellingDAO.getByID(id));
     }
 
     /**
      * @param zorginstelling Zorgstelling that needs a update
      */
     public void updateZorginstelling(Zorginstelling zorginstelling) {
-        ZorginstellingDAO dao = new ZorginstellingDAO();
 
         //The posted name should be put here
-        dao.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName());
+        zorginstellingDAO.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName());
     }
 
-    @Override
-    public boolean checkIfExists(Zorginstelling zorginstelling) {
-        return false;
-    }
 
     /**
      * @param zorginstelling that's going to be added to the database
@@ -48,16 +43,16 @@ public class ZorginstellingService implements IZorginstellingService{
     /**
      * @return List of all zorginstellingen
      */
-    public List <Zorginstelling> getAllZorginstellingen() {
-        ZorginstellingDAO dao = new ZorginstellingDAO();
-        return dao.getAllZorginstellingen();
+    public List<Zorginstelling> getAllZorginstellingen() {
+        return zorginstellingDAO.getAllZorginstellingen();
     }
 
     /**
      * @param zorginstellingID Zorginstelling
      */
+
     public void deleteZorginstellingById(int zorginstellingID) {
-        ZorginstellingDAO dao = new ZorginstellingDAO();
-        dao.deleteById(zorginstellingID);
+
+        zorginstellingDAO.deleteById(zorginstellingID);
     }
 }

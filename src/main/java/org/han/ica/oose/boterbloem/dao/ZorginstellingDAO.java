@@ -13,12 +13,12 @@ import java.util.logging.Logger;
 /**
  * Class for handling the CRUD operations on Zorginstelling
  */
-public class ZorginstellingDAO implements IZorginstellingDAO{
+public class ZorginstellingDAO implements IZorginstellingDAO {
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
     public static final DAO dao = new DAO();
 
     public ZorginstellingDAO() {
-        //Empty constructor
+        // empty constructor because of Spring
     }
 
     /**
@@ -44,10 +44,10 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
         List<Zorginstelling> zorginstellingen = new ArrayList<>();
         try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careInstitution");
              ResultSet rs = ps.executeQuery()) {
-            while(rs.next()) {
+            while (rs.next()) {
                 String foundName = rs.getString("name");
                 int foundId = rs.getInt("id");
-                Zorginstelling zorginstelling = new Zorginstelling(foundId,foundName);
+                Zorginstelling zorginstelling = new Zorginstelling(foundId, foundName);
                 zorginstellingen.add(zorginstelling);
             }
             return zorginstellingen;
@@ -64,11 +64,11 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     public Zorginstelling getByID(int id) {
         Zorginstelling zorginstelling;
         try (PreparedStatement ps = dao.getPreparedStatement("select * from careInstitution WHERE id =" + id);
-             ResultSet rs = ps.executeQuery()){
-            while(rs.next()) {
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
                 String foundName = rs.getString("name");
-                int foundID  = rs.getInt("id");
-                zorginstelling = new Zorginstelling(foundID,foundName);
+                int foundID = rs.getInt("id");
+                zorginstelling = new Zorginstelling(foundID, foundName);
                 return zorginstelling;
             }
         } catch (SQLException e) {
@@ -85,7 +85,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
         List<Zorginstelling> zorginstellingen = new ArrayList<>();
         try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careInstitution WHERE name = '" + name + "'");
              ResultSet rs = ps.executeQuery()) {
-            while(rs.next()) {
+            while (rs.next()) {
                 Zorginstelling zorginstelling = new Zorginstelling(
                         rs.getInt("id"),
                         rs.getString("name")
@@ -93,7 +93,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
                 zorginstellingen.add(zorginstelling);
             }
             return zorginstellingen;
-        } catch (SQLException e ) {
+        } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
         return zorginstellingen;
@@ -106,7 +106,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     public void deleteById(int id) {
         try (PreparedStatement ps = dao.getPreparedStatement(
                 "DELETE FROM careInstitution "
-                        + "WHERE id = ? ")){
+                        + "WHERE id = ? ")) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -121,7 +121,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
     public void deleteByName(String name) {
         try (PreparedStatement ps = dao.getPreparedStatement(
                 "DELETE FROM careInstitution "
-                        + "WHERE name = ? ")){
+                        + "WHERE name = ? ")) {
             ps.setString(1, name);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -133,10 +133,11 @@ public class ZorginstellingDAO implements IZorginstellingDAO{
      * {@inheritDoc}
      */
     @Override
-    public void updateZorginstelling(int id, String newName){
+    public void updateZorginstelling(int id, String newName) {
+
         try (PreparedStatement ps = dao.getPreparedStatement(
-                "UPDATE careInstitution SET name = ? WHERE id = ?")){
-            ps.setString(1,newName);
+                "UPDATE careInstitution SET name = ? WHERE id = ?")) {
+            ps.setString(1, newName);
             ps.setInt(2, id);
             ps.executeUpdate();
         } catch (SQLException e) {
