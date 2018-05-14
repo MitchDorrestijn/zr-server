@@ -1,5 +1,8 @@
 package org.han.ica.oose.boterbloem.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Representative domain class for a Client
  */
@@ -8,6 +11,20 @@ public class Client {
     private String companion;
     private String utility;
     private boolean driverPreferenceForced;
+    private int PKB;
+    private int Total_Meters;
+    private String name;
+    @JsonCreator
+    public Client(
+            @JsonProperty("PKB") int PKB,
+            @JsonProperty("name") String name,
+            @JsonProperty("Total_Meters") int Total_Meters)
+    {
+        this.PKB = PKB;
+        this.Total_Meters = Total_Meters;
+        this.name = name;
+    }
+
 
     /**
      * Getter for property 'clientId'.
@@ -79,5 +96,21 @@ public class Client {
      */
     public void setDriverPreferenceF(boolean driverPreferenceF) {
         this.driverPreferenceForced = driverPreferenceF;
+    }
+
+    public int getTotal_Meters() {
+        return Total_Meters;
+    }
+
+    public void setTotal_Meters(int total_Meters) {
+        Total_Meters = total_Meters;
+    }
+
+    public int getPKB() {
+        return PKB;
+    }
+
+    public void setPKB(int PKB) {
+        this.PKB = PKB;
     }
 }
