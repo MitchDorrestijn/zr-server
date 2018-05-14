@@ -13,5 +13,5 @@ public interface IZorginstellingService {
 
     void saveZorginstelling(Zorginstelling zorginstelling);
 
-    void deleteZorginstellingById(Zorginstelling zorginstelling);
+    void deleteZorginstellingById(int zorginstelling);
 }

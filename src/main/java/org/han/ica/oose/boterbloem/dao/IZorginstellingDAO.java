@@ -58,7 +58,7 @@ public interface IZorginstellingDAO {
      * @param id      ID of the zorginstelling
      * @param newName The new name
      */
-    void updateZorginstelling(Zorginstelling zorginstelling);
+    void updateZorginstelling(int id, String newName);
 
 }
 

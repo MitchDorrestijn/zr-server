@@ -23,7 +23,7 @@ public class ZorginstellingController {
 
     @Autowired
     ZorginstellingController() {
-
+        // empty constructor
     }
 
     /**
@@ -32,11 +32,11 @@ public class ZorginstellingController {
      */
     @CrossOrigin
     @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
-    public ResponseEntity<?> addZorginstelling(@RequestBody Zorginstelling zorginstelling) {
 
+    public ResponseEntity<String> addZorginstelling(@RequestBody Zorginstelling zorginstelling) {
         zorginstellingService.saveZorginstelling(zorginstelling);
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     /**
@@ -48,9 +48,7 @@ public class ZorginstellingController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Zorginstelling getZorginstelling(@PathVariable String id) {
         int y = Integer.parseInt(id);
-        Zorginstelling zorginstelling = new Zorginstelling();
-        zorginstelling = zorginstellingService.findById(y);
-        return zorginstelling;
+        return zorginstellingService.findById(y);
     }
 
     /**
@@ -60,9 +58,7 @@ public class ZorginstellingController {
      */
     @RequestMapping(value = "/zorginstellingen", method = RequestMethod.GET)
     public List<Zorginstelling> getAllZorginstelling() {
-        List<Zorginstelling> zorginstellingen = new ArrayList<>();
-        zorginstellingen = zorginstellingService.getAllZorginstellingen();
-        return zorginstellingen;
+        return zorginstellingService.getAllZorginstellingen();
     }
 
     /**
@@ -72,7 +68,8 @@ public class ZorginstellingController {
      */
     @CrossOrigin
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateZorginstelling(@PathVariable int id, @RequestBody Zorginstelling zorginstelling) {
+
+    public ResponseEntity<Zorginstelling> updateZorginstelling(@PathVariable int id, @RequestBody Zorginstelling zorginstelling) {
         Zorginstelling currentZorginstellling = null;
         try {
             currentZorginstellling = zorginstellingService.findById(id);
@@ -81,7 +78,9 @@ public class ZorginstellingController {
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
-        return new ResponseEntity<Zorginstelling>(currentZorginstellling, HttpStatus.OK);
+
+        return new ResponseEntity<>(currentZorginstellling, HttpStatus.OK);
+
     }
 
     /**
@@ -90,13 +89,9 @@ public class ZorginstellingController {
      */
     @CrossOrigin
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteZorginstelling(@PathVariable int id) {
-        Zorginstelling zorginstelling = zorginstellingService.findById(id);
-        if (zorginstelling == null) {
-            LOGGER.info("Unable to delete. Zorginstelling with id not found." + id);
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-        zorginstellingService.deleteZorginstellingById(zorginstelling);
-        return new ResponseEntity<Zorginstelling>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<Zorginstelling> deleteZorginstelling(@PathVariable int id) {
+        zorginstellingService.deleteZorginstellingById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 }

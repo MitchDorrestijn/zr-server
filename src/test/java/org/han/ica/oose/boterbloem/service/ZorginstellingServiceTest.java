@@ -92,13 +92,14 @@ public class ZorginstellingServiceTest {
     public void whenUpdateIsTriggered_ThenEntityUpdated() {
         this.zorginstellingService.updateZorginstelling(zorginstellingA);
 
-        ArgumentCaptor<Zorginstelling> argument = ArgumentCaptor.forClass(Zorginstelling.class);
-        verify(zorginstellingDAO).updateZorginstelling(argument.capture());
-        assertEquals(zorginstellingA.getName(), argument.getValue().getName());
+        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<Integer> argument2 = ArgumentCaptor.forClass(Integer.class);
+        verify(zorginstellingDAO).updateZorginstelling(argument2.capture(), argument.capture());
+        assertEquals(zorginstellingA.getName(), argument.getValue().toString());
     }
 
     @Test
-    public void findByIdTest(){
+    public void findByIdTest() {
         when(zorginstellingDAO.getByID(1)).thenReturn(zorginstellingA);
         Zorginstelling zorginstelling = zorginstellingService.findById(1);
 

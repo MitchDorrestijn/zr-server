@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class ZorginstellingDAO implements IZorginstellingDAO {
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
-    public DAO dao = new DAO();
+    public static final DAO dao = new DAO();
 
     public ZorginstellingDAO() {
         // empty constructor because of Spring
@@ -133,11 +133,12 @@ public class ZorginstellingDAO implements IZorginstellingDAO {
      * {@inheritDoc}
      */
     @Override
-    public void updateZorginstelling(Zorginstelling zorginstelling) {
+    public void updateZorginstelling(int id, String newName) {
+
         try (PreparedStatement ps = dao.getPreparedStatement(
                 "UPDATE careInstitution SET name = ? WHERE id = ?")) {
-            ps.setString(1, zorginstelling.getName());
-            ps.setInt(2, zorginstelling.getId());
+            ps.setString(1, newName);
+            ps.setInt(2, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.log(Level.INFO, e.toString(), e);

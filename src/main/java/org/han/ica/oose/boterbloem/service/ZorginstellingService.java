@@ -20,7 +20,6 @@ public class ZorginstellingService implements IZorginstellingService {
      * @return The zorginstelling that was found using the ID
      */
     public Zorginstelling findById(int id) {
-
         return (zorginstellingDAO.getByID(id));
     }
 
@@ -28,7 +27,9 @@ public class ZorginstellingService implements IZorginstellingService {
      * @param zorginstelling Zorgstelling that needs a update
      */
     public void updateZorginstelling(Zorginstelling zorginstelling) {
-        zorginstellingDAO.updateZorginstelling(zorginstelling); // hij moet de geposte naam hier zetten
+
+        //The posted name should be put here
+        zorginstellingDAO.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName());
     }
 
 
@@ -47,9 +48,11 @@ public class ZorginstellingService implements IZorginstellingService {
     }
 
     /**
-     * @param zorginstelling = Zorginstelling
+     * @param zorginstellingID Zorginstelling
      */
-    public void deleteZorginstellingById(Zorginstelling zorginstelling) {
-        zorginstellingDAO.deleteById(zorginstelling.getId());
+
+    public void deleteZorginstellingById(int zorginstellingID) {
+
+        zorginstellingDAO.deleteById(zorginstellingID);
     }
 }
