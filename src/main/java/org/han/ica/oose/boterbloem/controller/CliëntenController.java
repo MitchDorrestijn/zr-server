@@ -3,12 +3,14 @@ package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.dao.DAO;
 import org.han.ica.oose.boterbloem.domain.Client;
+import org.han.ica.oose.boterbloem.service.CliëntenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -27,8 +29,8 @@ public class CliëntenController {
 
     @CrossOrigin
     @RequestMapping(value = "/cliënten", method = RequestMethod.GET)
-    public List<Client> getAllCliënten(){
-        return cliëntenService.getAllCliënten();
+    public List<Client> getAllCliënten() throws SQLException {
+        return cliëntenService.getAllCliënts();
     }
 
 }

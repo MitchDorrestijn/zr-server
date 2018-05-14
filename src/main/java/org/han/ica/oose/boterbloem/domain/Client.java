@@ -25,6 +25,9 @@ public class Client {
         this.name = name;
     }
 
+    public Client(){
+        // empty constructor
+    }
 
     /**
      * Getter for property 'clientId'.
