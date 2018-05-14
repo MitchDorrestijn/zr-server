@@ -15,10 +15,10 @@ import java.util.logging.Logger;
  */
 public class ZorginstellingDAO implements IZorginstellingDAO{
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
-    public DAO dao;
+    public static final DAO dao = new DAO();
 
     public ZorginstellingDAO() {
-        dao = new DAO();
+        //Empty constructor
     }
 
     /**

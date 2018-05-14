@@ -52,10 +52,10 @@ public class ZorginstellingService implements IZorginstellingService{
     }
 
     /**
-     * @param zorginstelling = Zorginstelling
+     * @param zorginstellingID Zorginstelling
      */
-    public void deleteZorginstellingById(Zorginstelling zorginstelling) {
-        ZorginstellingDAO DAO = new ZorginstellingDAO();
-        DAO.deleteById(zorginstelling.getId());
+    public void deleteZorginstellingById(int zorginstellingID) {
+        ZorginstellingDAO dao = new ZorginstellingDAO();
+        dao.deleteById(zorginstellingID);
     }
 }
