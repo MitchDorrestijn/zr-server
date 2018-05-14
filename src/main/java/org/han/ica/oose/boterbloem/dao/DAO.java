@@ -16,7 +16,7 @@ public class DAO implements IDAO {
 
     private static final Logger LOGGER = Logger.getLogger(DAO.class.getName());
     protected static final int VALID_CONNECTION_TIMEOUT = 2;
-    protected Connection connection;
+    private Connection connection;
 
     public DAO() {
         DatabaseConfig databaseConfig = new DatabaseConfig();
@@ -97,5 +97,13 @@ public class DAO implements IDAO {
     private Connection getConnection() {
         return connection;
     }
+
+    /**
+     * Sets the connection if needed
+     */
+    public void setConnection(Connection connection){
+        this.connection = connection;
+    }
+
 
 }

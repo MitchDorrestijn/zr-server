@@ -5,7 +5,8 @@ import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
 import java.util.List;
 
-public class ZorginstellingService implements IZorginstellingService{
+public class ZorginstellingService implements IZorginstellingService {
+
     ZorginstellingDAO zorginstellingDAO = new ZorginstellingDAO();
 
     public ZorginstellingService() {
@@ -19,16 +20,15 @@ public class ZorginstellingService implements IZorginstellingService{
      * @return The zorginstelling that was found using the ID
      */
     public Zorginstelling findById(int id) {
-        ZorginstellingDAO dao = new ZorginstellingDAO();
-        return (dao.getByID(id));
+
+        return (zorginstellingDAO.getByID(id));
     }
 
     /**
      * @param zorginstelling Zorgstelling that needs a update
      */
     public void updateZorginstelling(Zorginstelling zorginstelling) {
-        ZorginstellingDAO dao = new ZorginstellingDAO();
-        dao.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
+        zorginstellingDAO.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
     }
 
     @Override
@@ -46,16 +46,14 @@ public class ZorginstellingService implements IZorginstellingService{
     /**
      * @return List of all zorginstellingen
      */
-    public List <Zorginstelling> getAllZorginstellingen() {
-        ZorginstellingDAO dao = new ZorginstellingDAO();
-        return dao.getAllZorginstellingen();
+    public List<Zorginstelling> getAllZorginstellingen() {
+        return zorginstellingDAO.getAllZorginstellingen();
     }
 
     /**
      * @param zorginstelling = Zorginstelling
      */
     public void deleteZorginstellingById(Zorginstelling zorginstelling) {
-        ZorginstellingDAO DAO = new ZorginstellingDAO();
-        DAO.deleteById(zorginstelling.getId());
+        zorginstellingDAO.deleteById(zorginstelling.getId());
     }
 }

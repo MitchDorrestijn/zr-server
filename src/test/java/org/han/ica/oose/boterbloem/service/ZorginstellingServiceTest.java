@@ -1,6 +1,8 @@
 package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.controller.ZorginstellingController;
+import org.han.ica.oose.boterbloem.dao.DAO;
+import org.han.ica.oose.boterbloem.dao.ZorginstellingDAO;
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,30 +37,37 @@ public class ZorginstellingServiceTest {
 
     private List<Zorginstelling> zorginstellingen = new ArrayList<>();
 
-    private ZorginstellingService zorginstellingService = mock(ZorginstellingService.class);
-
+    private ZorginstellingService zorginstellingService = new ZorginstellingService();
+    private DAO dao = mock(DAO.class);
+    private ZorginstellingDAO zorginstellingDAO = mock(ZorginstellingDAO.class);
+    private Connection connection = mock(Connection.class);
 
 
     @Before
-    public void setup() {
+    public void setup() throws SQLException {
+
+
         zorginstellingen.add(zorginstellingA);
         zorginstellingen.add(zorginstellingB);
         zorginstellingen.add(zorginstellingC);
         zorginstellingen.add(zorginstellingD);
         zorginstellingen.add(zorginstellingE);
+        dao.setConnection(connection);
+        zorginstellingDAO.dao = dao;
+        zorginstellingService.zorginstellingDAO = zorginstellingDAO;
     }
 
 
     @Test
-    public void getAllZorginstellingen() throws SQLException{
-        when(zorginstellingService.getAllZorginstellingen()).thenReturn(zorginstellingen);
+    public void getAllZorginstellingen() throws SQLException {
+        when(zorginstellingDAO.getAllZorginstellingen()).thenReturn(zorginstellingen);
         List<Zorginstelling> testZorginstellingen = zorginstellingService.getAllZorginstellingen();
         assertEquals(5, testZorginstellingen.size());
-
     }
 
     @Test
     public void addZorginstelling() throws SQLException{
+
         Zorginstelling zorginstellingZ = new Zorginstelling(6, "instellingZ");
         zorginstellingService.saveZorginstelling(zorginstellingZ);
         when(zorginstellingService.findById(6)).thenReturn(zorginstellingZ);
