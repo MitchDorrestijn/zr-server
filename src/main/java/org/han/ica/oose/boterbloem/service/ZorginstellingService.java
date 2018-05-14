@@ -28,7 +28,9 @@ public class ZorginstellingService implements IZorginstellingService{
      */
     public void updateZorginstelling(Zorginstelling zorginstelling) {
         ZorginstellingDAO dao = new ZorginstellingDAO();
-        dao.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
+
+        //The posted name should be put here
+        dao.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName());
     }
 
     @Override
