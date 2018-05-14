@@ -4,9 +4,10 @@ package org.han.ica.oose.boterbloem.dto;
  * Representative DTO for a LoginResponse
  */
 public class LoginResponse {
-    private String user;
-    private String token;
-    private String administratorLevel;
+
+    protected String user;
+    protected String token;
+    protected String administratorLevel;
 
     public LoginResponse(String user, String token, String administratorLevel) {
         this.user = user;
