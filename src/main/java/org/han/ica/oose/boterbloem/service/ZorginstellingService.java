@@ -28,7 +28,9 @@ public class ZorginstellingService implements IZorginstellingService{
      */
     public void updateZorginstelling(Zorginstelling zorginstelling) {
         ZorginstellingDAO dao = new ZorginstellingDAO();
-        dao.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName()); // hij moet de geposte naam hier zetten
+
+        //The posted name should be put here
+        dao.updateZorginstelling(zorginstelling.getId(), zorginstelling.getName());
     }
 
     @Override
@@ -52,10 +54,10 @@ public class ZorginstellingService implements IZorginstellingService{
     }
 
     /**
-     * @param zorginstelling = Zorginstelling
+     * @param zorginstellingID Zorginstelling
      */
-    public void deleteZorginstellingById(Zorginstelling zorginstelling) {
-        ZorginstellingDAO DAO = new ZorginstellingDAO();
-        DAO.deleteById(zorginstelling.getId());
+    public void deleteZorginstellingById(int zorginstellingID) {
+        ZorginstellingDAO dao = new ZorginstellingDAO();
+        dao.deleteById(zorginstellingID);
     }
 }

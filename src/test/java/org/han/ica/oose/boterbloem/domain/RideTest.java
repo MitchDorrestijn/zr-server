@@ -207,7 +207,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), "Location");
+        assertEquals("Fields didn't match", "Location", field.get(testRide));
 
     }
 
@@ -224,7 +224,7 @@ public class RideTest {
         final String result = testRide.getDropOffLocation();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, "Location");
+        assertEquals("field wasn't retrieved properly", "Location", result);
     }
 
     @Test
@@ -238,7 +238,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), 5);
+        assertEquals("Fields didn't match", 5, field.get(testRide));
 
     }
 
@@ -255,7 +255,7 @@ public class RideTest {
         final int result = testRide.getDuration();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, 5);
+        assertEquals("field wasn't retrieved properly", 5, result);
     }
 
     @Test
@@ -269,7 +269,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), 5);
+        assertEquals("Fields didn't match", 5, field.get(testRide));
 
     }
 
@@ -286,7 +286,7 @@ public class RideTest {
         final int result = testRide.getDistance();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, 5);
+        assertEquals("field wasn't retrieved properly", 5, result);
     }
 
     @Test
@@ -300,7 +300,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), 5);
+        assertEquals("Fields didn't match", 5, field.get(testRide));
 
     }
 
@@ -317,7 +317,7 @@ public class RideTest {
         final int result = testRide.getNumerOfCompanions();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, 5);
+        assertEquals("field wasn't retrieved properly", 5, result);
     }
 
     @Test
@@ -331,7 +331,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), 5);
+        assertEquals("Fields didn't match", 5, field.get(testRide));
 
     }
 
@@ -348,7 +348,7 @@ public class RideTest {
         final int result = testRide.getNumerOfLuggage();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, 5);
+        assertEquals("field wasn't retrieved properly", 5, result);
     }
 
     @Test
@@ -362,7 +362,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), true);
+        assertEquals("Fields didn't match", true, field.get(testRide));
 
     }
 
@@ -379,7 +379,7 @@ public class RideTest {
         final boolean result = testRide.isReturnRide();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, true);
+        assertEquals("field wasn't retrieved properly", true, result);
     }
 
     @Test
@@ -393,7 +393,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), true);
+        assertEquals("Fields didn't match", true, field.get(testRide));
 
     }
 
@@ -410,7 +410,7 @@ public class RideTest {
         final boolean result = testRide.isCallService();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, true);
+        assertEquals("field wasn't retrieved properly", true, result);
     }
 
     @Test
@@ -424,7 +424,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), "Something");
+        assertEquals("Fields didn't match", "Something", field.get(testRide));
 
     }
 
@@ -441,7 +441,7 @@ public class RideTest {
         final String result = testRide.getUtility();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, "Something");
+        assertEquals("field wasn't retrieved properly", "Something", result);
     }
 
     @Test
@@ -455,7 +455,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), 5);
+        assertEquals("Fields didn't match", 5, field.get(testRide));
 
     }
 
@@ -472,7 +472,7 @@ public class RideTest {
         final int result = testRide.getRepeatingRideId();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, 5);
+        assertEquals("field wasn't retrieved properly", 5, result);
     }
 
     @Test
@@ -486,7 +486,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), true);
+        assertEquals("Fields didn't match", true, field.get(testRide));
 
     }
 
@@ -503,7 +503,7 @@ public class RideTest {
         final boolean result = testRide.isCancelledByClient();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, true);
+        assertEquals("field wasn't retrieved properly", true, result);
     }
     @Test
     public void testSetter_setsExecuted() throws NoSuchFieldException, IllegalAccessException {
@@ -516,7 +516,7 @@ public class RideTest {
         field.setAccessible(true);
 
         //then
-        assertEquals("Fields didn't match", field.get(testRide), true);
+        assertEquals("Fields didn't match", true, field.get(testRide));
 
     }
 
@@ -533,7 +533,7 @@ public class RideTest {
         final boolean result = testRide.isExecuted();
 
         //then
-        assertEquals("field wasn't retrieved properly", result, true);
+        assertEquals("field wasn't retrieved properly", true, result);
     }
 
 }
