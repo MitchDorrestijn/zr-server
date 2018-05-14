@@ -15,14 +15,13 @@ import java.util.logging.Logger;
  */
 public class ChauffeurDAO implements IChauffeurDAO {
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
-    public DAO dao;
+    public static final DAO dao = new DAO();
 
     public ChauffeurDAO() {
-        dao = new DAO();
+        //Empty constructor for SpringBoot
     }
 
     /***
-     *
      * @return All chauffeurs and their properties fetched from the database
      */
     @Override
