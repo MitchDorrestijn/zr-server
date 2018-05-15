@@ -54,6 +54,8 @@ CREATE TABLE IF NOT EXISTS `client` (
   companion              VARCHAR(255) NULL     DEFAULT NULL,
   utility                VARCHAR(255) NULL     DEFAULT NULL,
   driverPreferenceForced BOOLEAN      NOT NULL DEFAULT FALSE,
+  warningPKB             BOOLEAN      NULL     DEFAULT NULL,
+  PKB                    int(10000)   NOT NULL,
   PRIMARY KEY (clientId),
   CONSTRAINT ClientUser FOREIGN KEY (clientId) REFERENCES user (id)
     ON DELETE NO ACTION

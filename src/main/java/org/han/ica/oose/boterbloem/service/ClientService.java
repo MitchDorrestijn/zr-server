@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ClientService implements IClientservice {
 
-    private ClientDAO clientDAO = new ClientDAO();
+    ClientDAO clientDAO = new ClientDAO();
 
     /**
      *
