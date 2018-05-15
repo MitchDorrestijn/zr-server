@@ -20,26 +20,6 @@ public class CliëntenDAO implements ICliëntenDAO {
        // empty constructor for spring
    }
 
-   /*
-     @Override
-    public List<Zorginstelling> getAllZorginstellingen() {
-        List<Zorginstelling> zorginstellingen = new ArrayList<>();
-        try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careInstitution");
-             ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                String foundName = rs.getString("name");
-                int foundId = rs.getInt("id");
-                Zorginstelling zorginstelling = new Zorginstelling(foundId, foundName);
-                zorginstellingen.add(zorginstelling);
-            }
-            return zorginstellingen;
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        }
-        return zorginstellingen;
-    }
-
-    */
     @Override
     public List<Client> getAllCliënts() throws SQLException {
         double priceToPay = 0;
@@ -57,8 +37,8 @@ public class CliëntenDAO implements ICliëntenDAO {
             while (rs.next()) {
                 String foundName = rs.getString("name");
                 int PKB = rs.getInt("PKB");
-                int total_meters = rs.getInt("Total_Meters");
                 Boolean warningPKB = rs.getBoolean("warningPKB");
+                int total_meters = rs.getInt("Total_Meters");
                     if (total_meters > PKB){
                          priceToPay = (total_meters - PKB) * flatRate;
                     }
