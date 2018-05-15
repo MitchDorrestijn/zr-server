@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * CRUD class for handling Cliënts
  */
 public class ClientDAO implements ICliëntenDAO {
-    private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CareInstitutionDAO.class.getName());
     public static final DAO dao = new DAO();
 
    private double flatRate = 0.005;

@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Representative domain class for a Chauffeur
+ * Representative domain class for a Driver
  */
-public class Chauffeur {
+public class Driver {
     int id;
     String name;
     String typeOfPayment;
@@ -17,24 +17,24 @@ public class Chauffeur {
     String segment;
     int rating;
 
-    public Chauffeur() {
+    public Driver() {
         //Empty constructor
     }
 
     /***
      *
-     * @param id - ID of the chauffeur
-     * @param name - Full name of the chauffeur
-     * @param typeOfPayment - Type of payment that the chauffeur provides
-     * @param totalEarned - Total balance the chauffeur earned
-     * @param totalRides - Total rides the chauffeur did
-     * @param numberPlate - The license plat of the car that the chauffeur drives around in
-     * @param numberOfPassengers - The number of passengers that the chauffeur can take at once
+     * @param id - ID of the driver
+     * @param name - Full name of the driver
+     * @param typeOfPayment - Type of payment that the driver provides
+     * @param totalEarned - Total balance the driver earned
+     * @param totalRides - Total rides the driver did
+     * @param numberPlate - The license plate of the car that the driver drives around in
+     * @param numberOfPassengers - The number of passengers that the driver can take at once
      * @param segment - The segment of the car
      * @param rating - The average rating from the clients from a 0 to 5 scale
      */
     @JsonCreator
-    public Chauffeur(
+    public Driver(
             @JsonProperty("id") int id,
             @JsonProperty("name") String name,
             @JsonProperty("typeOfPayment") String typeOfPayment,

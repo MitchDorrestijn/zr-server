@@ -30,7 +30,7 @@ public class ClientController {
      * @throws SQLException
      */
     @CrossOrigin
-    @RequestMapping(value = "/cliënten", method = RequestMethod.GET)
+    @RequestMapping(value = "/clienten", method = RequestMethod.GET)
     public List<Client> getAllCliënten() throws SQLException {
         return clientService.getAllCliënts();
     }

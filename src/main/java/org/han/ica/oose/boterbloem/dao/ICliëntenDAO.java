@@ -1,7 +1,6 @@
 package org.han.ica.oose.boterbloem.dao;
 
 import org.han.ica.oose.boterbloem.domain.Client;
-import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 
 import java.sql.SQLException;
 import java.util.List;
