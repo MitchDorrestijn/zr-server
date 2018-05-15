@@ -109,9 +109,4 @@ public class ZorginstellingDAOTest {
         temp = dao.getByID(6);
         assertEquals("ProthesesVoorIedereen", temp.getName());
     }
-
-    @After
-    public void tearDown() {
-        dao.dao.closeConnection();
-    }
 }
