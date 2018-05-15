@@ -44,14 +44,15 @@ public class ClientServiceTest {
 
     @Test
     public void getAllClients() throws SQLException {
-        when(clientDAO.getAllCliënts()).thenReturn(clients);
-        List<Client> testClients = clientService.getAllCliënts();
+        when(clientDAO.getAllClients()).thenReturn(clients);
+        List<Client> testClients = clientService.getAllClients();
         assertEquals(4, testClients.size());
     }
 
+
     @Test
     public void findByIdTest() throws SQLException {
-        when(clientDAO.getCliëntById(1)).thenReturn(clientA);
+        when(clientDAO.getClientById(1)).thenReturn(clientA);
         Client client = clientService.findById(1);
 
         assertEquals(clientA.getName(), client.getName());

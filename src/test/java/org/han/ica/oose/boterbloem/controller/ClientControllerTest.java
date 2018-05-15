@@ -37,12 +37,16 @@ public class ClientControllerTest {
         clientController.clientService = clientService;
     }
 
+
+
     @Test
     public void getAllClients() throws SQLException {
-        when(clientService.getAllCliënts()).thenReturn(clients);
+        when(clientService.getAllClients()).thenReturn(clients);
         List<Client> testClients = clientController.getAllCliënten();
         assertEquals(4, testClients.size());
     }
+
+
 
     @Test
     public void getCareInstitutionTest() throws SQLException {

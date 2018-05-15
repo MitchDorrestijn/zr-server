@@ -36,6 +36,13 @@ public class Client {
         // empty constructor
     }
 
+    public Client(int clientId, String companion, String utility, boolean driverPreferenceForced) {
+        this.clientId = clientId;
+        this.companion = companion;
+        this.utility = utility;
+        this.driverPreferenceForced = driverPreferenceForced;
+    }
+
     /**
      * Getter for property 'clientId'.
      *

@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `driver` (
   driverId     INT(11)      NOT NULL,
   verification BOOLEAN      NOT NULL,
   utility      VARCHAR(255) NULL     DEFAULT NULL,
+  type_of_payment VARCHAR(255)  NULL
   PRIMARY KEY (driverId),
   CONSTRAINT DriverUser FOREIGN KEY (driverId) REFERENCES user (id)
     ON DELETE NO ACTION
@@ -227,6 +228,7 @@ CREATE TABLE IF NOT EXISTS `ride` (
   repeatingRideId         INT(11)      NULL,
   cancelledByClient       BOOLEAN      NULL,
   executed                BOOLEAN      NOT NULL DEFAULT FALSE,
+  price_of_ride           FLOAT        NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT RideClient FOREIGN KEY (clientId) REFERENCES client (clientId)
     ON DELETE NO ACTION
@@ -312,3 +314,11 @@ CREATE TABLE IF NOT EXISTS `rideMatchesRejected` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
+
+
+CREATE TABLE IF NOT EXISTS `ratings` (
+	  driverId	INT				NOT NULL,
+    clientId	INT				NOT NULL,
+    beoordeling	VARCHAR(1000)	NOT NULL,
+    sterren		INT				NOT NULL
+)

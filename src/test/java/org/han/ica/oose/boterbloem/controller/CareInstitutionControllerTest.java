@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CareInstitutionControllerTests {
+public class CareInstitutionControllerTest {
 
     private CareInstitution careInstitutionA = new CareInstitution(1, "instellingA");
     private CareInstitution careInstitutionB = new CareInstitution(2, "instellingB");
