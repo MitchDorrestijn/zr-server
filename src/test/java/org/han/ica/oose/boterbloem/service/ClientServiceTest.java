@@ -27,7 +27,7 @@ public class ClientServiceTest {
 
     private ClientService clientService = new ClientService();
     private ClientDAO clientDAO = mock(ClientDAO.class);
-    
+
     @Before
     public void setup() throws SQLException {
         clients.add(clientA);
