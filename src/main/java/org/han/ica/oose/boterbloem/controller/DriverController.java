@@ -1,8 +1,8 @@
 package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.dao.DAO;
-import org.han.ica.oose.boterbloem.domain.Chauffeur;
-import org.han.ica.oose.boterbloem.service.ChauffeurService;
+import org.han.ica.oose.boterbloem.domain.Driver;
+import org.han.ica.oose.boterbloem.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,26 +16,26 @@ import java.util.logging.Logger;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/chauffeur")
-public class ChauffeurController {
+public class DriverController {
 
     protected static final Logger LOGGER = Logger.getLogger(DAO.class.getName());
 
-    protected ChauffeurService chauffeurService = new ChauffeurService();
+    protected DriverService driverService = new DriverService();
 
     @Autowired
-    ChauffeurController() {
+    DriverController() {
         //Empty constructor
     }
 
     /**
-     * Method for returning all chauffeurs
+     * Method for returning all drivers
      *
      * @return List of chauffeurs
      */
     @RequestMapping(value = "/chauffeurs", method = RequestMethod.GET)
-    public List<Chauffeur> getAllChauffeurs() {
-        List <Chauffeur> chauffeurs = new ArrayList<>();
-        chauffeurs = chauffeurService.getAllChauffeurs();
-        return chauffeurs;
+    public List<Driver> getAllDrivers() {
+        List <Driver> drivers = new ArrayList<>();
+        drivers = driverService.getAllDrivers();
+        return drivers;
     }
 }
