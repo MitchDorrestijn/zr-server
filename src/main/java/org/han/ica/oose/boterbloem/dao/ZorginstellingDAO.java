@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class ZorginstellingDAO implements IZorginstellingDAO {
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
-    public static final DAO dao = new DAO();
+    public static final IConnectionDAO CONNECTION_DAO = new ConnectionDAO();
 
     public ZorginstellingDAO() {
         // empty constructor because of Spring
@@ -26,7 +26,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO {
      */
     @Override
     public void create(Zorginstelling zorginstelling) {
-        try (PreparedStatement ps = dao.getPreparedStatement(
+        try (PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
                 "INSERT INTO careInstitution (name) VALUES (?)")) {
             ps.setString(1, zorginstelling.getName());
             ps.executeUpdate();
@@ -42,7 +42,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO {
     @Override
     public List<Zorginstelling> getAllZorginstellingen() {
         List<Zorginstelling> zorginstellingen = new ArrayList<>();
-        try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careInstitution");
+        try (PreparedStatement ps = CONNECTION_DAO.getPreparedStatement("SELECT * FROM careInstitution");
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 String foundName = rs.getString("name");
@@ -63,7 +63,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO {
     @Override
     public Zorginstelling getByID(int id) {
         Zorginstelling zorginstelling;
-        try (PreparedStatement ps = dao.getPreparedStatement("select * from careInstitution WHERE id =" + id);
+        try (PreparedStatement ps = CONNECTION_DAO.getPreparedStatement("select * from careInstitution WHERE id =" + id);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 String foundName = rs.getString("name");
@@ -83,7 +83,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO {
     @Override
     public List<Zorginstelling> getByName(String name) {
         List<Zorginstelling> zorginstellingen = new ArrayList<>();
-        try (PreparedStatement ps = dao.getPreparedStatement("SELECT * FROM careInstitution WHERE name = '" + name + "'");
+        try (PreparedStatement ps = CONNECTION_DAO.getPreparedStatement("SELECT * FROM careInstitution WHERE name = '" + name + "'");
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 Zorginstelling zorginstelling = new Zorginstelling(
@@ -104,7 +104,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO {
      */
     @Override
     public void deleteById(int id) {
-        try (PreparedStatement ps = dao.getPreparedStatement(
+        try (PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
                 "DELETE FROM careInstitution "
                         + "WHERE id = ? ")) {
             ps.setInt(1, id);
@@ -119,7 +119,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO {
      */
     @Override
     public void deleteByName(String name) {
-        try (PreparedStatement ps = dao.getPreparedStatement(
+        try (PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
                 "DELETE FROM careInstitution "
                         + "WHERE name = ? ")) {
             ps.setString(1, name);
@@ -135,7 +135,7 @@ public class ZorginstellingDAO implements IZorginstellingDAO {
     @Override
     public void updateZorginstelling(int id, String newName) {
 
-        try (PreparedStatement ps = dao.getPreparedStatement(
+        try (PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
                 "UPDATE careInstitution SET name = ? WHERE id = ?")) {
             ps.setString(1, newName);
             ps.setInt(2, id);

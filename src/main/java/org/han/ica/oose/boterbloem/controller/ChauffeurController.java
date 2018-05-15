@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.dao.DAO;
+import org.han.ica.oose.boterbloem.dao.ConnectionDAO;
 import org.han.ica.oose.boterbloem.domain.Chauffeur;
 import org.han.ica.oose.boterbloem.service.ChauffeurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 @RequestMapping("/chauffeur")
 public class ChauffeurController {
 
-    protected static final Logger LOGGER = Logger.getLogger(DAO.class.getName());
+    protected static final Logger LOGGER = Logger.getLogger(ConnectionDAO.class.getName());
 
     protected ChauffeurService chauffeurService = new ChauffeurService();
 

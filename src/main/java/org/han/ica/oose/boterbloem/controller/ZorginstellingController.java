@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.dao.DAO;
+import org.han.ica.oose.boterbloem.dao.ConnectionDAO;
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
 import org.han.ica.oose.boterbloem.service.ZorginstellingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.logging.*;
 @RequestMapping("/zorginstelling")
 public class ZorginstellingController {
 
-    protected static final Logger LOGGER = Logger.getLogger(DAO.class.getName());
+    protected static final Logger LOGGER = Logger.getLogger(ConnectionDAO.class.getName());
 
     protected ZorginstellingService zorginstellingService = new ZorginstellingService();
 

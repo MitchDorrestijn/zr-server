@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class ChauffeurDAO implements IChauffeurDAO {
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
-    public static final DAO dao = new DAO();
+    public static final IConnectionDAO CONNECTION_DAO = new ConnectionDAO();
 
     public ChauffeurDAO() {
         //Empty constructor for SpringBoot
@@ -28,7 +28,7 @@ public class ChauffeurDAO implements IChauffeurDAO {
     public List<Chauffeur> getAllChauffeurs() {
         List<Chauffeur> chauffeurs = new ArrayList<>();
         try (
-                PreparedStatement ps = dao.getPreparedStatement(
+                PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
                         "SELECT \n" +
                                 "user.id,\n" +
                                 "CONCAT(user.firstname, ' ', user.lastname) AS name, \n" +

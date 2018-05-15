@@ -1,15 +1,11 @@
 package org.han.ica.oose.boterbloem.dao;
 
 import org.han.ica.oose.boterbloem.domain.Zorginstelling;
-import org.han.ica.oose.boterbloem.service.ZorginstellingService;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -22,13 +18,13 @@ public class ZorginstellingDAOTest {
     @Before
     public void setup() throws Exception {
         dao = new ZorginstellingDAO();
-        dao.dao.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/create_script.sql'").execute();
-        dao.dao.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/insert_script.sql'").execute();
+        dao.CONNECTION_DAO.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/create_script.sql'").execute();
+        dao.CONNECTION_DAO.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/insert_script.sql'").execute();
     }
 
     @Test
     public void hasConnection() {
-        assertTrue(dao.dao.hasConnection());
+        assertTrue(dao.CONNECTION_DAO.hasConnection());
     }
 
     @Test
