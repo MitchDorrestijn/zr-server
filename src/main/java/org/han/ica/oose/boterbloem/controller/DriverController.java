@@ -1,6 +1,4 @@
 package org.han.ica.oose.boterbloem.controller;
-
-import org.han.ica.oose.boterbloem.dao.ConnectionDAO;
 import org.han.ica.oose.boterbloem.domain.Driver;
 import org.han.ica.oose.boterbloem.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/chauffeur")
 public class DriverController {
-
-    protected static final Logger LOGGER = Logger.getLogger(ConnectionDAO.class.getName());
-
     protected DriverService driverService = new DriverService();
 
     @Autowired

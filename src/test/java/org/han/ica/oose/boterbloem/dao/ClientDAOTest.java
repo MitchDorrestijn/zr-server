@@ -23,13 +23,12 @@ public class ClientDAOTest {
     @Test
     public void create() {
         dao.create(new Client(1, "Arnold", "Wandelstok", true));
-        //TODO: Create method getByID
-        Client temp = dao.getByID(1);
+        Client temp = dao.getClientById(1);
         assertEquals(1, temp.getClientId());
         assertEquals("Arnold", temp.getCompanion());
         assertEquals("Wandelstok", temp.getUtility());
         assertEquals(true, temp.isDriverPreferenceF());
         //TODO: Create method delete
-        dao.delete(1);
+        dao.deleteClient(1);
     }
 }
