@@ -11,7 +11,7 @@ public interface IZorginstellingService {
     void updateZorginstelling(Zorginstelling zorginstelling) throws SQLException;
 
 
-    void saveZorginstelling(Zorginstelling zorginstelling);
+    void updateCareInstitution(Zorginstelling zorginstelling);
 
     void deleteZorginstellingById(int zorginstelling);
 }

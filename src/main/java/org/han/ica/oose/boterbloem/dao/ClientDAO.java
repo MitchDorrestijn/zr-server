@@ -13,13 +13,13 @@ import java.util.logging.Logger;
 /**
  * CRUD class for handling Cliënts
  */
-public class CliëntenDAO implements ICliëntenDAO {
+public class ClientDAO implements ICliëntenDAO {
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
     public static final DAO dao = new DAO();
 
    private double flatRate = 0.005;
 
-   public CliëntenDAO(){
+   public ClientDAO(){
        // empty constructor for spring
    }
 

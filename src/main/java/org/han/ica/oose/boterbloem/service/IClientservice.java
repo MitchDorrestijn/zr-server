@@ -5,7 +5,7 @@ import org.han.ica.oose.boterbloem.domain.Client;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ICliëntenService {
+public interface IClientservice {
     /**
      *
      * @return method returns a list of all found cliënts

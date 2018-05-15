@@ -36,7 +36,7 @@ public class ZorginstellingService implements IZorginstellingService {
     /**
      * @param zorginstelling that's going to be added to the database
      */
-    public void saveZorginstelling(Zorginstelling zorginstelling) {
+    public void updateCareInstitution(Zorginstelling zorginstelling) {
         zorginstellingDAO.create(zorginstelling);
     }
 

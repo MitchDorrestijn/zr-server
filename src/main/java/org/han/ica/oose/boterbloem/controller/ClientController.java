@@ -3,7 +3,7 @@ package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.dao.DAO;
 import org.han.ica.oose.boterbloem.domain.Client;
-import org.han.ica.oose.boterbloem.service.CliëntenService;
+import org.han.ica.oose.boterbloem.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +13,14 @@ import java.util.logging.Logger;
 
 @RestController
 @CrossOrigin( origins = "*")
-@RequestMapping("/cliënt")
-public class CliëntenController {
+@RequestMapping("/client")
+public class ClientController {
 
     protected static final Logger LOGGER = Logger.getLogger(DAO.class.getName());
-    protected CliëntenService cliëntenService = new CliëntenService();
+    protected ClientService clientService = new ClientService();
 
     @Autowired
-    CliëntenController(){
+    ClientController(){
         //empty constructor for spring
     }
 
@@ -32,7 +32,7 @@ public class CliëntenController {
     @CrossOrigin
     @RequestMapping(value = "/cliënten", method = RequestMethod.GET)
     public List<Client> getAllCliënten() throws SQLException {
-        return cliëntenService.getAllCliënts();
+        return clientService.getAllCliënts();
     }
 
     /**
@@ -44,7 +44,7 @@ public class CliëntenController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Client getCliëntById(@PathVariable String id) throws SQLException {
         int y = Integer.parseInt(id);
-        return cliëntenService.findById(y);
+        return clientService.findById(y);
     }
 
 }

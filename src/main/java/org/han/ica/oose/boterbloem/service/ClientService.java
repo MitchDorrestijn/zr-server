@@ -1,14 +1,14 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.dao.CliëntenDAO;
+import org.han.ica.oose.boterbloem.dao.ClientDAO;
 import org.han.ica.oose.boterbloem.domain.Client;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class CliëntenService implements ICliëntenService {
+public class ClientService implements IClientservice {
 
-    private CliëntenDAO cliëntenDAO = new CliëntenDAO();
+    private ClientDAO clientDAO = new ClientDAO();
 
     /**
      *
@@ -16,7 +16,7 @@ public class CliëntenService implements ICliëntenService {
      */
     @Override
     public List<Client> getAllCliënts() throws SQLException {
-        return cliëntenDAO.getAllCliënts();
+        return clientDAO.getAllCliënts();
     }
 
     /**
@@ -26,7 +26,7 @@ public class CliëntenService implements ICliëntenService {
      * @throws SQLException
      */
     public Client findById(int id) throws SQLException {
-        return cliëntenDAO.getCliëntById(id);
+        return clientDAO.getCliëntById(id);
     }
 
 }
