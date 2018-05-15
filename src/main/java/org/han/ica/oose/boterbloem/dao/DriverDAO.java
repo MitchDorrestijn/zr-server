@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class DriverDAO implements IDriverDAO {
     private static final Logger LOGGER = Logger.getLogger(CareInstitutionDAO.class.getName());
-    public static final DAO dao = new DAO();
+    public static final ConnectionDAO CONNECTION_DAO = new ConnectionDAO();
 
     public DriverDAO() {
         //Empty constructor for SpringBoot
@@ -28,7 +28,7 @@ public class DriverDAO implements IDriverDAO {
     public List<Driver> getAllDrivers() {
         List<Driver> drivers = new ArrayList<>();
         try (
-                PreparedStatement ps = dao.getPreparedStatement(
+                PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
                         "SELECT \n" +
                                 "user.id,\n" +
                                 "CONCAT(user.firstname, ' ', user.lastname) AS name, \n" +

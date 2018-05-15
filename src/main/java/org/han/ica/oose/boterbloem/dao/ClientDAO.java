@@ -1,6 +1,7 @@
 package org.han.ica.oose.boterbloem.dao;
 
 import org.han.ica.oose.boterbloem.domain.Client;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,18 +11,32 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * CRUD class for handling Clients
- */
-public class ClientDAO implements IClientenDAO {
-    private static final Logger LOGGER = Logger.getLogger(CareInstitutionDAO.class.getName());
-    public static final DAO dao = new DAO();
+public class ClientDAO implements IClientDAO {
+    private static final Logger LOGGER = Logger.getLogger(ClientDAO.class.getName());
+    public static final IConnectionDAO CONNECTION_DAO = new ConnectionDAO();
+    private double flatRate = 0.005;
 
-   private double flatRate = 0.005;
+    @Autowired
+    public ClientDAO() {
+        // empty constructor because of Spring
+    }
 
-   public ClientDAO(){
-       // empty constructor for spring
-   }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void create(Client client) {
+        try (PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
+                "INSERT INTO Client VALUES(?, ?, ?, ?)")) {
+            ps.setInt(1, client.getClientId());
+            ps.setString(2, client.getCompanion());
+            ps.setString(3, client.getUtility());
+            ps.setBoolean(4, client.isDriverPreferenceF());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Problem with creating a client", e);
+        }
+    }
 
     /** Method that pulls all clients out of the database
      *
@@ -29,11 +44,11 @@ public class ClientDAO implements IClientenDAO {
      * @throws SQLException
      */
     @Override
-    public List<Client> getAllCliënts() throws SQLException {
+    public List<Client> getAllClients() {
         double priceToPay = 0;
         List<Client> foundCliënts = new ArrayList<>();
         try (
-                PreparedStatement ps = dao.getPreparedStatement(
+                PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
                         "select \n" +
                                 "CONCAT(U.firstname, ' ', U.lastname) AS name,\n" +
                                 "C.PKB,\n" +
@@ -65,11 +80,11 @@ public class ClientDAO implements IClientenDAO {
      * @param id The id that the query will look at
      * @return A specific client with the give id number
      */
-    public Client getCliëntById(int id) {
+    public Client getClientById(int id) {
         double priceToPay = 0;
         Client client = null;
         try (
-                PreparedStatement ps = dao.getPreparedStatement(
+                PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
                         "select \n" +
                                 "CONCAT(U.firstname, ' ', U.lastname) AS name,\n" +
                                 "C.PKB,\n" +
@@ -96,4 +111,3 @@ public class ClientDAO implements IClientenDAO {
         return client;
     }
 }
-

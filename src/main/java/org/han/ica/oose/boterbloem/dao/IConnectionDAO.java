@@ -3,9 +3,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Interface for the main DAO Class
+ * Interface for the main ConnectionDAO Class
  */
-public interface IDAO {
+public interface IConnectionDAO {
     /**
      * Closes the connection with the database if it hasn't already been closed
      */

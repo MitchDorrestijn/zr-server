@@ -12,13 +12,13 @@ import java.sql.Connection;
 /**
  * Class for establishing, handling and closing the database connection
  */
-public class DAO implements IDAO {
+public class ConnectionDAO implements IConnectionDAO {
 
-    private static final Logger LOGGER = Logger.getLogger(DAO.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ConnectionDAO.class.getName());
     protected static final int VALID_CONNECTION_TIMEOUT = 2;
     private Connection connection;
 
-    public DAO() {
+    public ConnectionDAO() {
         DatabaseConfig databaseConfig = new DatabaseConfig();
         loadDatabaseDriver(databaseConfig.getDriver());
         makeConnection(databaseConfig);
