@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * Class for handling the CRUD operations on Driver
  */
 public class DriverDAO implements IDriverDAO {
-    private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CareInstitutionDAO.class.getName());
     public static final DAO dao = new DAO();
 
     public DriverDAO() {

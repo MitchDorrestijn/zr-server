@@ -6,19 +6,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
 /**
- * Representative domain class for a Zorginstelling
+ * Representative domain class for a CareInstitution
  */
 @Component
-public class Zorginstelling {
+public class CareInstitution {
     private int id;
     private String name;
 
-    public Zorginstelling(){
+    public CareInstitution(){
         // empty constructor
     }
 
     @JsonCreator
-    public Zorginstelling(@JsonProperty("id") int id, @JsonProperty("name") String name) {
+    public CareInstitution(@JsonProperty("id") int id, @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
     }
