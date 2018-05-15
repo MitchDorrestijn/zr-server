@@ -9,16 +9,16 @@ ADD price_of_ride FLOAT
 UPDATE ride SET price_of_ride = 25.4
 
 -- Create a new table for the ratings
-CREATE TABLE beoordelingen (
+CREATE TABLE ratings (
 	driverId	INT				NOT NULL,
     clientId	INT				NOT NULL,
     beoordeling	VARCHAR(1000)	NOT NULL,
     sterren		INT				NOT NULL
 )
 
--- Fill the table beoordelingen with dummy data
-INSERT INTO beoordelingen (driverId, clientId, beoordeling, sterren) VALUES
-(1, 2, "Goede chauffeur", 5),
+-- Fill the table ratings with dummy data
+INSERT INTO ratings (driverId, clientId, beoordeling, sterren) VALUES
+(1, 2, "Goede driver", 5),
 (4, 2, "Op tijd", 4),
 (8, 2, "Ging te snel", 2),
 (9, 3, "Praatejesmaker", 3),

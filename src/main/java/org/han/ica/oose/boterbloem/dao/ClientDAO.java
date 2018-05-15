@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ClientDAO implements IClientDAO {
-    private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ClientDAO.class.getName());
     public static final IConnectionDAO CONNECTION_DAO = new ConnectionDAO();
 
     public ClientDAO() {
