@@ -11,9 +11,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * CRUD class for handling Cliënts
+ * CRUD class for handling Clients
  */
-public class ClientDAO implements ICliëntenDAO {
+public class ClientDAO implements IClientenDAO {
     private static final Logger LOGGER = Logger.getLogger(CareInstitutionDAO.class.getName());
     public static final DAO dao = new DAO();
 
@@ -25,7 +25,7 @@ public class ClientDAO implements ICliëntenDAO {
 
     /** Method that pulls all clients out of the database
      *
-     * @return A arraylist of cliënts
+     * @return A arraylist of clients
      * @throws SQLException
      */
     @Override
@@ -63,7 +63,7 @@ public class ClientDAO implements ICliëntenDAO {
     /**
      *
      * @param id The id that the query will look at
-     * @return A specific cliënt with the give id number
+     * @return A specific client with the give id number
      */
     public Client getCliëntById(int id) {
         double priceToPay = 0;

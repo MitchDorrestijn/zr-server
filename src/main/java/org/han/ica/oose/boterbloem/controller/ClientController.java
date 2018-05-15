@@ -24,9 +24,9 @@ public class ClientController {
         //empty constructor for spring
     }
 
-    /**Method for returning cliënts
+    /**Method for returning clients
      *
-     * @return A arraylist of cliënts
+     * @return A arraylist of clients
      * @throws SQLException
      */
     @CrossOrigin
@@ -36,10 +36,10 @@ public class ClientController {
     }
 
     /**
-     * Method for returning a cliënt
+     * Method for returning a client
      *
-     * @param id of Cliënt
-     * @return Cliënt
+     * @param id of Client
+     * @return Client
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Client getCliëntById(@PathVariable String id) throws SQLException {
