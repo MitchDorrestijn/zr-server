@@ -11,7 +11,7 @@ public class ClientDAO implements IClientDAO {
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
     public static final IConnectionDAO CONNECTION_DAO = new ConnectionDAO();
 
-    public ClientDAO () {
+    public ClientDAO() {
         // empty constructor because of Spring
     }
 
@@ -20,8 +20,8 @@ public class ClientDAO implements IClientDAO {
      */
     @Override
     public void create(Client client) {
-        try(PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
-                "INSERT INTO Client VALUES(?, ?, ?, ?)")){
+        try (PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
+                "INSERT INTO Client VALUES(?, ?, ?, ?)")) {
             ps.setInt(1, client.getClientId());
             ps.setString(2, client.getCompanion());
             ps.setString(3, client.getUtility());

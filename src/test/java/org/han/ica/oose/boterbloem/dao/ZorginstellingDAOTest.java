@@ -20,6 +20,7 @@ public class ZorginstellingDAOTest {
         dao = new ZorginstellingDAO();
         dao.CONNECTION_DAO.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/create_script.sql'").execute();
         dao.CONNECTION_DAO.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/insert_script.sql'").execute();
+        dao.CONNECTION_DAO.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/alter_script.sql'").execute();
     }
 
     @Test
