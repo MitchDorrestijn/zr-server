@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DriverControllerTests {
+public class DriverControllerTest {
     private Driver driverA = new Driver(1, "Mitch", "Vrijwillig", new Float(173.73), 8, "NL-93-O9", 4, "Rolstoel", 5);
     private Driver driverB = new Driver(2, "Fred", "Betaald", new Float(100.73), 5, "NL-76-03", 2, "Geen", 5);
 

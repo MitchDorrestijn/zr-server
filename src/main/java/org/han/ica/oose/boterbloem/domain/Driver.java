@@ -198,4 +198,19 @@ public class Driver {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", typeOfPayment='" + typeOfPayment + '\'' +
+                ", totalEarned=" + totalEarned +
+                ", totalRides=" + totalRides +
+                ", numberPlate='" + numberPlate + '\'' +
+                ", numberOfPassengers=" + numberOfPassengers +
+                ", segment='" + segment + '\'' +
+                ", rating=" + rating +
+                '}';
+    }
 }
