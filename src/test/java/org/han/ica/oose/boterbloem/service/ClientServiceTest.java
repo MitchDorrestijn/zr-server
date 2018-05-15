@@ -18,27 +18,22 @@ import static org.mockito.Mockito.when;
 
 public class ClientServiceTest {
 
-
-
     private Client clientA = new Client("Mees",500,false,0,500);
-    private Client clientB = new Client("Mees",500,false,0,500);
-    private Client clientC = new Client("Mees",500,false,0,500);
+    private Client clientB = new Client("Mitch",850,true,0,1000);
+    private Client clientC = new Client("Martijn",320,true,0,500);
     private Client clientD = new Client("Mees",500,false,0,500);
-
 
     private List<Client> clients = new ArrayList<>();
 
     private ClientService clientService = new ClientService();
     private ClientDAO clientDAO = mock(ClientDAO.class);
-
-
+    
     @Before
     public void setup() throws SQLException {
         clients.add(clientA);
         clients.add(clientB);
         clients.add(clientC);
         clients.add(clientD);
-
         clientService.clientDAO = clientDAO;
     }
 
@@ -49,13 +44,11 @@ public class ClientServiceTest {
         assertEquals(4, testClients.size());
     }
 
-
     @Test
     public void findByIdTest() throws SQLException {
         when(clientDAO.getClientById(1)).thenReturn(clientA);
         Client client = clientService.findById(1);
 
         assertEquals(clientA.getName(), client.getName());
-
     }
 }

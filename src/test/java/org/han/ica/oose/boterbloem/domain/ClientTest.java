@@ -13,7 +13,6 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class ClientTest {
 
-
     @Test
     public void testSetter_setsClientId() throws NoSuchFieldException, IllegalAccessException {
         //given
@@ -26,9 +25,7 @@ public class ClientTest {
 
         //then
         assertEquals("Fields didn't match", 1, field.get(client));
-
     }
-
 
     @Test
     public void testGetter_getsClientId() throws NoSuchFieldException, IllegalAccessException {
