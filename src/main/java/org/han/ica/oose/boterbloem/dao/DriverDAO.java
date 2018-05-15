@@ -38,7 +38,7 @@ public class DriverDAO implements IDriverDAO {
                                 "(SELECT numberPlate FROM driverCar WHERE driverCar.driverId = driver.driverId) AS numberplate,\n" +
                                 "(SELECT numberOfPassengers FROM driverCar WHERE driverCar.driverId = driver.driverId) AS number_of_passengers,\n" +
                                 "(SELECT utility FROM driverCar WHERE driverCar.driverId = driver.driverId) AS segment,\n" +
-                                "(SELECT ROUND(AVG(sterren), 0) FROM beoordelingen WHERE beoordelingen.driverId = driver.driverId) AS rating\n" +
+                                "(SELECT ROUND(AVG(sterren), 0) FROM ratings WHERE ratings.driverId = driver.driverId) AS rating\n" +
                                 "FROM user INNER JOIN driver ON driver.driverId = user.id \n" +
                                 "WHERE (SELECT numberPlate FROM driverCar WHERE driverCar.driverId = driver.driverId) IS NOT NULL\n" +
                                 "GROUP BY user.id, user.firstname, user.lastname, driver.type_of_payment"
