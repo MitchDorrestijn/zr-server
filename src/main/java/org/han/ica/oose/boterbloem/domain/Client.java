@@ -14,15 +14,22 @@ public class Client {
     private int PKB;
     private int Total_Meters;
     private String name;
+    private boolean warningPKB;
+    private double priceToPay;
+
     @JsonCreator
     public Client(
-            @JsonProperty("PKB") int PKB,
             @JsonProperty("name") String name,
+            @JsonProperty("PKB") int PKB,
+            @JsonProperty("warningPKB") boolean warningPKB,
+            @JsonProperty("priceToPay") double priceToPay,
             @JsonProperty("Total_Meters") int Total_Meters)
     {
-        this.PKB = PKB;
-        this.Total_Meters = Total_Meters;
         this.name = name;
+        this.PKB = PKB;
+        this.warningPKB = warningPKB;
+        this.priceToPay = priceToPay;
+        this.Total_Meters = Total_Meters;
     }
 
     public Client(){
@@ -115,5 +122,29 @@ public class Client {
 
     public void setPKB(int PKB) {
         this.PKB = PKB;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isWarningPKB() {
+        return warningPKB;
+    }
+
+    public void setWarningPKB(boolean warningPKB) {
+        this.warningPKB = warningPKB;
+    }
+
+    public double getPriceToPay() {
+        return priceToPay;
+    }
+
+    public void setPriceToPay(double priceToPay) {
+        this.priceToPay = priceToPay;
     }
 }
