@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * CRUD class for handling Cliënts
+ */
 public class CliëntenDAO implements ICliëntenDAO {
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
     public static final DAO dao = new DAO();
@@ -20,6 +23,11 @@ public class CliëntenDAO implements ICliëntenDAO {
        // empty constructor for spring
    }
 
+    /** Method that pulls all clients out of the database
+     *
+     * @return A arraylist of cliënts
+     * @throws SQLException
+     */
     @Override
     public List<Client> getAllCliënts() throws SQLException {
         double priceToPay = 0;
@@ -50,6 +58,42 @@ public class CliëntenDAO implements ICliëntenDAO {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
         return foundCliënts;
+    }
+
+    /**
+     *
+     * @param id The id that the query will look at
+     * @return A specific cliënt with the give id number
+     */
+    public Client getCliëntById(int id) {
+        double priceToPay = 0;
+        Client client = null;
+        try (
+                PreparedStatement ps = dao.getPreparedStatement(
+                        "select \n" +
+                                "CONCAT(U.firstname, ' ', U.lastname) AS name,\n" +
+                                "C.PKB,\n" +
+                                "C.warningPKB,\n"+
+                                "(SELECT SUM(R.distance) FROM ride R WHERE R.clientId = C.clientId) AS Total_Meters\n" +
+                                "from User U INNER JOIN client C ON U.id = C.clientid\n" +
+                                "WHERE C.clientid = " + id
+                );
+                ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                String foundName = rs.getString("name");
+                int PKB = rs.getInt("PKB");
+                Boolean warningPKB = rs.getBoolean("warningPKB");
+                int total_meters = rs.getInt("Total_Meters");
+                if (total_meters > PKB){
+                    priceToPay = (total_meters - PKB) * flatRate;
+                }
+                client = new Client(foundName, PKB, warningPKB,priceToPay,total_meters);
+            }
+            return client;
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return client;
     }
 }
 

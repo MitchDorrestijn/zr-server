@@ -12,7 +12,7 @@ public class Client {
     private String utility;
     private boolean driverPreferenceForced;
     private int PKB;
-    private int Total_Meters;
+    private int totalMeters;
     private String name;
     private boolean warningPKB;
     private double priceToPay;
@@ -23,13 +23,13 @@ public class Client {
             @JsonProperty("PKB") int PKB,
             @JsonProperty("warningPKB") boolean warningPKB,
             @JsonProperty("priceToPay") double priceToPay,
-            @JsonProperty("Total_Meters") int Total_Meters)
+            @JsonProperty("totalMeters") int totalMeters)
     {
         this.name = name;
         this.PKB = PKB;
         this.warningPKB = warningPKB;
         this.priceToPay = priceToPay;
-        this.Total_Meters = Total_Meters;
+        this.totalMeters = totalMeters;
     }
 
     public Client(){
@@ -108,42 +108,82 @@ public class Client {
         this.driverPreferenceForced = driverPreferenceF;
     }
 
-    public int getTotal_Meters() {
-        return Total_Meters;
+    /**
+     * Getter for the property 'totalMeters'
+     * @return Value of property 'totalMeters'
+     */
+    public int getTotalMeters() {
+        return totalMeters;
     }
 
-    public void setTotal_Meters(int total_Meters) {
-        Total_Meters = total_Meters;
+    /**
+     * Setter for the propert 'totalMeters'
+     * @param totalMeters Value to set of property 'totalMeters'
+     */
+    public void setTotalMeters(int totalMeters) {
+        this.totalMeters = totalMeters;
     }
 
+    /**
+     * Getter for the property 'PKB'
+     * @return Value of property 'PKB'
+     */
     public int getPKB() {
         return PKB;
     }
 
+    /**
+     * Setter for the property 'PKB'
+     * @param PKB Value to set of property 'PKB'
+     */
     public void setPKB(int PKB) {
         this.PKB = PKB;
     }
 
+    /**
+     * Getter for the property 'name'
+     * @return Value of property 'name'
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Setter for the property 'name'
+     * @param name Value to set of property 'name'
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Getter for the property 'warningPKB'
+     * @return Value of warningPKB
+     */
     public boolean isWarningPKB() {
         return warningPKB;
     }
 
+    /**
+     * Setter for the property 'warningPKB'
+     * @param warningPKB Value to set of property 'warningPKB'
+     */
     public void setWarningPKB(boolean warningPKB) {
         this.warningPKB = warningPKB;
     }
 
+    /**
+     * Getter for the property 'priceToPay'
+     * @return Value of property "priceToPay'
+     */
     public double getPriceToPay() {
         return priceToPay;
     }
 
+    /**
+     * Setter for the property 'priceToPay'
+     * @param priceToPay Value to set of property 'priceToPay'
+     */
     public void setPriceToPay(double priceToPay) {
         this.priceToPay = priceToPay;
     }

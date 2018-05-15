@@ -1,9 +1,0 @@
-/*
-  Execute alter first and then update!
- */
-ALTER TABLE client
-ADD warningPKB boolean
-ADD PKB int
-
-UPDATE client SET PKB = 500
-UPDATE client set warningPKB = true

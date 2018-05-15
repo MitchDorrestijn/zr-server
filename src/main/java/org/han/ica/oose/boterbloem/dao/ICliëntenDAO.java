@@ -8,9 +8,11 @@ import java.util.List;
 
 public interface ICliëntenDAO {
     /**
-     * Requests a list of all current Zorginstellingen from the database
+     * Requests a list of all current Cliënts from the database
      *
-     * @return The list of Zorginstellingen
+     * @return The list of Cliënts
      */
     List<Client> getAllCliënts() throws SQLException;
+
+    Client getCliëntById(int id) throws SQLException;
 }

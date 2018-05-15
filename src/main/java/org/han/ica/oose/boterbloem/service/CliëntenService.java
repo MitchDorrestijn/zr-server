@@ -18,4 +18,15 @@ public class CliëntenService implements ICliëntenService {
     public List<Client> getAllCliënts() throws SQLException {
         return cliëntenDAO.getAllCliënts();
     }
+
+    /**
+     *
+     * @param id the clientId thats used for the query
+     * @return A specific cliënt with the given id
+     * @throws SQLException
+     */
+    public Client findById(int id) throws SQLException {
+        return cliëntenDAO.getCliëntById(id);
+    }
+
 }

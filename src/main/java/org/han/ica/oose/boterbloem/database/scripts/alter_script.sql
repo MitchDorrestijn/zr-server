@@ -8,6 +8,15 @@ ALTER TABLE ride
 ADD price_of_ride FLOAT
 UPDATE ride SET price_of_ride = 25.4
 
+-- Add warningColumn to the client table and ads a PKB (persoonlijk kilometer budget)
+ALTER TABLE client
+ADD warningPKB boolean
+ADD PKB int
+
+--Update clients--
+UPDATE client SET PKB = 500
+UPDATE client set warningPKB = true
+
 -- Create a new table for the ratings
 CREATE TABLE beoordelingen (
 	driverId	INT				NOT NULL,
@@ -15,6 +24,9 @@ CREATE TABLE beoordelingen (
     beoordeling	VARCHAR(1000)	NOT NULL,
     sterren		INT				NOT NULL
 )
+
+
+
 
 -- Fill the table beoordelingen with dummy data
 INSERT INTO beoordelingen (driverId, clientId, beoordeling, sterren) VALUES
