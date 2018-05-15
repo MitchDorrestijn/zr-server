@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.dao;
 
-import org.han.ica.oose.boterbloem.domain.Chauffeur;
+import org.han.ica.oose.boterbloem.domain.Driver;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,22 +11,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Class for handling the CRUD operations on Chauffeur
+ * Class for handling the CRUD operations on Driver
  */
-public class ChauffeurDAO implements IChauffeurDAO {
+public class DriverDAO implements IDriverDAO {
     private static final Logger LOGGER = Logger.getLogger(ZorginstellingDAO.class.getName());
     public static final DAO dao = new DAO();
 
-    public ChauffeurDAO() {
+    public DriverDAO() {
         //Empty constructor for SpringBoot
     }
 
     /***
-     * @return All chauffeurs and their properties fetched from the database
+     * @return All drivers and their properties fetched from the database
      */
     @Override
-    public List<Chauffeur> getAllChauffeurs() {
-        List<Chauffeur> chauffeurs = new ArrayList<>();
+    public List<Driver> getAllDrivers() {
+        List<Driver> drivers = new ArrayList<>();
         try (
                 PreparedStatement ps = dao.getPreparedStatement(
                         "SELECT \n" +
@@ -55,15 +55,15 @@ public class ChauffeurDAO implements IChauffeurDAO {
                 String segment = rs.getString("segment");
                 int rating = rs.getInt("rating");
 
-                Chauffeur chauffeur = new Chauffeur(id,name, typeOfPayment, totalEarned, totalRides, numberPlate,
+                Driver driver = new Driver(id,name, typeOfPayment, totalEarned, totalRides, numberPlate,
                         numberOfPassengers, segment, rating);
-                chauffeurs.add(chauffeur);
+                drivers.add(driver);
             }
-            return chauffeurs;
+            return drivers;
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
 
         }
-        return chauffeurs;
+        return drivers;
     }
 }
