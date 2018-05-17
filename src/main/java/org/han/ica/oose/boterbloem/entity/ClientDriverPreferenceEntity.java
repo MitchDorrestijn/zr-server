@@ -1,52 +1,35 @@
 package org.han.ica.oose.boterbloem.entity;
 
+import org.han.ica.oose.boterbloem.entity.compositeKeys.ClientDriverPreferenceIdentity;
+
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "clientDriverPreference")
 public class ClientDriverPreferenceEntity {
-    @Id
-    int driverId;
 
-    @Id
-    int clientId;
+    @EmbeddedId
+    ClientDriverPreferenceIdentity clientDriverPreferenceIdentity;
+
 
     /**
-     * Getter for property 'driverId'.
+     * Getter for property 'clientDriverPreferenceIdentity'.
      *
-     * @return Value for property 'driverId'.
+     * @return Value for property 'clientDriverPreferenceIdentity'.
      */
-    public int getDriverId() {
-        return driverId;
+    public ClientDriverPreferenceIdentity getClientDriverPreferenceIdentity() {
+        return clientDriverPreferenceIdentity;
     }
 
     /**
-     * Setter for property 'driverId'.
+     * Setter for property 'clientDriverPreferenceIdentity'.
      *
-     * @param driverId Value to set for property 'driverId'.
+     * @param clientDriverPreferenceIdentity Value to set for property 'clientDriverPreferenceIdentity'.
      */
-    public void setDriverId(int driverId) {
-        this.driverId = driverId;
-    }
-
-    /**
-     * Getter for property 'clientId'.
-     *
-     * @return Value for property 'clientId'.
-     */
-    public int getClientId() {
-        return clientId;
-    }
-
-    /**
-     * Setter for property 'clientId'.
-     *
-     * @param clientId Value to set for property 'clientId'.
-     */
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setClientDriverPreferenceIdentity(ClientDriverPreferenceIdentity clientDriverPreferenceIdentity) {
+        this.clientDriverPreferenceIdentity = clientDriverPreferenceIdentity;
     }
 }

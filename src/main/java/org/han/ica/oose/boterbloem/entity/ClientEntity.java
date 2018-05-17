@@ -1,26 +1,32 @@
 package org.han.ica.oose.boterbloem.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "client")
 public class ClientEntity {
 
     @Id
+    private
     int clientId;
 
     @Column(name = "companion")
+    private
     String companion;
 
-    @Column(name = "utility")
-    String utility;
-
     @Column(name = "driverPreferenceForced")
+    private
     Boolean driverPreferenceForced;
 
+    @ManyToOne
+    @JoinColumn(name = "id", nullable = true)
+    UserEntity user;
+
+
+    @ManyToOne
+    @JoinColumn(name = "utility", nullable = true)
+    UtilityEntity utility;
 
     /**
      * Getter for property 'clientId'.
@@ -56,24 +62,6 @@ public class ClientEntity {
      */
     public void setCompanion(String companion) {
         this.companion = companion;
-    }
-
-    /**
-     * Getter for property 'utility'.
-     *
-     * @return Value for property 'utility'.
-     */
-    public String getUtility() {
-        return utility;
-    }
-
-    /**
-     * Setter for property 'utility'.
-     *
-     * @param utility Value to set for property 'utility'.
-     */
-    public void setUtility(String utility) {
-        this.utility = utility;
     }
 
     /**

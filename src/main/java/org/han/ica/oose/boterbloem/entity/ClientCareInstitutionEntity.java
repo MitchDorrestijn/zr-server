@@ -1,53 +1,31 @@
 package org.han.ica.oose.boterbloem.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.han.ica.oose.boterbloem.entity.compositeKeys.ClientCareInstitutionIdentity;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "clientCareInstitution")
 public class ClientCareInstitutionEntity {
 
-    @Id
-    int clientId;
-
-    @Id
-    int careInstitutionId;
+    @EmbeddedId
+    ClientCareInstitutionIdentity clientCareInstitutionIdentity;
 
     /**
-     * Getter for property 'clientId'.
+     * Getter for property 'clientCareInstitutionIdentity'.
      *
-     * @return Value for property 'clientId'.
+     * @return Value for property 'clientCareInstitutionIdentity'.
      */
-    public int getClientId() {
-        return clientId;
+    public ClientCareInstitutionIdentity getClientCareInstitutionIdentity() {
+        return clientCareInstitutionIdentity;
     }
 
     /**
-     * Setter for property 'clientId'.
+     * Setter for property 'clientCareInstitutionIdentity'.
      *
-     * @param clientId Value to set for property 'clientId'.
+     * @param clientCareInstitutionIdentity Value to set for property 'clientCareInstitutionIdentity'.
      */
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
-    /**
-     * Getter for property 'careInstitutionId'.
-     *
-     * @return Value for property 'careInstitutionId'.
-     */
-    public int getCareInstitutionId() {
-        return careInstitutionId;
-    }
-
-    /**
-     * Setter for property 'careInstitutionId'.
-     *
-     * @param careInstitutionId Value to set for property 'careInstitutionId'.
-     */
-    public void setCareInstitutionId(int careInstitutionId) {
-        this.careInstitutionId = careInstitutionId;
+    public void setClientCareInstitutionIdentity(ClientCareInstitutionIdentity clientCareInstitutionIdentity) {
+        this.clientCareInstitutionIdentity = clientCareInstitutionIdentity;
     }
 }

@@ -16,9 +16,7 @@ import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
+
 import java.util.List;
 
 
@@ -31,11 +29,6 @@ public class TestControllerHibernate {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     IDriverDAOm driverEntityManager = new DriverDAOImpl(entityManager);
-
-
-    public TestControllerHibernate() {
-
-    }
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

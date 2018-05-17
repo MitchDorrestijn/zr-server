@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `careInstitution` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `clientCareInstitution` (
   clientId          INT(11) NOT NULL,
-  careInstitutionId INT(11) NOT NULL AUTO_INCREMENT,
+  careInstitutionId INT(11) NOT NULL,
   PRIMARY KEY (clientId, careInstitutionId),
   CONSTRAINT careInstitutionClient FOREIGN KEY (clientId) REFERENCES client (clientId)
     ON DELETE NO ACTION
@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `clientCareInstitution` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `driverCareInstitution` (
   driverId          INT(11) NOT NULL,
-  careInstitutionId INT(11) NOT NULL AUTO_INCREMENT,
+  careInstitutionId INT(11) NOT NULL,
   PRIMARY KEY (driverId, careInstitutionId),
   CONSTRAINT careInstitutionDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION

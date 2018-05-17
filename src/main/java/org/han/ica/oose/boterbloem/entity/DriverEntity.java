@@ -14,13 +14,16 @@ public class DriverEntity {
     int driverId;
 
     @Column(name = "verification")
+    private
     boolean verification;
 
     @Id
     @Column(name = "utility")
+    private
     String utility;
 
     @Column(name = "type_of_payment")
+    private
     String type_of_payment;
 
     /**
