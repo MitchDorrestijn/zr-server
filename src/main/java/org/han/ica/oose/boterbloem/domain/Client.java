@@ -19,12 +19,14 @@ public class Client {
 
     @JsonCreator
     public Client(
+            @JsonProperty("id") int clientId,
             @JsonProperty("name") String name,
             @JsonProperty("PKB") int PKB,
             @JsonProperty("warningPKB") boolean warningPKB,
             @JsonProperty("priceToPay") double priceToPay,
             @JsonProperty("totalMeters") int totalMeters)
     {
+        this.clientId = clientId;
         this.name = name;
         this.PKB = PKB;
         this.warningPKB = warningPKB;

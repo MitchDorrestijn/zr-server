@@ -18,13 +18,13 @@ public class DriverDAOTest {
     @Before
     public void setup() throws Exception {
         driverDAO = new DriverDAO();
-        driverDAO.dao.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/create_script.sql'").execute();
-        driverDAO.dao.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/insert_script.sql'").execute();
+        driverDAO.CONNECTION_DAO.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/create_script.sql'").execute();
+        driverDAO.CONNECTION_DAO.getPreparedStatement("RUNSCRIPT FROM 'classpath:scripts/insert_script.sql'").execute();
     }
 
     @Test
     public void hasConnection() {
-        assertTrue(driverDAO.dao.hasConnection());
+        assertTrue(driverDAO.CONNECTION_DAO.hasConnection());
     }
 
     @Test

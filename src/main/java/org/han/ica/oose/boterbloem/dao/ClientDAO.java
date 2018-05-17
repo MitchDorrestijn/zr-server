@@ -38,10 +38,8 @@ public class ClientDAO implements IClientDAO {
         }
     }
 
-    /** Method that pulls all clients out of the database
-     *
-     * @return A arraylist of clients
-     * @throws SQLException
+    /**
+     * {@inheritDoc}
      */
     @Override
     public List<Client> getAllClients() {
@@ -49,23 +47,25 @@ public class ClientDAO implements IClientDAO {
         List<Client> foundCliënts = new ArrayList<>();
         try (
                 PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
-                        "select \n" +
+                        "SELECT\n" +
+                                "C.clientId,\n" +
                                 "CONCAT(U.firstname, ' ', U.lastname) AS name,\n" +
                                 "C.PKB,\n" +
-                                "C.warningPKB,\n"+
-                                "(SELECT SUM(R.distance) FROM ride R WHERE R.clientId = C.clientId) AS Total_Meters\n" +
-                                "from User U INNER JOIN client C ON U.id = C.clientid\n"
+                                "C.warningPKB,\n" +
+                                "(SELECT SUM(R.distance) FROM ride R WHERE R.clientId = C.clientId) AS totalMeters\n" +
+                                "from User U INNER JOIN client C ON U.id = C.clientid"
                 );
                 ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 String foundName = rs.getString("name");
                 int PKB = rs.getInt("PKB");
                 Boolean warningPKB = rs.getBoolean("warningPKB");
-                int total_meters = rs.getInt("Total_Meters");
-                    if (total_meters > PKB){
-                         priceToPay = (total_meters - PKB) * flatRate;
+                int totalMeters = rs.getInt("totalMeters");
+                int id = rs.getInt("clientId");
+                    if (totalMeters > PKB){
+                         priceToPay = (totalMeters - PKB) * flatRate;
                     }
-                Client client = new Client(foundName, PKB, warningPKB,priceToPay,total_meters);
+                Client client = new Client(id,foundName, PKB, warningPKB,priceToPay,totalMeters);
                 foundCliënts.add(client);
             }
             return foundCliënts;
@@ -76,21 +76,20 @@ public class ClientDAO implements IClientDAO {
     }
 
     /**
-     *
-     * @param id The id that the query will look at
-     * @return A specific client with the give id number
+     * {@inheritDoc}
      */
     public Client getClientById(int id) {
         double priceToPay = 0;
         Client client = null;
         try (
                 PreparedStatement ps = CONNECTION_DAO.getPreparedStatement(
-                        "select \n" +
+                        "SELECT\n" +
+                                "C.clientId,\n" +
                                 "CONCAT(U.firstname, ' ', U.lastname) AS name,\n" +
                                 "C.PKB,\n" +
-                                "C.warningPKB,\n"+
-                                "(SELECT SUM(R.distance) FROM ride R WHERE R.clientId = C.clientId) AS Total_Meters\n" +
-                                "from User U INNER JOIN client C ON U.id = C.clientid\n" +
+                                "C.warningPKB,\n" +
+                                "(SELECT SUM(R.distance) FROM ride R WHERE R.clientId = C.clientId) AS totalMeters\n" +
+                                "from User U INNER JOIN client C ON U.id = C.clientid \n" +
                                 "WHERE C.clientid = " + id
                 );
                 ResultSet rs = ps.executeQuery()) {
@@ -98,11 +97,12 @@ public class ClientDAO implements IClientDAO {
                 String foundName = rs.getString("name");
                 int PKB = rs.getInt("PKB");
                 Boolean warningPKB = rs.getBoolean("warningPKB");
-                int total_meters = rs.getInt("Total_Meters");
+                int total_meters = rs.getInt("totalMeters");
+                int idFound = rs.getInt("clientId");
                 if (total_meters > PKB){
                     priceToPay = (total_meters - PKB) * flatRate;
                 }
-                client = new Client(foundName, PKB, warningPKB,priceToPay,total_meters);
+                client = new Client(idFound,foundName, PKB, warningPKB,priceToPay,total_meters);
             }
             return client;
         } catch (SQLException e) {

@@ -13,6 +13,10 @@ public class ClientService {
         //Empty constructor
     }
 
+    /**
+     *
+     * @param client Client thats is going to be created
+     */
     public void createClient(Client client) {
         clientDAO.create(client);
     }
