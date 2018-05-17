@@ -1,4 +1,7 @@
 package org.han.ica.oose.boterbloem.daoHibernate;
 
-public interface IUserDAOm {
+import org.han.ica.oose.boterbloem.daoHibernate.genericDao.IGenericDAO;
+import org.han.ica.oose.boterbloem.entity.UserEntity;
+
+public interface IUserDAOm extends IGenericDAO<UserEntity> {
 }

@@ -1,4 +1,7 @@
 package org.han.ica.oose.boterbloem.daoHibernate;
 
-public interface IClientDriverPreferenceDAOm {
+import org.han.ica.oose.boterbloem.daoHibernate.genericDao.IGenericDAO;
+import org.han.ica.oose.boterbloem.entity.ClientDriverPreferenceEntity;
+
+public interface IClientDriverPreferenceDAOm extends IGenericDAO<ClientDriverPreferenceEntity> {
 }

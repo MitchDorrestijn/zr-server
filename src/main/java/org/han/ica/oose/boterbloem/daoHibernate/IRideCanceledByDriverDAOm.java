@@ -1,4 +1,7 @@
 package org.han.ica.oose.boterbloem.daoHibernate;
 
-public interface IRideCanceledByDriverDAOm {
+import org.han.ica.oose.boterbloem.daoHibernate.genericDao.IGenericDAO;
+import org.han.ica.oose.boterbloem.entity.RideCanceledByDriverEntity;
+
+public interface IRideCanceledByDriverDAOm extends IGenericDAO<RideCanceledByDriverEntity> {
 }

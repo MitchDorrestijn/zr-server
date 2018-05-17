@@ -1,4 +1,7 @@
 package org.han.ica.oose.boterbloem.daoHibernate;
 
-public interface IDriverCareInstitutionDAOm {
+import org.han.ica.oose.boterbloem.daoHibernate.genericDao.IGenericDAO;
+import org.han.ica.oose.boterbloem.entity.DriverCareInstitutionEntity;
+
+public interface IDriverCareInstitutionDAOm extends IGenericDAO<DriverCareInstitutionEntity> {
 }

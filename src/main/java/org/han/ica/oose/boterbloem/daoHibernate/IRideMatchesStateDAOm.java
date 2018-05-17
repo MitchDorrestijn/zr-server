@@ -1,4 +1,7 @@
 package org.han.ica.oose.boterbloem.daoHibernate;
 
-public interface IRideMatchesStateDAOm {
+import org.han.ica.oose.boterbloem.daoHibernate.genericDao.IGenericDAO;
+import org.han.ica.oose.boterbloem.entity.RideMatchesStateEntity;
+
+public interface IRideMatchesStateDAOm extends IGenericDAO<RideMatchesStateEntity> {
 }
