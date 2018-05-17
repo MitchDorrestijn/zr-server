@@ -320,5 +320,9 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 	  driverId	INT				NOT NULL,
     clientId	INT				NOT NULL,
     beoordeling	VARCHAR(1000)	NOT NULL,
-    sterren		INT				NOT NULL
+    sterren		INT				NOT NULL,
+ PRIMARY KEY (clientId),
+  CONSTRAINT ratings FOREIGN KEY (clientId) REFERENCES driver (driverId)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 )

@@ -147,6 +147,11 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>5.2.3.Final</version>
         </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+        </dependency>
 
     </dependencies>
 

@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.dao;
+package org.han.ica.oose.boterbloem.daoHibernate.genericDao;
 
 
 import javax.persistence.EntityManager;

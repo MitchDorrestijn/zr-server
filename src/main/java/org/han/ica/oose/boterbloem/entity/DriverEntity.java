@@ -16,8 +16,12 @@ public class DriverEntity {
     @Column(name = "verification")
     boolean verification;
 
+    @Id
     @Column(name = "utility")
     String utility;
+
+    @Column(name = "type_of_payment")
+    String type_of_payment;
 
     /**
      * Getter for property 'driverId'.
@@ -71,5 +75,23 @@ public class DriverEntity {
      */
     public void setUtility(String utility) {
         this.utility = utility;
+    }
+
+    /**
+     * Getter for property 'type_of_payment'.
+     *
+     * @return Value for property 'type_of_payment'.
+     */
+    public String getType_of_payment() {
+        return type_of_payment;
+    }
+
+    /**
+     * Setter for property 'type_of_payment'.
+     *
+     * @param type_of_payment Value to set for property 'type_of_payment'.
+     */
+    public void setType_of_payment(String type_of_payment) {
+        this.type_of_payment = type_of_payment;
     }
 }
