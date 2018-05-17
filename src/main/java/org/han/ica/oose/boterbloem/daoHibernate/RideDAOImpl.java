@@ -16,4 +16,10 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
     public RideDAOImpl(EntityManager em) {
         super(em, RideEntity.class);
     }
+
+    @Override
+    public int rideCountById(int id) {
+        return ((Number)getEntityManager().createQuery("SELECT count(*) FROM RideEntity  WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
+
+    }
 }

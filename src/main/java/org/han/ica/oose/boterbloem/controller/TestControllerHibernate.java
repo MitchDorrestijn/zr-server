@@ -1,9 +1,10 @@
 package org.han.ica.oose.boterbloem.controller;
 
 
-
 import org.han.ica.oose.boterbloem.daoHibernate.DriverDAOImpl;
 import org.han.ica.oose.boterbloem.daoHibernate.IDriverDAO;
+import org.han.ica.oose.boterbloem.daoHibernate.IRideDAO;
+import org.han.ica.oose.boterbloem.daoHibernate.RideDAOImpl;
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class TestControllerHibernate {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     IDriverDAO DriverDAOImpl = new DriverDAOImpl(entityManager);
+    IRideDAO rideDAO = new RideDAOImpl(entityManager);
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public DriverEntity getDriverEntity(@PathVariable int id) {
@@ -37,5 +39,10 @@ public class TestControllerHibernate {
         return DriverDAOImpl.findAll();
     }
 
+    @RequestMapping(value = "testRide/{id}", method = RequestMethod.GET)
+    public int getRideCount(@PathVariable int id) {
+
+        return rideDAO.rideCountById(id);
+    }
 
 }

@@ -1,9 +1,6 @@
 package org.han.ica.oose.boterbloem.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "ratings", schema = "zorgrit", catalog = "")
@@ -23,6 +20,7 @@ public class RatingsEntity {
         this.driverId = driverId;
     }
 
+    @Id
     @Basic
     @Column(name = "clientId")
     public int getClientId() {

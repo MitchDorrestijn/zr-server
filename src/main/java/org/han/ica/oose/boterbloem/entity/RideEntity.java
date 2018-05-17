@@ -19,6 +19,18 @@ public class RideEntity {
     private Integer repeatingRideId;
     private Byte cancelledByClient;
     private byte executed;
+    private DriverEntity driverEntity;
+
+
+    @OneToOne
+    @JoinColumn(name = "driverId")
+    public DriverEntity getDriverEntity() {
+        return driverEntity;
+    }
+
+    public void setDriverEntity(DriverEntity driverEntity) {
+        this.driverEntity = driverEntity;
+    }
 
     @Id
     @Column(name = "id")
