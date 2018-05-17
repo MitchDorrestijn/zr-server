@@ -1,4 +1,15 @@
 package org.han.ica.oose.boterbloem.daoHibernate;
 
-public class RideProposedForDriverDAOImpl {
+import org.han.ica.oose.boterbloem.daoHibernate.genericDao.GenericDAOImpl;
+import org.han.ica.oose.boterbloem.generatedEntity.RideproposedfordriverEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.EntityManager;
+
+public class RideProposedForDriverDAOImpl extends GenericDAOImpl<RideproposedfordriverEntity> implements IRideProposedForDriverDAOm {
+
+    @Autowired
+    public RideProposedForDriverDAOImpl(EntityManager em) {
+        super(em, RideproposedfordriverEntity.class);
+    }
 }
