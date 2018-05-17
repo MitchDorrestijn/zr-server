@@ -18,5 +18,10 @@ public interface IClientDAO {
      */
     List<Client> getAllClients();
 
+    /**
+     * Reusts a specific Client from the database
+     * @param id the id of the client
+     * @return a specific client with the given id
+     */
     Client getClientById(int id);
 }

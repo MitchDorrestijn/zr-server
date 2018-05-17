@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `driver` (
   driverId     INT(11)      NOT NULL,
   verification BOOLEAN      NOT NULL,
   utility      VARCHAR(255) NULL     DEFAULT NULL,
-  type_of_payment VARCHAR(255)  NULL
+  type_of_payment VARCHAR(255)  NULL,
   PRIMARY KEY (driverId),
   CONSTRAINT DriverUser FOREIGN KEY (driverId) REFERENCES user (id)
     ON DELETE NO ACTION

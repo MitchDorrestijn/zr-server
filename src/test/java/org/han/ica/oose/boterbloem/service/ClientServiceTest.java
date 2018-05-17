@@ -18,10 +18,10 @@ import static org.mockito.Mockito.when;
 
 public class ClientServiceTest {
 
-    private Client clientA = new Client("Mees",500,false,0,500);
-    private Client clientB = new Client("Mitch",850,true,0,1000);
-    private Client clientC = new Client("Martijn",320,true,0,500);
-    private Client clientD = new Client("Mees",500,false,0,500);
+    private Client clientA = new Client(1,"Mees",500,false,0,500);
+    private Client clientB = new Client(2,"Mitch",850,true,0,1000);
+    private Client clientC = new Client(3,"Martijn",320,true,0,500);
+    private Client clientD = new Client(4,"Mees",500,false,0,500);
 
     private List<Client> clients = new ArrayList<>();
 
