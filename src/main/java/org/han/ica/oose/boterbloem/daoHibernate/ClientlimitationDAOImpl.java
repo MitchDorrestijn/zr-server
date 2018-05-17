@@ -1,7 +1,7 @@
 package org.han.ica.oose.boterbloem.daoHibernate;
 
 import org.han.ica.oose.boterbloem.daoHibernate.genericDao.GenericDAOImpl;
-import org.han.ica.oose.boterbloem.generatedEntity.ClientlimitationEntity;
+import org.han.ica.oose.boterbloem.entity.ClientlimitationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;

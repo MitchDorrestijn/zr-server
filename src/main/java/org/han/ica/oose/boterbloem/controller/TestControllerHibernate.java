@@ -1,10 +1,10 @@
 package org.han.ica.oose.boterbloem.controller;
 
 
+
 import org.han.ica.oose.boterbloem.daoHibernate.DriverDAOImpl;
 import org.han.ica.oose.boterbloem.daoHibernate.IDriverDAO;
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
-
 
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import java.util.List;
 
 
@@ -24,19 +23,18 @@ public class TestControllerHibernate {
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
     EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    IDriverDAO driverEntityManager = new DriverDAOImpl(entityManager);
-
+    IDriverDAO DriverDAOImpl = new DriverDAOImpl(entityManager);
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public DriverEntity getDriverEntity(@PathVariable int id) {
 
-        return driverEntityManager.findById(id);
+        return DriverDAOImpl.findById(id);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<DriverEntity> getAllDriverEntity() {
 
-        return driverEntityManager.findAll();
+        return DriverDAOImpl.findAll();
     }
 
 
