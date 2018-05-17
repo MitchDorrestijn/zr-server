@@ -1,7 +1,6 @@
 package org.han.ica.oose.boterbloem.daoHibernate;
 
 import org.han.ica.oose.boterbloem.daoHibernate.genericDao.GenericDAOImpl;
-import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.entity.RatingsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
