@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements IUserDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public UserDAOImpl(EntityManager em) {
         super(em, UserEntity.class);

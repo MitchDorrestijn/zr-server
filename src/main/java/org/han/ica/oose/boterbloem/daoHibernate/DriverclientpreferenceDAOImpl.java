@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class DriverclientpreferenceDAOImpl extends GenericDAOImpl<DriverclientpreferenceEntity> implements IDriverclientpreferenceDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public DriverclientpreferenceDAOImpl(EntityManager em) {
         super(em, DriverclientpreferenceEntity.class);

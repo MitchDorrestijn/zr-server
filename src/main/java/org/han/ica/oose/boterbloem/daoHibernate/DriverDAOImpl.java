@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriverDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public DriverDAOImpl(EntityManager em) {
         super(em, DriverEntity.class);

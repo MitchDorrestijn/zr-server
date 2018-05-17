@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<DriverlimitationmanageableEntity> implements IDriverlimitationmanageableDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public DriverlimitationmanageableDAOImpl(EntityManager em) {
         super(em, DriverlimitationmanageableEntity.class);

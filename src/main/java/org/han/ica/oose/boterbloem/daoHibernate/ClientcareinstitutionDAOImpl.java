@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<ClientcareinstitutionEntity> implements IClientcareinstitutionDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public ClientcareinstitutionDAOImpl(EntityManager em) {
         super(em, ClientcareinstitutionEntity.class);

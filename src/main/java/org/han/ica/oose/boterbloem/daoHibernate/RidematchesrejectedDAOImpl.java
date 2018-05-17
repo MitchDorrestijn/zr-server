@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class RidematchesrejectedDAOImpl extends GenericDAOImpl<RidematchesrejectedEntity> implements IRidematchesrejectedDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public RidematchesrejectedDAOImpl(EntityManager em) {
         super(em, RidematchesrejectedEntity.class);

@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class RidematchescacheDAOImpl extends GenericDAOImpl<RidematchescacheEntity> implements IRidematchescacheDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public RidematchescacheDAOImpl(EntityManager em) {
         super(em, RidematchescacheEntity.class);

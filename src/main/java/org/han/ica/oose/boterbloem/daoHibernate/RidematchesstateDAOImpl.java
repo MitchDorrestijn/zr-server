@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class RidematchesstateDAOImpl extends GenericDAOImpl<RidematchesstateEntity> implements IRidematchesstateDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public RidematchesstateDAOImpl(EntityManager em) {
         super(em, RidematchesstateEntity.class);

@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class RideproposedfordriverDAOImpl extends GenericDAOImpl<RideproposedfordriverEntity> implements IRideproposedfordriverDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public RideproposedfordriverDAOImpl(EntityManager em) {
         super(em, RideproposedfordriverEntity.class);

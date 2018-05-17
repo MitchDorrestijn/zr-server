@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class RidecanceledbydriverDAOImpl extends GenericDAOImpl<RidecanceledbydriverEntity> implements IRidecanceledbydriverDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public RidecanceledbydriverDAOImpl(EntityManager em) {
         super(em, RidecanceledbydriverEntity.class);

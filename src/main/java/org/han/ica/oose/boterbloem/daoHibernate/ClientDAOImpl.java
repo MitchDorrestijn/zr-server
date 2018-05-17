@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 
 public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClientDAO {
 
+    /**
+     * Hook up the basic CRUD queries
+     * @param em [provided] - runs querys
+     */
     @Autowired
     public ClientDAOImpl(EntityManager em) {
         super(em, ClientEntity.class);
