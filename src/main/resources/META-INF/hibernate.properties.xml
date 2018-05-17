@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/zorgrit</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="root"/>
+        <property name=" root"/>
+
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.CareinstitutionEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.ClientEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.ClientcareinstitutionEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.ClientdriverpreferenceEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.ClientlimitationEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.DriverEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.DriveravailabilityEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.DrivercarEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.DrivercareinstitutionEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.DriverclientpreferenceEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.DriverlimitationmanageableEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.LimitationEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.RideEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.RidecanceledbydriverEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.RidematchescacheEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.RidematchesrejectedEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.RidematchesstateEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.RideproposedfordriverEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.UserEntity"/>
+        <mapping class="org.han.ica.oose.boterbloem.generatedEntity.UtilityEntity"/>
+
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>

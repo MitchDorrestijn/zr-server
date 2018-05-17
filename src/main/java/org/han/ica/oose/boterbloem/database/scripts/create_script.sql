@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `driverAvailability` (
   driverId      INT(11)  NOT NULL,
   startDateTime DATETIME NOT NULL,
   endDateTime   DATETIME NOT NULL,
-  PRIMARY KEY (driverId, startDateTime, endDateTime),
+  PRIMARY KEY (driverId),
   CONSTRAINT driverAvailabilityDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
