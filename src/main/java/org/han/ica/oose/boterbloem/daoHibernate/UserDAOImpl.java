@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 
-public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements IUserDAOm {
+public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements IUserDAO {
 
     @Autowired
     public UserDAOImpl(EntityManager em) {

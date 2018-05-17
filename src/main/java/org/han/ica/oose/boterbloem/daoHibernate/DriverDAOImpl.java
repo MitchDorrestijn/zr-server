@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 
-public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriverDAOm {
+public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriverDAO {
 
     @Autowired
     public DriverDAOImpl(EntityManager em) {

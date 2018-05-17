@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 
-public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClientDAOm {
+public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClientDAO {
 
     @Autowired
     public ClientDAOImpl(EntityManager em) {

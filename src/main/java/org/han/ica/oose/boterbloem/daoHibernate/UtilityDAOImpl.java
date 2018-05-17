@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 
-public class UtilityDAOImpl extends GenericDAOImpl<UtilityEntity> implements IUtilityDAOm {
-
+public class UtilityDAOImpl extends GenericDAOImpl<UtilityEntity> implements IUtilityDAO {
+    
     @Autowired
     public UtilityDAOImpl(EntityManager em) {
         super(em, UtilityEntity.class);
