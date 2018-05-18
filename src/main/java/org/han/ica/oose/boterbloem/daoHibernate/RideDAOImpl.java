@@ -10,6 +10,7 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
 
     /**
      * Hook up the basic CRUD queries
+     *
      * @param em [provided] - runs querys
      */
     @Autowired
@@ -19,7 +20,15 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
 
     @Override
     public int rideCountById(int id) {
-        return ((Number)getEntityManager().createQuery("SELECT count(*) FROM RideEntity  WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
+        return ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
 
     }
+
+    @Override
+    public float totalEarned(int id) {
+
+       return  ((Number) getEntityManager().createQuery("SELECT SUM(price_of_ride) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
+
+    }
+
 }

@@ -45,4 +45,10 @@ public class TestControllerHibernate {
         return rideDAO.rideCountById(id);
     }
 
+    @RequestMapping(value = "testFloat/{id}", method = RequestMethod.GET)
+    public float getFloat(@PathVariable int id) {
+
+        return rideDAO.totalEarned(id);
+    }
+
 }

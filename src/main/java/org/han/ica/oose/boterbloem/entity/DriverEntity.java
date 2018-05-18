@@ -8,6 +8,8 @@ public class DriverEntity {
     private int driverId;
     private byte verification;
     private String utility;
+    private UserEntity userEntity;
+    private String type_of_payment;
 
     @Id
     @Column(name = "driverId")
@@ -17,6 +19,27 @@ public class DriverEntity {
 
     public void setDriverId(int driverId) {
         this.driverId = driverId;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "driverId")
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
+
+    @Basic
+    @Column(name = "type_of_payment")
+    public String getTypeOfPayment() {
+        return type_of_payment;
+    }
+
+    public void setTypeOfPayment(String type_of_payment) {
+        this.type_of_payment = type_of_payment;
     }
 
     @Basic

@@ -5,5 +5,7 @@ import org.han.ica.oose.boterbloem.entity.RideEntity;
 
 public interface IRideDAO extends IGenericDAO<RideEntity> {
 
-     int rideCountById(int id);
+    int rideCountById(int id);
+
+    float totalEarned(int id);
 }

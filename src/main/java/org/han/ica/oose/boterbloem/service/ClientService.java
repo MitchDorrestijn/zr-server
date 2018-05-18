@@ -14,7 +14,6 @@ public class ClientService {
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
     private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-
     private IClientDAO clientDAO  = new ClientDAOImpl(entityManager);
 
     public ClientService() {
