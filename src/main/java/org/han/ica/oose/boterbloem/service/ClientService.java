@@ -35,11 +35,20 @@ public class ClientService {
 
         List<ClientEntity> clientEntities = clientDAO.findAll();
         for (ClientEntity i : clientEntities){
+            double priceToPay = 0;
+            boolean warningPKB = false;
             ClientDisplay clientDisplay = new ClientDisplay();
             clientDisplay.setClientId(i.getClientId());
             clientDisplay.setName(i.getUserEntity().getFirstName());
             clientDisplay.setPKB(i.getPKB());
-          //  clientDisplay.setPriceToPay(i.ge);
+            int distance = (i.getRideEntity().getDistance());
+            if (distance > i.getPKB()){
+                priceToPay = (i.getRideEntity().getDistance() * 0.005);
+                warningPKB = true;
+            }
+            clientDisplay.setTotalMeters(i.getRideEntity().getDistance());
+            clientDisplay.setPriceToPay(priceToPay);
+            clientDisplay.setWarningPKB(warningPKB);
             clientDisplays.add(clientDisplay);
         }
         return clientDisplays;
