@@ -26,9 +26,7 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
 
     @Override
     public float totalEarned(int id) {
-
        return  ((Number) getEntityManager().createQuery("SELECT SUM(price_of_ride) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
-
     }
 
 }

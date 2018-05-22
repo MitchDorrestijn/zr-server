@@ -16,4 +16,6 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
     public DriverDAOImpl(EntityManager em) {
         super(em, DriverEntity.class);
     }
+
 }
+
