@@ -20,13 +20,21 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
 
     @Override
     public int rideCountById(int id) {
-        return ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
+        return ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  " +
+                "WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
 
     }
 
     @Override
+    public int totalRideClient(int id) {
+        return ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  " +
+                "WHERE clientEntity.clientId = :id").setParameter("id", id).getSingleResult()).intValue();
+    }
+
+    @Override
     public float totalEarned(int id) {
-       return  ((Number) getEntityManager().createQuery("SELECT SUM(price_of_ride) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
+       return  ((Number) getEntityManager().createQuery("SELECT SUM(price_of_ride) FROM RideEntity " +
+               "WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
     }
 
 }

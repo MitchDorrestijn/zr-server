@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.EntityManager;
 
 public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClientDAO {
-
     /**
      * Hook up the basic CRUD queries
      * @param em [provided] - runs querys
@@ -15,5 +14,10 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
     @Autowired
     public ClientDAOImpl(EntityManager em) {
         super(em, ClientEntity.class);
+    }
+
+    public int getTotalRides(int id) {
+
+        return id;
     }
 }
