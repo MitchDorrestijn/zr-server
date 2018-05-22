@@ -54,21 +54,6 @@ public class ClientService {
         return clientDisplays;
     }
 
-/*    List<RatingsDisplay> ratingsDisplays = new ArrayList<>();
-    List<RatingsEntity> ratingsEntities = ratingsDAO.findAll();
-        for (RatingsEntity i : ratingsEntities) {
-        RatingsDisplay ratingsDisplay = new RatingsDisplay();
-        ratingsDisplay.setBeoordeling(i.getBeoordeling());
-        ratingsDisplay.setClientId(i.getClientId());
-        ratingsDisplay.setClientName(userDAO.findById(i.getClientId()).getFirstName());
-        ratingsDisplay.setDriverId(i.getDriverId());
-        ratingsDisplay.setDriverName(userDAO.findById(i.getDriverId()).getFirstName());
-        ratingsDisplay.setSterren(i.getSterren());
-        ratingsDisplays.add(ratingsDisplay);
-    }
-        return ratingsDisplays;
-}*/
-
     /**
      * @param id the clientId thats used for the query
      * @return A specific clients with the given id
