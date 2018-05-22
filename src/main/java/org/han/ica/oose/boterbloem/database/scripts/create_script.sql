@@ -54,6 +54,8 @@ CREATE TABLE IF NOT EXISTS `client` (
   companion              VARCHAR(255) NULL     DEFAULT NULL,
   utility                VARCHAR(255) NULL     DEFAULT NULL,
   driverPreferenceForced BOOLEAN      NOT NULL DEFAULT FALSE,
+  warningPKB             BOOLEAN      NULL     DEFAULT NULL,
+  PKB                    int(255)   NOT NULL,
   PRIMARY KEY (clientId),
   CONSTRAINT ClientUser FOREIGN KEY (clientId) REFERENCES user (id)
     ON DELETE NO ACTION
@@ -70,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `driver` (
   driverId     INT(11)      NOT NULL,
   verification BOOLEAN      NOT NULL,
   utility      VARCHAR(255) NULL     DEFAULT NULL,
-  type_of_payment VARCHAR(255)  NULL
+  type_of_payment VARCHAR(255)  NULL,
   PRIMARY KEY (driverId),
   CONSTRAINT DriverUser FOREIGN KEY (driverId) REFERENCES user (id)
     ON DELETE NO ACTION
@@ -116,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `driverAvailability` (
   driverId      INT(11)  NOT NULL,
   startDateTime DATETIME NOT NULL,
   endDateTime   DATETIME NOT NULL,
-  PRIMARY KEY (driverId),
+  PRIMARY KEY (driverId, startDateTime, endDateTime),
   CONSTRAINT driverAvailabilityDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
@@ -181,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `careInstitution` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `clientCareInstitution` (
   clientId          INT(11) NOT NULL,
-  careInstitutionId INT(11) NOT NULL,
+  careInstitutionId INT(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (clientId, careInstitutionId),
   CONSTRAINT careInstitutionClient FOREIGN KEY (clientId) REFERENCES client (clientId)
     ON DELETE NO ACTION
@@ -196,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `clientCareInstitution` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `driverCareInstitution` (
   driverId          INT(11) NOT NULL,
-  careInstitutionId INT(11) NOT NULL,
+  careInstitutionId INT(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (driverId, careInstitutionId),
   CONSTRAINT careInstitutionDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
@@ -320,9 +322,5 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 	  driverId	INT				NOT NULL,
     clientId	INT				NOT NULL,
     beoordeling	VARCHAR(1000)	NOT NULL,
-    sterren		INT				NOT NULL,
- PRIMARY KEY (clientId),
-  CONSTRAINT ratings FOREIGN KEY (clientId) REFERENCES driver (driverId)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    sterren		INT				NOT NULL
 )

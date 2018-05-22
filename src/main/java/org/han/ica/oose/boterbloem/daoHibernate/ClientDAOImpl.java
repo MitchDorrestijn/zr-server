@@ -16,4 +16,6 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
     public ClientDAOImpl(EntityManager em) {
         super(em, ClientEntity.class);
     }
+
+
 }
