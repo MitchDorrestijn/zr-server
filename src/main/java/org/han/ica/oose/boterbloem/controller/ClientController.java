@@ -75,4 +75,11 @@ public class ClientController {
         }
         return new ResponseEntity<>(client, HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<ClientEntity> deleteClient(@PathVariable int id) {
+        clientService.deleteClient(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

@@ -40,5 +40,9 @@ public class ClientService {
     public void update(ClientEntity client) {
         clientDAO.update(client);
     }
+
+    public void deleteClient(int id) {
+        clientDAO.removeById(id);
+    }
 }
 

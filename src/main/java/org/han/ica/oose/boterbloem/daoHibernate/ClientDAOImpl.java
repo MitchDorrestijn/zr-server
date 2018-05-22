@@ -16,8 +16,8 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
         super(em, ClientEntity.class);
     }
 
-    public int getTotalRides(int id) {
-
-        return id;
+    @Override
+    public void removeById(int id) {
+        getEntityManager().remove(super.findById(id));
     }
 }
