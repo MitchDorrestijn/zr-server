@@ -8,7 +8,9 @@ public class ClientEntity {
     private int clientId;
     private String companion;
     private byte driverPreferenceForced;
-
+    private boolean warningPKB;
+    private int PKB;
+    private UserEntity userEntity;
     @Id
     @Column(name = "clientId")
     public int getClientId() {
@@ -37,6 +39,31 @@ public class ClientEntity {
 
     public void setDriverPreferenceForced(byte driverPreferenceForced) {
         this.driverPreferenceForced = driverPreferenceForced;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "clientId")
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+    public boolean isWarningPKB() {
+        return warningPKB;
+    }
+
+    public void setWarningPKB(boolean warningPKB) {
+        this.warningPKB = warningPKB;
+    }
+
+    public int getPKB() {
+        return PKB;
+    }
+
+    public void setPKB(int PKB) {
+        this.PKB = PKB;
     }
 
     @Override
