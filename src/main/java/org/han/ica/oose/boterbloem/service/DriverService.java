@@ -5,6 +5,7 @@ import org.han.ica.oose.boterbloem.daoHibernate.*;
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntityPK;
+import org.han.ica.oose.boterbloem.service.projection.DriverDetailDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDisplay;
 
 import javax.persistence.EntityManager;
@@ -15,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DriverService implements IDriverService {
-
-
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
     private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
@@ -25,8 +24,6 @@ public class DriverService implements IDriverService {
     private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl(entityManager);
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl(entityManager);
     private IUserDAO userDAO = new UserDAOImpl(entityManager);
-
-
 
     public DriverService() {
         //Empty constructor
@@ -71,6 +68,16 @@ public class DriverService implements IDriverService {
             returnList.add(driver);
         }
         return returnList;
+    }
+
+    public List<DriverDetailDisplay> getDriverDetails(){
+        List<DriverDetailDisplay> driverDetailDisplays =  new ArrayList<>();
+        for (DriverEntity x: driverDao.findAll()) {
+            DriverDisplay driver = new DriverDisplay();
+            DrivercarEntityPK drivercarEntityPK = new DrivercarEntityPK();
+            int driverId = x.getDriverId();
+        }
+        return driverDetailDisplays;
     }
 
 }
