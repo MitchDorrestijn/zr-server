@@ -19,6 +19,9 @@ public class UserEntity {
     private String passwordSalt;
     private Date dateOfBirth;
     private byte firstTimeProfileCheck;
+    private DriverEntity driverEntity;
+
+
 
     @Id
     @Column(name = "id")

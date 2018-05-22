@@ -2,8 +2,15 @@ package org.han.ica.oose.boterbloem.controller;
 
 
 import org.han.ica.oose.boterbloem.daoHibernate.*;
+import org.han.ica.oose.boterbloem.domain.Driver;
+import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 
+import org.han.ica.oose.boterbloem.service.DriverService;
+import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -21,20 +28,21 @@ public class TestControllerHibernate {
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
     EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    IDriverDAO DriverDAOImpl = new DriverDAOImpl(entityManager);
+    IDriverDAO driverDAOImpl = new DriverDAOImpl(entityManager);
     IRideDAO rideDAO = new RideDAOImpl(entityManager);
     IRatingsDAO ratingsDAO = new RatingsDAOImpl(entityManager);
+    DriverService dr = new DriverService();
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public DriverEntity getDriverEntity(@PathVariable int id) {
 
-        return DriverDAOImpl.findById(id);
+        return driverDAOImpl.findById(id);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<DriverEntity> getAllDriverEntity() {
 
-        return DriverDAOImpl.findAll();
+        return driverDAOImpl.findAll();
     }
 
     @RequestMapping(value = "testRide/{id}", method = RequestMethod.GET)
@@ -54,6 +62,19 @@ public class TestControllerHibernate {
 
         return ratingsDAO.getAvgRatings(id);
     }
+
+    @RequestMapping( value = "testPutDriver", method = RequestMethod.POST)
+    public void createDriverTest(@RequestBody  DriverEntity driverEntity){
+     driverDAOImpl.add(driverEntity);
+    }
+
+//    @CrossOrigin
+//    @RequestMapping(value = "/testPutDriver", method = RequestMethod.POST)
+//    public ResponseEntity<String> createDriverTest(@RequestBody CreateDriverDisplay createDriverDisplay) {
+//        dr.createChauffeur(createDriverDisplay);
+//        HttpHeaders headers = new HttpHeaders();
+//        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+//    }
 
 
 }

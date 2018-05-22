@@ -70,11 +70,12 @@ CREATE TABLE IF NOT EXISTS `driver` (
   driverId     INT(11)      NOT NULL,
   verification BOOLEAN      NOT NULL,
   utility      VARCHAR(255) NULL     DEFAULT NULL,
-  type_of_payment VARCHAR(255)  NULL
+  type_of_payment VARCHAR(255)  NULL,
+  image         VARCHAR(255)  NULL,
   PRIMARY KEY (driverId),
   CONSTRAINT DriverUser FOREIGN KEY (driverId) REFERENCES user (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 
 -- -----------------------------------------------------
@@ -321,8 +322,8 @@ CREATE TABLE IF NOT EXISTS `ratings` (
     clientId	INT				NOT NULL,
     beoordeling	VARCHAR(1000)	NOT NULL,
     sterren		INT				NOT NULL,
- PRIMARY KEY (clientId),
-  CONSTRAINT ratings FOREIGN KEY (clientId) REFERENCES driver (driverId)
+    PRIMARY KEY (clientId, driverId),
+    CONSTRAINT ratings FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )

@@ -2,6 +2,7 @@ package org.han.ica.oose.boterbloem.controller;
 import org.han.ica.oose.boterbloem.domain.Driver;
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.service.DriverService;
+import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDetailDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,9 @@ public class DriverController {
      *
      * @return List with information of a specific chauffeur
      */
-    @RequestMapping(value = "/chauffeurdetail/{id}", method = RequestMethod.GET)
-    public List<DriverDetailDisplay> getDriverDetails() {
-        return driverService.getDriverDetails();
+    @RequestMapping(value = "/create/chauffeur", method = RequestMethod.POST)
+    public void createDriverDetails(CreateDriverDisplay driverEntity) {
+         driverService.createChauffeur(driverEntity);
     }
 
 }

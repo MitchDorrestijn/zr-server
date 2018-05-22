@@ -2,9 +2,8 @@ package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.daoHibernate.*;
 
-import org.han.ica.oose.boterbloem.entity.DriverEntity;
-import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
-import org.han.ica.oose.boterbloem.entity.DrivercarEntityPK;
+import org.han.ica.oose.boterbloem.entity.*;
+import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDetailDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDisplay;
 
@@ -24,6 +23,8 @@ public class DriverService implements IDriverService {
     private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl(entityManager);
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl(entityManager);
     private IUserDAO userDAO = new UserDAOImpl(entityManager);
+    private IDrivercareinstitutionDAO drivercareinstitutionDAO = new DrivercareinstitutionDAOImpl(entityManager);
+
 
     public DriverService() {
         //Empty constructor
@@ -73,11 +74,27 @@ public class DriverService implements IDriverService {
     public List<DriverDetailDisplay> getDriverDetails(){
         List<DriverDetailDisplay> driverDetailDisplays =  new ArrayList<>();
         for (DriverEntity x: driverDao.findAll()) {
-            DriverDisplay driver = new DriverDisplay();
+
+            DriverDetailDisplay driver = new DriverDetailDisplay();
             DrivercarEntityPK drivercarEntityPK = new DrivercarEntityPK();
+
             int driverId = x.getDriverId();
+
         }
         return driverDetailDisplays;
     }
 
+    public void createChauffeur(CreateDriverDisplay createDriverDisplay) {
+
+        userDAO.add(createDriverDisplay.getDriver().getUserEntity());
+
+        driverDao.add(createDriverDisplay.getDriver());
+        drivercarDAO.add(createDriverDisplay.getDrivercarEntity());
+        DrivercareinstitutionEntity drivercareinstitutionEntity = new DrivercareinstitutionEntity();
+        drivercareinstitutionEntity.setCareInstitutionId(createDriverDisplay.getCareId());
+        drivercareinstitutionEntity.setDriverId(createDriverDisplay.getDriver().getDriverId());
+        drivercareinstitutionDAO.add(drivercareinstitutionEntity);
+
+
+    }
 }

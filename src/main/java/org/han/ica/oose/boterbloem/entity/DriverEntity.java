@@ -10,6 +10,7 @@ public class DriverEntity {
     private String utility;
     private UserEntity userEntity;
     private String type_of_payment;
+    private String image;
 
     @Id
     @Column(name = "driverId")
@@ -21,8 +22,9 @@ public class DriverEntity {
         this.driverId = driverId;
     }
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "driverId")
+    @MapsId
     public UserEntity getUserEntity() {
         return userEntity;
     }
@@ -30,6 +32,7 @@ public class DriverEntity {
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
     }
+
 
 
     @Basic
@@ -60,6 +63,16 @@ public class DriverEntity {
 
     public void setUtility(String utility) {
         this.utility = utility;
+    }
+
+    @Basic
+    @Column(name = "image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

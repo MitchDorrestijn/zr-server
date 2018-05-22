@@ -39,15 +39,15 @@ INSERT INTO `client` (clientId, companion, utility, driverPreferenceForced) VALU
   (6, 'Klaas', 'scootmobiel', FALSE),
   (7, NULL, 'rollator', TRUE);
 
-INSERT INTO `driver` (driverId, verification, utility, type_of_payment) VALUES
-  (1, TRUE, NULL, 'Vrijwillig'),
-  (4, FALSE, 'rolstoel', 'Vrijwillig'),
-  (8, FALSE, 'scootmobiel', 'Vrijwillig'),
-  (9, FALSE, 'rollator', 'Vrijwillig'),
-  (10, FALSE, 'scootmobiel', 'Vrijwillig'),
-  (11, FALSE, 'rolstoel', 'Vrijwillig'),
-  (12, FALSE, 'rolstoel', 'Vrijwillig'),
-  (13, FALSE, 'rollator', 'Vrijwillig');
+INSERT INTO `driver` (driverId, verification, utility, type_of_payment, image) VALUES
+  (1, TRUE, NULL, 'Vrijwillig', 'base64String'),
+  (4, FALSE, 'rolstoel', 'Vrijwillig', 'base64String'),
+  (8, FALSE, 'scootmobiel', 'Vrijwillig', 'base64String'),
+  (9, FALSE, 'rollator', 'Vrijwillig', 'base64String'),
+  (10, FALSE, 'scootmobiel', 'Vrijwillig', 'base64String'),
+  (11, FALSE, 'rolstoel', 'Vrijwillig', 'base64String'),
+  (12, FALSE, 'rolstoel', 'Vrijwillig', 'base64String'),
+  (13, FALSE, 'rollator', 'Vrijwillig', 'base64String');
 
 INSERT INTO `driverCar` (driverId, utility, numberPlate, numberOfPassengers) VALUES
   (1, 'rollator', 'fg-56-rj', 4),
@@ -166,4 +166,4 @@ INSERT INTO `ratings` (driverId, clientId, beoordeling, sterren) VALUES
   (1, 7, 'Hier ga ik niet mee mee rijden, gewoon slecht!', 1),
   (1, 6, 'Prima', 2),
   (4, 6, 'Echt een schat van een kerel!', 4),
-  (10, 7, 'Een aanrader', 4)
+  (10, 7, 'Een aanrader', 4);
