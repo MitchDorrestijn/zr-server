@@ -1,6 +1,5 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.domain.Client;
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Logger;
+import java.util.*;
+import java.util.logging.*;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/client")
 public class ClientController {
+    protected static final Logger LOGGER = Logger.getLogger(CareInstitutionController.class.getName());
 
     protected ClientService clientService = new ClientService();
 
@@ -59,5 +59,20 @@ public class ClientController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ClientEntity getClietById(@PathVariable int id) throws SQLException {
         return clientService.findById(id);
+    }
+
+    /**
+     * @param client Client
+     * @return Client
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
+    public ResponseEntity<ClientEntity> updateClient(@RequestBody ClientEntity client) {
+        try {
+            clientService.update(client);
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return new ResponseEntity<>(client, HttpStatus.OK);
     }
 }

@@ -4,10 +4,8 @@ import org.han.ica.oose.boterbloem.daoHibernate.ClientDAOImpl;
 import org.han.ica.oose.boterbloem.daoHibernate.IClientDAO;
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.util.List;
+import javax.persistence.*;
+import java.util.*;
 
 public class ClientService {
 
@@ -37,6 +35,10 @@ public class ClientService {
      */
     public ClientEntity findById(int id) {
         return clientDAO.findById(id);
+    }
+
+    public void update(ClientEntity client) {
+        clientDAO.update(client);
     }
 }
 

@@ -8,6 +8,7 @@ public class ClientEntity {
     private int clientId;
     private String companion;
     private byte driverPreferenceForced;
+    private UserEntity userEntity;
 
     @Id
     @Column(name = "clientId")
@@ -27,6 +28,17 @@ public class ClientEntity {
 
     public void setCompanion(String companion) {
         this.companion = companion;
+    }
+
+
+    @OneToOne
+    @JoinColumn(name = "clientId")
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
     @Basic
