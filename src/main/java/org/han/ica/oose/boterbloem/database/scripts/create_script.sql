@@ -69,7 +69,6 @@ CREATE TABLE IF NOT EXISTS `client` (
 CREATE TABLE IF NOT EXISTS `driver` (
   driverId     INT(11)      NOT NULL,
   verification BOOLEAN      NOT NULL,
-  utility      VARCHAR(255) NULL     DEFAULT NULL,
   type_of_payment VARCHAR(255)  NULL,
   image         VARCHAR(255)  NULL,
   accountnr     VARCHAR(255)  NULL,

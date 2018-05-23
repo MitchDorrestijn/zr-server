@@ -6,10 +6,7 @@ import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDetailDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +38,13 @@ public class DriverController {
      * @return List with information of a specific chauffeur
      */
     @RequestMapping(value = "/create/chauffeur", method = RequestMethod.POST)
-    public void createDriverDetails(CreateDriverDisplay driverEntity) {
+    public void createDriverDetails(@RequestBody CreateDriverDisplay driverEntity) {
          driverService.createChauffeur(driverEntity);
+    }
+
+    @RequestMapping(value = "/getChauffeur/{id}", method = RequestMethod.POST)
+    public DriverDetailDisplay getDriverDetails (@PathVariable int id) {
+        return driverService.getDriverDetails(id);
     }
 
 }

@@ -6,6 +6,8 @@ import org.han.ica.oose.boterbloem.domain.Driver;
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 
+import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
+import org.han.ica.oose.boterbloem.entity.DrivercarEntityPK;
 import org.han.ica.oose.boterbloem.service.DriverService;
 import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
 import org.springframework.http.HttpHeaders;
@@ -32,6 +34,7 @@ public class TestControllerHibernate {
     IRideDAO rideDAO = new RideDAOImpl(entityManager);
     IRatingsDAO ratingsDAO = new RatingsDAOImpl(entityManager);
     DriverService dr = new DriverService();
+    IDrivercarDAO drivercarDAO = new DrivercarDAOImpl(entityManager);
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public DriverEntity getDriverEntity(@PathVariable int id) {
@@ -67,6 +70,20 @@ public class TestControllerHibernate {
     public void createDriverTest(@RequestBody  DriverEntity driverEntity){
      driverDAOImpl.add(driverEntity);
     }
+
+    @RequestMapping( value = "testPutDisplay", method = RequestMethod.POST)
+    public void createDisplayTest(@RequestBody  CreateDriverDisplay driverEntity){
+        dr.createChauffeur(driverEntity);
+    }
+
+    @RequestMapping(value = "testGetcar" , method = RequestMethod.GET)
+    public DrivercarEntity get123() {
+        DrivercarEntityPK drivercarEntityPK = new DrivercarEntityPK();
+        drivercarEntityPK.setDriverId(1);
+        return drivercarDAO.findCarById(1);
+    }
+
+
 
 //    @CrossOrigin
 //    @RequestMapping(value = "/testPutDriver", method = RequestMethod.POST)

@@ -39,15 +39,17 @@ INSERT INTO `client` (clientId, companion, utility, driverPreferenceForced) VALU
   (6, 'Klaas', 'scootmobiel', FALSE),
   (7, NULL, 'rollator', TRUE);
 
-INSERT INTO `driver` (driverId, verification, utility, type_of_payment, image, accountnr) VALUES
-  (1, TRUE, NULL, 'Vrijwillig', 'base64String', 'NLING3102347823974'),
-  (4, FALSE, 'rolstoel', 'Vrijwillig', 'base64String', 'NLABNB0324320948'),
-  (8, FALSE, 'scootmobiel', 'Vrijwillig', 'base64String', 'NLRABO0FSDKJHJKFDS'),
-  (9, FALSE, 'rollator', 'Vrijwillig', 'base64String', 'NLKNAB04758678782'),
-  (10, FALSE, 'scootmobiel', 'Vrijwillig', 'base64String', 'NLDSB0932483234'),
-  (11, FALSE, 'rolstoel', 'Vrijwillig', 'base64String', 'NLVLSCH042837462334'),
-  (12, FALSE, 'rolstoel', 'Vrijwillig', 'base64String', 'NLSNS03235454234323'),
-  (13, FALSE, 'rollator', 'Vrijwillig', 'base64String', 'NLCHASE023432432423');
+INSERT INTO `driver` (driverId, verification, type_of_payment, image, accountnr) VALUES
+  (1, TRUE, 'Vrijwillig', 'base64String', 'NLING3102347823974'),
+  (4, FALSE, 'Vrijwillig', 'base64String', 'NLABNB0324320948'),
+  (8, FALSE, 'Vrijwillig', 'base64String', 'NLRABO0FSDKJHJKFDS'),
+  (9, FALSE, 'Vrijwillig', 'base64String', 'NLKNAB04758678782'),
+  (10, FALSE, 'Vrijwillig', 'base64String', 'NLDSB0932483234'),
+  (11, FALSE, 'Vrijwillig', 'base64String', 'NLVLSCH042837462334'),
+  (12, FALSE, 'Vrijwillig', 'base64String', 'NLSNS03235454234323'),
+  (13, FALSE, 'Vrijwillig', 'base64String', 'NLCHASE023432432423');
+
+
 
 INSERT INTO `driverCar` (driverId, utility, numberPlate, numberOfPassengers, brand, segment) VALUES
   (1, 'rollator', 'fg-56-rj', 4, 'Toyota', 'A'),

@@ -24,6 +24,7 @@ public class DriverService implements IDriverService {
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl(entityManager);
     private IUserDAO userDAO = new UserDAOImpl(entityManager);
     private IDrivercareinstitutionDAO drivercareinstitutionDAO = new DrivercareinstitutionDAOImpl(entityManager);
+    private IDriverlimitationmanageableDAO driverlimitationmanageableDAO = new DriverlimitationmanageableDAOImpl(entityManager);
 
 
     public DriverService() {
@@ -44,26 +45,25 @@ public class DriverService implements IDriverService {
         for (DriverEntity x: driverDao.findAll()) {
 
             DriverDisplay driver = new DriverDisplay();
-            DrivercarEntityPK drivercarEntityPK = new DrivercarEntityPK();
+
 
             int driverId = x.getDriverId();
-            drivercarEntityPK.setDriverId(driverId);
-            drivercarEntityPK.setUtility(x.getUtility());
+            System.out.println(driverId);
 
             driver.setId(driverId);
             driver.setName(x.getUserEntity().getFirstName() + " " + x.getUserEntity().getLastName());
             driver.setTypeOfPayment(x.getTypeOfPayment());
 
-            if(drivercarDAO.findByPK(drivercarEntityPK) == null) {
+            if(drivercarDAO.findCarById(driverId) == null) {
                 driver.setNumberOfPassengers(0);
                 driver.setNumberPlate("");
             } else {
-                driver.setNumberOfPassengers(drivercarDAO.findByPK(drivercarEntityPK).getNumberOfPassengers());
-                driver.setNumberPlate(drivercarDAO.findByPK(drivercarEntityPK).getNumberPlate());
+                driver.setNumberOfPassengers(drivercarDAO.findCarById(driverId).getNumberOfPassengers());
+                driver.setNumberPlate(drivercarDAO.findCarById(driverId).getNumberPlate());
             }
 
             driver.setRating(ratingsDAO.getAvgRatings(driverId));
-            driver.setSegment(x.getUtility());
+            driver.setSegment("A");
             driver.setTotalEarned(rideDAO.totalEarned(driverId));
             driver.setTotalRides(rideDAO.rideCountById(driverId));
             returnList.add(driver);
@@ -71,30 +71,28 @@ public class DriverService implements IDriverService {
         return returnList;
     }
 
-    public List<DriverDetailDisplay> getDriverDetails(){
-        List<DriverDetailDisplay> driverDetailDisplays =  new ArrayList<>();
-        for (DriverEntity x: driverDao.findAll()) {
+    public DriverDetailDisplay getDriverDetails(int id){
 
-            DriverDetailDisplay driver = new DriverDetailDisplay();
-            DrivercarEntityPK drivercarEntityPK = new DrivercarEntityPK();
-
-            int driverId = x.getDriverId();
-
-        }
-        return driverDetailDisplays;
+return null;
     }
 
     public void createChauffeur(CreateDriverDisplay createDriverDisplay) {
 
-        userDAO.add(createDriverDisplay.getDriver().getUserEntity());
-
         driverDao.add(createDriverDisplay.getDriver());
-        drivercarDAO.add(createDriverDisplay.getDrivercarEntity());
+        DrivercarEntity drivercarEntity = createDriverDisplay.getDrivercarEntity();
+        drivercarEntity.setDriverId(driverDao.latestId());
         DrivercareinstitutionEntity drivercareinstitutionEntity = new DrivercareinstitutionEntity();
-        drivercareinstitutionEntity.setCareInstitutionId(createDriverDisplay.getCareId());
-        drivercareinstitutionEntity.setDriverId(createDriverDisplay.getDriver().getDriverId());
+        drivercareinstitutionEntity.setDriverId(driverDao.latestId());
+        drivercareinstitutionEntity.setCareInstitutionId(createDriverDisplay.getCareInstitutionId());
         drivercareinstitutionDAO.add(drivercareinstitutionEntity);
+        drivercarDAO.add(createDriverDisplay.getDrivercarEntity());
+        for (String lm : createDriverDisplay.getLimitationEntities()) {
+            DriverlimitationmanageableEntity driverlimitationmanageableEntity = new DriverlimitationmanageableEntity();
+            driverlimitationmanageableEntity.setDriverId(driverDao.latestId());
+            driverlimitationmanageableEntity.setLimitation(lm);
+            driverlimitationmanageableDAO.add(driverlimitationmanageableEntity);
 
-
+        }
     }
+
 }

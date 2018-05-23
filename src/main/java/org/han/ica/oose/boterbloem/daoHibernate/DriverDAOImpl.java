@@ -17,5 +17,9 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
         super(em, DriverEntity.class);
     }
 
+
+    public int latestId(){
+        return ((Number) getEntityManager().createQuery("SELECT MAX(driverId) FROM DriverEntity").getSingleResult()).intValue();
+    }
 }
 

@@ -6,4 +6,7 @@ import org.han.ica.oose.boterbloem.entity.DrivercarEntityPK;
 
 public interface IDrivercarDAO extends IGenericDAO<DrivercarEntity> {
     public DrivercarEntity findByPK(DrivercarEntityPK drivercarEntityPK);
+    DrivercarEntity findCarById(int id);
+
+
 }
