@@ -35,14 +35,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   lastName     VARCHAR(255) NOT NULL,
   email        VARCHAR(255) NOT NULL,
   phoneNumber  VARCHAR(10)  NULL     DEFAULT NULL,
-  street       VARCHAR(255) NOT NULL,
-  houseNumber  VARCHAR(6)   NOT NULL,
-  zipCode      VARCHAR(6)   NOT NULL,
-  residence    VARCHAR(255) NOT NULL,
+  street       VARCHAR(255) NULL,
+  houseNumber  VARCHAR(6)   NULL,
+  zipCode      VARCHAR(6)   NULL,
+  residence    VARCHAR(255) NULL,
   password     VARCHAR(255) NULL     DEFAULT NULL,
   PasswordSalt VARCHAR(255) NULL     DEFAULT NULL,
   dateOfBirth  DATE         NULL     DEFAULT NULL,
-  firstTimeProfileCheck BOOLEAN      NOT NULL DEFAULT FALSE,
+  firstTimeProfileCheck BOOLEAN      NULL DEFAULT FALSE,
   PRIMARY KEY (id)
 );
 
@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `driver` (
   utility      VARCHAR(255) NULL     DEFAULT NULL,
   type_of_payment VARCHAR(255)  NULL,
   image         VARCHAR(255)  NULL,
+  accountnr     VARCHAR(255)  NULL,
   PRIMARY KEY (driverId),
   CONSTRAINT DriverUser FOREIGN KEY (driverId) REFERENCES user (id)
     ON DELETE CASCADE
@@ -86,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `driverCar` (
   utility            VARCHAR(255) NOT NULL,
   numberPlate        VARCHAR(255) NOT NULL,
   numberOfPassengers INT(11)      NOT NULL,
+  brand              VARCHAR(255) NULL,
   PRIMARY KEY (driverId, utility),
   CONSTRAINT driverCarUtilityDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
