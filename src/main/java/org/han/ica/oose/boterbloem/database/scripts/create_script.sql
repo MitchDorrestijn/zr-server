@@ -88,6 +88,7 @@ CREATE TABLE IF NOT EXISTS `driverCar` (
   numberPlate        VARCHAR(255) NOT NULL,
   numberOfPassengers INT(11)      NOT NULL,
   brand              VARCHAR(255) NULL,
+  segment            VARCHAR(255) NULL,
   PRIMARY KEY (driverId, utility),
   CONSTRAINT driverCarUtilityDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
