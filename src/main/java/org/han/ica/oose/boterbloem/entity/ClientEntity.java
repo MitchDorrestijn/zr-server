@@ -9,6 +9,17 @@ public class ClientEntity {
     private String companion;
     private byte driverPreferenceForced;
     private UserEntity userEntity;
+    private UtilityEntity utilityEntity;
+
+    @OneToOne (cascade = {CascadeType.ALL})
+    @JoinColumn(name = "clientId")
+    public UtilityEntity getUtilityEntity() {
+        return utilityEntity;
+    }
+
+    public void setUtilityEntity(UtilityEntity utilityEntity) {
+        this.utilityEntity = utilityEntity;
+    }
 
     @Id
     @Column(name = "clientId")
@@ -31,8 +42,9 @@ public class ClientEntity {
     }
 
 
-    @OneToOne
+    @OneToOne (cascade = {CascadeType.ALL})
     @JoinColumn(name = "clientId")
+    @MapsId
     public UserEntity getUserEntity() {
         return userEntity;
     }
