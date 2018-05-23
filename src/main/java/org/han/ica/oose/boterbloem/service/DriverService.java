@@ -53,8 +53,15 @@ public class DriverService implements IDriverService {
 
         drivercareinstitutionEntity.setActive(false);
         drivercareinstitutionDAO.update(drivercareinstitutionEntity);
-
     }
+
+
+
+    @Override
+    public int getCareInstitutionId(int id) {
+        return(drivercareinstitutionDAO.getCareInstitutionId(id).getCareInstitutionId());
+    }
+
 
 //    public List<DriverDisplay> allDriversWithStatistics(){
 //        List<DriverDisplay> returnList =  new ArrayList<>();

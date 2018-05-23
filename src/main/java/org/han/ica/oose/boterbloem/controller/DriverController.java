@@ -1,6 +1,4 @@
 package org.han.ica.oose.boterbloem.controller;
-import org.han.ica.oose.boterbloem.domain.Driver;
-import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +34,9 @@ public class DriverController {
         driverService.createChauffeur(driverEntity);
     }*/
 
-    @RequestMapping(value = "/delete/{id}/{idcare}", method = RequestMethod.PUT)
-    public void deleteDriver(@PathVariable int id, @PathVariable int idcare){
-        driverService.deleteDriver(id, idcare);
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.PUT)
+    public void deleteDriver(@PathVariable int id){
+        driverService.deleteDriver(id, driverService.getCareInstitutionId(id));
     }
 /*    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ClientEntity getClientById(@PathVariable int id) throws SQLException {

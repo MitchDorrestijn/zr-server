@@ -13,4 +13,6 @@ public interface IDriverService {
     List<DrivercarEntity> getAllDrivers();
 
     void deleteDriver(int id, int idcare);
+
+    int getCareInstitutionId(int id);
 }

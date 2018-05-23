@@ -7,4 +7,11 @@ import org.han.ica.oose.boterbloem.entity.DrivercareinstitutionEntityPK;
 public interface IDrivercareinstitutionDAO extends IGenericDAO<DrivercareinstitutionEntity> {
 
     DrivercareinstitutionEntity find(DrivercareinstitutionEntityPK drivercareinstitutionEntityPK);
-}
+
+    int getDriverCareinstitutionId(int id);
+
+    DrivercareinstitutionEntity findById(DrivercareinstitutionEntity drivercareinstitutionEntity);
+
+    DrivercareinstitutionEntity getCareInstitutionId(int driverId);
+
+    }
