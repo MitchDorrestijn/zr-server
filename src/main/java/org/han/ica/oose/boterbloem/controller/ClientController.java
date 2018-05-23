@@ -8,30 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.*;
-import java.util.logging.*;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/client")
 public class ClientController {
-    protected static final Logger LOGGER = Logger.getLogger(CareInstitutionController.class.getName());
 
-    protected ClientService clientService = new ClientService();
-
-    /**
-     * @param client client to be added
-     * @return new client
-     */
-    @CrossOrigin
-    @RequestMapping(value = "/addClient", method = RequestMethod.POST)
-
-    public ResponseEntity<String> addClient(@RequestBody ClientEntity client) {
-        clientService.createClient(client);
-        HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
-    }
+    private ClientService clientService = new ClientService();
 
     @Autowired
     ClientController() {
@@ -39,14 +23,25 @@ public class ClientController {
     }
 
     /**
+     * @param client client to be added
+     * @return new client
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/addClient", method = RequestMethod.POST)
+    public ResponseEntity <String> addClient(@RequestBody ClientEntity client) {
+        clientService.createClient(client);
+        HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity <>(headers, HttpStatus.CREATED);
+    }
+
+    /**
      * Method for returning clients
      *
      * @return A arraylist of clients
-     * @throws SQLException
      */
     @CrossOrigin
     @RequestMapping(value = "/clienten", method = RequestMethod.GET)
-    public List<ClientEntity> getAllClienten() throws SQLException {
+    public List <ClientEntity> getAllClienten() {
         return clientService.getAllClients();
     }
 
@@ -57,7 +52,7 @@ public class ClientController {
      * @return Client
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ClientEntity getClietById(@PathVariable int id) throws SQLException {
+    public ClientEntity getClietById(@PathVariable int id) {
         return clientService.findById(id);
     }
 
@@ -67,19 +62,16 @@ public class ClientController {
      */
     @CrossOrigin
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
-    public ResponseEntity<ClientEntity> updateClient(@RequestBody ClientEntity client) {
-        try {
-            clientService.update(client);
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        }
-        return new ResponseEntity<>(client, HttpStatus.OK);
+    public ResponseEntity <ClientEntity> updateClient(@PathVariable int id, @RequestBody ClientEntity client) {
+        clientService.findById(id);
+        clientService.updateClient(client);
+        return new ResponseEntity <>(client, HttpStatus.OK);
     }
 
     @CrossOrigin
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<ClientEntity> deleteClient(@PathVariable int id) {
+    public ResponseEntity <ClientEntity> deleteClient(@PathVariable int id) {
         clientService.deleteClient(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity <>(HttpStatus.NO_CONTENT);
     }
 }

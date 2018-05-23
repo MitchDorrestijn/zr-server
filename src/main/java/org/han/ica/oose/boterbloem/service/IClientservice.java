@@ -1,23 +1,35 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.domain.Client;
+import org.han.ica.oose.boterbloem.entity.ClientEntity;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface IClientservice {
-    /**
-     *
-     * @return method returns a list of all found clients
-     */
-     List<Client> getAllCliënts() throws SQLException;
 
     /**
-     *
      * @param id the clientId thats used for the query
      * @return A specific client with the given id
-     * @throws SQLException
      */
-     Client findById(int id) throws SQLException;
+    ClientEntity findById(int id);
+
+    /**
+     * @return method returns a list of all found clients
+     */
+    List <ClientEntity> getAllClients();
+
+    /**
+     * @param client that's going to be added to the database
+     */
+    void createClient(ClientEntity client);
+
+    /**
+     * @param client Client that needs a update
+     */
+    void updateClient(ClientEntity client);
+
+    /**
+     * @param id delete a Client
+     */
+    void deleteClient(int id);
 
 }
