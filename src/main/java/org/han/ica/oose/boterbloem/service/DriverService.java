@@ -48,9 +48,7 @@ public class DriverService implements IDriverService {
         DrivercareinstitutionEntityPK drivercareinstitutionEntityPK = new DrivercareinstitutionEntityPK();
         drivercareinstitutionEntityPK.setCareInstitutionId(idcare);
         drivercareinstitutionEntityPK.setDriverId(id);
-
         DrivercareinstitutionEntity drivercareinstitutionEntity = drivercareinstitutionDAO.find(drivercareinstitutionEntityPK);
-
         drivercareinstitutionEntity.setActive(false);
         drivercareinstitutionDAO.update(drivercareinstitutionEntity);
     }
