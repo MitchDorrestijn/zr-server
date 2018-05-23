@@ -12,6 +12,5 @@ public interface IDriverService {
      */
     List<DrivercarEntity> getAllDrivers();
 
-    void deleteDriver(int id);
-
+    void deleteDriver(int id, int idcare);
 }

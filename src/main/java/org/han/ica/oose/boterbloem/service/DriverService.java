@@ -5,6 +5,8 @@ package org.han.ica.oose.boterbloem.service;
 
         import org.han.ica.oose.boterbloem.entity.DriverEntity;
         import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
+        import org.han.ica.oose.boterbloem.entity.DrivercareinstitutionEntity;
+        import org.han.ica.oose.boterbloem.entity.DrivercareinstitutionEntityPK;
         import org.springframework.beans.factory.annotation.Autowired;
 
         import javax.persistence.EntityManager;
@@ -24,6 +26,7 @@ public class DriverService implements IDriverService {
     private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl(entityManager);
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl(entityManager);
     private IUserDAO userDAO = new UserDAOImpl(entityManager);
+    private IDrivercareinstitutionDAO drivercareinstitutionDAO = new DrivercareinstitutionDAOImpl(entityManager);
 
 
 
@@ -41,9 +44,16 @@ public class DriverService implements IDriverService {
     }
 
     @Override
-    public void deleteDriver(int id) {
-        DriverEntity entity = driverDao.findById(id);
-        driverDao.update(entity);
+    public void deleteDriver(int id, int idcare) {
+        DrivercareinstitutionEntityPK drivercareinstitutionEntityPK = new DrivercareinstitutionEntityPK();
+        drivercareinstitutionEntityPK.setCareInstitutionId(idcare);
+        drivercareinstitutionEntityPK.setDriverId(id);
+
+        DrivercareinstitutionEntity drivercareinstitutionEntity = drivercareinstitutionDAO.find(drivercareinstitutionEntityPK);
+
+        drivercareinstitutionEntity.setActive(false);
+        drivercareinstitutionDAO.update(drivercareinstitutionEntity);
+
     }
 
 //    public List<DriverDisplay> allDriversWithStatistics(){

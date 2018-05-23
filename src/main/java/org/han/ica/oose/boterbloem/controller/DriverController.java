@@ -36,9 +36,9 @@ public class DriverController {
         driverService.createChauffeur(driverEntity);
     }*/
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.PUT)
-    public void deleteDriver(@PathVariable int id){
-        driverService.deleteDriver(id);
+    @RequestMapping(value = "/delete/{id}/{idcare}", method = RequestMethod.PUT)
+    public void deleteDriver(@PathVariable int id, @PathVariable int idcare){
+        driverService.deleteDriver(id, idcare);
     }
 /*    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ClientEntity getClientById(@PathVariable int id) throws SQLException {
