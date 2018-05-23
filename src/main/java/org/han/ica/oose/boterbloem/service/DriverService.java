@@ -3,7 +3,9 @@ package org.han.ica.oose.boterbloem.service;
 
         import org.han.ica.oose.boterbloem.daoHibernate.*;
 
+        import org.han.ica.oose.boterbloem.entity.DriverEntity;
         import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
+        import org.springframework.beans.factory.annotation.Autowired;
 
         import javax.persistence.EntityManager;
         import javax.persistence.EntityManagerFactory;
@@ -36,6 +38,12 @@ public class DriverService implements IDriverService {
     public List<DrivercarEntity> getAllDrivers() {
 
         return drivercarDAO.findAll();
+    }
+
+    @Override
+    public void deleteDriver(int id) {
+        DriverEntity entity = driverDao.findById(id);
+        driverDao.update(entity);
     }
 
 //    public List<DriverDisplay> allDriversWithStatistics(){
