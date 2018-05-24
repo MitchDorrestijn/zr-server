@@ -3,6 +3,7 @@ package org.han.ica.oose.boterbloem.controller;
 import org.han.ica.oose.boterbloem.domain.Client;
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.ClientService;
+import org.han.ica.oose.boterbloem.service.projection.ClientDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -46,7 +47,7 @@ public class ClientController {
      */
     @CrossOrigin
     @RequestMapping(value = "/clienten", method = RequestMethod.GET)
-    public List<ClientEntity> getAllClienten() throws SQLException {
+    public List<ClientDisplay> getAllClienten() throws SQLException {
         return clientService.getAllClients();
     }
 
@@ -57,7 +58,7 @@ public class ClientController {
      * @return Client
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ClientEntity getClietById(@PathVariable int id) throws SQLException {
+    public ClientEntity getClientById(@PathVariable int id) throws SQLException {
         return clientService.findById(id);
     }
 }

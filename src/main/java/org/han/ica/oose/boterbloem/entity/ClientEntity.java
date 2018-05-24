@@ -1,5 +1,7 @@
 package org.han.ica.oose.boterbloem.entity;
 
+import org.han.ica.oose.boterbloem.domain.Ride;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,6 +10,10 @@ public class ClientEntity {
     private int clientId;
     private String companion;
     private byte driverPreferenceForced;
+    private boolean warningPKB;
+    private int PKB;
+    private UserEntity userEntity;
+    private RideEntity rideEntity;
 
     @Id
     @Column(name = "clientId")
@@ -37,6 +43,42 @@ public class ClientEntity {
 
     public void setDriverPreferenceForced(byte driverPreferenceForced) {
         this.driverPreferenceForced = driverPreferenceForced;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "clientId")
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "clientId")
+    public RideEntity getRideEntity() {
+        return rideEntity;
+    }
+
+    public void setRideEntity(RideEntity rideEntity) {
+        this.rideEntity = rideEntity;
+    }
+
+    public boolean isWarningPKB() {
+        return warningPKB;
+    }
+
+    public void setWarningPKB(boolean warningPKB) {
+        this.warningPKB = warningPKB;
+    }
+
+    public int getPKB() {
+        return PKB;
+    }
+
+    public void setPKB(int PKB) {
+        this.PKB = PKB;
     }
 
     @Override
