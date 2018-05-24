@@ -1,3 +1,4 @@
+
 -- -----------------------------------------------------
 -- Schema zorgrit
 -- -----------------------------------------------------
@@ -198,7 +199,8 @@ CREATE TABLE IF NOT EXISTS `clientCareInstitution` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `driverCareInstitution` (
   driverId          INT(11) NOT NULL,
-  careInstitutionId INT(11) NOT NULL AUTO_INCREMENT,
+  careInstitutionId INT(11) NOT NULL,
+  active            BOOLEAN NOT NULL,
   PRIMARY KEY (driverId, careInstitutionId),
   CONSTRAINT careInstitutionDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION

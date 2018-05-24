@@ -8,6 +8,16 @@ import javax.persistence.*;
 public class DrivercareinstitutionEntity {
     private int driverId;
     private int careInstitutionId;
+    private boolean active;
+
+    @Column (name = "active")
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     @Id
     @Column(name = "driverId")
