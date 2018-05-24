@@ -5,9 +5,19 @@ import org.han.ica.oose.boterbloem.entity.*;
 import org.han.ica.oose.boterbloem.service.projection.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.service.projection.CreateClientDisplay;
 
-import javax.persistence.*;
 import java.util.*;
 import java.util.logging.*;
+
+import org.han.ica.oose.boterbloem.daoHibernate.ClientDAOImpl;
+import org.han.ica.oose.boterbloem.daoHibernate.IClientDAO;
+import org.han.ica.oose.boterbloem.entity.ClientEntity;
+import org.han.ica.oose.boterbloem.service.projection.ClientDisplay;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientService implements IClientservice {
 
@@ -22,6 +32,7 @@ public class ClientService implements IClientservice {
     private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl(entityManager);
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl(entityManager);
 
+
     public ClientService() {
         //Empty constructor
     }
@@ -29,7 +40,6 @@ public class ClientService implements IClientservice {
     public void createClient(CreateClientDisplay createClientDisplay) {
         userDAO.add(createClientDisplay.getClientEntity().getUserEntity());
         clientDAO.add(createClientDisplay.getClientEntity());
-
         ClientUtilityEntity clientUtilityEntity = new ClientUtilityEntity();
         clientUtilityEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
         clientUtilityEntity.setUtility(createClientDisplay.getUtility());
@@ -44,20 +54,42 @@ public class ClientService implements IClientservice {
         }
     }
 
+    /**
+     * @return method returns a list of all found clients
+     */
+    public List<ClientDisplay> getAllClients() {
+        List<ClientDisplay> clientDisplays = new ArrayList<>();
+
+        List<ClientEntity> clientEntities = clientDAO.findAll();
+        for (ClientEntity i : clientEntities) {
+            double priceToPay = 0;
+            boolean warningPKB = false;
+            ClientDisplay clientDisplay = new ClientDisplay();
+            clientDisplay.setClientId(i.getClientId());
+            clientDisplay.setName(i.getUserEntity().getFirstName());
+            clientDisplay.setPKB(i.getPKB());
+            int distance = (i.getRideEntity().getDistance());
+            if (distance > i.getPKB()) {
+                priceToPay = (i.getRideEntity().getDistance() * 0.005);
+                warningPKB = true;
+            }
+            clientDisplay.setTotalMeters(i.getRideEntity().getDistance());
+            clientDisplay.setPriceToPay(priceToPay);
+            clientDisplay.setWarningPKB(warningPKB);
+            clientDisplays.add(clientDisplay);
+        }
+        return clientDisplays;
+    }
+
     @Override
     public ClientEntity findById(int id) {
         return clientDAO.findById(id);
     }
 
     @Override
-    public List <ClientEntity> getAllClients() {
-        return clientDAO.findAll();
-    }
-
-    @Override
     public ClientDetailDisplay getClientDetails(int id) {
         ClientEntity client = clientDAO.findById(id);
-        List <String> clientLimitations = clientlimitationDAO.getAllLimitationById(id);
+        List<String> clientLimitations = clientlimitationDAO.getAllLimitationById(id);
 
         int clientId = client.getClientId();
         String image = client.getImage();
@@ -138,14 +170,14 @@ public class ClientService implements IClientservice {
             currentClient.getUserEntity().setFirstTimeProfileCheck(firstTimeProfileCheck);
 
             clientDAO.update(client);
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
     }
 
     @Override
     public int getCareInstitutionById(int id) {
-        return(clientCareInstitutionDAO.getCareInstitutionId(id).getCareInstitutionId());
+        return (clientCareInstitutionDAO.getCareInstitutionId(id).getCareInstitutionId());
     }
 
     @Override

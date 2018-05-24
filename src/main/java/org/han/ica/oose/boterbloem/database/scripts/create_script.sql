@@ -1,3 +1,4 @@
+
 -- -----------------------------------------------------
 -- Schema zorgrit
 -- -----------------------------------------------------
@@ -132,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `driverAvailability` (
   driverId      INT(11)  NOT NULL,
   startDateTime DATETIME NOT NULL,
   endDateTime   DATETIME NOT NULL,
-  PRIMARY KEY (driverId),
+  PRIMARY KEY (driverId, startDateTime, endDateTime),
   CONSTRAINT driverAvailabilityDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
@@ -214,6 +215,7 @@ CREATE TABLE IF NOT EXISTS `clientCareInstitution` (
 CREATE TABLE IF NOT EXISTS `driverCareInstitution` (
   driverId          INT(11) NOT NULL,
   careInstitutionId INT(11) NOT NULL,
+  active            BOOLEAN NOT NULL,
   PRIMARY KEY (driverId, careInstitutionId),
   CONSTRAINT careInstitutionDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
@@ -344,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `ratings` (
   CONSTRAINT ratings FOREIGN KEY (clientId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-)
+);
 
 -- -----------------------------------------------------
 -- Table client utility

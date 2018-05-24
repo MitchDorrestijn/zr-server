@@ -15,7 +15,6 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
     public ClientDAOImpl(EntityManager em) {
         super(em, ClientEntity.class);
     }
-
     @Override
     public void removeById(int clientId) {
         getEntityManager().createQuery("UPDATE ClientcareinstitutionEntity SET ClientcareinstitutionEntity .active = false " +

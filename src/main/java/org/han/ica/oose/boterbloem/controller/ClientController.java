@@ -4,6 +4,7 @@ import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.ClientService;
 import org.han.ica.oose.boterbloem.service.projection.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.service.projection.CreateClientDisplay;
+import org.han.ica.oose.boterbloem.service.projection.ClientDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class ClientController {
      */
     @CrossOrigin
     @RequestMapping(value = "/clienten", method = RequestMethod.GET)
-    public List<ClientEntity> getAllClients() {
+    public List<ClientDisplay> getAllClients() {
         return clientService.getAllClients();
     }
 
