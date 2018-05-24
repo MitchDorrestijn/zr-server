@@ -53,6 +53,11 @@ CREATE TABLE IF NOT EXISTS `client` (
   clientId               INT(11)      NOT NULL,
   companion              VARCHAR(255) NULL     DEFAULT NULL,
   driverPreferenceForced BOOLEAN      NOT NULL DEFAULT FALSE,
+  warningPKB             BOOLEAN      NOT NULL,
+  PKB                    INT(10)      NOT NULL,
+  companionRequired      BOOLEAN      NOT NULL,
+  image                  LONGTEXT     NULL,
+  bankAccount            VARCHAR(255) NOT NULL,
   PRIMARY KEY (clientId),
   CONSTRAINT ClientUser FOREIGN KEY (clientId) REFERENCES user (id)
     ON DELETE CASCADE
@@ -110,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `driverCar` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `clientLimitation` (
   clientId   INT(11)      NOT NULL,
-  utility VARCHAR(255) NOT NULL,
+  utility    VARCHAR(255) NOT NULL,
   PRIMARY KEY (clientId, utility),
   CONSTRAINT clientLimitationClient FOREIGN KEY (clientId) REFERENCES client (clientId)
     ON DELETE NO ACTION
@@ -193,6 +198,7 @@ CREATE TABLE IF NOT EXISTS `careInstitution` (
 CREATE TABLE IF NOT EXISTS `clientCareInstitution` (
   clientId          INT(11) NOT NULL,
   careInstitutionId INT(11) NOT NULL,
+  active			boolean	NOT NULL,
   PRIMARY KEY (clientId, careInstitutionId),
   CONSTRAINT careInstitutionClient FOREIGN KEY (clientId) REFERENCES client (clientId)
     ON DELETE NO ACTION

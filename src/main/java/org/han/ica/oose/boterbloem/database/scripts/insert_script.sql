@@ -32,12 +32,12 @@ VALUES
   ('Iefke', 'Vloet', 'iefke@vloet.com', '0623458256', 'Haverakker', 102, '2743EJ', 'Waddinxveen', 'sesamopenu', 'ghg', '1989-04-16'),
   ('Mickey', 'van Zanten', 'mickey@tielmobiel.net', '0623458256', 'Marga Klompestraat', 140, '4133HN', 'Vianen', 'sesamopenu', 'ghg', '1964-02-23');
 
-INSERT INTO `client` (clientId, companion, utility, driverPreferenceForced) VALUES
-  (2, 'Sven', 'rolstoel', FALSE),
-  (3, 'Henk', NULL, FALSE),
-  (5, NULL, NULL, FALSE),
-  (6, 'Klaas', 'scootmobiel', FALSE),
-  (7, NULL, 'rollator', TRUE);
+INSERT INTO `client` (clientId, companion, driverPreferenceForced, warningPKB, PKB, companionRequired, image, bankaccount) VALUES
+  (2, 'Sven', FALSE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235"),
+  (3, 'Henk', FALSE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235"),
+  (5, NULL, FALSE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235"),
+  (6, 'Klaas', FALSE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235"),
+  (7, NULL, TRUE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235");
 
 INSERT INTO `driver` (driverId, verification, utility, type_of_payment) VALUES
   (1, TRUE, NULL, 'Vrijwillig'),
@@ -99,12 +99,13 @@ INSERT INTO `careInstitution` (name) VALUES
   ('IZZ'),
   ('NedRAI');
 
-INSERT INTO `clientCareInstitution` (clientId, careInstitutionId) VALUES
-  (2, 1),
-  (3, 2),
-  (5, 3),
-  (6, 5),
-  (7, 4);
+INSERT INTO `clientCareInstitution` (clientId, careInstitutionId, active) VALUES
+  (2, 1, TRUE),
+  (3, 2, TRUE),
+  (5, 3, TRUE),
+  (6, 5, TRUE),
+  (7, 4, TRUE);
+
 
 INSERT INTO `driverCareInstitution` (driverId, careInstitutionId) VALUES
   (1, 2),
