@@ -152,6 +152,8 @@
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
         </dependency>
+
+<!-- password hashing-->
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>

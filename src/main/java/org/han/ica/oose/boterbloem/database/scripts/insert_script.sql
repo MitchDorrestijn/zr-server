@@ -39,23 +39,25 @@ INSERT INTO `client` (clientId, companion, driverPreferenceForced, warningPKB, P
   (6, 'Klaas', FALSE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235"),
   (7, NULL, TRUE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235");
 
-INSERT INTO `driver` (driverId, verification, utility, type_of_payment) VALUES
-  (1, TRUE, NULL, 'Vrijwillig'),
-  (4, FALSE, 'rolstoel', 'Vrijwillig'),
-  (8, FALSE, 'scootmobiel', 'Vrijwillig'),
-  (9, FALSE, 'rollator', 'Vrijwillig'),
-  (10, FALSE, 'scootmobiel', 'Vrijwillig'),
-  (11, FALSE, 'rolstoel', 'Vrijwillig'),
-  (12, FALSE, 'rolstoel', 'Vrijwillig'),
-  (13, FALSE, 'rollator', 'Vrijwillig');
+INSERT INTO `driver` (driverId, verification, type_of_payment, image, accountnr) VALUES
+  (1, TRUE, 'Vrijwillig', 'base64String', 'NLING3102347823974'),
+  (4, FALSE, 'Vrijwillig', 'base64String', 'NLABNB0324320948'),
+  (8, FALSE, 'Vrijwillig', 'base64String', 'NLRABO0FSDKJHJKFDS'),
+  (9, FALSE, 'Vrijwillig', 'base64String', 'NLKNAB04758678782'),
+  (10, FALSE, 'Vrijwillig', 'base64String', 'NLDSB0932483234'),
+  (11, FALSE, 'Vrijwillig', 'base64String', 'NLVLSCH042837462334'),
+  (12, FALSE, 'Vrijwillig', 'base64String', 'NLSNS03235454234323'),
+  (13, FALSE, 'Vrijwillig', 'base64String', 'NLCHASE023432432423');
 
-INSERT INTO `driverCar` (driverId, utility, numberPlate, numberOfPassengers) VALUES
-  (1, 'rollator', 'fg-56-rj', 4),
-  (4, 'scootmobiel', 'gh-81-ac', 2),
-  (9, 'rolstoel', 'af-83-dc', 1),
-  (8, 'scootmobiel', 'nf-26-fe', 3),
-  (10, 'scootmobiel', 'nf-24-fe', 3),
-  (11, 'scootmobiel', 'nf-26-fd', 3);
+
+
+INSERT INTO `driverCar` (driverId, utility, numberPlate, numberOfPassengers, brand, segment) VALUES
+  (1, 'rollator', 'fg-56-rj', 4, 'Toyota', 'A'),
+  (4, 'scootmobiel', 'gh-81-ac', 2, 'Ford', 'A'),
+  (9, 'rolstoel', 'af-83-dc', 1, 'Chervolet', 'B'),
+  (8, 'scootmobiel', 'nf-26-fe', 3, 'Ford', 'C'),
+  (10, 'scootmobiel', 'nf-24-fe', 3, 'Nissan', 'D'),
+  (11, 'scootmobiel', 'nf-26-fd', 3, 'Audi', 'E');
 
 INSERT INTO `clientLimitation` (clientId, utility) VALUES
   (2, 'zware/Fysieke handicap'),
@@ -167,4 +169,4 @@ INSERT INTO `ratings` (driverId, clientId, beoordeling, sterren) VALUES
   (1, 7, 'Hier ga ik niet mee mee rijden, gewoon slecht!', 1),
   (1, 6, 'Prima', 2),
   (4, 6, 'Echt een schat van een kerel!', 4),
-  (10, 7, 'Een aanrader', 4)
+  (10, 7, 'Een aanrader', 4);

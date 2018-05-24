@@ -1,15 +1,20 @@
 package org.han.ica.oose.boterbloem.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "driver", schema = "zorgrit", catalog = "")
 public class DriverEntity {
     private int driverId;
     private byte verification;
-    private String utility;
+    //private String utility;
     private UserEntity userEntity;
     private String type_of_payment;
+    private String image;
+    private String accountnr;
 
     @Id
     @Column(name = "driverId")
@@ -21,8 +26,9 @@ public class DriverEntity {
         this.driverId = driverId;
     }
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "driverId")
+    @MapsId
     public UserEntity getUserEntity() {
         return userEntity;
     }
@@ -30,6 +36,7 @@ public class DriverEntity {
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
     }
+
 
 
     @Basic
@@ -52,15 +59,36 @@ public class DriverEntity {
         this.verification = verification;
     }
 
+//    @Basic
+//    @Column(name = "utility")
+//    public String getUtility() {
+//        return utility;
+//    }
+//
+//    public void setUtility(String utility) {
+//        this.utility = utility;
+//    }
+
     @Basic
-    @Column(name = "utility")
-    public String getUtility() {
-        return utility;
+    @Column(name = "image")
+    public String getImage() {
+        return image;
     }
 
-    public void setUtility(String utility) {
-        this.utility = utility;
+    public void setImage(String image) {
+        this.image = image;
     }
+
+    @Basic
+    @Column(name = "accountnr")
+    public String getAccountnr() {
+        return accountnr;
+    }
+
+    public void setAccountnr(String accountnr) {
+        this.accountnr = accountnr;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -71,7 +99,7 @@ public class DriverEntity {
 
         if (driverId != that.driverId) return false;
         if (verification != that.verification) return false;
-        if (utility != null ? !utility.equals(that.utility) : that.utility != null) return false;
+        //if (utility != null ? !utility.equals(that.utility) : that.utility != null) return false;
 
         return true;
     }
@@ -80,7 +108,7 @@ public class DriverEntity {
     public int hashCode() {
         int result = driverId;
         result = 31 * result + (int) verification;
-        result = 31 * result + (utility != null ? utility.hashCode() : 0);
+        //result = 31 * result + (utility != null ? utility.hashCode() : 0);
         return result;
     }
 }

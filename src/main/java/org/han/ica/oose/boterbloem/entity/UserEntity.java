@@ -22,9 +22,9 @@ public class UserEntity {
     private Date dateOfBirth;
     private byte firstTimeProfileCheck;
 
-    @GenericGenerator(name = "kaugen", strategy = "increment")
-    @GeneratedValue(generator = "kaugen")
     @Id
+    @GenericGenerator(name="kaugen", strategy="increment")
+    @GeneratedValue(generator="kaugen")
     @Column(name = "id")
     public int getId() {
         return id;

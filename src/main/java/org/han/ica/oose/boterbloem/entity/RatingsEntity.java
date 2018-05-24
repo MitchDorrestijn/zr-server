@@ -4,12 +4,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ratings", schema = "zorgrit", catalog = "")
+@IdClass(RatingsPK.class)
 public class RatingsEntity {
     private int driverId;
     private int clientId;
     private String beoordeling;
     private int sterren;
 
+    @Id
     @Basic
     @Column(name = "driverId")
     public int getDriverId() {

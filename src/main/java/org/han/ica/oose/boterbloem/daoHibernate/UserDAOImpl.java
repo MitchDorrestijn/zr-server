@@ -18,6 +18,11 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements IUserDAO 
     }
 
     public String driverNameById(int id){
-        return ((String) getEntityManager().createQuery("SELECT firstName FROM UserEntity WHERE id = :id").setParameter("id", id).getSingleResult()).toString();
+        getEntityManager().getTransaction().begin();
+        String name = ((String) getEntityManager().createQuery("SELECT firstName FROM UserEntity WHERE id = :id").setParameter("id", id).getSingleResult()).toString();
+        getEntityManager().getTransaction().commit();
+        return name;
+
     }
+
 }

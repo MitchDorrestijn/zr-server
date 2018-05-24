@@ -1,5 +1,7 @@
 package org.han.ica.oose.boterbloem.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,9 @@ public class DrivercarEntity {
     private String utility;
     private String numberPlate;
     private int numberOfPassengers;
+    private String segment;
+    private String brand;
+
 
     @Id
     @Column(name = "driverId")
@@ -50,6 +55,27 @@ public class DrivercarEntity {
     public void setNumberOfPassengers(int numberOfPassengers) {
         this.numberOfPassengers = numberOfPassengers;
     }
+
+    @Basic
+    @Column(name = "brand")
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    @Basic
+    @Column(name = "segment")
+    public String getSegment() {
+        return segment;
+    }
+
+    public void setSegment(String segment) {
+        this.segment = segment;
+    }
+
 
     @Override
     public boolean equals(Object o) {
