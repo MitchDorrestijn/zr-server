@@ -42,7 +42,7 @@ public class DriverController {
          driverService.createChauffeur(driverEntity);
     }
 
-    @RequestMapping(value = "/getChauffeur/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/getChauffeur/{id}", method = RequestMethod.GET)
     public DriverDetailDisplay getDriverDetails (@PathVariable int id) {
         return driverService.getDriverDetails(id);
     }
