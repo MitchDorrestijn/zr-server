@@ -11,6 +11,7 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
 
     /**
      * Hook up the basic CRUD queries
+     *
      * @param em [provided] - runs querys
      */
     @Autowired
@@ -20,6 +21,24 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
 
     @Override
     public ArrayList<String> getByDriverId(int id) {
-        return (ArrayList<String>) getEntityManager().createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id",id).getResultList();
+        return (ArrayList<String>) getEntityManager().createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id", id).getResultList();
     }
+
+    public void updateDriverLimitations(ArrayList<String> limitations, int driverId) {
+        getEntityManager().getTransaction().begin();
+        getEntityManager().createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
+        getEntityManager().getTransaction().commit();
+        for (String limitation : limitations) {
+            try {
+                DriverlimitationmanageableEntity driverlimitationmanageableEntity = new DriverlimitationmanageableEntity();
+                driverlimitationmanageableEntity.setDriverId(driverId);
+                driverlimitationmanageableEntity.setLimitation(limitation);
+                add(driverlimitationmanageableEntity);
+                getEntityManager().flush();
+            }catch(Exception e){
+                
+            }
+        }
+    }
+
 }

@@ -52,4 +52,10 @@ public class DriverController {
     public void deleteDriver(@PathVariable int id){
         driverService.deleteDriver(id, driverService.getCareInstitutionId(id));
     }
+
+    @RequestMapping(value = "/update/chauffeur", method = RequestMethod.PUT)
+    public void updateDriverDetails(@RequestBody CreateDriverDisplay driverEntity) {
+        driverService.updateDriver(driverEntity);
+    }
+
 }

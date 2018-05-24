@@ -10,6 +10,7 @@ public class DriverDetailDisplay {
 
     DriverEntity driver;
     DrivercarEntity drivercarEntity;
+    private int careInstitutionId;
     ArrayList<String> limitationEntities;
 
     public DriverEntity getDriver() {
@@ -34,5 +35,13 @@ public class DriverDetailDisplay {
 
     public void setLimitationEntities(ArrayList<String> limitationEntities) {
         this.limitationEntities = limitationEntities;
+    }
+
+    public int getCareInstitutionId() {
+        return careInstitutionId;
+    }
+
+    public void setCareInstitutionId(int careInstitutionId) {
+        this.careInstitutionId = careInstitutionId;
     }
 }
