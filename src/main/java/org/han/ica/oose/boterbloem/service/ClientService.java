@@ -38,7 +38,7 @@ public class ClientService implements IClientservice {
         List <String> clientLimitations = clientlimitationDAO.getAllLimitationById(id);
 
         int clientId = client.getClientId();
-        String image = " ";
+        String image = client.getImage();
         String firstName = client.getUserEntity().getFirstName();
         String lastName = client.getUserEntity().getLastName();
         Date dateofBirth = client.getUserEntity().getDateOfBirth();
@@ -49,7 +49,7 @@ public class ClientService implements IClientservice {
         String residence = client.getUserEntity().getResidence();
         String email = client.getUserEntity().getEmail();
         String phoneNumber = client.getUserEntity().getPhoneNumber();
-        String bankAccount = " ";
+        String bankAccount = client.getBankAccount();
         String password = client.getUserEntity().getPassword();
         byte companionRequired = client.getCompanionRequired();
         int personalKmBudget = client.getPKB();

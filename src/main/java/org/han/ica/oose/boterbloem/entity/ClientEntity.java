@@ -11,6 +11,8 @@ public class ClientEntity {
     private byte warningPKB;
     private int PKB;
     private byte companionRequired;
+    private String image;
+    private String bankAccount;
     private UserEntity userEntity;
 
     @Id
@@ -71,6 +73,26 @@ public class ClientEntity {
 
     public void setCompanionRequired(byte companionRequired) {
         this.companionRequired = companionRequired;
+    }
+
+    @Basic
+    @Column(name = "image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Basic
+    @Column(name = "bankAccount")
+    public String getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(String bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
     @OneToOne
