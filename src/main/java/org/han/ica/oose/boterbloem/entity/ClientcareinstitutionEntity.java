@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class ClientcareinstitutionEntity {
     private int clientId;
     private int careInstitutionId;
-    private boolean active;
+    private boolean active = true;
 
     @Id
     @Column(name = "clientId")

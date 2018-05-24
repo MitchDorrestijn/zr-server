@@ -44,6 +44,11 @@ public class ClientService implements IClientservice {
             clientUtilityEntity.setUtility(createClientDisplay.getUtility());
             clientUtilityDAO.add(clientUtilityEntity);
 
+            ClientcareinstitutionEntity clientcareinstitutionEntity = new ClientcareinstitutionEntity();
+            clientcareinstitutionEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
+            clientcareinstitutionEntity.setCareInstitutionId(1);
+            clientcareinstitutionEntity.setActive(true);
+            clientCareInstitutionDAO.add(clientcareinstitutionEntity);
 
             for (String s : createClientDisplay.getLimitations()) {
                 ClientLimitationEntity clientlimitationEntity = new ClientLimitationEntity();
@@ -63,24 +68,36 @@ public class ClientService implements IClientservice {
         List <ClientDisplay> clientDisplays = new ArrayList <>();
         try {
             List <ClientEntity> clientEntities = clientDAO.findAll();
+            System.out.println("REEEEEEEEEEEEEEEEE" + clientEntities.size());
             for (ClientEntity i : clientEntities) {
-                int driverId = i.getClientId();
-                if (clientCareInstitutionDAO.getCareInstitutionId(driverId).isActive()) {
-                    double priceToPay = 0;
-                    boolean warningPKB = false;
-                    ClientDisplay clientDisplay = new ClientDisplay();
-                    clientDisplay.setClientId(i.getClientId());
-                    clientDisplay.setName(i.getUserEntity().getFirstName());
-                    clientDisplay.setPKB(i.getPKB());
-                    int distance = (i.getRideEntity().getDistance());
-                    if (distance > i.getPKB()) {
-                        priceToPay = (i.getRideEntity().getDistance() * 0.005);
-                        warningPKB = true;
-                    }
-                    clientDisplay.setTotalMeters(i.getRideEntity().getDistance());
-                    clientDisplay.setPriceToPay(priceToPay);
-                    clientDisplay.setWarningPKB(warningPKB);
-                    clientDisplays.add(clientDisplay);
+                try {
+                    int driverId = i.getClientId();
+
+                        double priceToPay = 0;
+                        boolean warningPKB = false;
+                        ClientDisplay clientDisplay = new ClientDisplay();
+                        clientDisplay.setClientId(i.getClientId());
+                        clientDisplay.setName(i.getUserEntity().getFirstName());
+                        clientDisplay.setPKB(i.getPKB());
+                        try{
+                        int distance = (i.getRideEntity().getDistance());
+                        if (distance > i.getPKB()) {
+                            priceToPay = (i.getRideEntity().getDistance() * 0.005);
+                            warningPKB = true;
+
+                            clientDisplay.setTotalMeters(i.getRideEntity().getDistance());
+                            clientDisplay.setPriceToPay(priceToPay);
+                            clientDisplay.setWarningPKB(warningPKB);
+                        }
+                        }catch(Exception e){
+
+                        }
+
+                    if (clientCareInstitutionDAO.getCareInstitutionId(driverId).isActive()) {
+                        clientDisplays.add(clientDisplay);
+                   }
+                }catch(Exception e){
+                    LOGGER.log(Level.WARNING, e.getMessage());
                 }
             }
             return clientDisplays;
