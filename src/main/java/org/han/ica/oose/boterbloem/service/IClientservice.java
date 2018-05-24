@@ -25,16 +25,15 @@ public interface IClientservice {
      * @return details of a Client
      */
     ClientDetailDisplay getClientDetails(int id);
-
     /**
      * @param client that's going to be added to the database
      */
     void createClient(CreateClientDisplay client);
 
     /**
-     * @param client Client that needs a update
+     * @param clientDetailDisplay Client that needs a update
      */
-    void updateClient(ClientEntity client);
+    void updateClient(ClientDetailDisplay clientDetailDisplay);
 
     /**
      * @param id delete a Client

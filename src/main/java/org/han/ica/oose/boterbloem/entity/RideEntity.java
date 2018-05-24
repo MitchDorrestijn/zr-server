@@ -21,7 +21,6 @@ public class RideEntity {
     private byte executed;
     private DriverEntity driverEntity;
     private float price_of_ride;
-    private ClientEntity clientEntity;
 
     @OneToOne
     @JoinColumn(name = "driverId")
@@ -31,16 +30,6 @@ public class RideEntity {
 
     public void setDriverEntity(DriverEntity driverEntity) {
         this.driverEntity = driverEntity;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "clientId")
-    public ClientEntity getClientEntity() {
-        return clientEntity;
-    }
-
-    public void setClientEntity(ClientEntity clientEntity) {
-        this.clientEntity = clientEntity;
     }
 
     @Basic

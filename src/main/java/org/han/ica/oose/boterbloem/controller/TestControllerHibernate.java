@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,6 +36,8 @@ public class TestControllerHibernate {
     IRatingsDAO ratingsDAO = new RatingsDAOImpl(entityManager);
     DriverService dr = new DriverService();
     IDrivercarDAO drivercarDAO = new DrivercarDAOImpl(entityManager);
+    IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl(entityManager);
+    IClientDAO dao = new ClientDAOImpl(entityManager);
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public DriverEntity getDriverEntity(@PathVariable int id) {
@@ -43,7 +46,7 @@ public class TestControllerHibernate {
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<DriverEntity> getAllDriverEntity() {
+    public List <DriverEntity> getAllDriverEntity() {
 
         return driverDAOImpl.findAll();
     }
@@ -66,29 +69,33 @@ public class TestControllerHibernate {
         return ratingsDAO.getAvgRatings(id);
     }
 
-    @RequestMapping( value = "testPutDriver", method = RequestMethod.POST)
-    public void createDriverTest(@RequestBody  DriverEntity driverEntity){
-     driverDAOImpl.add(driverEntity);
+    @RequestMapping(value = "testPutDriver", method = RequestMethod.POST)
+    public void createDriverTest(@RequestBody DriverEntity driverEntity) {
+        driverDAOImpl.add(driverEntity);
     }
 
-    @RequestMapping( value = "testPutDisplay", method = RequestMethod.POST)
-    public void createDisplayTest(@RequestBody  CreateDriverDisplay driverEntity){
+    @RequestMapping(value = "testPutDisplay", method = RequestMethod.POST)
+    public void createDisplayTest(@RequestBody CreateDriverDisplay driverEntity) {
         dr.createChauffeur(driverEntity);
     }
 
-    @RequestMapping(value = "testGetcar" , method = RequestMethod.GET)
+    @RequestMapping(value = "testGetcar", method = RequestMethod.GET)
     public DrivercarEntity get123() {
         DrivercarEntityPK drivercarEntityPK = new DrivercarEntityPK();
         drivercarEntityPK.setDriverId(1);
         return drivercarDAO.findCarById(1);
     }
 
-    @RequestMapping(value = "testGetDriver" , method = RequestMethod.GET)
+    @RequestMapping(value = "testGetDriver", method = RequestMethod.GET)
     public CreateDriverDisplay get12345() {
 
         return dr.getThisThing();
     }
 
+    @RequestMapping(value = "teset", method = RequestMethod.GET)
+    public ClientEntity asd() {
+        return dao.findById(2);
+    }
 
 //    @CrossOrigin
 //    @RequestMapping(value = "/testPutDriver", method = RequestMethod.POST)

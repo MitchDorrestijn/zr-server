@@ -22,9 +22,9 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
     }
 
     public DrivercarEntity findByPK(DrivercarEntityPK drivercarEntityPK){
-        getEntityManager().getTransaction().begin();
+       // getEntityManager().getTransaction().begin();
         DrivercarEntity  drivercarEntity = getEntityManager().find(DrivercarEntity.class, drivercarEntityPK);
-        getEntityManager().getTransaction().commit();
+       // getEntityManager().getTransaction().commit();
         return drivercarEntity;
     }
 
@@ -34,15 +34,19 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
         try {
             String utility;
             try {
+             //   getEntityManager().getTransaction().begin();
                 utility = (String) this.getEntityManager().createQuery("SELECT utility FROM DrivercarEntity dr WHERE dr.driverId = :driverId").setParameter("driverId", id).getSingleResult();
-            }catch (NoResultException e){
+              //  getEntityManager().getTransaction().commit();
+            } catch (NoResultException e){
                 return new DrivercarEntity();
             }
+           // getEntityManager().getTransaction().begin();
             DrivercarEntityPK drivercarEntityPK = new DrivercarEntityPK();
             drivercarEntityPK.setDriverId(id);
             drivercarEntityPK.setUtility(utility);
             System.out.println(utility);
             DrivercarEntity drivercarEntity = findByPK(drivercarEntityPK);
+            //getEntityManager().getTransaction().commit();
             return  drivercarEntity;
 
         } catch(NullPointerException e){
