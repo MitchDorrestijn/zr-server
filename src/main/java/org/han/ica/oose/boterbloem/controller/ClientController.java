@@ -2,9 +2,7 @@ package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.ClientService;
-import org.han.ica.oose.boterbloem.service.projection.ClientDetailDisplay;
-import org.han.ica.oose.boterbloem.service.projection.CreateClientDisplay;
-import org.han.ica.oose.boterbloem.service.projection.ClientDisplay;
+import org.han.ica.oose.boterbloem.service.projection.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,9 +47,8 @@ public class ClientController {
      * @param id of Client
      * @return details of a Client
      */
-    @CrossOrigin
-    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
-    public ClientDetailDisplay getClientDetails(@PathVariable int id) {
+    @RequestMapping(value = "/getClient/{id}", method = RequestMethod.GET)
+    public ClientDetailDisplay getClientDetails (@PathVariable int id) {
         return clientService.getClientDetails(id);
     }
 
@@ -67,15 +64,12 @@ public class ClientController {
     }
 
     /**
-     * @param client Client
-     * @return Client
+     * @param clientDetailDisplay clientDetailDisplay
      */
     @CrossOrigin
-    @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
-    public ResponseEntity <ClientEntity> updateClient(@PathVariable int id, @RequestBody ClientEntity client) {
-        clientService.findById(id);
-        clientService.updateClient(client);
-        return new ResponseEntity <>(client, HttpStatus.OK);
+    @RequestMapping(value = "/update/client", method = RequestMethod.PUT)
+    public void updateDriverDetails(@RequestBody ClientDetailDisplay clientDetailDisplay) {
+        clientService.updateClient(clientDetailDisplay);
     }
 
     @CrossOrigin

@@ -25,11 +25,8 @@ USE zorgrit;
 CREATE TABLE IF NOT EXISTS `utility` (
 
   name     VARCHAR(255) NOT NULL,
-
   priority INT(11)      NOT NULL,
-
   PRIMARY KEY (name)
-
 );
 
 -- -----------------------------------------------------
@@ -144,6 +141,8 @@ CREATE TABLE IF NOT EXISTS `driver` (
 
     ON UPDATE CASCADE
 
+-- -----------------------------------------------------
+
 );
 
 -- -----------------------------------------------------
@@ -191,17 +190,15 @@ CREATE TABLE IF NOT EXISTS `driverCar` (
 CREATE TABLE IF NOT EXISTS `clientLimitation` (
 
   clientId   INT(11)      NOT NULL,
-
-  limitation VARCHAR(255) NOT NULL,
-
+  limitation    VARCHAR(255) NOT NULL,
   PRIMARY KEY (clientId, limitation),
+
 
   CONSTRAINT clientLimitationClient FOREIGN KEY (clientId) REFERENCES client (clientId)
 
     ON DELETE NO ACTION
 
     ON UPDATE NO ACTION,
-
   CONSTRAINT clientLimitationLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
 
     ON DELETE NO ACTION
@@ -243,17 +240,15 @@ CREATE TABLE IF NOT EXISTS `driverAvailability` (
 CREATE TABLE IF NOT EXISTS `driverLimitationManageable` (
 
   driverId   INT(11)      NOT NULL,
-
   limitation VARCHAR(255) NOT NULL,
-
   PRIMARY KEY (driverId, limitation),
+
 
   CONSTRAINT driverLimitationManageableDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
 
     ON DELETE NO ACTION
 
     ON UPDATE NO ACTION,
-
   CONSTRAINT driverLimitationManageableLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
 
     ON DELETE NO ACTION
