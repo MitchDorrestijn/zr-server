@@ -78,9 +78,11 @@ return null;
 
     public void createChauffeur(CreateDriverDisplay createDriverDisplay) {
 
-        driverDao.add(createDriverDisplay.getDriver());
-        DrivercarEntity drivercarEntity = createDriverDisplay.getDrivercarEntity();
-        drivercarEntity.setDriverId(driverDao.latestId());
+        try{
+            driverDao.add(createDriverDisplay.getDriver());
+
+            DrivercarEntity drivercarEntity = createDriverDisplay.getDrivercarEntity();
+            drivercarEntity.setDriverId(driverDao.latestId());
         DrivercareinstitutionEntity drivercareinstitutionEntity = new DrivercareinstitutionEntity();
         drivercareinstitutionEntity.setDriverId(driverDao.latestId());
         drivercareinstitutionEntity.setCareInstitutionId(createDriverDisplay.getCareInstitutionId());
@@ -91,8 +93,27 @@ return null;
             driverlimitationmanageableEntity.setDriverId(driverDao.latestId());
             driverlimitationmanageableEntity.setLimitation(lm);
             driverlimitationmanageableDAO.add(driverlimitationmanageableEntity);
+            System.out.println(entityManager.getTransaction().isActive());
+        }
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+
+            }
 
         }
+
+    public CreateDriverDisplay getThisThing(){
+        CreateDriverDisplay createDriverDisplay = new CreateDriverDisplay();
+        createDriverDisplay.setDrivercarEntity(drivercarDAO.findCarById(1));
+        createDriverDisplay.setDriver(driverDao.findById(1));
+        createDriverDisplay.setCareInstitutionId(1);
+        ArrayList<String> asd = new ArrayList<>();
+        asd.add("Limitation");
+        asd.add("something else");
+
+        createDriverDisplay.setLimitationEntities(asd);
+        System.out.println(entityManager.getTransaction().isActive());
+        return createDriverDisplay;
     }
 
 }

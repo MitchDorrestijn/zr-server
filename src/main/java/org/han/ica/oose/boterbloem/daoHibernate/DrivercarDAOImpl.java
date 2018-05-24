@@ -1,6 +1,7 @@
 package org.han.ica.oose.boterbloem.daoHibernate;
 
 import org.han.ica.oose.boterbloem.daoHibernate.genericDao.GenericDAOImpl;
+import org.han.ica.oose.boterbloem.domain.Driver;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntityPK;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,10 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
     }
 
     public DrivercarEntity findByPK(DrivercarEntityPK drivercarEntityPK){
-        return getEntityManager().find(DrivercarEntity.class, drivercarEntityPK);
+        getEntityManager().getTransaction().begin();
+        DrivercarEntity  drivercarEntity = getEntityManager().find(DrivercarEntity.class, drivercarEntityPK);
+        getEntityManager().getTransaction().commit();
+        return drivercarEntity;
     }
 
 
@@ -38,7 +42,8 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
             drivercarEntityPK.setDriverId(id);
             drivercarEntityPK.setUtility(utility);
             System.out.println(utility);
-            return  findByPK(drivercarEntityPK);
+            DrivercarEntity drivercarEntity = findByPK(drivercarEntityPK);
+            return  drivercarEntity;
 
         } catch(NullPointerException e){
             System.out.println("check");

@@ -21,7 +21,11 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
     @Override
     public int rideCountById(int id) {
         try {
-            return ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
+            getEntityManager().getTransaction().begin();
+            int returnvalue =  ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
+            getEntityManager().getTransaction().commit();
+            return returnvalue;
+
         } catch (NullPointerException n){
             return 0;
         }
@@ -30,7 +34,10 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
     @Override
     public float totalEarned(int id) {
         try {
-            return  ((Number) getEntityManager().createQuery("SELECT SUM(price_of_ride) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
+            getEntityManager().getTransaction().begin();
+            float returnvalue =  ((Number) getEntityManager().createQuery("SELECT SUM(price_of_ride) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
+            getEntityManager().getTransaction().commit();
+            return returnvalue;
         } catch (NullPointerException n){
             return 0;
         }

@@ -9,16 +9,15 @@ import java.util.List;
 
 public class CreateDriverDisplay {
     DriverEntity driver;
-    ArrayList<String> manageable;
     DrivercarEntity drivercarEntity;
     private int careInstitutionId;
-    List<String> limitationEntities;
+    ArrayList<String> limitationEntities;
 
-    public List<String> getLimitationEntities() {
+    public ArrayList<String> getLimitationEntities() {
         return limitationEntities;
     }
 
-    public void setLimitationEntities(List<String> limitationEntities) {
+    public void setLimitationEntities(ArrayList<String> limitationEntities) {
         this.limitationEntities = limitationEntities;
     }
 
@@ -28,14 +27,6 @@ public class CreateDriverDisplay {
 
     public void setDriver(DriverEntity driver) {
         this.driver = driver;
-    }
-
-    public ArrayList<String> getManageable() {
-        return manageable;
-    }
-
-    public void setManageable(ArrayList<String> manageable) {
-        this.manageable = manageable;
     }
 
     public DrivercarEntity getDrivercarEntity() {
