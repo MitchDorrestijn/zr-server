@@ -32,6 +32,12 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
     }
 
     @Override
+    public int totalRideClient(int id) {
+        return ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  " +
+                "WHERE clientEntity.clientId = :id").setParameter("id", id).getSingleResult()).intValue();
+    }
+
+    @Override
     public float totalEarned(int id) {
         try {
             getEntityManager().getTransaction().begin();

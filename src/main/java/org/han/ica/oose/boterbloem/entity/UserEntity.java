@@ -22,9 +22,6 @@ public class UserEntity {
     private Date dateOfBirth;
     private byte firstTimeProfileCheck;
 
-
-
-
     @Id
     @GenericGenerator(name="kaugen", strategy="increment")
     @GeneratedValue(generator="kaugen")

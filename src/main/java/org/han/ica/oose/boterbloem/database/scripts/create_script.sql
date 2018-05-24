@@ -20,9 +20,9 @@ CREATE TABLE IF NOT EXISTS `utility` (
 );
 
 -- -----------------------------------------------------
--- Table limitation
+-- Table utility
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `limitation` (
+CREATE TABLE IF NOT EXISTS `utility` (
   name VARCHAR(255) NOT NULL,
   PRIMARY KEY (NAME)
 );
@@ -53,17 +53,16 @@ CREATE TABLE IF NOT EXISTS `user` (
 CREATE TABLE IF NOT EXISTS `client` (
   clientId               INT(11)      NOT NULL,
   companion              VARCHAR(255) NULL     DEFAULT NULL,
-  utility                VARCHAR(255) NULL     DEFAULT NULL,
   driverPreferenceForced BOOLEAN      NOT NULL DEFAULT FALSE,
-  warningPKB             BOOLEAN      NULL     DEFAULT NULL,
-  PKB                    int(255)   NOT NULL,
+  warningPKB             BOOLEAN      NOT NULL,
+  PKB                    INT(10)      NOT NULL,
+  companionRequired      BOOLEAN      NOT NULL,
+  image                  LONGTEXT     NULL,
+  bankAccount            VARCHAR(255) NOT NULL,
   PRIMARY KEY (clientId),
   CONSTRAINT ClientUser FOREIGN KEY (clientId) REFERENCES user (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT clientUtility FOREIGN KEY (utility) REFERENCES utility (name)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 
 -- -----------------------------------------------------
@@ -79,6 +78,21 @@ CREATE TABLE IF NOT EXISTS `driver` (
   CONSTRAINT DriverUser FOREIGN KEY (driverId) REFERENCES user (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
+);
+
+-- -----------------------------------------------------
+-- Table driver utility
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clientUtility` (
+  clientId     INT(11)       NOT NULL,
+  utility      VARCHAR(255)  NOT NULL,
+  PRIMARY KEY (clientId, utility),
+  CONSTRAINT clientReference FOREIGN KEY (clientId) REFERENCES client (clientId)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT utilityReference FOREIGN KEY (utility) REFERENCES utility (utility)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 );
 
 -- -----------------------------------------------------
@@ -105,12 +119,12 @@ CREATE TABLE IF NOT EXISTS `driverCar` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `clientLimitation` (
   clientId   INT(11)      NOT NULL,
-  limitation VARCHAR(255) NOT NULL,
-  PRIMARY KEY (clientId, limitation),
+  utility    VARCHAR(255) NOT NULL,
+  PRIMARY KEY (clientId, utility),
   CONSTRAINT clientLimitationClient FOREIGN KEY (clientId) REFERENCES client (clientId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT clientLimitationLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
+  CONSTRAINT clientLimitationLimitation FOREIGN KEY (utility) REFERENCES utility (name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
@@ -133,12 +147,12 @@ CREATE TABLE IF NOT EXISTS `driverAvailability` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `driverLimitationManageable` (
   driverId   INT(11)      NOT NULL,
-  limitation VARCHAR(255) NOT NULL,
-  PRIMARY KEY (driverId, limitation),
+  utility VARCHAR(255) NOT NULL,
+  PRIMARY KEY (driverId, utility),
   CONSTRAINT driverLimitationManageableDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT driverLimitationManageableLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
+  CONSTRAINT driverLimitationManageableLimitation FOREIGN KEY (utility) REFERENCES utility (name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
@@ -187,7 +201,8 @@ CREATE TABLE IF NOT EXISTS `careInstitution` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `clientCareInstitution` (
   clientId          INT(11) NOT NULL,
-  careInstitutionId INT(11) NOT NULL AUTO_INCREMENT,
+  careInstitutionId INT(11) NOT NULL,
+  active			boolean	NOT NULL,
   PRIMARY KEY (clientId, careInstitutionId),
   CONSTRAINT careInstitutionClient FOREIGN KEY (clientId) REFERENCES client (clientId)
     ON DELETE NO ACTION
@@ -322,14 +337,31 @@ CREATE TABLE IF NOT EXISTS `rideMatchesRejected` (
     ON UPDATE NO ACTION
 );
 
-
+-- -----------------------------------------------------
+-- Table ratings
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ratings` (
 	  driverId	INT				NOT NULL,
     clientId	INT				NOT NULL,
     beoordeling	VARCHAR(1000)	NOT NULL,
     sterren		INT				NOT NULL,
-    PRIMARY KEY (clientId, driverId),
-    CONSTRAINT ratings FOREIGN KEY (driverId) REFERENCES driver (driverId)
+  PRIMARY KEY (clientId, driverId),
+  CONSTRAINT ratings FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-)
+);
+
+-- -----------------------------------------------------
+-- Table client utility
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `clientUtility` (
+  clientId     INT(11)       NOT NULL,
+  utility      VARCHAR(255)  NOT NULL,
+  PRIMARY KEY (clientId, utility),
+  CONSTRAINT clientReference FOREIGN KEY (clientId) REFERENCES client (clientId)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT utilityReference FOREIGN KEY (utility) REFERENCES utility (name)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);

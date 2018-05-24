@@ -10,8 +10,11 @@ public class ClientEntity {
     private int clientId;
     private String companion;
     private byte driverPreferenceForced;
-    private boolean warningPKB;
+    private byte warningPKB;
     private int PKB;
+    private byte companionRequired;
+    private String image;
+    private String bankAccount;
     private UserEntity userEntity;
     private RideEntity rideEntity;
 
@@ -44,9 +47,59 @@ public class ClientEntity {
     public void setDriverPreferenceForced(byte driverPreferenceForced) {
         this.driverPreferenceForced = driverPreferenceForced;
     }
+    @Basic
+    @Column(name = "warningPKB")
+    public byte isWarningPKB() {
+        return warningPKB;
+    }
 
-    @OneToOne
+    public void setWarningPKB(byte warningPKB) {
+        this.warningPKB = warningPKB;
+    }
+
+    @Basic
+    @Column(name = "PKB")
+    public int getPKB() {
+        return PKB;
+    }
+
+    public void setPKB(int PKB) {
+        this.PKB = PKB;
+    }
+
+    @Basic
+    @Column(name = "companionRequired")
+    public byte getCompanionRequired() {
+        return companionRequired;
+    }
+
+    public void setCompanionRequired(byte companionRequired) {
+        this.companionRequired = companionRequired;
+    }
+
+    @Basic
+    @Column(name = "image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Basic
+    @Column(name = "bankAccount")
+    public String getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(String bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    @OneToOne (cascade = {CascadeType.ALL})
     @JoinColumn(name = "clientId")
+    @MapsId
     public UserEntity getUserEntity() {
         return userEntity;
     }
@@ -65,22 +118,6 @@ public class ClientEntity {
         this.rideEntity = rideEntity;
     }
 
-    public boolean isWarningPKB() {
-        return warningPKB;
-    }
-
-    public void setWarningPKB(boolean warningPKB) {
-        this.warningPKB = warningPKB;
-    }
-
-    public int getPKB() {
-        return PKB;
-    }
-
-    public void setPKB(int PKB) {
-        this.PKB = PKB;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,9 +127,7 @@ public class ClientEntity {
 
         if (clientId != that.clientId) return false;
         if (driverPreferenceForced != that.driverPreferenceForced) return false;
-        if (companion != null ? !companion.equals(that.companion) : that.companion != null) return false;
-
-        return true;
+        return companion != null ? companion.equals(that.companion) : that.companion == null;
     }
 
     @Override

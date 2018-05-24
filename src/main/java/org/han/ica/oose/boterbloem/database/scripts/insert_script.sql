@@ -11,7 +11,7 @@ INSERT INTO `utility` (name, priority) VALUES
   ('rolstoel', 2),
   ('rollator', 1);
 
-INSERT INTO `limitation` (name) VALUES
+INSERT INTO `utility` (name) VALUES
   ('geestelijk gehandicapten'),
   ('zware/Fysieke handicap'),
   ('ouderen');
@@ -32,13 +32,12 @@ VALUES
   ('Iefke', 'Vloet', 'iefke@vloet.com', '0623458256', 'Haverakker', 102, '2743EJ', 'Waddinxveen', 'sesamopenu', 'ghg', '1989-04-16'),
   ('Mickey', 'van Zanten', 'mickey@tielmobiel.net', '0623458256', 'Marga Klompestraat', 140, '4133HN', 'Vianen', 'sesamopenu', 'ghg', '1964-02-23');
 
-INSERT INTO `client` (clientId, companion, utility, driverPreferenceForced, warningPKB, PKB) VALUES
-  (2, 'Sven', 'rolstoel', FALSE, FALSE, 1000),
-  (3, 'Henk', NULL, FALSE, FALSE, 1000),
-  (5, NULL, NULL, FALSE, TRUE, 500),
-  (6, 'Klaas', 'scootmobiel', FALSE, FALSE, 800),
-  (7, NULL, 'rollator', TRUE, TRUE, 600);
-
+INSERT INTO `client` (clientId, companion, driverPreferenceForced, warningPKB, PKB, companionRequired, image, bankaccount) VALUES
+  (2, 'Sven', FALSE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235"),
+  (3, 'Henk', FALSE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235"),
+  (5, NULL, FALSE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235"),
+  (6, 'Klaas', FALSE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235"),
+  (7, NULL, TRUE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235");
 
 INSERT INTO `driver` (driverId, verification, type_of_payment, image, accountnr) VALUES
   (1, TRUE, 'Vrijwillig', 'base64String', 'NLING3102347823974'),
@@ -60,7 +59,7 @@ INSERT INTO `driverCar` (driverId, utility, numberPlate, numberOfPassengers, bra
   (10, 'scootmobiel', 'nf-24-fe', 3, 'Nissan', 'D'),
   (11, 'scootmobiel', 'nf-26-fd', 3, 'Audi', 'E');
 
-INSERT INTO `clientLimitation` (clientId, limitation) VALUES
+INSERT INTO `clientLimitation` (clientId, utility) VALUES
   (2, 'zware/Fysieke handicap'),
   (3, 'ouderen'),
   (6, 'ouderen');
@@ -75,7 +74,7 @@ INSERT INTO `driverAvailability` (driverId, startDateTime, endDateTime) VALUES
   (12, '2018-01-03 12:00:00', '2019-01-03 17:00:00'),
   (13, '2018-01-03 14:00:00', '2018-02-03 15:00:00');
 
-INSERT INTO `driverLimitationManageable` (driverId, limitation) VALUES
+INSERT INTO `driverLimitationManageable` (driverId, utility) VALUES
   (1, 'geestelijk gehandicapten'),
   (4, 'ouderen');
 
@@ -102,12 +101,13 @@ INSERT INTO `careInstitution` (name) VALUES
   ('IZZ'),
   ('NedRAI');
 
-INSERT INTO `clientCareInstitution` (clientId, careInstitutionId) VALUES
-  (2, 1),
-  (3, 2),
-  (5, 3),
-  (6, 5),
-  (7, 4);
+INSERT INTO `clientCareInstitution` (clientId, careInstitutionId, active) VALUES
+  (2, 1, TRUE),
+  (3, 2, TRUE),
+  (5, 3, TRUE),
+  (6, 5, TRUE),
+  (7, 4, TRUE);
+
 
 INSERT INTO `driverCareInstitution` (driverId, careInstitutionId, active) VALUES
   (1, 2, TRUE ),

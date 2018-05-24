@@ -83,7 +83,4 @@ public class ClientDisplay {
     public void setPriceToPay(double priceToPay) {
         this.priceToPay = priceToPay;
     }
-
-
-
 }

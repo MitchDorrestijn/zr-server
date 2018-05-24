@@ -3,9 +3,9 @@ package org.han.ica.oose.boterbloem.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "clientlimitation", schema = "zorgrit", catalog = "")
+@Table(name = "clientLimitation", schema = "zorgrit", catalog = "")
 @IdClass(ClientlimitationEntityPK.class)
-public class ClientlimitationEntity {
+public class ClientLimitationEntity {
     private int clientId;
     private String limitation;
 
@@ -34,12 +34,10 @@ public class ClientlimitationEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ClientlimitationEntity that = (ClientlimitationEntity) o;
+        ClientLimitationEntity that = (ClientLimitationEntity) o;
 
         if (clientId != that.clientId) return false;
-        if (limitation != null ? !limitation.equals(that.limitation) : that.limitation != null) return false;
-
-        return true;
+        return limitation != null ? limitation.equals(that.limitation) : that.limitation == null;
     }
 
     @Override
