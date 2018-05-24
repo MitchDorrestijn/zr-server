@@ -31,6 +31,7 @@ public interface IClientservice {
     /**
      * @param id delete a Client
      */
-    void deleteClient(int id);
+    void deleteClient(int id, int idcare);
 
+    int getCareInstitutionById(int id);
 }

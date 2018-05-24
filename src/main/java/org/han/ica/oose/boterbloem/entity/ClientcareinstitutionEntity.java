@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class ClientcareinstitutionEntity {
     private int clientId;
     private int careInstitutionId;
+    private boolean active;
 
     @Id
     @Column(name = "clientId")
@@ -27,6 +28,15 @@ public class ClientcareinstitutionEntity {
 
     public void setCareInstitutionId(int careInstitutionId) {
         this.careInstitutionId = careInstitutionId;
+    }
+
+    @Column(name = "active")
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active){
+        this.active = active;
     }
 
     @Override

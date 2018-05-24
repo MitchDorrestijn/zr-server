@@ -4,9 +4,28 @@ import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import java.util.List;
 
 public class CreateClientDisplay {
+    private String utility;
     private ClientEntity clientEntity;
     private boolean companionForced;
     private List<String> limitations;
+
+    /**
+     * Getter for property 'utility'.
+     *
+     * @return Value for property 'utility'.
+     */
+    public String getUtility() {
+        return utility;
+    }
+
+    /**
+     * Setter for property 'utility'.
+     *
+     * @param utility Value to set for property 'utility'.
+     */
+    public void setUtility(String utility) {
+        this.utility = utility;
+    }
 
     /**
      * Getter for property 'clientEntity'.
