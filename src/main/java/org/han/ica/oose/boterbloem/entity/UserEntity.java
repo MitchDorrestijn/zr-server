@@ -1,5 +1,7 @@
 package org.han.ica.oose.boterbloem.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -20,7 +22,12 @@ public class UserEntity {
     private Date dateOfBirth;
     private byte firstTimeProfileCheck;
 
+
+
+
     @Id
+    @GenericGenerator(name="kaugen", strategy="increment")
+    @GeneratedValue(generator="kaugen")
     @Column(name = "id")
     public int getId() {
         return id;

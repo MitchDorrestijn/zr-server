@@ -36,14 +36,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   lastName     VARCHAR(255) NOT NULL,
   email        VARCHAR(255) NOT NULL,
   phoneNumber  VARCHAR(10)  NULL     DEFAULT NULL,
-  street       VARCHAR(255) NOT NULL,
-  houseNumber  VARCHAR(6)   NOT NULL,
-  zipCode      VARCHAR(6)   NOT NULL,
-  residence    VARCHAR(255) NOT NULL,
+  street       VARCHAR(255) NULL,
+  houseNumber  VARCHAR(6)   NULL,
+  zipCode      VARCHAR(6)   NULL,
+  residence    VARCHAR(255) NULL,
   password     VARCHAR(255) NULL     DEFAULT NULL,
   PasswordSalt VARCHAR(255) NULL     DEFAULT NULL,
   dateOfBirth  DATE         NULL     DEFAULT NULL,
-  firstTimeProfileCheck BOOLEAN      NOT NULL DEFAULT FALSE,
+  firstTimeProfileCheck BOOLEAN      NULL DEFAULT FALSE,
   PRIMARY KEY (id)
 );
 
@@ -72,12 +72,13 @@ CREATE TABLE IF NOT EXISTS `client` (
 CREATE TABLE IF NOT EXISTS `driver` (
   driverId     INT(11)      NOT NULL,
   verification BOOLEAN      NOT NULL,
-  utility      VARCHAR(255) NULL     DEFAULT NULL,
   type_of_payment VARCHAR(255)  NULL,
+  image         LONGTEXT  NULL,
+  accountnr     VARCHAR(255)  NULL,
   PRIMARY KEY (driverId),
   CONSTRAINT DriverUser FOREIGN KEY (driverId) REFERENCES user (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 
 -- -----------------------------------------------------
@@ -88,6 +89,8 @@ CREATE TABLE IF NOT EXISTS `driverCar` (
   utility            VARCHAR(255) NOT NULL,
   numberPlate        VARCHAR(255) NOT NULL,
   numberOfPassengers INT(11)      NOT NULL,
+  brand              VARCHAR(255) NULL,
+  segment            VARCHAR(255) NULL,
   PRIMARY KEY (driverId, utility),
   CONSTRAINT driverCarUtilityDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
@@ -324,5 +327,9 @@ CREATE TABLE IF NOT EXISTS `ratings` (
 	  driverId	INT				NOT NULL,
     clientId	INT				NOT NULL,
     beoordeling	VARCHAR(1000)	NOT NULL,
-    sterren		INT				NOT NULL
+    sterren		INT				NOT NULL,
+    PRIMARY KEY (clientId, driverId),
+    CONSTRAINT ratings FOREIGN KEY (driverId) REFERENCES driver (driverId)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 )
