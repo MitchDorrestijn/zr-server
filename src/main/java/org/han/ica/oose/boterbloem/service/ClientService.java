@@ -38,19 +38,23 @@ public class ClientService implements IClientservice {
     }
 
     public void createClient(CreateClientDisplay createClientDisplay) {
-        userDAO.add(createClientDisplay.getClientEntity().getUserEntity());
-        clientDAO.add(createClientDisplay.getClientEntity());
-        ClientUtilityEntity clientUtilityEntity = new ClientUtilityEntity();
-        clientUtilityEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
-        clientUtilityEntity.setUtility(createClientDisplay.getUtility());
-        clientUtilityDAO.add(clientUtilityEntity);
+        try {
+            userDAO.add(createClientDisplay.getClientEntity().getUserEntity());
+            clientDAO.add(createClientDisplay.getClientEntity());
+            ClientUtilityEntity clientUtilityEntity = new ClientUtilityEntity();
+            clientUtilityEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
+            clientUtilityEntity.setUtility(createClientDisplay.getUtility());
+            clientUtilityDAO.add(clientUtilityEntity);
 
 
-        for (String s : createClientDisplay.getLimitations()) {
-            ClientLimitationEntity clientlimitationEntity = new ClientLimitationEntity();
-            clientlimitationEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
-            clientlimitationEntity.setLimitation(s);
-            clientlimitationDAO.add(clientlimitationEntity);
+            for (String s : createClientDisplay.getLimitations()) {
+                ClientLimitationEntity clientlimitationEntity = new ClientLimitationEntity();
+                clientlimitationEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
+                clientlimitationEntity.setLimitation(s);
+                clientlimitationDAO.add(clientlimitationEntity);
+            }
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
         }
     }
 
@@ -161,11 +165,15 @@ public class ClientService implements IClientservice {
 
     @Override
     public void deleteClient(int id, int idcare) {
-        ClientcareinstitutionEntityPK clientcareinstitutionEntityPK = new ClientcareinstitutionEntityPK();
-        clientcareinstitutionEntityPK.setCareInstitutionId(idcare);
-        clientcareinstitutionEntityPK.setClientId(id);
-        ClientcareinstitutionEntity clientcareinstitutionEntity = clientCareInstitutionDAO.find(clientcareinstitutionEntityPK);
-        clientcareinstitutionEntity.setActive(false);
-        clientCareInstitutionDAO.update(clientcareinstitutionEntity);
+        try {
+            ClientcareinstitutionEntityPK clientcareinstitutionEntityPK = new ClientcareinstitutionEntityPK();
+            clientcareinstitutionEntityPK.setCareInstitutionId(idcare);
+            clientcareinstitutionEntityPK.setClientId(id);
+            ClientcareinstitutionEntity clientcareinstitutionEntity = clientCareInstitutionDAO.find(clientcareinstitutionEntityPK);
+            clientcareinstitutionEntity.setActive(false);
+            clientCareInstitutionDAO.update(clientcareinstitutionEntity);
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
     }
 }
