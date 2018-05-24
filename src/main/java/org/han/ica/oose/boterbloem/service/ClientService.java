@@ -2,6 +2,7 @@ package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.daoHibernate.*;
 import org.han.ica.oose.boterbloem.entity.*;
+import org.han.ica.oose.boterbloem.service.projection.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.service.projection.CreateClientDisplay;
 
 import javax.persistence.*;
@@ -14,11 +15,12 @@ public class ClientService implements IClientservice {
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
     private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    private IClientDAO clientDAO  = new ClientDAOImpl(entityManager);
+    private IClientDAO clientDAO = new ClientDAOImpl(entityManager);
+    private IRideDAO rideDAO = new RideDAOImpl(entityManager);
     private IUserDAO userDAO = new UserDAOImpl(entityManager);
     private IClientUtilityDAO clientUtilityDAO = new ClientUtilityDAO(entityManager);
-    private IClientlimitationDAO clientLimitationDAO = new ClientlimitationDAOImpl(entityManager);
     private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl(entityManager);
+    private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl(entityManager);
 
     public ClientService() {
         //Empty constructor
@@ -38,7 +40,7 @@ public class ClientService implements IClientservice {
             ClientLimitationEntity clientlimitationEntity = new ClientLimitationEntity();
             clientlimitationEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
             clientlimitationEntity.setLimitation(s);
-            clientLimitationDAO.add(clientlimitationEntity);
+            clientlimitationDAO.add(clientlimitationEntity);
         }
     }
 
@@ -50,6 +52,54 @@ public class ClientService implements IClientservice {
     @Override
     public List <ClientEntity> getAllClients() {
         return clientDAO.findAll();
+    }
+
+    @Override
+    public ClientDetailDisplay getClientDetails(int id) {
+        ClientEntity client = clientDAO.findById(id);
+        List <String> clientLimitations = clientlimitationDAO.getAllLimitationById(id);
+
+        int clientId = client.getClientId();
+        String image = client.getImage();
+        String firstName = client.getUserEntity().getFirstName();
+        String lastName = client.getUserEntity().getLastName();
+        Date dateofBirth = client.getUserEntity().getDateOfBirth();
+        String street = client.getUserEntity().getStreet();
+        String houseNumber = client.getUserEntity().getHouseNumber();
+        String zipCode = client.getUserEntity().getZipCode();
+
+        String residence = client.getUserEntity().getResidence();
+        String email = client.getUserEntity().getEmail();
+        String phoneNumber = client.getUserEntity().getPhoneNumber();
+        String bankAccount = client.getBankAccount();
+        String password = client.getUserEntity().getPassword();
+        byte companionRequired = client.getCompanionRequired();
+        int personalKmBudget = client.getPKB();
+        int totalRide = rideDAO.totalRideClient(id);
+
+
+        ClientDetailDisplay detailDisplay = new ClientDetailDisplay();
+
+        detailDisplay.setId(clientId);
+        detailDisplay.setImage(image);
+        detailDisplay.setFirstName(firstName);
+        detailDisplay.setLastName(lastName);
+        detailDisplay.setDateOfBirth(dateofBirth);
+        detailDisplay.setStreet(street);
+        detailDisplay.setHouseNumber(houseNumber);
+        detailDisplay.setZipCode(zipCode);
+
+        detailDisplay.setResidence(residence);
+        detailDisplay.setEmail(email);
+        detailDisplay.setPhoneNumber(phoneNumber);
+        detailDisplay.setBankAccount(bankAccount);
+        detailDisplay.setPassword(password);
+        detailDisplay.setCompanionRequired(companionRequired);
+        detailDisplay.setClientlimitationEntityList(clientLimitations);
+        detailDisplay.setPersonalKmBudget(personalKmBudget);
+        detailDisplay.setTotalRides(totalRide);
+
+        return detailDisplay;
     }
 
     @Override
