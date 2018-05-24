@@ -17,8 +17,12 @@ import org.han.ica.oose.boterbloem.entity.DrivercareinstitutionEntityPK;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DriverService implements IDriverService {
+    private static final Logger LOGGER = Logger.getLogger(DriverService.class.getName());
+
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
     private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
@@ -44,38 +48,64 @@ public class DriverService implements IDriverService {
     }
 
     public List<DriverDisplay> allDriversWithStatistics(){
-        List<DriverDisplay> returnList =  new ArrayList<>();
-        for (DriverEntity x: driverDao.findAll()) {
+        try {
+            List<DriverDisplay> returnList = new ArrayList<>();
+            for (DriverEntity x : driverDao.findAll()) {
+                int driverId = x.getDriverId();
+                if (drivercareinstitutionDAO.getCareInstitutionId(driverId).isActive()) {
+                    System.out.println(drivercareinstitutionDAO.getCareInstitutionId(x.getDriverId()).isActive());
+                    DriverDisplay driver = new DriverDisplay();
 
-            DriverDisplay driver = new DriverDisplay();
 
+                    System.out.println(driverId);
 
-            int driverId = x.getDriverId();
-            System.out.println(driverId);
+                    driver.setId(driverId);
+                    driver.setName(x.getUserEntity().getFirstName() + " " + x.getUserEntity().getLastName());
+                    driver.setTypeOfPayment(x.getTypeOfPayment());
 
-            driver.setId(driverId);
-            driver.setName(x.getUserEntity().getFirstName() + " " + x.getUserEntity().getLastName());
-            driver.setTypeOfPayment(x.getTypeOfPayment());
+                    try {
+                        if (drivercarDAO.findCarById(driverId) == null) {
+                            driver.setNumberOfPassengers(0);
+                            driver.setNumberPlate("");
+                        } else {
+                            driver.setNumberOfPassengers(drivercarDAO.findCarById(driverId).getNumberOfPassengers());
+                            driver.setNumberPlate(drivercarDAO.findCarById(driverId).getNumberPlate());
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Nieuwe exception: " + e.getMessage());
+                    }
 
-            if(drivercarDAO.findCarById(driverId) == null) {
-                driver.setNumberOfPassengers(0);
-                driver.setNumberPlate("");
-            } else {
-                driver.setNumberOfPassengers(drivercarDAO.findCarById(driverId).getNumberOfPassengers());
-                driver.setNumberPlate(drivercarDAO.findCarById(driverId).getNumberPlate());
-            }
+                    driver.setRating(ratingsDAO.getAvgRatings(driverId));
+                    driver.setSegment("A");
+                    driver.setTotalEarned(rideDAO.totalEarned(driverId));
+                    driver.setTotalRides(rideDAO.rideCountById(driverId));
 
-            driver.setRating(ratingsDAO.getAvgRatings(driverId));
-            driver.setSegment("A");
-            driver.setTotalEarned(rideDAO.totalEarned(driverId));
-            driver.setTotalRides(rideDAO.rideCountById(driverId));
-            returnList.add(driver);
+                        returnList.add(driver);
+                    }
+                }
+                System.out.println(entityManager.getTransaction().isActive());
+
+            return returnList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        return returnList;
+        return null;
     }
 
     public DriverDetailDisplay getDriverDetails(int id){
-        return null;
+        DriverDetailDisplay driverDetailDisplay = new DriverDetailDisplay();
+        try{
+            driverDetailDisplay.setDriver(driverDao.findById(id));
+            driverDetailDisplay.setDrivercarEntity(drivercarDAO.findCarById(id));
+            driverDetailDisplay.setLimitationEntities(driverlimitationmanageableDAO.getByDriverId(id));
+            driverDetailDisplay.setCareInstitutionId(drivercareinstitutionDAO.getDriverCareinstitutionId(id));
+
+
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING,e.getMessage());
+        }
+
+        return driverDetailDisplay;
     }
 
     public void createChauffeur(CreateDriverDisplay createDriverDisplay) {
@@ -87,6 +117,7 @@ public class DriverService implements IDriverService {
             DrivercareinstitutionEntity drivercareinstitutionEntity = new DrivercareinstitutionEntity();
             drivercareinstitutionEntity.setDriverId(driverDao.latestId());
             drivercareinstitutionEntity.setCareInstitutionId(createDriverDisplay.getCareInstitutionId());
+            drivercareinstitutionEntity.setActive(true);
             drivercareinstitutionDAO.add(drivercareinstitutionEntity);
             drivercarDAO.add(createDriverDisplay.getDrivercarEntity());
             for (String lm : createDriverDisplay.getLimitationEntities()) {
@@ -128,4 +159,25 @@ public class DriverService implements IDriverService {
     public int getCareInstitutionId(int id) {
         return(drivercareinstitutionDAO.getCareInstitutionId(id).getCareInstitutionId());
     }
+
+    @Override
+    public void updateDriver(CreateDriverDisplay createDriverDisplay) {
+        int driverId = createDriverDisplay.getDriver().getDriverId();
+        if(createDriverDisplay.getDriver() != driverDao.findById(driverId)){
+            driverDao.update(createDriverDisplay.getDriver());
+        } if(createDriverDisplay.getDrivercarEntity() != drivercarDAO.findCarById(driverId)){
+            try {
+                drivercarDAO.remove(drivercarDAO.findCarById(driverId));
+                drivercarDAO.update(createDriverDisplay.getDrivercarEntity());
+            }catch(Exception e){
+                LOGGER.log(Level.WARNING, e.getMessage());
+                }
+        } if(createDriverDisplay.getCareInstitutionId() != drivercareinstitutionDAO.getDriverCareinstitutionId(driverId)){
+            drivercareinstitutionDAO.updateCareInstituion(createDriverDisplay.getCareInstitutionId(),driverId);
+        } if(createDriverDisplay.getLimitationEntities() != driverlimitationmanageableDAO.getByDriverId(driverId)){
+            driverlimitationmanageableDAO.updateDriverLimitations(createDriverDisplay.getLimitationEntities(), driverId);
+        }
+    }
+
+
 }

@@ -14,4 +14,5 @@ public interface IDrivercareinstitutionDAO extends IGenericDAO<Drivercareinstitu
 
     DrivercareinstitutionEntity getCareInstitutionId(int driverId);
 
-    }
+    void updateCareInstituion(int careId, int driverId);
+}

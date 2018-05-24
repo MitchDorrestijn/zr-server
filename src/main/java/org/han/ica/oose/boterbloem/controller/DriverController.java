@@ -42,7 +42,7 @@ public class DriverController {
          driverService.createChauffeur(driverEntity);
     }
 
-    @RequestMapping(value = "/getChauffeur/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/getChauffeur/{id}", method = RequestMethod.GET)
     public DriverDetailDisplay getDriverDetails (@PathVariable int id) {
         return driverService.getDriverDetails(id);
     }
@@ -52,4 +52,10 @@ public class DriverController {
     public void deleteDriver(@PathVariable int id){
         driverService.deleteDriver(id, driverService.getCareInstitutionId(id));
     }
+
+    @RequestMapping(value = "/update/chauffeur", method = RequestMethod.PUT)
+    public void updateDriverDetails(@RequestBody CreateDriverDisplay driverEntity) {
+        driverService.updateDriver(driverEntity);
+    }
+
 }
