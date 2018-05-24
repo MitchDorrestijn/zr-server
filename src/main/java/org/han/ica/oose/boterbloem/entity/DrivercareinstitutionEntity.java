@@ -10,7 +10,6 @@ public class DrivercareinstitutionEntity {
     private int careInstitutionId;
     private boolean active;
 
-    @Id
     @Column (name = "active")
     public boolean isActive() {
         return active;
