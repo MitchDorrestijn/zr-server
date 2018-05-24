@@ -66,21 +66,24 @@ public class ClientService implements IClientservice {
         try{
             List<ClientEntity> clientEntities = clientDAO.findAll();
             for (ClientEntity i : clientEntities) {
-                double priceToPay = 0;
-                boolean warningPKB = false;
-                ClientDisplay clientDisplay = new ClientDisplay();
-                clientDisplay.setClientId(i.getClientId());
-                clientDisplay.setName(i.getUserEntity().getFirstName());
-                clientDisplay.setPKB(i.getPKB());
-                int distance = (i.getRideEntity().getDistance());
-                if (distance > i.getPKB()) {
-                    priceToPay = (i.getRideEntity().getDistance() * 0.005);
-                    warningPKB = true;
+                int driverId = i.getClientId();
+                if (clientCareInstitutionDAO.getCareInstitutionId(driverId).isActive()) {
+                    double priceToPay = 0;
+                    boolean warningPKB = false;
+                    ClientDisplay clientDisplay = new ClientDisplay();
+                    clientDisplay.setClientId(i.getClientId());
+                    clientDisplay.setName(i.getUserEntity().getFirstName());
+                    clientDisplay.setPKB(i.getPKB());
+                    int distance = (i.getRideEntity().getDistance());
+                    if (distance > i.getPKB()) {
+                        priceToPay = (i.getRideEntity().getDistance() * 0.005);
+                        warningPKB = true;
+                    }
+                    clientDisplay.setTotalMeters(i.getRideEntity().getDistance());
+                    clientDisplay.setPriceToPay(priceToPay);
+                    clientDisplay.setWarningPKB(warningPKB);
+                    clientDisplays.add(clientDisplay);
                 }
-                clientDisplay.setTotalMeters(i.getRideEntity().getDistance());
-                clientDisplay.setPriceToPay(priceToPay);
-                clientDisplay.setWarningPKB(warningPKB);
-                clientDisplays.add(clientDisplay);
             }
             return clientDisplays;
         } catch (Exception e) {
