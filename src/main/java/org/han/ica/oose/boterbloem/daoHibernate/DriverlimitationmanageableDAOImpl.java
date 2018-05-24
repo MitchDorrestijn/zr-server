@@ -25,9 +25,13 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
     }
 
     public void updateDriverLimitations(ArrayList<String> limitations, int driverId) {
-        getEntityManager().getTransaction().begin();
-        getEntityManager().createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
-        getEntityManager().getTransaction().commit();
+        try {
+            getEntityManager().getTransaction().begin();
+            getEntityManager().createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
+            getEntityManager().getTransaction().commit();
+        } catch(Exception e){
+            getEntityManager().getTransaction().rollback();
+        }
         for (String limitation : limitations) {
             try {
                 DriverlimitationmanageableEntity driverlimitationmanageableEntity = new DriverlimitationmanageableEntity();
@@ -36,7 +40,7 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
                 add(driverlimitationmanageableEntity);
                 getEntityManager().flush();
             }catch(Exception e){
-                
+
             }
         }
     }
