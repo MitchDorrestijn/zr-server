@@ -2,6 +2,7 @@ package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.projection.ClientDetailDisplay;
+import org.han.ica.oose.boterbloem.service.projection.CreateClientDisplay;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public interface IClientservice {
     /**
      * @param client that's going to be added to the database
      */
-    void createClient(ClientEntity client);
+    void createClient(CreateClientDisplay client);
 
     /**
      * @param client Client that needs a update

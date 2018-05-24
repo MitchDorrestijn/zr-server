@@ -3,6 +3,8 @@ package org.han.ica.oose.boterbloem.service;
 import org.han.ica.oose.boterbloem.daoHibernate.*;
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.projection.ClientDetailDisplay;
+import org.han.ica.oose.boterbloem.entity.ClientlimitationEntity;
+import org.han.ica.oose.boterbloem.service.projection.CreateClientDisplay;
 
 import javax.persistence.*;
 import java.util.*;
@@ -16,10 +18,22 @@ public class ClientService implements IClientservice {
 
     private IClientDAO clientDAO = new ClientDAOImpl(entityManager);
     private IRideDAO rideDAO = new RideDAOImpl(entityManager);
+    private IUserDAO userDAO = new UserDAOImpl(entityManager);
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl(entityManager);
 
     public ClientService() {
         //Empty constructor
+    }
+
+    public void createClient(CreateClientDisplay createClientDisplay) {
+        userDAO.add(createClientDisplay.getClientEntity().getUserEntity());
+        clientDAO.add(createClientDisplay.getClientEntity());
+        for (String s : createClientDisplay.getLimitations()) {
+            ClientlimitationEntity clientlimitationEntity = new ClientlimitationEntity();
+            clientlimitationEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
+            clientlimitationEntity.setLimitation(s);
+            clientlimitationDAO.add(clientlimitationEntity);
+        }
     }
 
     @Override
@@ -81,7 +95,7 @@ public class ClientService implements IClientservice {
     }
 
     @Override
-    public void createClient(ClientEntity client) {
+    public void createClient(CreateClientDisplay client)     {
         clientDAO.add(client);
     }
 
