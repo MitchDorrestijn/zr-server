@@ -1,16 +1,14 @@
 package org.han.ica.oose.boterbloem.controller;
-import org.han.ica.oose.boterbloem.domain.Driver;
-import org.han.ica.oose.boterbloem.entity.DriverEntity;
+
 import org.han.ica.oose.boterbloem.service.DriverService;
 import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDetailDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -29,12 +27,13 @@ public class DriverController {
      * @return List of chauffeurs
      */
     @RequestMapping(value = "/chauffeurs", method = RequestMethod.GET)
+
     public List<DriverDisplay> getAllDrivers() {
         return driverService.allDriversWithStatistics();
     }
 
     /**
-     * Method for returning detailed information of a driver
+     * Method for creating a new driver
      *
      * @return List with information of a specific chauffeur
      */
@@ -48,4 +47,9 @@ public class DriverController {
         return driverService.getDriverDetails(id);
     }
 
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.PUT)
+    public void deleteDriver(@PathVariable int id){
+        driverService.deleteDriver(id, driverService.getCareInstitutionId(id));
+    }
 }

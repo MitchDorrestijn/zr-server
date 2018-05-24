@@ -51,7 +51,7 @@
 //    @Test
 //    public void getCareInstitutionTest() throws SQLException {
 //        when(careInstitutionService.findById(1)).thenReturn(careInstitutionA);
-//        CareInstitution testCareInstitution = careInstitutionController.getCareInstitution("1");
+//        CareInstitution testCareInstitution = careInstitutionController.getCareInstitutionId("1");
 //        assertEquals("instellingA", testCareInstitution.getName());
 //    }
 //
@@ -59,7 +59,7 @@
 //    @Test
 //    public void updateCareInstitutionTest() throws SQLException{
 //        when(careInstitutionService.findById(1)).thenReturn(careInstitutionA);
-//        CareInstitution testCareInstitution = careInstitutionController.getCareInstitution("1");
+//        CareInstitution testCareInstitution = careInstitutionController.getCareInstitutionId("1");
 //        testCareInstitution.setName("new name");
 //        careInstitutionController.updateCareInstitution(1, testCareInstitution);
 //        assertEquals("new name", testCareInstitution.getName());
@@ -70,7 +70,7 @@
 //        CareInstitution careInstitutionZ = new CareInstitution(6, "instellingZ");
 //        careInstitutionController.addCareInstitution(careInstitutionZ);
 //        when(careInstitutionService.findById(6)).thenReturn(careInstitutionZ);
-//        CareInstitution testCareInstitution = careInstitutionController.getCareInstitution("6");
+//        CareInstitution testCareInstitution = careInstitutionController.getCareInstitutionId("6");
 //        assertEquals("instellingZ", testCareInstitution.getName());
 //    }
 //}

@@ -109,15 +109,15 @@ INSERT INTO `clientCareInstitution` (clientId, careInstitutionId) VALUES
   (6, 5),
   (7, 4);
 
-INSERT INTO `driverCareInstitution` (driverId, careInstitutionId) VALUES
-  (1, 2),
-  (4, 1),
-  (8, 5),
-  (9, 3),
-  (10, 1),
-  (11, 1),
-  (12, 4),
-  (13, 3);
+INSERT INTO `driverCareInstitution` (driverId, careInstitutionId, active) VALUES
+  (1, 2, TRUE ),
+  (4, 1, TRUE),
+  (8, 5, TRUE),
+  (9, 3, TRUE),
+  (10, 1, TRUE),
+  (11, 1, TRUE),
+  (12, 4, TRUE),
+  (13, 3, TRUE);
 
 INSERT INTO `ride` (clientId, driverId, pickUpDateTime, pickUpLocation, dropOffLocation, numberOfcompanions, numberOfLuggage, returnRide, callService, utility, repeatingRideId, cancelledByClient, executed, duration, distance, price_of_ride)
 VALUES

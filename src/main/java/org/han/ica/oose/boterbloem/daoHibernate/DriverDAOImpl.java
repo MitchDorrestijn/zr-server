@@ -18,8 +18,17 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
     }
 
 
+<<<<<<< HEAD
     public int latestId(){
         return ((Number) getEntityManager().createQuery("SELECT MAX(driverId) FROM DriverEntity").getSingleResult()).intValue();
     }
+=======
+    @Override
+    public void deleteDriver(int driverId) {
+            getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET DrivercareinstitutionEntity.active = false " +
+                    "WHERE DrivercareinstitutionEntity.driverId = :driverId").setParameter("driverId", driverId).getResultList();
+    }
+
+>>>>>>> 6064b35895394752e735eb28ee0b23d7a80b3147
 }
 
