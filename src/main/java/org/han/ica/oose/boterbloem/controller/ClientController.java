@@ -2,6 +2,7 @@ package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.ClientService;
+import org.han.ica.oose.boterbloem.service.projection.ClientDetailDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ public class ClientController {
 
     private ClientService clientService = new ClientService();
 
+    /** Constructs a new ClientController. */
     @Autowired
     ClientController() {
         //empty constructor for spring
@@ -43,6 +45,16 @@ public class ClientController {
     @RequestMapping(value = "/clienten", method = RequestMethod.GET)
     public List <ClientEntity> getAllClienten() {
         return clientService.getAllClients();
+    }
+
+    /**
+     * @param id of Client
+     * @return details of a Client
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
+    public ClientDetailDisplay getClientDetails(@PathVariable int id) {
+        return clientService.getClientDetails(id);
     }
 
     /**

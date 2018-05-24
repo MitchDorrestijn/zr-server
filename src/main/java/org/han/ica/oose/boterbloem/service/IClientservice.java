@@ -1,6 +1,7 @@
 package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
+import org.han.ica.oose.boterbloem.service.projection.ClientDetailDisplay;
 
 import java.util.List;
 
@@ -16,6 +17,12 @@ public interface IClientservice {
      * @return method returns a list of all found clients
      */
     List <ClientEntity> getAllClients();
+
+    /**
+     * @param id of Client
+     * @return details of a Client
+     */
+    ClientDetailDisplay getClientDetails(int id);
 
     /**
      * @param client that's going to be added to the database

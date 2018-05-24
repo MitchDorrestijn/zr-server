@@ -8,6 +8,9 @@ public class ClientEntity {
     private int clientId;
     private String companion;
     private byte driverPreferenceForced;
+    private byte warningPKB;
+    private int PKB;
+    private byte companionRequired;
     private UserEntity userEntity;
 
     @Id
@@ -30,6 +33,45 @@ public class ClientEntity {
         this.companion = companion;
     }
 
+    @Basic
+    @Column(name = "driverPreferenceForced")
+    public byte getDriverPreferenceForced() {
+        return driverPreferenceForced;
+    }
+
+    public void setDriverPreferenceForced(byte driverPreferenceForced) {
+        this.driverPreferenceForced = driverPreferenceForced;
+    }
+
+    @Basic
+    @Column(name = "warningPKB")
+    public byte isWarningPKB() {
+        return warningPKB;
+    }
+
+    public void setWarningPKB(byte warningPKB) {
+        this.warningPKB = warningPKB;
+    }
+
+    @Basic
+    @Column(name = "PKB")
+    public int getPKB() {
+        return PKB;
+    }
+
+    public void setPKB(int PKB) {
+        this.PKB = PKB;
+    }
+
+    @Basic
+    @Column(name = "companionRequired")
+    public byte getCompanionRequired() {
+        return companionRequired;
+    }
+
+    public void setCompanionRequired(byte companionRequired) {
+        this.companionRequired = companionRequired;
+    }
 
     @OneToOne
     @JoinColumn(name = "clientId")
@@ -41,16 +83,6 @@ public class ClientEntity {
         this.userEntity = userEntity;
     }
 
-    @Basic
-    @Column(name = "driverPreferenceForced")
-    public byte getDriverPreferenceForced() {
-        return driverPreferenceForced;
-    }
-
-    public void setDriverPreferenceForced(byte driverPreferenceForced) {
-        this.driverPreferenceForced = driverPreferenceForced;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,9 +92,7 @@ public class ClientEntity {
 
         if (clientId != that.clientId) return false;
         if (driverPreferenceForced != that.driverPreferenceForced) return false;
-        if (companion != null ? !companion.equals(that.companion) : that.companion != null) return false;
-
-        return true;
+        return companion != null ? companion.equals(that.companion) : that.companion == null;
     }
 
     @Override
