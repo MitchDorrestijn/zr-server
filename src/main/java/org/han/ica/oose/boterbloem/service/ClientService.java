@@ -59,117 +59,96 @@ public class ClientService implements IClientservice {
      */
     public List<ClientDisplay> getAllClients() {
         List<ClientDisplay> clientDisplays = new ArrayList<>();
-
-        List<ClientEntity> clientEntities = clientDAO.findAll();
-        for (ClientEntity i : clientEntities) {
-            double priceToPay = 0;
-            boolean warningPKB = false;
-            ClientDisplay clientDisplay = new ClientDisplay();
-            clientDisplay.setClientId(i.getClientId());
-            clientDisplay.setName(i.getUserEntity().getFirstName());
-            clientDisplay.setPKB(i.getPKB());
-            int distance = (i.getRideEntity().getDistance());
-            if (distance > i.getPKB()) {
-                priceToPay = (i.getRideEntity().getDistance() * 0.005);
-                warningPKB = true;
+        try{
+            List<ClientEntity> clientEntities = clientDAO.findAll();
+            for (ClientEntity i : clientEntities) {
+                double priceToPay = 0;
+                boolean warningPKB = false;
+                ClientDisplay clientDisplay = new ClientDisplay();
+                clientDisplay.setClientId(i.getClientId());
+                clientDisplay.setName(i.getUserEntity().getFirstName());
+                clientDisplay.setPKB(i.getPKB());
+                int distance = (i.getRideEntity().getDistance());
+                if (distance > i.getPKB()) {
+                    priceToPay = (i.getRideEntity().getDistance() * 0.005);
+                    warningPKB = true;
+                }
+                clientDisplay.setTotalMeters(i.getRideEntity().getDistance());
+                clientDisplay.setPriceToPay(priceToPay);
+                clientDisplay.setWarningPKB(warningPKB);
+                clientDisplays.add(clientDisplay);
             }
-            clientDisplay.setTotalMeters(i.getRideEntity().getDistance());
-            clientDisplay.setPriceToPay(priceToPay);
-            clientDisplay.setWarningPKB(warningPKB);
-            clientDisplays.add(clientDisplay);
+            return clientDisplays;
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
         }
         return clientDisplays;
     }
 
     @Override
     public ClientEntity findById(int id) {
-        return clientDAO.findById(id);
+        try {
+            return clientDAO.findById(id);
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return null;
     }
 
     @Override
     public ClientDetailDisplay getClientDetails(int id) {
-        ClientEntity client = clientDAO.findById(id);
-        List<String> clientLimitations = clientlimitationDAO.getAllLimitationById(id);
-
-        int clientId = client.getClientId();
-        String image = client.getImage();
-        String firstName = client.getUserEntity().getFirstName();
-        String lastName = client.getUserEntity().getLastName();
-        Date dateofBirth = client.getUserEntity().getDateOfBirth();
-        String street = client.getUserEntity().getStreet();
-        String houseNumber = client.getUserEntity().getHouseNumber();
-        String zipCode = client.getUserEntity().getZipCode();
-
-        String residence = client.getUserEntity().getResidence();
-        String email = client.getUserEntity().getEmail();
-        String phoneNumber = client.getUserEntity().getPhoneNumber();
-        String bankAccount = client.getBankAccount();
-        String password = client.getUserEntity().getPassword();
-        byte companionRequired = client.getCompanionRequired();
-        int personalKmBudget = client.getPKB();
-        int totalRide = rideDAO.totalRideClient(id);
-
-
         ClientDetailDisplay detailDisplay = new ClientDetailDisplay();
 
-        detailDisplay.setId(clientId);
-        detailDisplay.setImage(image);
-        detailDisplay.setFirstName(firstName);
-        detailDisplay.setLastName(lastName);
-        detailDisplay.setDateOfBirth(dateofBirth);
-        detailDisplay.setStreet(street);
-        detailDisplay.setHouseNumber(houseNumber);
-        detailDisplay.setZipCode(zipCode);
+        try {
+            ClientEntity client = clientDAO.findById(id);
 
-        detailDisplay.setResidence(residence);
-        detailDisplay.setEmail(email);
-        detailDisplay.setPhoneNumber(phoneNumber);
-        detailDisplay.setBankAccount(bankAccount);
-        detailDisplay.setPassword(password);
-        detailDisplay.setCompanionRequired(companionRequired);
-        detailDisplay.setClientlimitationEntityList(clientLimitations);
-        detailDisplay.setPersonalKmBudget(personalKmBudget);
-        detailDisplay.setTotalRides(totalRide);
+            detailDisplay.setId(client.getClientId());
+            detailDisplay.setImage(client.getImage());
+            detailDisplay.setFirstName(client.getUserEntity().getFirstName());
+            detailDisplay.setLastName(client.getUserEntity().getLastName());
+            detailDisplay.setDateOfBirth(client.getUserEntity().getDateOfBirth());
+            detailDisplay.setStreet(client.getUserEntity().getStreet());
+            detailDisplay.setHouseNumber(client.getUserEntity().getHouseNumber());
+            detailDisplay.setZipCode(client.getUserEntity().getZipCode());
+            detailDisplay.setResidence(client.getUserEntity().getResidence());
+            detailDisplay.setEmail(client.getUserEntity().getEmail());
+            detailDisplay.setPhoneNumber(client.getUserEntity().getPhoneNumber());
+            detailDisplay.setBankAccount(client.getBankAccount());
+            detailDisplay.setPassword(client.getUserEntity().getPassword());
+            detailDisplay.setCompanionRequired(client.getCompanionRequired());
+            detailDisplay.setClientlimitationEntityList(clientlimitationDAO.getAllLimitationById(id));
+            detailDisplay.setPersonalKmBudget(client.getPKB());
+            detailDisplay.setTotalRides(rideDAO.totalRideClient(id));
 
+            return detailDisplay;
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
         return detailDisplay;
     }
 
     @Override
-    public void updateClient(ClientEntity client) {
-        String firstName = client.getUserEntity().getFirstName();
-        String lastName = client.getUserEntity().getLastName();
-        String email = client.getUserEntity().getEmail();
-        String phoneNumber = client.getUserEntity().getPhoneNumber();
-        String street = client.getUserEntity().getStreet();
-        String houseNumber = client.getUserEntity().getHouseNumber();
-
-        String zipCode = client.getUserEntity().getZipCode();
-        String residence = client.getUserEntity().getResidence();
-        String password = client.getUserEntity().getPassword();
-        String passwordSalt = client.getUserEntity().getPasswordSalt();
-        Date dateOfBirth = client.getUserEntity().getDateOfBirth();
-        byte firstTimeProfileCheck = client.getUserEntity().getFirstTimeProfileCheck();
-
+    public void updateClient(ClientEntity newClient) {
         try {
             ClientEntity currentClient;
 
-            currentClient = clientDAO.findById(client.getClientId());
+            currentClient = clientDAO.findById(newClient.getClientId());
 
-            currentClient.getUserEntity().setFirstName(firstName);
-            currentClient.getUserEntity().setLastName(lastName);
-            currentClient.getUserEntity().setEmail(email);
-            currentClient.getUserEntity().setPhoneNumber(phoneNumber);
-            currentClient.getUserEntity().setStreet(street);
-            currentClient.getUserEntity().setHouseNumber(houseNumber);
+            currentClient.getUserEntity().setFirstName(newClient.getUserEntity().getFirstName());
+            currentClient.getUserEntity().setLastName(newClient.getUserEntity().getLastName());
+            currentClient.getUserEntity().setEmail(newClient.getUserEntity().getEmail());
+            currentClient.getUserEntity().setPhoneNumber(newClient.getUserEntity().getPhoneNumber());
+            currentClient.getUserEntity().setStreet(newClient.getUserEntity().getStreet());
+            currentClient.getUserEntity().setHouseNumber(newClient.getUserEntity().getHouseNumber());
 
-            currentClient.getUserEntity().setZipCode(zipCode);
-            currentClient.getUserEntity().setResidence(residence);
-            currentClient.getUserEntity().setPassword(password);
-            currentClient.getUserEntity().setPasswordSalt(passwordSalt);
-            currentClient.getUserEntity().setDateOfBirth((java.sql.Date) dateOfBirth);
-            currentClient.getUserEntity().setFirstTimeProfileCheck(firstTimeProfileCheck);
+            currentClient.getUserEntity().setZipCode(newClient.getUserEntity().getZipCode());
+            currentClient.getUserEntity().setResidence(newClient.getUserEntity().getResidence());
+            currentClient.getUserEntity().setPassword(newClient.getUserEntity().getPassword());
+            currentClient.getUserEntity().setPasswordSalt(newClient.getUserEntity().getPasswordSalt());
+            currentClient.getUserEntity().setDateOfBirth(newClient.getUserEntity().getDateOfBirth());
+            currentClient.getUserEntity().setFirstTimeProfileCheck(newClient.getUserEntity().getFirstTimeProfileCheck());
 
-            clientDAO.update(client);
+            clientDAO.update(newClient);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
