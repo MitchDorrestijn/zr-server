@@ -16,15 +16,15 @@ USE zorgrit;
 CREATE TABLE IF NOT EXISTS `utility` (
   name     VARCHAR(255) NOT NULL,
   priority INT(11)      NOT NULL,
-  PRIMARY KEY (NAME)
+  PRIMARY KEY (name)
 );
 
 -- -----------------------------------------------------
--- Table utility
+-- Table limitation
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `utility` (
+CREATE TABLE IF NOT EXISTS `limitation` (
   name VARCHAR(255) NOT NULL,
-  PRIMARY KEY (NAME)
+  PRIMARY KEY (name)
 );
 
 -- -----------------------------------------------------
@@ -81,21 +81,6 @@ CREATE TABLE IF NOT EXISTS `driver` (
 );
 
 -- -----------------------------------------------------
--- Table driver utility
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `clientUtility` (
-  clientId     INT(11)       NOT NULL,
-  utility      VARCHAR(255)  NOT NULL,
-  PRIMARY KEY (clientId, utility),
-  CONSTRAINT clientReference FOREIGN KEY (clientId) REFERENCES client (clientId)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT utilityReference FOREIGN KEY (utility) REFERENCES utility (utility)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-);
-
--- -----------------------------------------------------
 -- Table driverCar
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `driverCar` (
@@ -119,12 +104,12 @@ CREATE TABLE IF NOT EXISTS `driverCar` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `clientLimitation` (
   clientId   INT(11)      NOT NULL,
-  utility    VARCHAR(255) NOT NULL,
-  PRIMARY KEY (clientId, utility),
+  limitation    VARCHAR(255) NOT NULL,
+  PRIMARY KEY (clientId, limitation),
   CONSTRAINT clientLimitationClient FOREIGN KEY (clientId) REFERENCES client (clientId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT clientLimitationLimitation FOREIGN KEY (utility) REFERENCES utility (name)
+  CONSTRAINT clientLimitationLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
@@ -147,12 +132,12 @@ CREATE TABLE IF NOT EXISTS `driverAvailability` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `driverLimitationManageable` (
   driverId   INT(11)      NOT NULL,
-  utility VARCHAR(255) NOT NULL,
-  PRIMARY KEY (driverId, utility),
+  limitation VARCHAR(255) NOT NULL,
+  PRIMARY KEY (driverId, limitation),
   CONSTRAINT driverLimitationManageableDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT driverLimitationManageableLimitation FOREIGN KEY (utility) REFERENCES utility (name)
+CONSTRAINT driverLimitationManageableLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );

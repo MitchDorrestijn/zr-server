@@ -26,7 +26,7 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
 
     @SuppressWarnings("unchecked")
     public List<String> getAllLimitationById(int id) {
-        return getEntityManager().createQuery("SELECT limitation FROM ClientlimitationEntity " +
+        return getEntityManager().createQuery("SELECT limitation FROM ClientLimitationEntity " +
                 "WHERE clientId = :id").setParameter("id", id).getResultList();
 
     }

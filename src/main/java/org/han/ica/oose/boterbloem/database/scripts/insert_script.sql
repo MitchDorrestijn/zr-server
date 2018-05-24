@@ -11,7 +11,7 @@ INSERT INTO `utility` (name, priority) VALUES
   ('rolstoel', 2),
   ('rollator', 1);
 
-INSERT INTO `utility` (name) VALUES
+INSERT INTO `limitation` (name) VALUES
   ('geestelijk gehandicapten'),
   ('zware/Fysieke handicap'),
   ('ouderen');
@@ -59,7 +59,7 @@ INSERT INTO `driverCar` (driverId, utility, numberPlate, numberOfPassengers, bra
   (10, 'scootmobiel', 'nf-24-fe', 3, 'Nissan', 'D'),
   (11, 'scootmobiel', 'nf-26-fd', 3, 'Audi', 'E');
 
-INSERT INTO `clientLimitation` (clientId, utility) VALUES
+INSERT INTO `clientLimitation` (clientId, limitation) VALUES
   (2, 'zware/Fysieke handicap'),
   (3, 'ouderen'),
   (6, 'ouderen');
@@ -74,7 +74,7 @@ INSERT INTO `driverAvailability` (driverId, startDateTime, endDateTime) VALUES
   (12, '2018-01-03 12:00:00', '2019-01-03 17:00:00'),
   (13, '2018-01-03 14:00:00', '2018-02-03 15:00:00');
 
-INSERT INTO `driverLimitationManageable` (driverId, utility) VALUES
+INSERT INTO `driverLimitationManageable` (driverId, limitation) VALUES
   (1, 'geestelijk gehandicapten'),
   (4, 'ouderen');
 
