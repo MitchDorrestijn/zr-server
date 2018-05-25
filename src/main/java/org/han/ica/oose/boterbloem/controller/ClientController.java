@@ -14,7 +14,6 @@ import java.util.*;
 @CrossOrigin(origins = "*")
 @RequestMapping("/client")
 public class ClientController {
-
     private ClientService clientService = new ClientService();
 
     /** Constructs a new ClientController. */
@@ -22,7 +21,6 @@ public class ClientController {
     ClientController() {
         //empty constructor for spring
     }
-
     /**
      * @param createClientDisplay createClientDisplay to be added
      * @return new createClientDisplay
@@ -58,6 +56,7 @@ public class ClientController {
      * @param id of Client
      * @return Client
      */
+    @CrossOrigin
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ClientEntity getClientById(@PathVariable int id) {
         return clientService.findById(id);

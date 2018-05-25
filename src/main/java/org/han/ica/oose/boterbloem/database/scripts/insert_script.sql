@@ -64,7 +64,6 @@ VALUES
   ('Mickey', 'van Zanten', 'mickey@tielmobiel.net', '0623458256', 'Marga Klompestraat', 140, '4133HN', 'Vianen', 'sesamopenu', 'ghg', '1964-02-23');
 
 
-
 INSERT INTO `client` (clientId, companion, driverPreferenceForced, warningPKB, PKB, companionRequired, image, bankaccount) VALUES
 
   (2, 'Sven', FALSE, TRUE, 500, FALSE, NULL, "NL63RABE3559999235"),
@@ -116,7 +115,6 @@ INSERT INTO `driverCar` (driverId, utility, numberPlate, numberOfPassengers, bra
   (10, 'scootmobiel', 'nf-24-fe', 3, 'Nissan', 'D'),
 
   (11, 'scootmobiel', 'nf-26-fd', 3, 'Audi', 'E');
-
 
 INSERT INTO `clientLimitation` (clientId, limitation) VALUES
 

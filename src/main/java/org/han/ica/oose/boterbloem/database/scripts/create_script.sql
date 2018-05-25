@@ -104,7 +104,6 @@ CREATE TABLE IF NOT EXISTS `client` (
   image                  LONGTEXT     NULL,
 
   bankAccount            VARCHAR(255) NOT NULL,
-
   PRIMARY KEY (clientId),
 
   CONSTRAINT ClientUser FOREIGN KEY (clientId) REFERENCES user (id)
@@ -132,7 +131,6 @@ CREATE TABLE IF NOT EXISTS `driver` (
   image           LONGTEXT     NULL,
 
   accountnr       VARCHAR(255) NULL,
-
   PRIMARY KEY (driverId),
 
   CONSTRAINT DriverUser FOREIGN KEY (driverId) REFERENCES user (id)

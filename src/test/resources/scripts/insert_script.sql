@@ -32,12 +32,12 @@ VALUES
   ('Iefke', 'Vloet', 'iefke@vloet.com', '0623458256', 'Haverakker', 102, '2743EJ', 'Waddinxveen', 'sesamopenu', 'ghg', '1989-04-16'),
   ('Mickey', 'van Zanten', 'mickey@tielmobiel.net', '0623458256', 'Marga Klompestraat', 140, '4133HN', 'Vianen', 'sesamopenu', 'ghg', '1964-02-23');
 
-INSERT INTO `client` (clientId, companion, utility, driverPreferenceForced) VALUES
-  (2, 'Sven', 'rolstoel', FALSE),
-  (3, 'Henk', NULL, FALSE),
-  (5, NULL, NULL, FALSE),
-  (6, 'Klaas', 'scootmobiel', FALSE),
-  (7, NULL, 'rollator', TRUE);
+INSERT INTO `client` (clientId, companion, utility, driverPreferenceForced, warningPKB, PKB) VALUES
+  (2, 'Sven', 'rolstoel', FALSE, FALSE, 1000),
+  (3, 'Henk', NULL, FALSE, FALSE, 1000),
+  (5, NULL, NULL, FALSE, TRUE, 500),
+  (6, 'Klaas', 'scootmobiel', FALSE, FALSE, 800),
+  (7, NULL, 'rollator', TRUE, TRUE, 600);
 
 INSERT INTO `driver` (driverId, verification, utility, type_of_payment) VALUES
   (1, TRUE, NULL, 'Vrijwillig'),
