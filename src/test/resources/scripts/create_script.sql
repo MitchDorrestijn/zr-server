@@ -19,9 +19,9 @@ CREATE TABLE IF NOT EXISTS `utility` (
 );
 
 -- -----------------------------------------------------
--- Table limitation
+-- Table utility
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `limitation` (
+CREATE TABLE IF NOT EXISTS `utility` (
   name VARCHAR(255) NOT NULL,
   PRIMARY KEY (NAME)
 );
@@ -54,6 +54,8 @@ CREATE TABLE IF NOT EXISTS `client` (
   companion              VARCHAR(255) NULL     DEFAULT NULL,
   utility                VARCHAR(255) NULL     DEFAULT NULL,
   driverPreferenceForced BOOLEAN      NOT NULL DEFAULT FALSE,
+  warningPKB             BOOLEAN      NULL     DEFAULT NULL,
+  PKB                    int(255)   NOT NULL,
   PRIMARY KEY (clientId),
   CONSTRAINT ClientUser FOREIGN KEY (clientId) REFERENCES user (id)
     ON DELETE NO ACTION
@@ -70,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `driver` (
   driverId     INT(11)      NOT NULL,
   verification BOOLEAN      NOT NULL,
   utility      VARCHAR(255) NULL     DEFAULT NULL,
+  type_of_payment VARCHAR(255)  NULL,
   PRIMARY KEY (driverId),
   CONSTRAINT DriverUser FOREIGN KEY (driverId) REFERENCES user (id)
     ON DELETE NO ACTION
@@ -98,12 +101,12 @@ CREATE TABLE IF NOT EXISTS `driverCar` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `clientLimitation` (
   clientId   INT(11)      NOT NULL,
-  limitation VARCHAR(255) NOT NULL,
-  PRIMARY KEY (clientId, limitation),
+  utility VARCHAR(255) NOT NULL,
+  PRIMARY KEY (clientId, utility),
   CONSTRAINT clientLimitationClient FOREIGN KEY (clientId) REFERENCES client (clientId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT clientLimitationLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
+  CONSTRAINT clientLimitationLimitation FOREIGN KEY (utility) REFERENCES utility (name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
@@ -126,12 +129,12 @@ CREATE TABLE IF NOT EXISTS `driverAvailability` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `driverLimitationManageable` (
   driverId   INT(11)      NOT NULL,
-  limitation VARCHAR(255) NOT NULL,
-  PRIMARY KEY (driverId, limitation),
+  utility VARCHAR(255) NOT NULL,
+  PRIMARY KEY (driverId, utility),
   CONSTRAINT driverLimitationManageableDriver FOREIGN KEY (driverId) REFERENCES driver (driverId)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT driverLimitationManageableLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
+  CONSTRAINT driverLimitationManageableLimitation FOREIGN KEY (utility) REFERENCES utility (name)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
@@ -227,6 +230,7 @@ CREATE TABLE IF NOT EXISTS `ride` (
   repeatingRideId         INT(11)      NULL,
   cancelledByClient       BOOLEAN      NULL,
   executed                BOOLEAN      NOT NULL DEFAULT FALSE,
+  price_of_ride           FLOAT        NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT RideClient FOREIGN KEY (clientId) REFERENCES client (clientId)
     ON DELETE NO ACTION
@@ -312,3 +316,11 @@ CREATE TABLE IF NOT EXISTS `rideMatchesRejected` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
+
+
+CREATE TABLE IF NOT EXISTS `ratings` (
+	  driverId	INT				NOT NULL,
+    clientId	INT				NOT NULL,
+    beoordeling	VARCHAR(1000)	NOT NULL,
+    sterren		INT				NOT NULL
+)
