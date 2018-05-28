@@ -1,7 +1,7 @@
 package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.service.ClientRideService;
-import org.han.ica.oose.boterbloem.service.projection.ClientRideDisplay;
+import org.han.ica.oose.boterbloem.service.displays.ClientRideDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
