@@ -1,5 +1,7 @@
 package org.han.ica.oose.boterbloem.entity;
 
+import org.han.ica.oose.boterbloem.domain.Client;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -20,7 +22,18 @@ public class RideEntity {
     private Byte cancelledByClient;
     private byte executed;
     private DriverEntity driverEntity;
-    private float price_of_ride;
+    private float priceOfRide;
+    private ClientEntity clientEntity;
+
+    @OneToOne
+    @JoinColumn(name = "clientId")
+    public ClientEntity getClientEntity() {
+        return clientEntity;
+    }
+
+    public void setClientEntity(ClientEntity clientEntity) {
+        this.clientEntity = clientEntity;
+    }
 
     @OneToOne
     @JoinColumn(name = "driverId")
@@ -34,13 +47,13 @@ public class RideEntity {
 
     @Basic
     @Column(name = "price_of_ride")
-    public float getPrice_of_ride() {
-        return price_of_ride;
+    public float getPriceOfRide() {
+        return priceOfRide;
     }
 
 
-    public void setPrice_of_ride(float price_of_ride) {
-        this.price_of_ride = price_of_ride;
+    public void setPriceOfRide(float priceOfRide) {
+        this.priceOfRide = priceOfRide;
     }
 
     @Id
