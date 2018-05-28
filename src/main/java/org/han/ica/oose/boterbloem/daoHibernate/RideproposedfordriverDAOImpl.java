@@ -13,7 +13,7 @@ public class RideproposedfordriverDAOImpl extends GenericDAOImpl<Rideproposedfor
      * @param em [provided] - runs querys
      */
     @Autowired
-    public RideproposedfordriverDAOImpl(EntityManager em) {
-        super(em, RideproposedfordriverEntity.class);
+    public RideproposedfordriverDAOImpl() {
+        super(RideproposedfordriverEntity.class);
     }
 }

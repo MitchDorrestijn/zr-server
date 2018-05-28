@@ -3,10 +3,11 @@ package org.han.ica.oose.boterbloem.service.projection;
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClientDetailDisplay {
     private ClientEntity client;
-    private ArrayList <String> limitations;
+    private List<String> limitations;
 
     /**
      * Getter for property 'client'.
@@ -31,7 +32,7 @@ public class ClientDetailDisplay {
      *
      * @return Value for property 'limitations'.
      */
-    public ArrayList <String> getLimitations() {
+    public List<String> getLimitations() {
         return limitations;
     }
 
@@ -40,7 +41,7 @@ public class ClientDetailDisplay {
      *
      * @param limitations Value to set for property 'limitations'.
      */
-    public void setLimitations(ArrayList <String> limitations) {
+    public void setLimitations(List<String> limitations) {
         this.limitations = limitations;
     }
 }

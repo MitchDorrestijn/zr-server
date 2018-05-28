@@ -19,16 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientService implements IClientservice {
-
     private static final Logger LOGGER = Logger.getLogger(ClientService.class.getName());
-    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    private IClientDAO clientDAO = new ClientDAOImpl(entityManager);
-    private IUserDAO userDAO = new UserDAOImpl(entityManager);
-    private IClientUtilityDAO clientUtilityDAO = new ClientUtilityDAO(entityManager);
-    private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl(entityManager);
-    private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl(entityManager);
+    private IClientDAO clientDAO = new ClientDAOImpl();
+    private IUserDAO userDAO = new UserDAOImpl();
+    private IClientUtilityDAO clientUtilityDAO = new ClientUtilityDAO();
+    private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl();
+    private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
 
 
     public ClientService() {
@@ -68,7 +65,6 @@ public class ClientService implements IClientservice {
         List <ClientDisplay> clientDisplays = new ArrayList <>();
         try {
             List <ClientEntity> clientEntities = clientDAO.findAll();
-            System.out.println("REEEEEEEEEEEEEEEEE" + clientEntities.size());
             for (ClientEntity i : clientEntities) {
                 try {
                     int driverId = i.getClientId();

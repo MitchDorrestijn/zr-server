@@ -2,7 +2,10 @@ package org.han.ica.oose.boterbloem.daoHibernate.genericDao;
 
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
+import java.util.logging.Logger;
 
 public abstract class GenericDAOImpl<T> implements IGenericDAO<T>{
 
@@ -10,9 +13,12 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T>{
 
     private EntityManager em;
 
+    private static final Logger LOGGER = Logger.getLogger(GenericDAOImpl.class.getName());
 
-    public GenericDAOImpl(EntityManager em, Class<T> classImpl) {
-        this.em = em;
+
+    public GenericDAOImpl(Class<T> classImpl) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
+        em = entityManagerFactory.createEntityManager();
         this.classImpl = classImpl;
     }
 

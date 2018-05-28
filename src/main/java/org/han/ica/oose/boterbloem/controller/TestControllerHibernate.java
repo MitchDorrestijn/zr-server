@@ -26,18 +26,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/test123")
 public class TestControllerHibernate {
-
-
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-    IDriverDAO driverDAOImpl = new DriverDAOImpl(entityManager);
-    IRideDAO rideDAO = new RideDAOImpl(entityManager);
-    IRatingsDAO ratingsDAO = new RatingsDAOImpl(entityManager);
-    DriverService dr = new DriverService();
-    IDrivercarDAO drivercarDAO = new DrivercarDAOImpl(entityManager);
-    IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl(entityManager);
-    IClientDAO dao = new ClientDAOImpl(entityManager);
+    private IDriverDAO driverDAOImpl = new DriverDAOImpl();
+    private IRideDAO rideDAO = new RideDAOImpl();
+    private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
+    private DriverService dr = new DriverService();
+    private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl();
+    private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
+    private IClientDAO dao = new ClientDAOImpl();
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public DriverEntity getDriverEntity(@PathVariable int id) {
@@ -96,14 +91,6 @@ public class TestControllerHibernate {
     public ClientEntity asd() {
         return dao.findById(2);
     }
-
-//    @CrossOrigin
-//    @RequestMapping(value = "/testPutDriver", method = RequestMethod.POST)
-//    public ResponseEntity<String> createDriverTest(@RequestBody CreateDriverDisplay createDriverDisplay) {
-//        dr.createChauffeur(createDriverDisplay);
-//        HttpHeaders headers = new HttpHeaders();
-//        return new ResponseEntity<>(headers, HttpStatus.CREATED);
-//    }
 
 
 }

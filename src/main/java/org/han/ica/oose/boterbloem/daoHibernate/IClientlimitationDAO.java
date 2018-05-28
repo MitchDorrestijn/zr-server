@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface IClientlimitationDAO extends IGenericDAO <ClientLimitationEntity> {
 
-    ArrayList<String> getByClientId(int id);
+    List<String> getByClientId(int id);
 
-//    List<String> getAllLimitationById(int id);
+    List<String> getAllLimitationById(int id);
 
-    void updateClientLimitations(ArrayList<String> limitations, int clientId);
+    void updateClientLimitations(List<String> limitations, int clientId);
 }

@@ -3,15 +3,14 @@ package org.han.ica.oose.boterbloem.service.projection;
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 public class DriverDetailDisplay {
 
     DriverEntity driver;
     DrivercarEntity drivercarEntity;
     private int careInstitutionId;
-    ArrayList<String> limitationEntities;
+    List<String> limitationEntities;
 
     public DriverEntity getDriver() {
         return driver;
@@ -29,11 +28,11 @@ public class DriverDetailDisplay {
         this.drivercarEntity = drivercarEntity;
     }
 
-    public ArrayList<String> getLimitationEntities() {
+    public List<String> getLimitationEntities() {
         return limitationEntities;
     }
 
-    public void setLimitationEntities(ArrayList<String> limitationEntities) {
+    public void setLimitationEntities(List<String> limitationEntities) {
         this.limitationEntities = limitationEntities;
     }
 

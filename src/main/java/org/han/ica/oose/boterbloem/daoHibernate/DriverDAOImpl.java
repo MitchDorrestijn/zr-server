@@ -10,11 +10,10 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public DriverDAOImpl(EntityManager em) {
-        super(em, DriverEntity.class);
+    public DriverDAOImpl() {
+        super(DriverEntity.class);
     }
 
 

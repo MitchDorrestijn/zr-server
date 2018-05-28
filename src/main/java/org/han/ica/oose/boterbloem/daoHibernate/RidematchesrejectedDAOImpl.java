@@ -13,7 +13,7 @@ public class RidematchesrejectedDAOImpl extends GenericDAOImpl<Ridematchesreject
      * @param em [provided] - runs querys
      */
     @Autowired
-    public RidematchesrejectedDAOImpl(EntityManager em) {
-        super(em, RidematchesrejectedEntity.class);
+    public RidematchesrejectedDAOImpl() {
+        super(RidematchesrejectedEntity.class);
     }
 }

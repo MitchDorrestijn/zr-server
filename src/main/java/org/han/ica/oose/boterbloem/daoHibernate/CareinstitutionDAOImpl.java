@@ -10,10 +10,9 @@ public class CareinstitutionDAOImpl extends GenericDAOImpl<CareinstitutionEntity
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public CareinstitutionDAOImpl(EntityManager em) {
-        super(em, CareinstitutionEntity.class);
+    public CareinstitutionDAOImpl() {
+        super(CareinstitutionEntity.class);
     }
 }

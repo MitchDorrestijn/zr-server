@@ -11,10 +11,9 @@ public class LimitationDAOImpl extends GenericDAOImpl<LimitationEntity> implemen
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public LimitationDAOImpl(EntityManager em) {
-        super(em, LimitationEntity.class);
+    public LimitationDAOImpl() {
+        super(LimitationEntity.class);
     }
 }

@@ -18,8 +18,8 @@ public class RatingsService implements IRatingsService {
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
     private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    private IRatingsDAO ratingsDAO  = new RatingsDAOImpl(entityManager);
-    private IUserDAO userDAO = new UserDAOImpl(entityManager);
+    private IRatingsDAO ratingsDAO  = new RatingsDAOImpl();
+    private IUserDAO userDAO = new UserDAOImpl();
 
     public RatingsService() {
         //Empty constructor

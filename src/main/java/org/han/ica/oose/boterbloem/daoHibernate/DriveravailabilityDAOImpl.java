@@ -10,10 +10,9 @@ public class DriveravailabilityDAOImpl extends GenericDAOImpl<Driveravailability
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public DriveravailabilityDAOImpl(EntityManager em) {
-        super(em, DriveravailabilityEntity.class);
+    public DriveravailabilityDAOImpl() {
+        super(DriveravailabilityEntity.class);
     }
 }

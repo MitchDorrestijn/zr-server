@@ -13,11 +13,10 @@ public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<Drivercareinsti
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public DrivercareinstitutionDAOImpl(EntityManager em) {
-        super(em, DrivercareinstitutionEntity.class);
+    public DrivercareinstitutionDAOImpl() {
+        super(DrivercareinstitutionEntity.class);
     }
 
     public DrivercareinstitutionEntity find(DrivercareinstitutionEntityPK drivercareinstitutionEntityPK){
