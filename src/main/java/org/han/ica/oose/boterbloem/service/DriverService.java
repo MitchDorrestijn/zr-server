@@ -3,9 +3,11 @@ package org.han.ica.oose.boterbloem.service;
 import org.han.ica.oose.boterbloem.daoHibernate.*;
 
 import org.han.ica.oose.boterbloem.entity.*;
-import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
-import org.han.ica.oose.boterbloem.service.projection.DriverDetailDisplay;
-import org.han.ica.oose.boterbloem.service.projection.DriverDisplay;
+
+import org.han.ica.oose.boterbloem.service.displays.CreateDriverDisplay;
+import org.han.ica.oose.boterbloem.service.displays.DriverDetailDisplay;
+import org.han.ica.oose.boterbloem.service.displays.DriverDisplay;
+
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercareinstitutionEntity;
@@ -18,6 +20,7 @@ import java.util.logging.Logger;
 
 public class DriverService implements IDriverService {
     private static final Logger LOGGER = Logger.getLogger(DriverService.class.getName());
+
 
     private IDriverDAO driverDao = new DriverDAOImpl();
     private IRideDAO rideDAO = new RideDAOImpl();

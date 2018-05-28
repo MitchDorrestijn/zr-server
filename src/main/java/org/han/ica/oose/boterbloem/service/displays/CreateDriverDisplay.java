@@ -1,11 +1,9 @@
-package org.han.ica.oose.boterbloem.service.projection;
+package org.han.ica.oose.boterbloem.service.displays;
 
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
-import org.han.ica.oose.boterbloem.entity.LimitationEntity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CreateDriverDisplay {
     DriverEntity driver;

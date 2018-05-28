@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientlimitationDAOImpl extends GenericDAOImpl <ClientLimitationEntity> implements IClientlimitationDAO {
+public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEntity> implements IClientlimitationDAO {
 
     /**
      * Hook up the basic CRUD queries
@@ -29,7 +29,7 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl <ClientLimitationEnt
      */
 
     @SuppressWarnings("unchecked")
-    public List <String> getAllLimitationById(int id) {
+    public List<String> getAllLimitationById(int id) {
         return getEntityManager().createQuery("SELECT limitation FROM ClientLimitationEntity " +
                 "WHERE clientId = :id").setParameter("id", id).getResultList();
     }
@@ -46,7 +46,7 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl <ClientLimitationEnt
                 clientLimitationEntity.setLimitation(limitation);
                 add(clientLimitationEntity);
                 getEntityManager().flush();
-            } catch ( Exception e ) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

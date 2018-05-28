@@ -1,6 +1,5 @@
 package org.han.ica.oose.boterbloem.entity;
 
-import org.han.ica.oose.boterbloem.domain.Client;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

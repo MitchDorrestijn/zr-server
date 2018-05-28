@@ -25,8 +25,8 @@ public class CareInstitutionController {
     }
 
     /**
-     * @param careInstitution CareInstitution
-     * @return new CareInstitution
+     * @param careInstitution ICareInstitution
+     * @return new ICareInstitution
      */
     @CrossOrigin
     @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
@@ -37,10 +37,10 @@ public class CareInstitutionController {
     }
 
     /**
-     * Method for returning a CareInstitution
+     * Method for returning a ICareInstitution
      *
-     * @param id of CareInstitution
-     * @return CareInstitution
+     * @param id of ICareInstitution
+     * @return ICareInstitution
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public CareinstitutionEntity getCareInstitution(@PathVariable int id) {
@@ -49,9 +49,9 @@ public class CareInstitutionController {
     }
 
     /**
-     * Method for returning all CareInstitution
+     * Method for returning all ICareInstitution
      *
-     * @return List of CareInstitution
+     * @return List of ICareInstitution
      */
     @RequestMapping(value = "/zorginstellingen", method = RequestMethod.GET)
     public List<CareinstitutionEntity> getAllCareInstitutions() {
@@ -59,9 +59,9 @@ public class CareInstitutionController {
     }
 
     /**
-     * @param id              of CareInstitution
-     * @param careInstitution CareInstitution
-     * @return CareInstitution
+     * @param id              of ICareInstitution
+     * @param careInstitution ICareInstitution
+     * @return ICareInstitution
      */
     @CrossOrigin
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
@@ -80,8 +80,8 @@ public class CareInstitutionController {
     }
 
     /**
-     * @param id of CareInstitution
-     * @return CareInstitution with HttpStatus.NO_CONTENT
+     * @param id of ICareInstitution
+     * @return ICareInstitution with HttpStatus.NO_CONTENT
      */
     @CrossOrigin
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)

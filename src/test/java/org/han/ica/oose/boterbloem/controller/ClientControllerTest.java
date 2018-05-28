@@ -1,6 +1,6 @@
 //package org.han.ica.oose.boterbloem.controller;
 //
-//import org.han.ica.oose.boterbloem.domain.Client;
+//import org.han.ica.oose.boterbloem.domain.domainImplementation.Client;
 //import org.han.ica.oose.boterbloem.service.ClientService;
 //import org.junit.*;
 //

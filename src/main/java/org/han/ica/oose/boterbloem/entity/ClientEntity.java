@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.entity;
 
-import org.han.ica.oose.boterbloem.domain.Ride;
+
 
 import javax.persistence.*;
 
