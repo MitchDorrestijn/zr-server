@@ -1,9 +1,9 @@
 package org.han.ica.oose.boterbloem.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import javax.persistence.*;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "driver", schema = "zorgrit", catalog = "")

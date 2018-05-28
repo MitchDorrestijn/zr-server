@@ -1,216 +1,85 @@
 package org.han.ica.oose.boterbloem.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Representative domain class for a Driver
- */
-public class Driver {
-    int id;
-    String name;
-    String typeOfPayment;
-    Float totalEarned;
-    int totalRides;
-    String numberPlate;
-    int numberOfPassengers;
-    String segment;
-    int rating;
+public class Driver extends User{
 
-    public Driver() {
-        //Empty constructor
-    }
+    private byte verification; //  VOG verified
+    private String type_of_payment;
+    private String image; //   copy of driver's licence
+    private String accountnr; // bank account number for payment purposes
+    private List<DriverCar> driverCars =  new ArrayList<>();
 
-    /***
+    /**
+     * Getter for property 'verification'.
      *
-     * @param id - ID of the driver
-     * @param name - Full name of the driver
-     * @param typeOfPayment - Type of payment that the driver provides
-     * @param totalEarned - Total balance the driver earned
-     * @param totalRides - Total rides the driver did
-     * @param numberPlate - The license plate of the car that the driver drives around in
-     * @param numberOfPassengers - The number of passengers that the driver can take at once
-     * @param segment - The segment of the car
-     * @param rating - The average rating from the clients from a 0 to 5 scale
+     * @return Value for property 'verification'.
      */
-    @JsonCreator
-    public Driver(
-            @JsonProperty("id") int id,
-            @JsonProperty("name") String name,
-            @JsonProperty("typeOfPayment") String typeOfPayment,
-            @JsonProperty("totalEarned") Float totalEarned,
-            @JsonProperty("totalRides") int totalRides,
-            @JsonProperty("numberPlate") String numberPlate,
-            @JsonProperty("numberOfPassengers") int numberOfPassengers,
-            @JsonProperty("segment") String segment,
-            @JsonProperty("rating") int rating) {
-        this.id = id;
-        this.name = name;
-        this.typeOfPayment = typeOfPayment;
-        this.totalEarned = totalEarned;
-        this.totalRides = totalRides;
-        this.numberPlate = numberPlate;
-        this.numberOfPassengers = numberOfPassengers;
-        this.segment = segment;
-        this.rating = rating;
+    public byte getVerification() {
+        return verification;
     }
 
-    /***
-     * Getter for property 'id'.
-     * @return value of the property 'id'.
+    /**
+     * Setter for property 'verification'.
+     *
+     * @param verification Value to set for property 'verification'.
      */
-    public int getId() {
-        return id;
+    public void setVerification(byte verification) {
+        this.verification = verification;
     }
 
-    /***
-     * Setter for property 'id'.
-     * @param id Value to set for property 'id'.
+    /**
+     * Getter for property 'type_of_payment'.
+     *
+     * @return Value for property 'type_of_payment'.
      */
-    public void setId(int id) {
-        this.id = id;
+    public String getType_of_payment() {
+        return type_of_payment;
     }
 
-    /***
-     * Getter for property 'name'.
-     * @return value of the property 'name'.
+    /**
+     * Setter for property 'type_of_payment'.
+     *
+     * @param type_of_payment Value to set for property 'type_of_payment'.
      */
-    public String getName() {
-        return name;
+    public void setType_of_payment(String type_of_payment) {
+        this.type_of_payment = type_of_payment;
     }
 
-    /***
-     * Setter for property 'name'.
-     * @param name Value to set for property 'name'.
+    /**
+     * Getter for property 'image'.
+     *
+     * @return Value for property 'image'.
      */
-    public void setName(String name) {
-        this.name = name;
+    public String getImage() {
+        return image;
     }
 
-    /***
-     * Getter for property 'typeOfPayment'.
-     * @return value of the property 'typeOfPayment'.
+    /**
+     * Setter for property 'image'.
+     *
+     * @param image Value to set for property 'image'.
      */
-    public String getTypeOfPayment() {
-        return typeOfPayment;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    /***
-     * Setter for property 'typeOfPayment'.
-     * @param typeOfPayment Value to set for property 'typeOfPayment'.
+    /**
+     * Getter for property 'accountnr'.
+     *
+     * @return Value for property 'accountnr'.
      */
-    public void setTypeOfPayment(String typeOfPayment) {
-        this.typeOfPayment = typeOfPayment;
+    public String getAccountnr() {
+        return accountnr;
     }
 
-    /***
-     * Getter for property 'totalEarned'.
-     * @return value of the property 'totalEarned'.
+    /**
+     * Setter for property 'accountnr'.
+     *
+     * @param accountnr Value to set for property 'accountnr'.
      */
-    public Float getTotalEarned() {
-        return totalEarned;
-    }
-
-    /***
-     * Setter for property 'totalEarned'.
-     * @param totalEarned Value to set for property 'totalEarned'.
-     */
-    public void setTotalEarned(Float totalEarned) {
-        this.totalEarned = totalEarned;
-    }
-
-    /***
-     * Getter for property 'totalRides'.
-     * @return value of the property 'totalRides'.
-     */
-    public int getTotalRides() {
-        return totalRides;
-    }
-
-    /***
-     * Setter for property 'totalRides'.
-     * @param totalRides Value to set for property 'totalRides'.
-     */
-    public void setTotalRides(int totalRides) {
-        this.totalRides = totalRides;
-    }
-
-    /***
-     * Getter for property 'numberPlate'.
-     * @return value of the property 'numberPlate'.
-     */
-    public String getNumberPlate() {
-        return numberPlate;
-    }
-
-    /***
-     * Setter for property 'numberPlate'.
-     * @param numberPlate Value to set for property 'numberPlate'.
-     */
-    public void setNumberPlate(String numberPlate) {
-        this.numberPlate = numberPlate;
-    }
-
-    /***
-     * Getter for property 'numberOfPassengers'.
-     * @return value of the property 'numberOfPassengers'.
-     */
-    public int getNumberOfPassengers() {
-        return numberOfPassengers;
-    }
-
-    /***
-     * Setter for property 'numberOfPassengers'.
-     * @param numberOfPassengers Value to set for property 'numberOfPassengers'.
-     */
-    public void setNumberOfPassengers(int numberOfPassengers) {
-        this.numberOfPassengers = numberOfPassengers;
-    }
-
-    /***
-     * Getter for property 'segment'.
-     * @return value of the property 'segment'.
-     */
-    public String getSegment() {
-        return segment;
-    }
-
-    /***
-     * Setter for property 'segment'.
-     * @param segment Value to set for property 'segment'.
-     */
-    public void setSegment(String segment) {
-        this.segment = segment;
-    }
-
-    /***
-     * Getter for property 'rating'.
-     * @return value of the property 'rating'.
-     */
-    public int getRating() {
-        return rating;
-    }
-
-    /***
-     * Setter for property 'rating'.
-     * @param rating Value to set for property 'rating'.
-     */
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    @Override
-    public String toString() {
-        return "Driver{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", typeOfPayment='" + typeOfPayment + '\'' +
-                ", totalEarned=" + totalEarned +
-                ", totalRides=" + totalRides +
-                ", numberPlate='" + numberPlate + '\'' +
-                ", numberOfPassengers=" + numberOfPassengers +
-                ", segment='" + segment + '\'' +
-                ", rating=" + rating +
-                '}';
+    public void setAccountnr(String accountnr) {
+        this.accountnr = accountnr;
     }
 }

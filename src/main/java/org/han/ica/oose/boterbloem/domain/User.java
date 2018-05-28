@@ -1,42 +1,34 @@
 package org.han.ica.oose.boterbloem.domain;
 
-import java.util.Date;
+import java.sql.Date;
 
-/**
- * Representative domain class for a user
- */
 public class User {
 
-    private int id;
+    private Address address;
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String street;
-    private int houseNumber;
-    private int zipCode;
-    private String residence;
     private String password;
-    private String passwordSalt;
     private Date dateOfBirth;
-    private boolean firstTimeProfileCheck;
+    private byte firstTimeProfileCheck;
 
     /**
-     * Getter for property 'id'.
+     * Getter for property 'address'.
      *
-     * @return Value for property 'id'.
+     * @return Value for property 'address'.
      */
-    public int getId() {
-        return id;
+    public Address getAddress() {
+        return address;
     }
 
     /**
-     * Setter for property 'id'.
+     * Setter for property 'address'.
      *
-     * @param id Value to set for property 'id'.
+     * @param address Value to set for property 'address'.
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     /**
@@ -112,78 +104,6 @@ public class User {
     }
 
     /**
-     * Getter for property 'street'.
-     *
-     * @return Value for property 'street'.
-     */
-    public String getStreet() {
-        return street;
-    }
-
-    /**
-     * Setter for property 'street'.
-     *
-     * @param street Value to set for property 'street'.
-     */
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    /**
-     * Getter for property 'houseNumber'.
-     *
-     * @return Value for property 'houseNumber'.
-     */
-    public int getHouseNumber() {
-        return houseNumber;
-    }
-
-    /**
-     * Setter for property 'houseNumber'.
-     *
-     * @param houseNumber Value to set for property 'houseNumber'.
-     */
-    public void setHouseNumber(int houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    /**
-     * Getter for property 'zipCode'.
-     *
-     * @return Value for property 'zipCode'.
-     */
-    public int getZipCode() {
-        return zipCode;
-    }
-
-    /**
-     * Setter for property 'zipCode'.
-     *
-     * @param zipCode Value to set for property 'zipCode'.
-     */
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    /**
-     * Getter for property 'residence'.
-     *
-     * @return Value for property 'residence'.
-     */
-    public String getResidence() {
-        return residence;
-    }
-
-    /**
-     * Setter for property 'residence'.
-     *
-     * @param residence Value to set for property 'residence'.
-     */
-    public void setResidence(String residence) {
-        this.residence = residence;
-    }
-
-    /**
      * Getter for property 'password'.
      *
      * @return Value for property 'password'.
@@ -199,24 +119,6 @@ public class User {
      */
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    /**
-     * Getter for property 'passwordSalt'.
-     *
-     * @return Value for property 'passwordSalt'.
-     */
-    public String getPasswordSalt() {
-        return passwordSalt;
-    }
-
-    /**
-     * Setter for property 'passwordSalt'.
-     *
-     * @param passwordSalt Value to set for property 'passwordSalt'.
-     */
-    public void setPasswordSalt(String passwordSalt) {
-        this.passwordSalt = passwordSalt;
     }
 
     /**
@@ -238,20 +140,20 @@ public class User {
     }
 
     /**
-     * Getter for property 'firstTimeProfileChec'.
+     * Getter for property 'firstTimeProfileCheck'.
      *
-     * @return Value for property 'firstTimeProfileChec'.
+     * @return Value for property 'firstTimeProfileCheck'.
      */
-    public boolean isFirstTimeProfileCheck() {
+    public byte getFirstTimeProfileCheck() {
         return firstTimeProfileCheck;
     }
 
     /**
-     * Setter for property 'firstTimeProfileChec'.
+     * Setter for property 'firstTimeProfileCheck'.
      *
-     * @param firstTimeProfileChec Value to set for property 'firstTimeProfileChec'.
+     * @param firstTimeProfileCheck Value to set for property 'firstTimeProfileCheck'.
      */
-    public void setFirstTimeProfileCheck(boolean firstTimeProfileChec) {
-        this.firstTimeProfileCheck = firstTimeProfileChec;
+    public void setFirstTimeProfileCheck(byte firstTimeProfileCheck) {
+        this.firstTimeProfileCheck = firstTimeProfileCheck;
     }
 }
