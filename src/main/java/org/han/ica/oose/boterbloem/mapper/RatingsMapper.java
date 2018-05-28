@@ -15,14 +15,26 @@ public class RatingsMapper {
     private IUserDAO userDAO = new UserDAOImpl();
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
 
+    /**
+     * not implmented maybe for future use
+     * @return
+     */
     public List<Ratings> ratingByDriver() {
         return new ArrayList<>();
     }
 
+    /**
+     * not implmented maybe for future use
+     * @return
+     */
     public List<Ratings> ratingByClient() {
         return new ArrayList<>();
     }
 
+    /**
+     * returns a list of all ratings
+     * @return
+     */
     public List<Ratings> allRatings() {
         List<Ratings> ratings = new ArrayList<>();
         for (RatingsEntity r : ratingsDAO.findAll()) {
@@ -36,6 +48,11 @@ public class RatingsMapper {
         return ratings;
     }
 
+    /**
+     * return name from user
+     * @param id
+     * @return
+     */
     private String findNameByRating(int id) {
         return userDAO.findById(id).getFirstName() + userDAO.findById(id).getLastName();
     }
