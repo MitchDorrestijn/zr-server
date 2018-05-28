@@ -11,7 +11,7 @@ public interface IRideDAO extends IGenericDAO<RideEntity> {
 
     int totalRideClient(int id);
 
-    List<RideEntity> getByClientId(int id);
+    List<RideEntity> getByClient(int id);
 
     float totalEarned(int id);
 }

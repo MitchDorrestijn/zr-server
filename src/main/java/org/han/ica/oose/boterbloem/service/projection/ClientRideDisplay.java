@@ -1,9 +1,9 @@
 package org.han.ica.oose.boterbloem.service.projection;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ClientRideDisplay {
-    private Date date;
+    private Timestamp date;
     private String pickupLocation;
     private String destination;
     private String driverName;
@@ -15,7 +15,7 @@ public class ClientRideDisplay {
      *
      * @return Value for property 'date'.
      */
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
@@ -24,7 +24,7 @@ public class ClientRideDisplay {
      *
      * @param date Value to set for property 'date'.
      */
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
