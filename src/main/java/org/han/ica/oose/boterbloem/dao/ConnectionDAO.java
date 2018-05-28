@@ -66,10 +66,10 @@ public class ConnectionDAO implements IConnectionDAO {
 
         try {
             if (databaseConfig.getUser() == null || databaseConfig.getPass() == null) {
-                connection = (DriverManager.getConnection(databaseConfig.getConnectionString()));
+               // connection = (DriverManager.getConnection(databaseConfig.getConnectionString()));
             } else {
-                connection = (DriverManager.getConnection("jdbc:mysql://localhost/zorgrit?useSSL=false","root","root"));
-                connection = (DriverManager.getConnection(databaseConfig.getConnectionString() + "user=" + databaseConfig.getUser() + "&password=" + databaseConfig.getPass()));
+             //   connection = (DriverManager.getConnection("jdbc:mysql://localhost/zorgrit?useSSL=false","root","root"));
+               // connection = (DriverManager.getConnection(databaseConfig.getConnectionString() + "user=" + databaseConfig.getUser() + "&password=" + databaseConfig.getPass()));
                 connection = (DriverManager.getConnection(databaseConfig.getConnectionString(), databaseConfig.getUser(), databaseConfig.getPass()));
 
             }
@@ -87,7 +87,7 @@ public class ConnectionDAO implements IConnectionDAO {
         try {
             Class.forName(driver);
         } catch ( ClassNotFoundException e ) {
-            LOGGER.log(Level.SEVERE, "Couldn't find the database driver", e);
+            LOGGER.log(Level.SEVERE, "Couldán't find the database driver", e);
         }
     }
 

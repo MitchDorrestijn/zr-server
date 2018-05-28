@@ -1,51 +1,53 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.domain.Client;
+import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.ClientService;
+import org.han.ica.oose.boterbloem.service.projection.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Logger;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/client")
 public class ClientController {
-    protected ClientService clientService = new ClientService();
+    private ClientService clientService = new ClientService();
 
+    /** Constructs a new ClientController. */
     @Autowired
     ClientController() {
         //empty constructor for spring
     }
-
     /**
-     * @param client client to be added
-     * @return new client
+     * @param createClientDisplay createClientDisplay to be added
+     * @return new createClientDisplay
      */
-    @CrossOrigin
     @RequestMapping(value = "/addClient", method = RequestMethod.POST)
-
-    public ResponseEntity<String> addClient(@RequestBody Client client) {
-        clientService.createClient(client);
-        HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    public void addClient(@RequestBody CreateClientDisplay createClientDisplay) {
+        clientService.createClient(createClientDisplay);
     }
 
     /**
      * Method for returning clients
      *
      * @return A arraylist of clients
-     * @throws SQLException
      */
     @CrossOrigin
     @RequestMapping(value = "/clienten", method = RequestMethod.GET)
-    public List<Client> getAllCliënten() throws SQLException {
+    public List<ClientDisplay> getAllClients() {
         return clientService.getAllClients();
+    }
+
+    /**
+     * @param id of Client
+     * @return details of a Client
+     */
+    @RequestMapping(value = "/getClient/{id}", method = RequestMethod.GET)
+    public ClientDetailDisplay getClientDetails (@PathVariable int id) {
+        return clientService.getClientDetails(id);
     }
 
     /**
@@ -56,8 +58,23 @@ public class ClientController {
      */
     @CrossOrigin
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Client getCliëntById(@PathVariable String id) throws SQLException {
-        int y = Integer.parseInt(id);
-        return clientService.findById(y);
+    public ClientEntity getClientById(@PathVariable int id) {
+        return clientService.findById(id);
+    }
+
+    /**
+     * @param clientDetailDisplay clientDetailDisplay
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/update/client", method = RequestMethod.PUT)
+    public void updateDriverDetails(@RequestBody ClientDetailDisplay clientDetailDisplay) {
+        clientService.updateClient(clientDetailDisplay);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/deleteclient/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity <ClientEntity> deleteClient(@PathVariable int id) {
+        clientService.deleteClient(id, clientService.getCareInstitutionById(id));
+        return new ResponseEntity <>(HttpStatus.NO_CONTENT);
     }
 }
