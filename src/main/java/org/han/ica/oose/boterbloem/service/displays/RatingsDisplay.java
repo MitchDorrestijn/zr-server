@@ -1,12 +1,14 @@
 package org.han.ica.oose.boterbloem.service.displays;
 
 public class RatingsDisplay {
-    private int driverId;
-    private int clientId;
-    private int sterren;
-    private String beoordeling;
+
+
     private String clientName;
     private String driverName;
+
+public RatingsDisplay(){
+
+}
 
     public int getDriverId() {
         return driverId;
