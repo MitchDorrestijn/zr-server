@@ -10,15 +10,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class CareInstitutionService implements ICareInstitutionService {
+    private static final Logger LOGGER = Logger.getLogger(DriverService.class.getName());
 
-
-    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-
-    private ICareinstitutionDAO careinstitutionDAO = new CareinstitutionDAOImpl(entityManager);
+    private ICareinstitutionDAO careinstitutionDAO = new CareinstitutionDAOImpl();
 
     public CareInstitutionService() {
         // Empty constructor

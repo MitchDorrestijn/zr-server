@@ -5,18 +5,17 @@ package org.han.ica.oose.boterbloem.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "client", schema = "zorgrit", catalog = "")
+@Table(name = "client", schema = "zorgrit")
 public class ClientEntity {
     private int clientId;
     private String companion;
     private byte driverPreferenceForced;
-    private byte warningPKB;
+    private boolean warningPKB;
     private int PKB;
     private byte companionRequired;
     private String image;
     private String bankAccount;
     private UserEntity userEntity;
-    private RideEntity rideEntity;
 
     @Id
     @Column(name = "clientId")
@@ -49,11 +48,11 @@ public class ClientEntity {
     }
     @Basic
     @Column(name = "warningPKB")
-    public byte isWarningPKB() {
+    public boolean isWarningPKB() {
         return warningPKB;
     }
 
-    public void setWarningPKB(byte warningPKB) {
+    public void setWarningPKB(boolean warningPKB) {
         this.warningPKB = warningPKB;
     }
 
@@ -106,16 +105,6 @@ public class ClientEntity {
 
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "clientId")
-    public RideEntity getRideEntity() {
-        return rideEntity;
-    }
-
-    public void setRideEntity(RideEntity rideEntity) {
-        this.rideEntity = rideEntity;
     }
 
     @Override

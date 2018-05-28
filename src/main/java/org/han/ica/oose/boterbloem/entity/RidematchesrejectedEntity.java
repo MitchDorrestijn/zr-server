@@ -3,7 +3,7 @@ package org.han.ica.oose.boterbloem.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ridematchesrejected", schema = "zorgrit", catalog = "")
+@Table(name = "ridematchesrejected", schema = "zorgrit")
 @IdClass(RidematchesrejectedEntityPK.class)
 public class RidematchesrejectedEntity {
     private int rideId;

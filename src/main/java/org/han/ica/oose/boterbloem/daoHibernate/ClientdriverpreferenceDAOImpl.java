@@ -10,10 +10,9 @@ public class ClientdriverpreferenceDAOImpl extends GenericDAOImpl<Clientdriverpr
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public ClientdriverpreferenceDAOImpl(EntityManager em) {
-        super(em, ClientdriverpreferenceEntity.class);
+    public ClientdriverpreferenceDAOImpl() {
+        super(ClientdriverpreferenceEntity.class);
     }
 }

@@ -19,16 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientService implements IClientservice {
-
     private static final Logger LOGGER = Logger.getLogger(ClientService.class.getName());
-    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-    private IClientDAO clientDAO = new ClientDAOImpl(entityManager);
-    private IUserDAO userDAO = new UserDAOImpl(entityManager);
-    private IClientUtilityDAO clientUtilityDAO = new ClientUtilityDAO(entityManager);
-    private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl(entityManager);
-    private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl(entityManager);
+    private IClientDAO clientDAO = new ClientDAOImpl();
+    private IUserDAO userDAO = new UserDAOImpl();
+    private IClientUtilityDAO clientUtilityDAO = new ClientUtilityDAO();
+    private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl();
+    private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
+    private IRideDAO rideDAO = new RideDAOImpl();
 
 
     public ClientService() {
@@ -68,29 +66,35 @@ public class ClientService implements IClientservice {
         List <ClientDisplay> clientDisplays = new ArrayList <>();
         try {
             List <ClientEntity> clientEntities = clientDAO.findAll();
-            System.out.println("REEEEEEEEEEEEEEEEE" + clientEntities.size());
             for (ClientEntity i : clientEntities) {
                 try {
                     int driverId = i.getClientId();
 
-                        double priceToPay = 0;
-                        boolean warningPKB = false;
+                        double priceToPay;
+                        boolean warningPKB;
+
+                        List<RideEntity> rideEntitiesPerClient = rideDAO.getByClientId(i.getClientId());
+
+                        int distance = 0;
+                        for(RideEntity rideEntity : rideEntitiesPerClient) {
+                            distance += rideEntity.getDistance();
+                        }
+
                         ClientDisplay clientDisplay = new ClientDisplay();
                         clientDisplay.setClientId(i.getClientId());
                         clientDisplay.setName(i.getUserEntity().getFirstName());
                         clientDisplay.setPKB(i.getPKB());
                         try{
-                        int distance = (i.getRideEntity().getDistance());
-                        if (distance > i.getPKB()) {
-                            priceToPay = (i.getRideEntity().getDistance() * 0.005);
-                            warningPKB = true;
+                            if (distance > i.getPKB()) {
+                                priceToPay = (distance * 0.005);
+                                warningPKB = true;
 
-                            clientDisplay.setTotalMeters(i.getRideEntity().getDistance());
-                            clientDisplay.setPriceToPay(priceToPay);
-                            clientDisplay.setWarningPKB(warningPKB);
-                        }
+                                clientDisplay.setTotalMeters(distance);
+                                clientDisplay.setPriceToPay(priceToPay);
+                                clientDisplay.setWarningPKB(warningPKB);
+                            }
                         }catch(Exception e){
-
+                            LOGGER.log(Level.SEVERE, e.toString(), e);
                         }
 
                     if (clientCareInstitutionDAO.getCareInstitutionId(driverId).isActive()) {

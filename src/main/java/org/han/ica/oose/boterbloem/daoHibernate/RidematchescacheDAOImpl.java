@@ -10,10 +10,9 @@ public class RidematchescacheDAOImpl extends GenericDAOImpl<RidematchescacheEnti
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public RidematchescacheDAOImpl(EntityManager em) {
-        super(em, RidematchescacheEntity.class);
+    public RidematchescacheDAOImpl() {
+        super(RidematchescacheEntity.class);
     }
 }

@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "limitation", schema = "zorgrit", catalog = "")
+@Table(name = "limitation", schema = "zorgrit")
 public class LimitationEntity {
     private String name;
 

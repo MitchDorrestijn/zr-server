@@ -3,7 +3,7 @@ package org.han.ica.oose.boterbloem.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "driverlimitationmanageable", schema = "zorgrit", catalog = "")
+@Table(name = "driverlimitationmanageable", schema = "zorgrit")
 @IdClass(DriverlimitationmanageableEntityPK.class)
 public class DriverlimitationmanageableEntity {
     private int driverId;

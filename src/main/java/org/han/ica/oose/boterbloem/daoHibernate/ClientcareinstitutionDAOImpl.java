@@ -12,11 +12,10 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public ClientcareinstitutionDAOImpl(EntityManager em) {
-        super(em, ClientcareinstitutionEntity.class);
+    public ClientcareinstitutionDAOImpl() {
+        super(ClientcareinstitutionEntity.class);
     }
 
     @SuppressWarnings("unchecked")
