@@ -29,14 +29,14 @@ public class ClientRideService {
                 try {
                     display.setDriverName(rideEntity.getDriverEntity().getUserEntity().getFirstName() + " " + rideEntity.getDriverEntity().getUserEntity().getLastName());
                 } catch(NullPointerException e) {
-                    LOGGER.log(Level.SEVERE, e.toString(), e);
+                    LOGGER.log(Level.WARNING, e.toString(), e);
                     display.setDriverName("Geen chauffeur gevonden");
                 }
                 clientRideDisplays.add(display);
             }
             return clientRideDisplays;
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
+            LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return null;
     }
