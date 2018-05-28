@@ -10,10 +10,9 @@ public class ClientUtilityDAO extends GenericDAOImpl<ClientUtilityEntity> implem
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public ClientUtilityDAO(EntityManager em) {
-        super(em, ClientUtilityEntity.class);
+    public ClientUtilityDAO() {
+        super(ClientUtilityEntity.class);
     }
 }

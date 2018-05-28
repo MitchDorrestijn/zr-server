@@ -10,18 +10,15 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public RatingsDAOImpl(EntityManager em) {
-        super(em, RatingsEntity.class);
+    public RatingsDAOImpl() {
+        super(RatingsEntity.class);
     }
 
     public int getAvgRatings(int id){
         try {
-            //getEntityManager().getTransaction().begin();
             int returnValue = ((Number) getEntityManager().createQuery("SELECT AVG(sterren) FROM RatingsEntity WHERE driverId = :id").setParameter("id", id).getSingleResult()).intValue();
-            //getEntityManager().getTransaction().commit();
             return returnValue;
         } catch (NullPointerException n){
             return 0;

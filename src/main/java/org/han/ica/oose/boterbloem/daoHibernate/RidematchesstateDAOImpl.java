@@ -10,10 +10,9 @@ public class RidematchesstateDAOImpl extends GenericDAOImpl<RidematchesstateEnti
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public RidematchesstateDAOImpl(EntityManager em) {
-        super(em, RidematchesstateEntity.class);
+    public RidematchesstateDAOImpl() {
+        super(RidematchesstateEntity.class);
     }
 }

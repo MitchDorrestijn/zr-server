@@ -4,24 +4,22 @@ import org.han.ica.oose.boterbloem.daoHibernate.genericDao.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.entity.DriverlimitationmanageableEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<DriverlimitationmanageableEntity> implements IDriverlimitationmanageableDAO {
 
     /**
      * Hook up the basic CRUD queries
-     *
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public DriverlimitationmanageableDAOImpl(EntityManager em) {
-        super(em, DriverlimitationmanageableEntity.class);
+    public DriverlimitationmanageableDAOImpl() {
+        super(DriverlimitationmanageableEntity.class);
     }
 
     @Override
-    public ArrayList<String> getByDriverId(int id) {
-        return (ArrayList<String>) getEntityManager().createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id", id).getResultList();
+    public List<String> getByDriverId(int id) {
+        return getEntityManager().createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id", id).getResultList();
     }
 
     public void updateDriverLimitations(ArrayList<String> limitations, int driverId) {

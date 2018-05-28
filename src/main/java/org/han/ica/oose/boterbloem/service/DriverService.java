@@ -6,10 +6,6 @@ import org.han.ica.oose.boterbloem.entity.*;
 import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDetailDisplay;
 import org.han.ica.oose.boterbloem.service.projection.DriverDisplay;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercareinstitutionEntity;
@@ -23,16 +19,13 @@ import java.util.logging.Logger;
 public class DriverService implements IDriverService {
     private static final Logger LOGGER = Logger.getLogger(DriverService.class.getName());
 
-    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
-    private EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-    private IDriverDAO driverDao = new DriverDAOImpl(entityManager);
-    private IRideDAO rideDAO = new RideDAOImpl(entityManager);
-    private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl(entityManager);
-    private IRatingsDAO ratingsDAO = new RatingsDAOImpl(entityManager);
-    private IUserDAO userDAO = new UserDAOImpl(entityManager);
-    private IDrivercareinstitutionDAO drivercareinstitutionDAO = new DrivercareinstitutionDAOImpl(entityManager);
-    private IDriverlimitationmanageableDAO driverlimitationmanageableDAO = new DriverlimitationmanageableDAOImpl(entityManager);
+    private IDriverDAO driverDao = new DriverDAOImpl();
+    private IRideDAO rideDAO = new RideDAOImpl();
+    private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl();
+    private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
+    private IUserDAO userDAO = new UserDAOImpl();
+    private IDrivercareinstitutionDAO drivercareinstitutionDAO = new DrivercareinstitutionDAOImpl();
+    private IDriverlimitationmanageableDAO driverlimitationmanageableDAO = new DriverlimitationmanageableDAOImpl();
 
     public DriverService() {
         //Empty constructor
@@ -83,8 +76,6 @@ public class DriverService implements IDriverService {
                         returnList.add(driver);
                     }
                 }
-                System.out.println(entityManager.getTransaction().isActive());
-
             return returnList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -141,7 +132,6 @@ public class DriverService implements IDriverService {
         asd.add("something else");
 
         createDriverDisplay.setLimitationEntities(asd);
-        System.out.println(entityManager.getTransaction().isActive());
         return createDriverDisplay;
     }
 

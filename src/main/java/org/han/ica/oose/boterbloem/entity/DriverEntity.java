@@ -6,11 +6,10 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "driver", schema = "zorgrit", catalog = "")
+@Table(name = "driver", schema = "zorgrit")
 public class DriverEntity {
     private int driverId;
     private byte verification;
-    //private String utility;
     private UserEntity userEntity;
     private String type_of_payment;
     private String image;

@@ -10,10 +10,9 @@ public class UtilityDAOImpl extends GenericDAOImpl<UtilityEntity> implements IUt
 
     /**
      * Hook up the basic CRUD queries
-     * @param em [provided] - runs querys
      */
     @Autowired
-    public UtilityDAOImpl(EntityManager em) {
-        super(em, UtilityEntity.class);
+    public UtilityDAOImpl() {
+        super(UtilityEntity.class);
     }
 }
