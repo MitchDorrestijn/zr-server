@@ -18,7 +18,7 @@ public class ClientController {
 
     /** Constructs a new ClientController. */
     @Autowired
-    ClientController() {
+    public ClientController() {
         //empty constructor for spring
     }
     /**
