@@ -26,6 +26,7 @@ public class ClientService implements IClientservice {
     private IClientUtilityDAO clientUtilityDAO = new ClientUtilityDAO();
     private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl();
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
+    private IRideDAO rideDAO = new RideDAOImpl();
 
 
     public ClientService() {
@@ -69,24 +70,31 @@ public class ClientService implements IClientservice {
                 try {
                     int driverId = i.getClientId();
 
-                        double priceToPay = 0;
-                        boolean warningPKB = false;
+                        double priceToPay;
+                        boolean warningPKB;
+
+                        List<RideEntity> rideEntitiesPerClient = rideDAO.getByClientId(i.getClientId());
+
+                        int distance = 0;
+                        for(RideEntity rideEntity : rideEntitiesPerClient) {
+                            distance += rideEntity.getDistance();
+                        }
+
                         ClientDisplay clientDisplay = new ClientDisplay();
                         clientDisplay.setClientId(i.getClientId());
                         clientDisplay.setName(i.getUserEntity().getFirstName());
                         clientDisplay.setPKB(i.getPKB());
                         try{
-                        int distance = (i.getRideEntity().getDistance());
-                        if (distance > i.getPKB()) {
-                            priceToPay = (i.getRideEntity().getDistance() * 0.005);
-                            warningPKB = true;
+                            if (distance > i.getPKB()) {
+                                priceToPay = (distance * 0.005);
+                                warningPKB = true;
 
-                            clientDisplay.setTotalMeters(i.getRideEntity().getDistance());
-                            clientDisplay.setPriceToPay(priceToPay);
-                            clientDisplay.setWarningPKB(warningPKB);
-                        }
+                                clientDisplay.setTotalMeters(distance);
+                                clientDisplay.setPriceToPay(priceToPay);
+                                clientDisplay.setWarningPKB(warningPKB);
+                            }
                         }catch(Exception e){
-
+                            LOGGER.log(Level.SEVERE, e.toString(), e);
                         }
 
                     if (clientCareInstitutionDAO.getCareInstitutionId(driverId).isActive()) {

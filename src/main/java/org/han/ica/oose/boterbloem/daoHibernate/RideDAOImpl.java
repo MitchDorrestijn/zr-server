@@ -5,6 +5,7 @@ import org.han.ica.oose.boterbloem.entity.RideEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO {
 
@@ -31,6 +32,12 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
     public int totalRideClient(int id) {
         return ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  " +
                 "WHERE clientEntity.clientId = :id").setParameter("id", id).getSingleResult()).intValue();
+    }
+
+    @Override
+    public List<RideEntity> getByClientId(int id) {
+        return getEntityManager().createQuery("FROM RideEntity " +
+        "WHERE clientEntity.clientId = :id").setParameter("id", id).getResultList();
     }
 
     @Override
