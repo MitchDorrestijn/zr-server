@@ -11,11 +11,11 @@
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
 //public class CareInstitutionTest {
-//    private CareInstitution careInstitution;
+//    private ICareInstitution careInstitution;
 //
 //    @Before
 //    public void setUp() throws Exception {
-//        careInstitution = new CareInstitution(1, "Ziekenhuis de prothese");
+//        careInstitution = new ICareInstitution(1, "Ziekenhuis de prothese");
 //    }
 //
 //    @Test

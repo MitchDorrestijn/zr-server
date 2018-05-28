@@ -1,6 +1,6 @@
 //package org.han.ica.oose.boterbloem.controller;
 //
-//import org.han.ica.oose.boterbloem.domain.Driver;
+//import org.han.ica.oose.boterbloem.domain.domainImplementation.Driver;
 //import org.han.ica.oose.boterbloem.service.DriverService;
 //import org.junit.Before;
 //import org.junit.Test;

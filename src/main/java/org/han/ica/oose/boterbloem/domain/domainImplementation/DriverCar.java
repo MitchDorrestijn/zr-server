@@ -1,6 +1,7 @@
-package org.han.ica.oose.boterbloem.domain;
+package org.han.ica.oose.boterbloem.domain.domainImplementation;
 
 public class DriverCar {
+
     private String utility;
     private String numberPlate;
     private int numberOfPassengers;

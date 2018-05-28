@@ -2,8 +2,6 @@ package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.entity.LimitationEntity;
 import org.han.ica.oose.boterbloem.service.LimitationService;
-import org.han.ica.oose.boterbloem.service.RatingsService;
-import org.han.ica.oose.boterbloem.service.projection.RatingsDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;

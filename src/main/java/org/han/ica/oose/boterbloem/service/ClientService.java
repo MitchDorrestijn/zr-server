@@ -2,15 +2,15 @@ package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.daoHibernate.*;
 import org.han.ica.oose.boterbloem.entity.*;
-import org.han.ica.oose.boterbloem.service.projection.ClientDetailDisplay;
-import org.han.ica.oose.boterbloem.service.projection.CreateClientDisplay;
+import org.han.ica.oose.boterbloem.service.displays.ClientDetailDisplay;
+import org.han.ica.oose.boterbloem.service.displays.CreateClientDisplay;
 
 import java.util.logging.*;
 
 import org.han.ica.oose.boterbloem.daoHibernate.ClientDAOImpl;
 import org.han.ica.oose.boterbloem.daoHibernate.IClientDAO;
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
-import org.han.ica.oose.boterbloem.service.projection.ClientDisplay;
+import org.han.ica.oose.boterbloem.service.displays.ClientDisplay;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

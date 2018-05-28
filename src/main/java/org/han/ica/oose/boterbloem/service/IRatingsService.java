@@ -1,7 +1,6 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.entity.RatingsEntity;
-import org.han.ica.oose.boterbloem.service.projection.RatingsDisplay;
+import org.han.ica.oose.boterbloem.service.displays.RatingsDisplay;
 
 import java.util.List;
 

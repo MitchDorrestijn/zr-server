@@ -1,8 +1,8 @@
-package org.han.ica.oose.boterbloem.domain;
+package org.han.ica.oose.boterbloem.domain.domainImplementation;
 
 import java.sql.Date;
 
-public class User {
+public class User implements org.han.ica.oose.boterbloem.domain.IUser {
 
     private Address address;
     private String firstName;
@@ -18,6 +18,7 @@ public class User {
      *
      * @return Value for property 'address'.
      */
+    @Override
     public Address getAddress() {
         return address;
     }
@@ -27,6 +28,7 @@ public class User {
      *
      * @param address Value to set for property 'address'.
      */
+    @Override
     public void setAddress(Address address) {
         this.address = address;
     }
@@ -36,6 +38,7 @@ public class User {
      *
      * @return Value for property 'firstName'.
      */
+    @Override
     public String getFirstName() {
         return firstName;
     }
@@ -45,6 +48,7 @@ public class User {
      *
      * @param firstName Value to set for property 'firstName'.
      */
+    @Override
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -54,6 +58,7 @@ public class User {
      *
      * @return Value for property 'lastName'.
      */
+    @Override
     public String getLastName() {
         return lastName;
     }
@@ -63,6 +68,7 @@ public class User {
      *
      * @param lastName Value to set for property 'lastName'.
      */
+    @Override
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -72,6 +78,7 @@ public class User {
      *
      * @return Value for property 'email'.
      */
+    @Override
     public String getEmail() {
         return email;
     }
@@ -81,6 +88,7 @@ public class User {
      *
      * @param email Value to set for property 'email'.
      */
+    @Override
     public void setEmail(String email) {
         this.email = email;
     }
@@ -90,6 +98,7 @@ public class User {
      *
      * @return Value for property 'phoneNumber'.
      */
+    @Override
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -99,6 +108,7 @@ public class User {
      *
      * @param phoneNumber Value to set for property 'phoneNumber'.
      */
+    @Override
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -108,6 +118,7 @@ public class User {
      *
      * @return Value for property 'password'.
      */
+    @Override
     public String getPassword() {
         return password;
     }
@@ -117,6 +128,7 @@ public class User {
      *
      * @param password Value to set for property 'password'.
      */
+    @Override
     public void setPassword(String password) {
         this.password = password;
     }
@@ -126,6 +138,7 @@ public class User {
      *
      * @return Value for property 'dateOfBirth'.
      */
+    @Override
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
@@ -135,6 +148,7 @@ public class User {
      *
      * @param dateOfBirth Value to set for property 'dateOfBirth'.
      */
+    @Override
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
@@ -144,6 +158,7 @@ public class User {
      *
      * @return Value for property 'firstTimeProfileCheck'.
      */
+    @Override
     public byte getFirstTimeProfileCheck() {
         return firstTimeProfileCheck;
     }
@@ -153,6 +168,7 @@ public class User {
      *
      * @param firstTimeProfileCheck Value to set for property 'firstTimeProfileCheck'.
      */
+    @Override
     public void setFirstTimeProfileCheck(byte firstTimeProfileCheck) {
         this.firstTimeProfileCheck = firstTimeProfileCheck;
     }

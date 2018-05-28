@@ -3,9 +3,9 @@ package org.han.ica.oose.boterbloem.service;
 import org.han.ica.oose.boterbloem.daoHibernate.*;
 
 import org.han.ica.oose.boterbloem.entity.*;
-import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
-import org.han.ica.oose.boterbloem.service.projection.DriverDetailDisplay;
-import org.han.ica.oose.boterbloem.service.projection.DriverDisplay;
+import org.han.ica.oose.boterbloem.service.displays.CreateDriverDisplay;
+import org.han.ica.oose.boterbloem.service.displays.DriverDetailDisplay;
+import org.han.ica.oose.boterbloem.service.displays.DriverDisplay;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

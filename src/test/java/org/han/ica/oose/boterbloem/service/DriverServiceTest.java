@@ -1,7 +1,7 @@
 //package org.han.ica.oose.boterbloem.service;
 //
 //import org.han.ica.oose.boterbloem.dao.DriverDAO;
-//import org.han.ica.oose.boterbloem.domain.Driver;
+//import org.han.ica.oose.boterbloem.domain.domainImplementation.Driver;
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;

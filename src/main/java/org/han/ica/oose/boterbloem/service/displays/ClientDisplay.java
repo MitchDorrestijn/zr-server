@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.service.projection;
+package org.han.ica.oose.boterbloem.service.displays;
 
 public class ClientDisplay {
     private int clientId;

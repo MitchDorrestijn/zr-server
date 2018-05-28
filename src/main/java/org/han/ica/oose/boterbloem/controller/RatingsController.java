@@ -1,7 +1,7 @@
 package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.service.RatingsService;
-import org.han.ica.oose.boterbloem.service.projection.RatingsDisplay;
+import org.han.ica.oose.boterbloem.service.displays.RatingsDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;

@@ -2,24 +2,19 @@ package org.han.ica.oose.boterbloem.controller;
 
 
 import org.han.ica.oose.boterbloem.daoHibernate.*;
-import org.han.ica.oose.boterbloem.domain.Driver;
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 
 import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntityPK;
 import org.han.ica.oose.boterbloem.service.DriverService;
-import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.han.ica.oose.boterbloem.service.displays.CreateDriverDisplay;
 import org.springframework.web.bind.annotation.*;
 
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.ArrayList;
 import java.util.List;
 
 

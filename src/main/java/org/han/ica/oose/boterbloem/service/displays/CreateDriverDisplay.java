@@ -1,17 +1,23 @@
-package org.han.ica.oose.boterbloem.service.projection;
+package org.han.ica.oose.boterbloem.service.displays;
 
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-public class DriverDetailDisplay {
-
+public class CreateDriverDisplay {
     DriverEntity driver;
     DrivercarEntity drivercarEntity;
     private int careInstitutionId;
     ArrayList<String> limitationEntities;
+
+    public ArrayList<String> getLimitationEntities() {
+        return limitationEntities;
+    }
+
+    public void setLimitationEntities(ArrayList<String> limitationEntities) {
+        this.limitationEntities = limitationEntities;
+    }
 
     public DriverEntity getDriver() {
         return driver;
@@ -27,14 +33,6 @@ public class DriverDetailDisplay {
 
     public void setDrivercarEntity(DrivercarEntity drivercarEntity) {
         this.drivercarEntity = drivercarEntity;
-    }
-
-    public ArrayList<String> getLimitationEntities() {
-        return limitationEntities;
-    }
-
-    public void setLimitationEntities(ArrayList<String> limitationEntities) {
-        this.limitationEntities = limitationEntities;
     }
 
     public int getCareInstitutionId() {

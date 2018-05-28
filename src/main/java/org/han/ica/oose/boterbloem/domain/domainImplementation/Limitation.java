@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.domain;
+package org.han.ica.oose.boterbloem.domain.domainImplementation;
 
 public class Limitation {
 

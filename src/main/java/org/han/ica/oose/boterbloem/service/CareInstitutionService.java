@@ -25,17 +25,17 @@ public class CareInstitutionService implements ICareInstitutionService {
     }
 
     /**
-     * Finds and returns a CareInstitution using the given ID
+     * Finds and returns a ICareInstitution using the given ID
      *
-     * @param id ID of the CareInstitution
-     * @return The CareInstitution that was found using the ID
+     * @param id ID of the ICareInstitution
+     * @return The ICareInstitution that was found using the ID
      */
     public CareinstitutionEntity findById(int id) {
         return careinstitutionDAO.findById(id);
     }
 
     /**
-     * @param careInstitution CareInstitution that needs a update
+     * @param careInstitution ICareInstitution that needs a update
      */
     public void updateCareInstitution(CareinstitutionEntity careInstitution) {
 

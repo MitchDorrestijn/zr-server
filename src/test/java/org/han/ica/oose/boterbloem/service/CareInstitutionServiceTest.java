@@ -1,7 +1,7 @@
 //package org.han.ica.oose.boterbloem.service;
 //
 //import org.han.ica.oose.boterbloem.dao.CareInstitutionDAO;
-//import org.han.ica.oose.boterbloem.domain.CareInstitution;
+//import org.han.ica.oose.boterbloem.domain.domainImplementation.ICareInstitution;
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
@@ -21,13 +21,13 @@
 //public class CareInstitutionServiceTest {
 //
 //
-//    private CareInstitution careInstitutionA = new CareInstitution(1, "instellingA");
-//    private CareInstitution careInstitutionB = new CareInstitution(2, "instellingB");
-//    private CareInstitution careInstitutionC = new CareInstitution(3, "instellingC");
-//    private CareInstitution careInstitutionD = new CareInstitution(4, "instellingD");
-//    private CareInstitution careInstitutionE = new CareInstitution(5, "instellingE");
+//    private ICareInstitution careInstitutionA = new ICareInstitution(1, "instellingA");
+//    private ICareInstitution careInstitutionB = new ICareInstitution(2, "instellingB");
+//    private ICareInstitution careInstitutionC = new ICareInstitution(3, "instellingC");
+//    private ICareInstitution careInstitutionD = new ICareInstitution(4, "instellingD");
+//    private ICareInstitution careInstitutionE = new ICareInstitution(5, "instellingE");
 //
-//    private List<CareInstitution> careInstitutions = new ArrayList<>();
+//    private List<ICareInstitution> careInstitutions = new ArrayList<>();
 //
 //    private CareInstitutionService careInstitutionService = new CareInstitutionService();
 //    private CareInstitutionDAO careInstitutionDAO = mock(CareInstitutionDAO.class);
@@ -49,7 +49,7 @@
 //    @Test
 //    public void getAllCareInstitutions() throws SQLException {
 //        when(careInstitutionDAO.getAllCareInstitutions()).thenReturn(careInstitutions);
-//        List<CareInstitution> testCareInstitutions = careInstitutionService.getAllCareInstitutions();
+//        List<ICareInstitution> testCareInstitutions = careInstitutionService.getAllCareInstitutions();
 //        assertEquals(5, testCareInstitutions.size());
 //    }
 //
@@ -66,7 +66,7 @@
 //        this.careInstitutionService.saveCareInstitution(careInstitutionA);
 //
 //        // Then
-//        ArgumentCaptor<CareInstitution> argument = ArgumentCaptor.forClass(CareInstitution.class);
+//        ArgumentCaptor<ICareInstitution> argument = ArgumentCaptor.forClass(ICareInstitution.class);
 //        verify(careInstitutionDAO).create(argument.capture());
 //        assertEquals(careInstitutionA.getName(), argument.getValue().getName());
 //    }
@@ -89,7 +89,7 @@
 //    @Test
 //    public void findByIdTest() {
 //        when(careInstitutionDAO.getByID(1)).thenReturn(careInstitutionA);
-//        CareInstitution careInstitution = careInstitutionService.findById(1);
+//        ICareInstitution careInstitution = careInstitutionService.findById(1);
 //
 //        assertEquals(careInstitutionA.getName(), careInstitution.getName());
 //

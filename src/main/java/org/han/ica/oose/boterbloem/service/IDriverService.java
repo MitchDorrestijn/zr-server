@@ -1,8 +1,7 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
-import org.han.ica.oose.boterbloem.service.projection.CreateDriverDisplay;
+import org.han.ica.oose.boterbloem.service.displays.CreateDriverDisplay;
 
 import java.util.List;
 

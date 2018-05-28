@@ -1,7 +1,7 @@
 //<<<<<<< HEAD
 ////package org.han.ica.oose.boterbloem.dao;
 ////
-////import org.han.ica.oose.boterbloem.domain.CareInstitution;
+////import org.han.ica.oose.boterbloem.domain.domainImplementation.ICareInstitution;
 ////import org.junit.Before;
 ////import org.junit.Test;
 ////import org.junit.runner.RunWith;
@@ -31,8 +31,8 @@
 ////
 ////    @Test
 ////    public void create() {
-////        dao.create(new CareInstitution(6, "Prothese"));
-////        CareInstitution temp = dao.getByID(6);
+////        dao.create(new ICareInstitution(6, "Prothese"));
+////        ICareInstitution temp = dao.getByID(6);
 ////        assertEquals(6, temp.getId());
 ////        assertEquals("Prothese", dao.getByName("Prothese").get(0).getName());
 ////        dao.deleteById(6);
@@ -40,7 +40,7 @@
 ////
 ////    @Test
 ////    public void getAllCareInstitutions() {
-////        List<CareInstitution> careInstitutions = dao.getAllCareInstitutions();
+////        List<ICareInstitution> careInstitutions = dao.getAllCareInstitutions();
 ////        assertEquals(1, careInstitutions.get(0).getId());
 ////        assertEquals("Reinearde", careInstitutions.get(0).getName());
 ////        assertNotEquals(1, careInstitutions.get(2).getId());
@@ -49,34 +49,34 @@
 ////
 ////    @Test
 ////    public void getByID() {
-////        CareInstitution careInstitution = dao.getByID(1);
+////        ICareInstitution careInstitution = dao.getByID(1);
 ////        assertEquals(1, careInstitution.getId());
 ////        assertNotEquals(2, careInstitution.getId());
 ////    }
 ////
 ////    @Test
 ////    public void getByName() {
-////        List<CareInstitution> careInstitutions = dao.getByName("Reinearde");
+////        List<ICareInstitution> careInstitutions = dao.getByName("Reinearde");
 ////        assertEquals("Reinearde", careInstitutions.get(0).getName());
 ////        assertNotEquals("Cordaan", careInstitutions.get(0).getName());
 ////    }
 ////
 ////    @Test
 ////    public void updateCareInstitutionWithIdRegular(){
-////        CareInstitution originalName = dao.getByID(1);
+////        ICareInstitution originalName = dao.getByID(1);
 ////        assertEquals("Reinearde", originalName.getName());
 ////    }
 ////
 ////    @Test
 ////    public void updateCareInstitutionWithIdFailed(){
-////        CareInstitution originalName = dao.getByID(1);
+////        ICareInstitution originalName = dao.getByID(1);
 ////        assertNotEquals("Cordaan", originalName.getName());
 ////    }
 ////
 ////    @Test
 ////    public void deleteByID() {
-////        dao.create(new CareInstitution(6, "Prothese"));
-////        CareInstitution temp = dao.getByID(6);
+////        dao.create(new ICareInstitution(6, "Prothese"));
+////        ICareInstitution temp = dao.getByID(6);
 ////        assertEquals(6, temp.getId());
 ////        assertEquals("Prothese", temp.getName());
 ////
@@ -87,8 +87,8 @@
 ////
 ////    @Test
 ////    public void deleteByName(){
-////        dao.create(new CareInstitution(6, "Prothese"));
-////        CareInstitution temp = dao.getByID(6);
+////        dao.create(new ICareInstitution(6, "Prothese"));
+////        ICareInstitution temp = dao.getByID(6);
 ////        assertEquals(6, temp.getId());
 ////        assertEquals("Prothese", temp.getName());
 ////
@@ -99,8 +99,8 @@
 ////
 ////    @Test
 ////    public void updateCareInstitution() {
-////        dao.create(new CareInstitution(6, "Prothese"));
-////        CareInstitution temp = dao.getByID(6);
+////        dao.create(new ICareInstitution(6, "Prothese"));
+////        ICareInstitution temp = dao.getByID(6);
 ////        assertEquals(6, temp.getId());
 ////        assertEquals("Prothese", temp.getName());
 ////        dao.updateCareInstitution(6,"ProthesesVoorIedereen");
@@ -111,7 +111,7 @@
 //=======
 //package org.han.ica.oose.boterbloem.dao;
 //
-//import org.han.ica.oose.boterbloem.domain.CareInstitution;
+//import org.han.ica.oose.boterbloem.domain.domainImplementation.ICareInstitution;
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
@@ -141,8 +141,8 @@
 //
 //    @Test
 //    public void create() {
-//        dao.create(new CareInstitution(6, "Prothese"));
-//        CareInstitution temp = dao.getByID(6);
+//        dao.create(new ICareInstitution(6, "Prothese"));
+//        ICareInstitution temp = dao.getByID(6);
 //        assertEquals(6, temp.getId());
 //        assertEquals("Prothese", dao.getByName("Prothese").get(0).getName());
 //        dao.deleteById(6);
@@ -150,7 +150,7 @@
 //
 //    @Test
 //    public void getAllCareInstitutions() {
-//        List<CareInstitution> careInstitutions = dao.getAllCareInstitutions();
+//        List<ICareInstitution> careInstitutions = dao.getAllCareInstitutions();
 //        assertEquals(1, careInstitutions.get(0).getId());
 //        assertEquals("Reinearde", careInstitutions.get(0).getName());
 //        assertNotEquals(1, careInstitutions.get(2).getId());
@@ -159,34 +159,34 @@
 //
 //    @Test
 //    public void getByID() {
-//        CareInstitution careInstitution = dao.getByID(1);
+//        ICareInstitution careInstitution = dao.getByID(1);
 //        assertEquals(1, careInstitution.getId());
 //        assertNotEquals(2, careInstitution.getId());
 //    }
 //
 //    @Test
 //    public void getByName() {
-//        List<CareInstitution> careInstitutions = dao.getByName("Reinearde");
+//        List<ICareInstitution> careInstitutions = dao.getByName("Reinearde");
 //        assertEquals("Reinearde", careInstitutions.get(0).getName());
 //        assertNotEquals("Cordaan", careInstitutions.get(0).getName());
 //    }
 //
 //    @Test
 //    public void updateCareInstitutionWithIdRegular(){
-//        CareInstitution originalName = dao.getByID(1);
+//        ICareInstitution originalName = dao.getByID(1);
 //        assertEquals("Reinearde", originalName.getName());
 //    }
 //
 //    @Test
 //    public void updateCareInstitutionWithIdFailed(){
-//        CareInstitution originalName = dao.getByID(1);
+//        ICareInstitution originalName = dao.getByID(1);
 //        assertNotEquals("Cordaan", originalName.getName());
 //    }
 //
 //    @Test
 //    public void deleteByID() {
-//        dao.create(new CareInstitution(6, "Prothese"));
-//        CareInstitution temp = dao.getByID(6);
+//        dao.create(new ICareInstitution(6, "Prothese"));
+//        ICareInstitution temp = dao.getByID(6);
 //        assertEquals(6, temp.getId());
 //        assertEquals("Prothese", temp.getName());
 //
@@ -197,8 +197,8 @@
 //
 //    @Test
 //    public void deleteByName(){
-//        dao.create(new CareInstitution(6, "Prothese"));
-//        CareInstitution temp = dao.getByID(6);
+//        dao.create(new ICareInstitution(6, "Prothese"));
+//        ICareInstitution temp = dao.getByID(6);
 //        assertEquals(6, temp.getId());
 //        assertEquals("Prothese", temp.getName());
 //
@@ -209,8 +209,8 @@
 //
 //    @Test
 //    public void updateCareInstitution() {
-//        dao.create(new CareInstitution(6, "Prothese"));
-//        CareInstitution temp = dao.getByID(6);
+//        dao.create(new ICareInstitution(6, "Prothese"));
+//        ICareInstitution temp = dao.getByID(6);
 //        assertEquals(6, temp.getId());
 //        assertEquals("Prothese", temp.getName());
 //        dao.updateCareInstitution(6,"ProthesesVoorIedereen");

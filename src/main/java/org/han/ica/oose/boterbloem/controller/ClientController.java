@@ -2,7 +2,7 @@ package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.ClientService;
-import org.han.ica.oose.boterbloem.service.projection.*;
+import org.han.ica.oose.boterbloem.service.displays.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

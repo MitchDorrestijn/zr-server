@@ -5,7 +5,7 @@ import org.han.ica.oose.boterbloem.daoHibernate.IUserDAO;
 import org.han.ica.oose.boterbloem.daoHibernate.RatingsDAOImpl;
 import org.han.ica.oose.boterbloem.daoHibernate.UserDAOImpl;
 import org.han.ica.oose.boterbloem.entity.RatingsEntity;
-import org.han.ica.oose.boterbloem.service.projection.RatingsDisplay;
+import org.han.ica.oose.boterbloem.service.displays.RatingsDisplay;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
