@@ -7,17 +7,18 @@ import javax.persistence.Persistence;
 import java.util.List;
 import java.util.logging.Logger;
 
-public abstract class GenericDAOImpl<T> implements IGenericDAO<T>{
+public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     private Class<T> classImpl;
+
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
     private EntityManager em;
+
 
     private static final Logger LOGGER = Logger.getLogger(GenericDAOImpl.class.getName());
 
 
     public GenericDAOImpl(Class<T> classImpl) {
-
         em = entityManagerFactory.createEntityManager();
         this.classImpl = classImpl;
     }
@@ -69,18 +70,16 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T>{
     }
 
     /**
-     *
      * @return The implementation class of this DAO
      */
-    public Class<T> getClassImpl(){
+    public Class<T> getClassImpl() {
         return classImpl;
     }
 
     /**
-     *
      * @return entitymanager used by this DAO
      */
-    public EntityManager getEntityManager(){
+    public EntityManager getEntityManager() {
         return em;
     }
 }

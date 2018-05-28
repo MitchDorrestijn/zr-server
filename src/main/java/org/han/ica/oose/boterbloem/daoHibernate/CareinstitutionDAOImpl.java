@@ -4,8 +4,6 @@ import org.han.ica.oose.boterbloem.daoHibernate.genericDao.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.entity.CareinstitutionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
-
 public class CareinstitutionDAOImpl extends GenericDAOImpl<CareinstitutionEntity> implements ICareinstitutionDAO {
 
     /**

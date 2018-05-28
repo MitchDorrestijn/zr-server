@@ -8,13 +8,10 @@ import org.han.ica.oose.boterbloem.entity.DriverEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntity;
 import org.han.ica.oose.boterbloem.entity.DrivercarEntityPK;
 import org.han.ica.oose.boterbloem.service.DriverService;
+
 import org.han.ica.oose.boterbloem.service.displays.CreateDriverDisplay;
 import org.springframework.web.bind.annotation.*;
 
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
 
 
@@ -86,6 +83,4 @@ public class TestControllerHibernate {
     public ClientEntity asd() {
         return dao.findById(2);
     }
-
-
 }

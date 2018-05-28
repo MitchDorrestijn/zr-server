@@ -35,7 +35,7 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
     }
 
     @Override
-    public List<RideEntity> getByClientId(int id) {
+    public List<RideEntity> getByClient(int id) {
         return getEntityManager().createQuery("FROM RideEntity " +
         "WHERE clientEntity.clientId = :id").setParameter("id", id).getResultList();
     }

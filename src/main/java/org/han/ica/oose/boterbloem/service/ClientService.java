@@ -12,9 +12,6 @@ import org.han.ica.oose.boterbloem.daoHibernate.IClientDAO;
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.displays.ClientDisplay;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +70,7 @@ public class ClientService implements IClientservice {
                         double priceToPay;
                         boolean warningPKB;
 
-                        List<RideEntity> rideEntitiesPerClient = rideDAO.getByClientId(i.getClientId());
+                        List<RideEntity> rideEntitiesPerClient = rideDAO.getByClient(i.getClientId());
 
                         int distance = 0;
                         for(RideEntity rideEntity : rideEntitiesPerClient) {
