@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "ride", schema = "zorgrit", catalog = "")
+@Table(name = "ride", schema = "zorgrit")
 public class RideEntity {
     private int id;
     private Timestamp pickUpDateTime;

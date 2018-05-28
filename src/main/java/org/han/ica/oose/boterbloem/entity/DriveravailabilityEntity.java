@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "driveravailability", schema = "zorgrit", catalog = "")
+@Table(name = "driveravailability", schema = "zorgrit")
 @IdClass(DriveravailabilityEntityPK.class)
 public class DriveravailabilityEntity {
     private int driverId;
