@@ -42,4 +42,23 @@ public class LimitationService implements ILimitationService {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
     }
+
+    @Override
+    public void updateLimitation(LimitationEntity limitationEntity) {
+        try {
+            limitationDAO.update(limitationEntity);
+        } catch(Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+    }
+
+    @Override
+    public void deleteLimitation(String name) {
+        try {
+            LimitationEntity limitationEntityToRemove = limitationDAO.findByName(name);
+            limitationDAO.remove(limitationEntityToRemove);
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+    }
 }

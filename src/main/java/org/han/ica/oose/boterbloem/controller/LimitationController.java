@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.print.DocFlavor;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/limitation")
 public class LimitationController {
+    private static final Logger LOGGER = Logger.getLogger(LimitationController.class.getName());
+
     private ILimitationService limitationService = new LimitationService();
 
     @Autowired
@@ -36,5 +40,23 @@ public class LimitationController {
     @RequestMapping(value = "/addLimitation", method = RequestMethod.POST)
     public void addLimitation(@RequestBody LimitationEntity limitationEntity) {
         limitationService.addLimitation(limitationEntity);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "{name}/edit", method = RequestMethod.PUT)
+    public void updateLimitation(@PathVariable String name, @RequestBody LimitationEntity limitationEntity) {
+        try {
+            LimitationEntity current = limitationService.getByName(name);
+            current.setName(limitationEntity.getName());
+            limitationService.updateLimitation(current);
+        } catch(Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "{name}/delete", method = RequestMethod.DELETE)
+    public void deleteLimitation(@PathVariable String name) {
+        limitationService.deleteLimitation(name);
     }
 }

@@ -24,4 +24,16 @@ public interface ILimitationService {
      * @param limitationEntity the limitation that will be added
      */
     void addLimitation(LimitationEntity limitationEntity);
+
+    /**
+     * Updates an exisiting limitation with a new name
+     * @param limitationEntity
+     */
+    void updateLimitation(LimitationEntity limitationEntity);
+
+    /**
+     * Deletes an existing limitation from the database
+     * @param name
+     */
+    void deleteLimitation(String name);
 }
