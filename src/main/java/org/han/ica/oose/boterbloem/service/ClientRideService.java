@@ -2,7 +2,7 @@ package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.daoHibernate.*;
 import org.han.ica.oose.boterbloem.entity.RideEntity;
-import org.han.ica.oose.boterbloem.service.projection.ClientRideDisplay;
+import org.han.ica.oose.boterbloem.service.displays.ClientRideDisplay;
 
 import java.util.ArrayList;
 import java.util.List;
