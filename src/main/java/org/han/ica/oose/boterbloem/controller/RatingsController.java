@@ -2,7 +2,6 @@ package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.domain.domainImplementation.Ratings;
 import org.han.ica.oose.boterbloem.service.RatingsService;
-import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
