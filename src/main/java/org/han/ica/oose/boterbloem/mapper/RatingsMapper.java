@@ -13,10 +13,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RatingsMapper {
+public class RatingsMapper extends GenericMapper {
     private static final Logger LOGGER = Logger.getLogger(RatingsService.class.getName());
 
-    private IUserDAO userDAO = new UserDAOImpl();
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
 
     /**
@@ -27,8 +26,8 @@ public class RatingsMapper {
         List<Ratings> ratings = new ArrayList<>();
         for(RatingsEntity r : ratingsDAO.getByDriver(driverId)){
             Ratings rating = new Ratings();
-            rating.setClientName(findNameByRating(r.getClientId()));
-            rating.setDriverName(findNameByRating(r.getDriverId()));
+            rating.setClientName(findNameById(r.getClientId()));
+            rating.setDriverName(findNameById(r.getDriverId()));
             rating.setStars(r.getSterren());
             rating.setComment(r.getBeoordeling());
             ratings.add(rating);
@@ -52,22 +51,12 @@ public class RatingsMapper {
         List<Ratings> ratings = new ArrayList<>();
         for (RatingsEntity r : ratingsDAO.findAll()) {
             Ratings rating = new Ratings();
-            rating.setClientName(findNameByRating(r.getClientId()));
-            rating.setDriverName(findNameByRating(r.getDriverId()));
+            rating.setClientName(findNameById(r.getClientId()));
+            rating.setDriverName(findNameById(r.getDriverId()));
             rating.setStars(r.getSterren());
             rating.setComment(r.getBeoordeling());
             ratings.add(rating);
         }
         return ratings;
     }
-
-    /**
-     * return name from user
-     * @param id
-     * @return
-     */
-    private String findNameByRating(int id) {
-        return userDAO.findById(id).getFirstName() + " " + userDAO.findById(id).getLastName();
-    }
-
 }
