@@ -24,13 +24,17 @@ public class RatingsMapper extends GenericMapper {
      */
     public List<Ratings> getAllRatingsFromASpecificDriver(int driverId) {
         List<Ratings> ratings = new ArrayList<>();
-        for(RatingsEntity r : ratingsDAO.getByDriver(driverId)){
-            Ratings rating = new Ratings();
-            rating.setClientName(findNameById(r.getClientId()));
-            rating.setDriverName(findNameById(r.getDriverId()));
-            rating.setStars(r.getSterren());
-            rating.setComment(r.getBeoordeling());
-            ratings.add(rating);
+        try {
+            for(RatingsEntity r : ratingsDAO.getByDriver(driverId)){
+                Ratings rating = new Ratings();
+                rating.setClientName(findNameById(r.getClientId()));
+                rating.setDriverName(findNameById(r.getDriverId()));
+                rating.setStars(r.getSterren());
+                rating.setComment(r.getBeoordeling());
+                ratings.add(rating);
+            }
+        } catch (Exception e){
+            LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return ratings;
     }
@@ -49,13 +53,17 @@ public class RatingsMapper extends GenericMapper {
      */
     public List<Ratings> allRatings() {
         List<Ratings> ratings = new ArrayList<>();
-        for (RatingsEntity r : ratingsDAO.findAll()) {
-            Ratings rating = new Ratings();
-            rating.setClientName(findNameById(r.getClientId()));
-            rating.setDriverName(findNameById(r.getDriverId()));
-            rating.setStars(r.getSterren());
-            rating.setComment(r.getBeoordeling());
-            ratings.add(rating);
+        try {
+            for (RatingsEntity r : ratingsDAO.findAll()) {
+                Ratings rating = new Ratings();
+                rating.setClientName(findNameById(r.getClientId()));
+                rating.setDriverName(findNameById(r.getDriverId()));
+                rating.setStars(r.getSterren());
+                rating.setComment(r.getBeoordeling());
+                ratings.add(rating);
+            }
+        } catch (Exception e){
+            LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return ratings;
     }
