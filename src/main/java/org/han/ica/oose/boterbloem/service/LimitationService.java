@@ -12,6 +12,9 @@ public class LimitationService implements ILimitationService {
     private static final Logger LOGGER = Logger.getLogger(LimitationService.class.getName());
     ILimitationDAO limitationDAO = new LimitationDAOImpl();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<LimitationEntity> getAll() {
         try{
@@ -22,6 +25,9 @@ public class LimitationService implements ILimitationService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LimitationEntity getByName(String name) {
         try {
@@ -34,6 +40,9 @@ public class LimitationService implements ILimitationService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addLimitation(LimitationEntity limitationEntity) {
         try {
@@ -43,6 +52,9 @@ public class LimitationService implements ILimitationService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateLimitation(LimitationEntity limitationEntity) {
         try {
@@ -52,6 +64,9 @@ public class LimitationService implements ILimitationService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteLimitation(String name) {
         try {

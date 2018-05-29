@@ -24,24 +24,42 @@ public class LimitationController {
         //Empty constructor for Spring
     }
 
+    /**
+     * Get all limitations from the database
+     * @return
+     */
     @CrossOrigin
     @RequestMapping(value = "/getAllLimitations", method = RequestMethod.GET)
     public List<LimitationEntity> getAll() {
         return limitationService.getAll();
     }
 
+    /**
+     * Get specific limitation from the database
+     * @param name
+     * @return
+     */
     @CrossOrigin
     @RequestMapping(value = "getLimitation/{name}", method = RequestMethod.GET)
     public LimitationEntity getByName(@PathVariable String name) {
         return limitationService.getByName(name);
     }
 
+    /**
+     * Add new limitation to the database
+     * @param limitationEntity
+     */
     @CrossOrigin
     @RequestMapping(value = "/addLimitation", method = RequestMethod.POST)
     public void addLimitation(@RequestBody LimitationEntity limitationEntity) {
         limitationService.addLimitation(limitationEntity);
     }
 
+    /**
+     * Update existing limitation
+     * @param name
+     * @param limitationEntity
+     */
     @CrossOrigin
     @RequestMapping(value = "{name}/edit", method = RequestMethod.PUT)
     public void updateLimitation(@PathVariable String name, @RequestBody LimitationEntity limitationEntity) {
@@ -54,6 +72,10 @@ public class LimitationController {
         }
     }
 
+    /**
+     * Delete existing limitation
+     * @param name
+     */
     @CrossOrigin
     @RequestMapping(value = "{name}/delete", method = RequestMethod.DELETE)
     public void deleteLimitation(@PathVariable String name) {
