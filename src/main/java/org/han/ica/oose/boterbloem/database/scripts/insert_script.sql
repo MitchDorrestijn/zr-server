@@ -255,7 +255,7 @@ VALUES
 
   (5, NULL, '2018-12-10 14:22:53', 'Willemsplein 5, Arnhem', 'Konings-plein 11, Amsterdam', 1, 4, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 9850, 25.4, 'Reparatiekosten bus', 'Onbetaald', '2018-07-23'),
 
-  (5, NULL, '2018-12-10 14:22:53', 'Velperplein 5, Arnhem', 'Konings-plein 11, Amsterdam', 0, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 5670, 25.4, 'Declaratie kouwgom', 'Onbetaald', '2018-07-23'),
+  (5, NULL, '2018-12-10 14:22:53', 'Velperplein 5, Arnhem', 'Konings-plein 11, Amsterdam', 0, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 5670, 25.4, 'Declaratie kauwgom', 'Onbetaald', '2018-07-23'),
 
   (3, NULL, '2018-11-06 14:22:53', 'Velperplein 5, Arnhem', 'Konings-plein 25, Amsterdam', 1, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 3200, 25.4, 'Pensioen betaling', 'Onbetaald', '2018-07-23'),
 
