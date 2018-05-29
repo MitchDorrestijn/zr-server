@@ -199,9 +199,9 @@ CREATE TABLE IF NOT EXISTS `clientLimitation` (
     ON UPDATE NO ACTION,
   CONSTRAINT clientLimitationLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
 
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
 
-    ON UPDATE NO ACTION
+    ON UPDATE CASCADE
 
 );
 
@@ -249,9 +249,9 @@ CREATE TABLE IF NOT EXISTS `driverLimitationManageable` (
     ON UPDATE NO ACTION,
   CONSTRAINT driverLimitationManageableLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
 
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
 
-    ON UPDATE NO ACTION
+    ON UPDATE CASCADE
 
 );
 

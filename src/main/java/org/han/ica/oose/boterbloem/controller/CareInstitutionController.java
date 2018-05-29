@@ -2,8 +2,6 @@ package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.entity.CareinstitutionEntity;
 import org.han.ica.oose.boterbloem.service.CareInstitutionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,10 +28,8 @@ public class CareInstitutionController {
      */
     @CrossOrigin
     @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
-    public ResponseEntity<String> addCareInstitution(@RequestBody CareinstitutionEntity careInstitution) {
+    public void addCareInstitution(@RequestBody CareinstitutionEntity careInstitution) {
         careInstitutionService.saveCareInstitution(careInstitution);
-        HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     /**
