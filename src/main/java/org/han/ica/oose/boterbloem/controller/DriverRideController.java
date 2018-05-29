@@ -18,8 +18,12 @@ public class DriverRideController {
         // Empty Constructor for Spring
     }
 
+    /**
+     * @param driverId of Driver
+     * @return list of driver rides
+     */
     @RequestMapping(value = "/{driverId}", method = RequestMethod.GET)
-    public List <DriverRideDisplay> getRidesFromSpeficDriver(@PathVariable int driverId) {
-        return rideService.getRidesFromSpeficDriver(driverId);
+    public List <DriverRideDisplay> getRidesFromSpecificDriver(@PathVariable int driverId) {
+        return rideService.getRidesFromSpecificDriver(driverId);
     }
 }
