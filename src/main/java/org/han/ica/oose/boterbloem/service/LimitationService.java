@@ -21,4 +21,16 @@ public class LimitationService implements ILimitationService {
             return null;
         }
     }
+
+    @Override
+    public LimitationEntity getByName(String name) {
+        try {
+            return limitationDAO.findByName(name);
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+            LimitationEntity limitationEntity = new LimitationEntity();
+            limitationEntity.setName("Geen beperking gevonden met deze naam");
+            return limitationEntity;
+        }
+    }
 }

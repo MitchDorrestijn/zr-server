@@ -11,4 +11,11 @@ public interface ILimitationService {
      * @return
      */
     List<LimitationEntity> getAll();
+
+    /**
+     * Retrieves a specific limitation from the database
+     * @param name The name of the limitation
+     * @return the corresponding limitation
+     */
+    LimitationEntity getByName(String name);
 }

@@ -16,4 +16,10 @@ public class LimitationDAOImpl extends GenericDAOImpl<LimitationEntity> implemen
     public LimitationDAOImpl() {
         super(LimitationEntity.class);
     }
+
+    @Override
+    public LimitationEntity findByName(String name) {
+        return (LimitationEntity) getEntityManager().createQuery("FROM LimitationEntity "+
+                "WHERE name = :name").setParameter("name", name).getSingleResult();
+    }
 }
