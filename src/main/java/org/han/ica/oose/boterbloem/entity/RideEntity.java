@@ -23,6 +23,9 @@ public class RideEntity {
     private DriverEntity driverEntity;
     private float priceOfRide;
     private ClientEntity clientEntity;
+    private byte warning;
+    private byte assignedDriver;
+
 
     @OneToOne
     @JoinColumn(name = "clientId")
@@ -185,6 +188,27 @@ public class RideEntity {
         this.executed = executed;
     }
 
+    @Basic
+    @Column(name = "warning")
+    public byte getWarning() {
+        return warning;
+    }
+
+    public void setWarning(byte warning) {
+        this.warning = warning;
+    }
+
+    @Basic
+    @Column(name = "assignedDriver")
+    public byte getAssignedDriver() {
+        return assignedDriver;
+    }
+
+    public void setAssignedDriver(byte assignedDriver) {
+        this.assignedDriver = assignedDriver;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -200,6 +224,8 @@ public class RideEntity {
         if (returnRide != that.returnRide) return false;
         if (callService != that.callService) return false;
         if (executed != that.executed) return false;
+        if (warning != that.warning) return false;
+        if (assignedDriver != that.assignedDriver) return false;
         if (pickUpDateTime != null ? !pickUpDateTime.equals(that.pickUpDateTime) : that.pickUpDateTime != null)
             return false;
         if (pickUpLocation != null ? !pickUpLocation.equals(that.pickUpLocation) : that.pickUpLocation != null)
@@ -229,6 +255,8 @@ public class RideEntity {
         result = 31 * result + (repeatingRideId != null ? repeatingRideId.hashCode() : 0);
         result = 31 * result + (cancelledByClient != null ? cancelledByClient.hashCode() : 0);
         result = 31 * result + (int) executed;
+        result = 31 * result + (int) warning;
+        result = 31 * result + (int) assignedDriver;
         return result;
     }
 }

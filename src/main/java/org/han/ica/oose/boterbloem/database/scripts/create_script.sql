@@ -433,6 +433,10 @@ CREATE TABLE IF NOT EXISTS `ride` (
 
   price_of_ride           FLOAT        NOT NULL,
 
+  warning                 BOOLEAN      NULL,
+
+  assignedDriver          BOOLEAN      NUlL,
+
   PRIMARY KEY (id),
 
   CONSTRAINT RideClient FOREIGN KEY (clientId) REFERENCES client (clientId)
