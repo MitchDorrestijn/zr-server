@@ -6,21 +6,37 @@ import org.han.ica.oose.boterbloem.daoHibernate.RatingsDAOImpl;
 import org.han.ica.oose.boterbloem.daoHibernate.UserDAOImpl;
 import org.han.ica.oose.boterbloem.domain.domainImplementation.Ratings;
 import org.han.ica.oose.boterbloem.entity.RatingsEntity;
+import org.han.ica.oose.boterbloem.service.RatingsService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class RatingsMapper {
+public class RatingsMapper extends GenericMapper {
+    private static final Logger LOGGER = Logger.getLogger(RatingsService.class.getName());
 
-    private IUserDAO userDAO = new UserDAOImpl();
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
 
     /**
-     * not implmented maybe for future use
-     * @return
+     * @param driverId the driverID where you wnat to get the specific ratings from
+     * @return a list of ratings from a specific driver
      */
-    public List<Ratings> ratingByDriver() {
-        return new ArrayList<>();
+    public List<Ratings> getAllRatingsFromASpecificDriver(int driverId) {
+        List<Ratings> ratings = new ArrayList<>();
+        try {
+            for(RatingsEntity r : ratingsDAO.getByDriver(driverId)){
+                Ratings rating = new Ratings();
+                rating.setClientName(findNameById(r.getClientId()));
+                rating.setDriverName(findNameById(r.getDriverId()));
+                rating.setStars(r.getSterren());
+                rating.setComment(r.getBeoordeling());
+                ratings.add(rating);
+            }
+        } catch (Exception e){
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+        return ratings;
     }
 
     /**
@@ -37,24 +53,18 @@ public class RatingsMapper {
      */
     public List<Ratings> allRatings() {
         List<Ratings> ratings = new ArrayList<>();
-        for (RatingsEntity r : ratingsDAO.findAll()) {
-            Ratings rating = new Ratings();
-            rating.setClientName(findNameByRating(r.getClientId()));
-            rating.setDriverName(findNameByRating(r.getDriverId()));
-            rating.setStars(r.getSterren());
-            rating.setComment(r.getBeoordeling());
-            ratings.add(rating);
+        try {
+            for (RatingsEntity r : ratingsDAO.findAll()) {
+                Ratings rating = new Ratings();
+                rating.setClientName(findNameById(r.getClientId()));
+                rating.setDriverName(findNameById(r.getDriverId()));
+                rating.setStars(r.getSterren());
+                rating.setComment(r.getBeoordeling());
+                ratings.add(rating);
+            }
+        } catch (Exception e){
+            LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return ratings;
     }
-
-    /**
-     * return name from user
-     * @param id
-     * @return
-     */
-    private String findNameByRating(int id) {
-        return userDAO.findById(id).getFirstName() + userDAO.findById(id).getLastName();
-    }
-
 }
