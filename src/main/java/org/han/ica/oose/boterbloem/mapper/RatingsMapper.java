@@ -19,7 +19,7 @@ public class RatingsMapper {
      * not implmented maybe for future use
      * @return
      */
-    public List<Ratings> ratingByDriver() {
+    public List<Ratings> ratingByDriver(int driverId) {
         return new ArrayList<>();
     }
 

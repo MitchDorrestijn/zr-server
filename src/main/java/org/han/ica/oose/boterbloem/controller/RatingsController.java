@@ -34,7 +34,7 @@ public class RatingsController {
     /**
      * Method for returning ratings of a specific driver
      *
-     * @param id of Driver
+     * @param driverId - id of the Driver
      * @return A arraylist of ratings
      */
     @CrossOrigin

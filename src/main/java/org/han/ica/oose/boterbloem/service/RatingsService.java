@@ -18,8 +18,11 @@ public class RatingsService implements IRatingsService {
     /**
      * @return A list of all ratings from the database
      */
-
     public List<Ratings> getAllRatings() {
         return ratingsMapper.allRatings();
+    }
+
+    public List<Ratings> getAllRatingsFromASpecificDriver(int driverId) {
+        return ratingsMapper.ratingByDriver(driverId);
     }
 }
