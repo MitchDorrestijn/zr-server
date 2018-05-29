@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RideMapper {
-    private static final Logger LOGGER = Logger.getLogger(DriverService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(RideMapper.class.getName());
     private IRideDAO rideDAO = new RideDAOImpl();
 
     public List<RideOverviewDisplay> getRideOverview() {

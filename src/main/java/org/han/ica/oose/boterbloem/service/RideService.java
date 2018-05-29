@@ -9,7 +9,9 @@ public class RideService implements IRideService {
 
     private RideMapper rideMapper = new RideMapper();
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<RideOverviewDisplay> getRideOverview() {
         return rideMapper.getRideOverview();
