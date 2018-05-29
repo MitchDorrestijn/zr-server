@@ -22,6 +22,7 @@ public class RideMapper {
                 RideOverviewDisplay rideOverviewDisplay = new RideOverviewDisplay();
                 rideOverviewDisplay.setPaymentStatus(r.getPaymentStatus());
                 try {
+                    rideOverviewDisplay.setId(r.getDriverEntity().getDriverId());
                     rideOverviewDisplay.setDriverName(r.getDriverEntity().getUserEntity().getFirstName());
                     rideOverviewDisplay.setAccountnr(r.getDriverEntity().getAccountnr());
                 } catch (NullPointerException e) {

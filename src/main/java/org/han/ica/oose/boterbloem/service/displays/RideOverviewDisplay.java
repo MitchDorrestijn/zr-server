@@ -1,12 +1,31 @@
 package org.han.ica.oose.boterbloem.service.displays;
 
 public class RideOverviewDisplay {
+    private int id;
     private String driverName;
     private String accountnr;
     private float price_of_ride;
     private String paymentDescription;
     private String paymentStatus;
     private String paymentDueBefore;
+
+    /**
+     * Getter for property 'id'.
+     *
+     * @return Value for property 'id'.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Setter for property 'id'.
+     *
+     * @param id Value to set for property 'id'.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * Getter for property 'driverName'.
