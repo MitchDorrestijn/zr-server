@@ -1,6 +1,7 @@
 package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.service.ClientRideService;
+import org.han.ica.oose.boterbloem.service.IClientRideService;
 import org.han.ica.oose.boterbloem.service.projection.ClientRideDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping("/ride/client")
 public class ClientRideController {
-    private ClientRideService clientRideService = new ClientRideService();
+    private IClientRideService clientRideService = new ClientRideService();
 
     @Autowired
     public ClientRideController() {

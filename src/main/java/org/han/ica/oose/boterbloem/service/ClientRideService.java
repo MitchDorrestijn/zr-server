@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ClientRideService {
+public class ClientRideService implements IClientRideService {
     private IRideDAO rideDAO = new RideDAOImpl();
     private IClientDAO clientDAO = new ClientDAOImpl();
     private IDriverDAO driverDAO = new DriverDAOImpl();
@@ -17,6 +17,7 @@ public class ClientRideService {
     private static final Logger LOGGER = Logger.getLogger(ClientRideService.class.getName());
 
 
+    @Override
     public List<ClientRideDisplay> getRidesFromSpecificClient(int clientId) {
         List<ClientRideDisplay> clientRideDisplays = new ArrayList<>();
         try {
