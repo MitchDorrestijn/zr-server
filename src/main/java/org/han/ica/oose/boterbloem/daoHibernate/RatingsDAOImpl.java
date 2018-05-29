@@ -5,6 +5,7 @@ import org.han.ica.oose.boterbloem.entity.RatingsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRatingsDAO {
 
@@ -18,10 +19,17 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
 
     public int getAvgRatings(int id){
         try {
-            int returnValue = ((Number) getEntityManager().createQuery("SELECT AVG(sterren) FROM RatingsEntity WHERE driverId = :id").setParameter("id", id).getSingleResult()).intValue();
+            int returnValue = ((Number) getEntityManager().createQuery("SELECT AVG(sterren) FROM RatingsEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
             return returnValue;
         } catch (NullPointerException n){
             return 0;
         }
     }
+
+    @Override
+    public List<RatingsEntity> getByDriver(int driverId) {
+        return getEntityManager().createQuery("FROM RatingsEntity " +
+                "WHERE driverId = :driverId").setParameter("driverId", driverId).getResultList();
+    }
+
 }

@@ -2,6 +2,7 @@ package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.domain.domainImplementation.Ratings;
 import org.han.ica.oose.boterbloem.service.RatingsService;
+import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +38,7 @@ public class RatingsController {
      * @param driverId - id of the Driver
      * @return A arraylist of ratings
      */
-    @CrossOrigin
-    @RequestMapping(value = "/ratings/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/ratings/{driverId}", method = RequestMethod.GET)
     public List<Ratings> getAllRatingsFromASpecificDriver(@PathVariable int driverId) {
         return ratingsService.getAllRatingsFromASpecificDriver(driverId);
     }

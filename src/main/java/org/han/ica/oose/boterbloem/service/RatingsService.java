@@ -22,7 +22,11 @@ public class RatingsService implements IRatingsService {
         return ratingsMapper.allRatings();
     }
 
+    /***
+     * @param driverId - id of the driver where you want to get the ratings from
+     * @return A list of all the given ratings for the specific driver
+     */
     public List<Ratings> getAllRatingsFromASpecificDriver(int driverId) {
-        return ratingsMapper.ratingByDriver(driverId);
+        return ratingsMapper.getAllRatingsFromASpecificDriver(driverId);
     }
 }

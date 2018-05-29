@@ -6,21 +6,34 @@ import org.han.ica.oose.boterbloem.daoHibernate.RatingsDAOImpl;
 import org.han.ica.oose.boterbloem.daoHibernate.UserDAOImpl;
 import org.han.ica.oose.boterbloem.domain.domainImplementation.Ratings;
 import org.han.ica.oose.boterbloem.entity.RatingsEntity;
+import org.han.ica.oose.boterbloem.service.RatingsService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RatingsMapper {
+    private static final Logger LOGGER = Logger.getLogger(RatingsService.class.getName());
 
     private IUserDAO userDAO = new UserDAOImpl();
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
 
     /**
-     * not implmented maybe for future use
-     * @return
+     * @param driverId the driverID where you wnat to get the specific ratings from
+     * @return a list of ratings from a specific driver
      */
-    public List<Ratings> ratingByDriver(int driverId) {
-        return new ArrayList<>();
+    public List<Ratings> getAllRatingsFromASpecificDriver(int driverId) {
+        List<Ratings> ratings = new ArrayList<>();
+        for(RatingsEntity r : ratingsDAO.getByDriver(driverId)){
+            Ratings rating = new Ratings();
+            rating.setClientName(findNameByRating(r.getClientId()));
+            rating.setDriverName(findNameByRating(r.getDriverId()));
+            rating.setStars(r.getSterren());
+            rating.setComment(r.getBeoordeling());
+            ratings.add(rating);
+        }
+        return ratings;
     }
 
     /**
@@ -54,7 +67,7 @@ public class RatingsMapper {
      * @return
      */
     private String findNameByRating(int id) {
-        return userDAO.findById(id).getFirstName() + userDAO.findById(id).getLastName();
+        return userDAO.findById(id).getFirstName() + " " + userDAO.findById(id).getLastName();
     }
 
 }
