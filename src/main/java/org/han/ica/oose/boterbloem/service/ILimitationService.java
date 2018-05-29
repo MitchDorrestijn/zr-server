@@ -18,4 +18,10 @@ public interface ILimitationService {
      * @return the corresponding limitation
      */
     LimitationEntity getByName(String name);
+
+    /**
+     * Adds a new limitation to the database
+     * @param limitationEntity the limitation that will be added
+     */
+    void addLimitation(LimitationEntity limitationEntity);
 }

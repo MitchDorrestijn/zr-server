@@ -33,4 +33,13 @@ public class LimitationService implements ILimitationService {
             return limitationEntity;
         }
     }
+
+    @Override
+    public void addLimitation(LimitationEntity limitationEntity) {
+        try {
+            limitationDAO.add(limitationEntity);
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+    }
 }

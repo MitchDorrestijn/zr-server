@@ -30,10 +30,8 @@ public class CareInstitutionController {
      */
     @CrossOrigin
     @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
-    public ResponseEntity<String> addCareInstitution(@RequestBody CareinstitutionEntity careInstitution) {
+    public void addCareInstitution(@RequestBody CareinstitutionEntity careInstitution) {
         careInstitutionService.saveCareInstitution(careInstitution);
-        HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     /**

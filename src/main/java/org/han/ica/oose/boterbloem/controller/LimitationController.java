@@ -31,4 +31,10 @@ public class LimitationController {
     public LimitationEntity getByName(@PathVariable String name) {
         return limitationService.getByName(name);
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/addLimitation", method = RequestMethod.POST)
+    public void addLimitation(@RequestBody LimitationEntity limitationEntity) {
+        limitationService.addLimitation(limitationEntity);
+    }
 }
