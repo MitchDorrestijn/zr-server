@@ -20,13 +20,26 @@ public class RatingsController {
     }
 
     /**
-     * Method for returning clients
+     * Method for returning all ratings
      *
-     * @return A arraylist of clients
+     * @return A arraylist of ratings
      */
     @CrossOrigin
     @RequestMapping(value = "/ratings", method = RequestMethod.GET)
     public List<Ratings> getAllRatings() {
         return ratingsService.getAllRatings();
     }
+
+
+    /**
+     * Method for returning ratings of a specific driver
+     *
+     * @param driverId - id of the Driver
+     * @return A arraylist of ratings
+     */
+    @RequestMapping(value = "/ratings/{driverId}", method = RequestMethod.GET)
+    public List<Ratings> getAllRatingsFromASpecificDriver(@PathVariable int driverId) {
+        return ratingsService.getAllRatingsFromASpecificDriver(driverId);
+    }
+
 }
