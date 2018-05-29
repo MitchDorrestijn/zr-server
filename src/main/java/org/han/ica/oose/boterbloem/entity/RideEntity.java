@@ -23,6 +23,9 @@ public class RideEntity {
     private DriverEntity driverEntity;
     private float priceOfRide;
     private ClientEntity clientEntity;
+    private String paymentDescription;
+    private String paymentStatus;
+    private String paymentDueBefore;
 
     @OneToOne
     @JoinColumn(name = "clientId")
@@ -185,6 +188,39 @@ public class RideEntity {
         this.executed = executed;
     }
 
+    @Basic
+    @Column(name = "paymentDescription")
+    public String getPaymentDescription() {
+        return paymentDescription;
+    }
+
+    public void setPaymentDescription(String paymentDescription) {
+        this.paymentDescription = paymentDescription;
+    }
+
+    @Basic
+    @Column(name = "paymentStatus")
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+
+    @Basic
+    @Column(name = "paymentDueBefore")
+    public String getPaymentDueBefore() {
+        return paymentDueBefore;
+    }
+
+    public void setPaymentDueBefore(String paymentDueBefore) {
+        this.paymentDueBefore = paymentDueBefore;
+    }
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -210,6 +246,12 @@ public class RideEntity {
             return false;
         if (cancelledByClient != null ? !cancelledByClient.equals(that.cancelledByClient) : that.cancelledByClient != null)
             return false;
+        if (paymentDescription != null ? !paymentDescription.equals(that.paymentDescription) : that.paymentDescription != null)
+            return false;
+        if (paymentDueBefore != null ? !paymentDueBefore.equals(that.paymentDueBefore) : that.paymentDueBefore != null)
+            return false;
+        if (paymentStatus != null ? !paymentStatus.equals(that.paymentStatus) : that.paymentStatus != null)
+            return false;
 
         return true;
     }
@@ -229,6 +271,10 @@ public class RideEntity {
         result = 31 * result + (repeatingRideId != null ? repeatingRideId.hashCode() : 0);
         result = 31 * result + (cancelledByClient != null ? cancelledByClient.hashCode() : 0);
         result = 31 * result + (int) executed;
+        result = 31 * result + (paymentDescription != null ? paymentDescription.hashCode() : 0);
+        result = 31 * result + (paymentStatus != null ? paymentStatus.hashCode() : 0);
+        result = 31 * result + (paymentDueBefore != null ? paymentDueBefore.hashCode() : 0);
+
         return result;
     }
 }
