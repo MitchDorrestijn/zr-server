@@ -13,7 +13,6 @@ import org.han.ica.oose.boterbloem.daoHibernate.IClientDAO;
 import org.han.ica.oose.boterbloem.entity.ClientEntity;
 import org.han.ica.oose.boterbloem.service.displays.ClientDisplay;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ClientService implements IClientservice {
@@ -56,58 +55,6 @@ public class ClientService implements IClientservice {
         } catch ( Exception e ) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
-    }
-
-    /**
-     * @return method returns a list of all found clients
-     */
-    public List <ClientDisplay> getAllClients() {
-        List <ClientDisplay> clientDisplays = new ArrayList <>();
-        try {
-            List <ClientEntity> clientEntities = clientDAO.findAll();
-            for (ClientEntity i : clientEntities) {
-                try {
-                    int driverId = i.getClientId();
-
-                        double priceToPay;
-                        boolean warningPKB;
-
-                        List<RideEntity> rideEntitiesPerClient = rideDAO.getByClient(i.getClientId());
-
-                        int distance = 0;
-                        for(RideEntity rideEntity : rideEntitiesPerClient) {
-                            distance += rideEntity.getDistance();
-                        }
-
-                        ClientDisplay clientDisplay = new ClientDisplay();
-                        clientDisplay.setClientId(i.getClientId());
-                        clientDisplay.setName(i.getUserEntity().getFirstName());
-                        clientDisplay.setPKB(i.getPKB());
-                        try{
-                            if (distance > i.getPKB()) {
-                                priceToPay = (distance * 0.005);
-                                warningPKB = true;
-
-                                clientDisplay.setTotalMeters(distance);
-                                clientDisplay.setPriceToPay(priceToPay);
-                                clientDisplay.setWarningPKB(warningPKB);
-                            }
-                        }catch(Exception e){
-                            LOGGER.log(Level.SEVERE, e.toString(), e);
-                        }
-
-                    if (clientCareInstitutionDAO.getCareInstitutionId(driverId).isActive()) {
-                        clientDisplays.add(clientDisplay);
-                   }
-                }catch(Exception e){
-                    LOGGER.log(Level.WARNING, e.getMessage());
-                }
-            }
-            return clientDisplays;
-        } catch ( Exception e ) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        }
-        return clientDisplays;
     }
 
     @Override
@@ -169,4 +116,13 @@ public class ClientService implements IClientservice {
     public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id){
         return clientMapper.getAllClientsFromASpecificCareInstitution(id);
     }
+
+    /**
+     * Gets all the clients from all care institutions
+     * @return method returns a list of all found clients
+     */
+    public List <ClientDisplay> getAllClients() {
+        return clientMapper.getAllClients();
+    }
+
 }

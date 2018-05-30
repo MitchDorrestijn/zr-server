@@ -17,55 +17,69 @@ public class ClientMapper {
     private IRideDAO rideDAO = new RideDAOImpl();
     private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl();
 
+    /**
+     * Gets all the clients from all care institutions
+     * @return method returns a list of all found clients
+     */
+    public List <ClientDisplay> getAllClients(){
+        List <ClientDisplay> clientDisplays = new ArrayList <>();
+        try {
+            for (ClientEntity c : clientDAO.findAll()) {
+                ClientDisplay client = fillClientDisplay(c);
+                clientDisplays.add(client);
+            }
+        } catch (Exception e){
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+        return clientDisplays;
+    }
 
     /**
      * Get all the clients from a specific care institution
      * @return a list of information from the clients of a specific care institution
      */
     public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id){
-        List<ClientDisplay> returnList = new ArrayList<>();
+        List <ClientDisplay> clientDisplays = new ArrayList <>();
         try {
-            for(ClientEntity c : clientDAO.getByCareInstitutionId(id)){
-                try {
-                    int clientId = c.getClientId();
-                    double priceToPay;
-                    boolean warningPKB;
-                    List<RideEntity> rideEntitiesPerClient = rideDAO.getByClient(c.getClientId());
-                    int distance = 0;
-                    for (RideEntity rideEntity : rideEntitiesPerClient) {
-                        distance += rideEntity.getDistance();
-                    }
-
-                    ClientDisplay clientDisplay = new ClientDisplay();
-                    clientDisplay.setClientId(c.getClientId());
-                    clientDisplay.setName(c.getUserEntity().getFirstName() + " " + c.getUserEntity().getLastName());
-                    clientDisplay.setPKB(c.getPKB());
-
-                    try {
-                        if (distance > c.getPKB()) {
-                            priceToPay = (distance * 0.005);
-                            warningPKB = true;
-
-                            clientDisplay.setTotalMeters(distance);
-                            clientDisplay.setPriceToPay(priceToPay);
-                            clientDisplay.setWarningPKB(warningPKB);
-                        }
-                    } catch (Exception e) {
-                        LOGGER.log(Level.WARNING, e.toString(), e);
-                    }
-
-                    if (clientCareInstitutionDAO.getCareInstitutionId(clientId).isActive()) {
-                        returnList.add(clientDisplay);
-                    }
-                    return returnList;
-                } catch (Exception e){
-                    LOGGER.log(Level.WARNING, e.toString(), e);
-                }
+            for (ClientEntity c : clientDAO.getByCareInstitutionId(id)) {
+                ClientDisplay client = fillClientDisplay(c);
+                clientDisplays.add(client);
             }
         } catch (Exception e){
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
-        return returnList;
+        return clientDisplays;
+    }
+
+    /**
+     * @param c - The clientEntity
+     * @return A filled clientDisplay
+     */
+    private ClientDisplay fillClientDisplay(ClientEntity c) {
+        int clientId = c.getClientId();
+        ClientDisplay client = new ClientDisplay();
+        double priceToPay;
+        boolean warningPKB;
+        int distance = 0;
+        List<RideEntity> rideEntitiesPerClient = rideDAO.getByClient(clientId);
+        for (RideEntity rideEntity : rideEntitiesPerClient) {
+            distance += rideEntity.getDistance();
+        }
+        client.setClientId(c.getClientId());
+        client.setName(c.getUserEntity().getFirstName() + " " + c.getUserEntity().getLastName());
+        client.setPKB(c.getPKB());
+        try {
+            if (distance > c.getPKB()) {
+                priceToPay = (distance * 0.005);
+                warningPKB = true;
+                client.setTotalMeters(distance);
+                client.setPriceToPay(priceToPay);
+                client.setWarningPKB(warningPKB);
+            }
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+        return client;
     }
 
 }
