@@ -25,4 +25,9 @@ public class RideController {
     public List<RideDisplay> getAllRides() {
         return rideService.getAllRides();
     }
+
+    @RequestMapping(value = "{id}/delete", method = RequestMethod.DELETE)
+    public void deleteRide(@PathVariable int id) {
+        rideService.deleteRide(id);
+    }
 }

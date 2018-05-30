@@ -44,4 +44,17 @@ public class RideService implements IRideService {
         }
         return rideDisplay;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void deleteRide(int id) {
+        try {
+            RideEntity rideToRemove = rideDAO.findById(id);
+            rideDAO.remove(rideToRemove);
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+    }
 }

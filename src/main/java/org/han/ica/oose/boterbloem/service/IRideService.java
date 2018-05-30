@@ -9,4 +9,10 @@ public interface IRideService {
      * @return list of all rides
      */
     List <RideDisplay> getAllRides();
+
+    /**
+     * deletes a ride based on the given int
+     * @param id
+     */
+    void deleteRide(int id);
 }
