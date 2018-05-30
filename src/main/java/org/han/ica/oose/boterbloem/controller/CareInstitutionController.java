@@ -66,6 +66,9 @@ public class CareInstitutionController {
         try {
             currentCareInstitution = careInstitutionService.findById(id);
             currentCareInstitution.setName(careInstitution.getName());
+            currentCareInstitution.setAddress(careInstitution.getAddress());
+            currentCareInstitution.setCommunity(careInstitution.getCommunity());
+            currentCareInstitution.setTelephonenumber(careInstitution.getTelephonenumber());
             careInstitutionService.updateCareInstitution(currentCareInstitution);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
