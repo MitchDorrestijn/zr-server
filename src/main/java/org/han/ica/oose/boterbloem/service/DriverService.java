@@ -54,47 +54,12 @@ public class DriverService implements IDriverService {
         return driverMapper.getAllDriversFromASpecificCareInstitution(id);
     }
 
+    /**
+     * @return a list of all drivers from all care institutions
+     */
+    @Override
     public List<DriverDisplay> allDriversWithStatistics(){
-        try {
-            List<DriverDisplay> returnList = new ArrayList<>();
-            for (DriverEntity x : driverDao.findAll()) {
-                int driverId = x.getDriverId();
-                if (drivercareinstitutionDAO.getCareInstitutionId(driverId).isActive()) {
-                    System.out.println(drivercareinstitutionDAO.getCareInstitutionId(x.getDriverId()).isActive());
-                    DriverDisplay driver = new DriverDisplay();
-
-
-                    System.out.println(driverId);
-
-                    driver.setId(driverId);
-                    driver.setName(x.getUserEntity().getFirstName() + " " + x.getUserEntity().getLastName());
-                    driver.setTypeOfPayment(x.getTypeOfPayment());
-
-                    try {
-                        if (drivercarDAO.findCarById(driverId) == null) {
-                            driver.setNumberOfPassengers(0);
-                            driver.setNumberPlate("");
-                        } else {
-                            driver.setNumberOfPassengers(drivercarDAO.findCarById(driverId).getNumberOfPassengers());
-                            driver.setNumberPlate(drivercarDAO.findCarById(driverId).getNumberPlate());
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Nieuwe exception: " + e.getMessage());
-                    }
-
-                    driver.setRating(ratingsDAO.getAvgRatings(driverId));
-                    driver.setSegment("A");
-                    driver.setTotalEarned(rideDAO.totalEarned(driverId));
-                    driver.setTotalRides(rideDAO.rideCountById(driverId));
-
-                        returnList.add(driver);
-                    }
-                }
-            return returnList;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        return driverMapper.allDriversWithStatistics();
     }
 
     public DriverDetailDisplay getDriverDetails(int id){

@@ -19,5 +19,15 @@ public interface IDriverService {
 
     void updateDriver(CreateDriverDisplay createDriverDisplay);
 
+
+    /**
+     * @param id - The id of the care institution
+     * @return a list of all drivers from a specific care institutions
+     */
     List<DriverDisplay> getAllDriversFromASpecificCareInstitution(int id);
+
+    /**
+     * @return a list of all drivers from all care institutions
+     */
+    List<DriverDisplay> allDriversWithStatistics();
 }

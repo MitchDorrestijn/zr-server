@@ -23,11 +23,9 @@ public class DriverController {
 
     /**
      * Method for returning all drivers
-     *
      * @return List of chauffeurs
      */
     @RequestMapping(value = "/chauffeurs", method = RequestMethod.GET)
-
     public List<DriverDisplay> getAllDrivers() {
         return driverService.allDriversWithStatistics();
     }
