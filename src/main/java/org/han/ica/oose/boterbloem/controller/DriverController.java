@@ -63,7 +63,7 @@ public class DriverController {
      * Get all the drivers from a specific care institution
      * @return a list of information from the drivers of a specifice care instittution
      */
-    @RequestMapping(value = "/zorginstelling/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/chauffeurs/zorginstelling/{id}", method = RequestMethod.GET)
     public List<DriverDisplay> getAllDriversFromASpecificCareInstitution(@PathVariable int id) {
         return driverService.getAllDriversFromASpecificCareInstitution(id);
     }

@@ -13,4 +13,5 @@ public class CareinstitutionDAOImpl extends GenericDAOImpl<CareinstitutionEntity
     public CareinstitutionDAOImpl() {
         super(CareinstitutionEntity.class);
     }
+
 }
