@@ -1,11 +1,7 @@
 package org.han.ica.oose.boterbloem.mapper;
 
 import org.han.ica.oose.boterbloem.daoHibernate.*;
-import org.han.ica.oose.boterbloem.domain.domainImplementation.Driver;
-import org.han.ica.oose.boterbloem.entity.CareinstitutionEntity;
 import org.han.ica.oose.boterbloem.entity.DriverEntity;
-import org.han.ica.oose.boterbloem.service.RatingsService;
-import org.han.ica.oose.boterbloem.service.displays.DriverDetailDisplay;
 import org.han.ica.oose.boterbloem.service.displays.DriverDisplay;
 
 import java.util.ArrayList;
@@ -14,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DriverMapper {
-    private static final Logger LOGGER = Logger.getLogger(RatingsService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(DriverMapper.class.getName());
 
     private IDriverDAO driverDAO = new DriverDAOImpl();
     private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl();

@@ -2,6 +2,7 @@ package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.daoHibernate.*;
 import org.han.ica.oose.boterbloem.entity.*;
+import org.han.ica.oose.boterbloem.mapper.ClientMapper;
 import org.han.ica.oose.boterbloem.service.displays.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.service.displays.CreateClientDisplay;
 
@@ -24,6 +25,7 @@ public class ClientService implements IClientservice {
     private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl();
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
     private IRideDAO rideDAO = new RideDAOImpl();
+    private ClientMapper clientMapper = new ClientMapper();
 
 
     public ClientService() {
@@ -158,5 +160,13 @@ public class ClientService implements IClientservice {
         } catch ( Exception e ) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
+    }
+
+    /**
+     * Get all the clients from a specific care institution
+     * @return a list of information from the clients of a specific care institution
+     */
+    public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id){
+        return clientMapper.getAllClientsFromASpecificCareInstitution(id);
     }
 }
