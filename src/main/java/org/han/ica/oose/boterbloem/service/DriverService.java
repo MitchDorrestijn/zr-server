@@ -4,6 +4,7 @@ import org.han.ica.oose.boterbloem.daoHibernate.*;
 
 import org.han.ica.oose.boterbloem.entity.*;
 
+import org.han.ica.oose.boterbloem.mapper.DriverMapper;
 import org.han.ica.oose.boterbloem.service.displays.CreateDriverDisplay;
 import org.han.ica.oose.boterbloem.service.displays.DriverDetailDisplay;
 import org.han.ica.oose.boterbloem.service.displays.DriverDisplay;
@@ -29,6 +30,8 @@ public class DriverService implements IDriverService {
     private IUserDAO userDAO = new UserDAOImpl();
     private IDrivercareinstitutionDAO drivercareinstitutionDAO = new DrivercareinstitutionDAOImpl();
     private IDriverlimitationmanageableDAO driverlimitationmanageableDAO = new DriverlimitationmanageableDAOImpl();
+    private DriverMapper driverMapper = new DriverMapper();
+
 
     public DriverService() {
         //Empty constructor
@@ -39,8 +42,16 @@ public class DriverService implements IDriverService {
      */
     @Override
     public List<DrivercarEntity> getAllDrivers() {
-
         return drivercarDAO.findAll();
+    }
+
+    /**
+     * @param id id of the careInstitution
+     * @return A list of drivers from a specifec care institution
+     */
+    @Override
+    public List<DriverDisplay> getAllDriversFromASpecificCareInstitution(int id){
+        return driverMapper.getAllDriversFromASpecificCareInstitution(id);
     }
 
     public List<DriverDisplay> allDriversWithStatistics(){
