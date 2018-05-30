@@ -58,4 +58,16 @@ public class DriverController {
         driverService.updateDriver(driverEntity);
     }
 
+
+    /**
+     * Get all the drivers from a specific care institution
+     * @return a list of information from the drivers of a specifice care instittution
+     */
+    @RequestMapping(value = "/zorginstelling/{id}", method = RequestMethod.GET)
+    public List<DriverDisplay> getAllDriversFromASpecificCareInstitution() {
+        return driverService.getAllDriversFromASpecificCareInstitution(@PathVariable int id);
+    }
+
+
+
 }
