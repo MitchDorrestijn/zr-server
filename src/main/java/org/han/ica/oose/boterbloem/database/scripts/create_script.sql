@@ -323,9 +323,13 @@ CREATE TABLE IF NOT EXISTS `careInstitution` (
 
   name VARCHAR(255) NOT NULL,
 
-  address VARCHAR(255) NULL,
+  street VARCHAR(255) NULL,
 
-  community VARCHAR(255) NULL,
+  houseNumber VARCHAR (255) NULL,
+
+  residence VARCHAR(255) NULL,
+
+  zipCode VARCHAR(255) NULL,
 
   telephonenumber int NULL,
 

@@ -1,7 +1,5 @@
 package org.han.ica.oose.boterbloem.entity;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,9 +7,10 @@ import javax.persistence.*;
 public class CareinstitutionEntity {
     private int id;
     private String name;
-    private String address;
-    private String community;
-    private int telephonenumber;
+    private String street;
+    private String houseNumber;
+    private String zipCode;
+    private String residence;
 
     @Id
     @Column(name = "id")
@@ -34,22 +33,28 @@ public class CareinstitutionEntity {
     }
 
     @Basic
-    @Column(name = "address")
-    public String getAddress(){return address;}
+    @Column(name = "street")
+    public String getStreet() {return street;}
 
-    public void setAddress(String address) {this.address = address;}
-
-    @Basic
-    @Column(name = "community")
-    public String getCommunity(){return community;}
-
-    public void setCommunity(String community) {this.community = community;}
+    public void setStreet(String street) {this.street = street;}
 
     @Basic
-    @Column(name = "telephonenumber")
-    public int getTelephonenumber(){return telephonenumber; }
+    @Column(name = "houseNumber")
+    public String getHouseNumber(){return houseNumber;}
 
-    public void setTelephonenumber(int telephonenumber){this.telephonenumber = telephonenumber;}
+    public void setHouseNumber(String houseNumber){this.houseNumber = houseNumber;}
+
+    @Basic
+    @Column(name = "zipCode")
+    public String getZipCode(){ return zipCode;}
+
+    public void setZipCode(String zipCode){this.zipCode = zipCode;}
+
+    @Basic
+    @Column(name = "residence")
+    public String getResidence(){return residence;}
+
+    public void setResidence(String residence){this.residence = residence;}
 
     @Override
     public boolean equals(Object o) {

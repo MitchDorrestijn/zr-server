@@ -185,17 +185,17 @@ INSERT INTO `driverClientPreference` (driverId, clientId) VALUES
 
 
 
-INSERT INTO `careInstitution` (name, address, community, telephonenumber) VALUES
+INSERT INTO `careInstitution` (name, street, houseNumber, residence, zipCode, telephonenumber) VALUES
 
-  ('Reinearde', 'Energieweg 24', 'Nijmegen', 0242894038),
+  ('Reinearde', 'Energieweg', '25', 'Nijmegen', '6432AB', 0242894038),
 
-  ('Cordaan', 'Poffertjesweg 50', 'Zwolle', 0253950276),
+  ('Cordaan', 'Poffertjesweg', '21', 'Zwolle', '5422XY', 0253950276),
 
-  ('IrisZorg', 'Pannekoekendijk 4', 'Groningen', 0253552275),
+  ('IrisZorg', 'Pannekoekendijk', '123', 'Groningen', 'HUYJ89', 0253552275),
 
-  ('IZZ', 'Wentelteefjeslaan 78', 'Amsterdam', 02048348329),
+  ('IZZ', 'Wentelteefjeslaan', '234', 'Amsterdam', 'XOPS86', 02048348329),
 
-  ('NedRAI', 'Dorpstraat 1', 'Arnhem', 0264382048);
+  ('NedRAI', 'Dorpstraat', '42', 'Arnhem', 'SDOS82', 0264382048);
 
 
 

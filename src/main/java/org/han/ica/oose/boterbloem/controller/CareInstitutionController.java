@@ -66,9 +66,10 @@ public class CareInstitutionController {
         try {
             currentCareInstitution = careInstitutionService.findById(id);
             currentCareInstitution.setName(careInstitution.getName());
-            currentCareInstitution.setAddress(careInstitution.getAddress());
-            currentCareInstitution.setCommunity(careInstitution.getCommunity());
-            currentCareInstitution.setTelephonenumber(careInstitution.getTelephonenumber());
+            currentCareInstitution.setStreet(careInstitution.getStreet());
+            currentCareInstitution.setHouseNumber(careInstitution.getHouseNumber());
+            currentCareInstitution.setZipCode(careInstitution.getZipCode());
+            currentCareInstitution.setResidence(careInstitution.getResidence());
             careInstitutionService.updateCareInstitution(currentCareInstitution);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
