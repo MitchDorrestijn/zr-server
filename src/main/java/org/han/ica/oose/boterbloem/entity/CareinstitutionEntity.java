@@ -1,5 +1,7 @@
 package org.han.ica.oose.boterbloem.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,6 +9,9 @@ import javax.persistence.*;
 public class CareinstitutionEntity {
     private int id;
     private String name;
+    private String address;
+    private String community;
+    private int telephonenumber;
 
     @Id
     @Column(name = "id")
@@ -27,6 +32,24 @@ public class CareinstitutionEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Basic
+    @Column(name = "address")
+    public String getAddress(){return address;}
+
+    public void setAddress(String address) {this.address = address;}
+
+    @Basic
+    @Column(name = "community")
+    public String getCommunity(){return community;}
+
+    public void setCommunity(String community) {this.community = community;}
+
+    @Basic
+    @Column(name = "telephonenumber")
+    public int getTelephonenumber(){return telephonenumber; }
+
+    public void setTelephonenumber(int telephonenumber){this.telephonenumber = telephonenumber;}
 
     @Override
     public boolean equals(Object o) {

@@ -25,11 +25,15 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     @Override
     public T add(T entity) {
-        em.getTransaction().begin();
-        em.persist(entity);
-        em.getTransaction().commit();
-
-        return entity;
+        try {
+            em.getTransaction().begin();
+            em.persist(entity);
+            em.getTransaction().commit();
+            return entity;
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return null;
     }
 
     @Override
