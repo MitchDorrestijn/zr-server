@@ -331,8 +331,6 @@ CREATE TABLE IF NOT EXISTS `careInstitution` (
 
   zipCode VARCHAR(255) NULL,
 
-  telephonenumber int NULL,
-
   PRIMARY KEY (id)
 
 );

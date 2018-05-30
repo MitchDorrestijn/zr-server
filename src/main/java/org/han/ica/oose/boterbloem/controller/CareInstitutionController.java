@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.controller;
 
+import org.han.ica.oose.boterbloem.domain.domainImplementation.CareInstitution;
 import org.han.ica.oose.boterbloem.entity.CareinstitutionEntity;
 import org.han.ica.oose.boterbloem.service.CareInstitutionService;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class CareInstitutionController {
      */
     @CrossOrigin
     @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
-    public void addCareInstitution(@RequestBody CareinstitutionEntity careInstitution) {
+    public void addCareInstitution(@RequestBody CareInstitution careInstitution) {
         careInstitutionService.saveCareInstitution(careInstitution);
     }
 
@@ -50,7 +51,7 @@ public class CareInstitutionController {
      * @return List of ICareInstitution
      */
     @RequestMapping(value = "/zorginstellingen", method = RequestMethod.GET)
-    public List<CareinstitutionEntity> getAllCareInstitutions() {
+    public List<CareInstitution> getAllCareInstitutions() {
         return careInstitutionService.getAllCareInstitutions();
     }
 
@@ -61,21 +62,16 @@ public class CareInstitutionController {
      */
     @CrossOrigin
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
-    public ResponseEntity<CareinstitutionEntity> updateCareInstitution(@PathVariable int id, @RequestBody CareinstitutionEntity careInstitution) {
-        CareinstitutionEntity currentCareInstitution = null;
+    public void updateCareInstitution(@PathVariable int id, @RequestBody CareInstitution careInstitution) {
         try {
-            currentCareInstitution = careInstitutionService.findById(id);
-            currentCareInstitution.setName(careInstitution.getName());
-            currentCareInstitution.setStreet(careInstitution.getStreet());
-            currentCareInstitution.setHouseNumber(careInstitution.getHouseNumber());
-            currentCareInstitution.setZipCode(careInstitution.getZipCode());
-            currentCareInstitution.setResidence(careInstitution.getResidence());
-            careInstitutionService.updateCareInstitution(currentCareInstitution);
+            careInstitution.setId(id);
+            careInstitutionService.updateCareInstitution(careInstitution);
+
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
+            LOGGER.log(Level.WARNING, e.toString(), e);
         }
 
-        return new ResponseEntity<>(currentCareInstitution, HttpStatus.OK);
+     //   return new ResponseEntity<>(currentCareInstitution, HttpStatus.OK);
 
     }
 
