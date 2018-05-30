@@ -77,4 +77,14 @@ public class ClientController {
         clientService.deleteClient(id, clientService.getCareInstitutionById(id));
         return new ResponseEntity <>(HttpStatus.NO_CONTENT);
     }
+
+    /**
+     * Get all the clients from a specific care institution
+     * @return a list of information from the clients of a specifice care institution
+     */
+    @RequestMapping(value = "/clienten/zorginstelling/{id}", method = RequestMethod.GET)
+    public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(@PathVariable int id) {
+        return clientService.getAllClientsFromASpecificCareInstitution(id);
+    }
+
 }
