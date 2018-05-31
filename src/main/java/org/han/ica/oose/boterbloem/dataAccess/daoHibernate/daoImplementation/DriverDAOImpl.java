@@ -36,7 +36,7 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
     public void deleteDriver(int driverId) {
         getEntityManager().getTransaction().begin();
         getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET DrivercareinstitutionEntity.active = false " +
-                    "WHERE DrivercareinstitutionEntity.driverId = :driverId").setParameter("driverId", driverId).getResultList();
+                "WHERE DrivercareinstitutionEntity.driverId = :driverId").setParameter("driverId", driverId).getResultList();
         getEntityManager().getTransaction().commit();
     }
 

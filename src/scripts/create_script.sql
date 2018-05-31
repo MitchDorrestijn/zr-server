@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `driver` (
 
     ON UPDATE CASCADE
 
--- -----------------------------------------------------
+  -- -----------------------------------------------------
 
 );
 
@@ -199,9 +199,9 @@ CREATE TABLE IF NOT EXISTS `clientLimitation` (
     ON UPDATE NO ACTION,
   CONSTRAINT clientLimitationLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
 
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
 
-    ON UPDATE CASCADE
+    ON UPDATE NO ACTION
 
 );
 
@@ -249,9 +249,9 @@ CREATE TABLE IF NOT EXISTS `driverLimitationManageable` (
     ON UPDATE NO ACTION,
   CONSTRAINT driverLimitationManageableLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
 
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
 
-    ON UPDATE CASCADE
+    ON UPDATE NO ACTION
 
 );
 
@@ -322,6 +322,14 @@ CREATE TABLE IF NOT EXISTS `careInstitution` (
   id   INT(11)      NOT NULL AUTO_INCREMENT,
 
   name VARCHAR(255) NOT NULL,
+
+  street VARCHAR(255) NULL,
+
+  houseNumber VARCHAR (255) NULL,
+
+  residence VARCHAR(255) NULL,
+
+  zipCode VARCHAR(255) NULL,
 
   PRIMARY KEY (id)
 
@@ -432,12 +440,6 @@ CREATE TABLE IF NOT EXISTS `ride` (
   executed                BOOLEAN      NOT NULL DEFAULT FALSE,
 
   price_of_ride           FLOAT        NOT NULL,
-
-  paymentDescription      VARCHAR(255) NULL,
-
-  paymentStatus           VARCHAR(255) NULL,
-
-  paymentDueBefore        DATE         NULL,
 
   PRIMARY KEY (id),
 

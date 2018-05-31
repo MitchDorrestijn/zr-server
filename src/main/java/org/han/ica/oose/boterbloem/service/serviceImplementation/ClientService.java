@@ -4,13 +4,13 @@ import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.*;
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.*;
 import org.han.ica.oose.boterbloem.dataAccess.entities.*;
 import org.han.ica.oose.boterbloem.domain.domainMappers.ClientMapper;
+import org.han.ica.oose.boterbloem.service.IClientservice;
 import org.han.ica.oose.boterbloem.display.displayObject.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayObject.CreateClientDisplay;
 
 import java.util.logging.*;
 
 import org.han.ica.oose.boterbloem.display.displayObject.ClientDisplay;
-import org.han.ica.oose.boterbloem.service.IClientservice;
 
 import java.util.List;
 
@@ -22,7 +22,6 @@ public class ClientService implements IClientservice {
     private IClientUtilityDAO clientUtilityDAO = new ClientUtilityDAO();
     private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl();
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
-    private IRideDAO rideDAO = new RideDAOImpl();
     private ClientMapper clientMapper = new ClientMapper();
 
 

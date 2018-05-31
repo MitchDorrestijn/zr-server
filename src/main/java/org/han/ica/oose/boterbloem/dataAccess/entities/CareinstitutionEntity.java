@@ -5,8 +5,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "careInstitution", schema = "zorgrit")
 public class CareinstitutionEntity {
+
     private int id;
     private String name;
+
+    private String street;
+    private String houseNumber;
+    private String zipCode;
+    private String residence;
 
     @Id
     @Column(name = "id")
@@ -27,6 +33,30 @@ public class CareinstitutionEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Basic
+    @Column(name = "street")
+    public String getStreet() {return street;}
+
+    public void setStreet(String street) {this.street = street;}
+
+    @Basic
+    @Column(name = "houseNumber")
+    public String getHouseNumber(){return houseNumber;}
+
+    public void setHouseNumber(String houseNumber){this.houseNumber = houseNumber;}
+
+    @Basic
+    @Column(name = "zipCode")
+    public String getZipCode(){ return zipCode;}
+
+    public void setZipCode(String zipCode){this.zipCode = zipCode;}
+
+    @Basic
+    @Column(name = "residence")
+    public String getResidence(){return residence;}
+
+    public void setResidence(String residence){this.residence = residence;}
 
     @Override
     public boolean equals(Object o) {
