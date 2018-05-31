@@ -28,14 +28,14 @@ public class DriverMapper {
      * @param id id of the careInstitution
      * @return A list of drivers from a specific care institution
      */
-    public List<DriverDisplay> getAllDriversFromASpecificCareInstitution(int id){
+    public List<DriverDisplay> getAllDriversFromASpecificCareInstitution(int id) {
         List<DriverDisplay> returnList = new ArrayList<>();
         try {
-            for(DriverEntity d : driverDAO.getByCareInstitutionId(id)){
+            for (DriverEntity d : driverDAO.getByCareInstitutionId(id)) {
                 DriverDisplay driver = fillDriverDisplay(d);
                 returnList.add(driver);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return returnList;
@@ -44,14 +44,14 @@ public class DriverMapper {
     /**
      * @return A list of all drivers from all care institutions
      */
-    public List<DriverDisplay> allDriversWithStatistics(){
+    public List<DriverDisplay> allDriversWithStatistics() {
         List<DriverDisplay> returnList = new ArrayList<>();
         try {
             for (DriverEntity d : driverDAO.findAll()) {
                 DriverDisplay driver = fillDriverDisplay(d);
                 returnList.add(driver);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return returnList;

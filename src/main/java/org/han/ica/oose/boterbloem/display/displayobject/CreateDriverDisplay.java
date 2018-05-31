@@ -6,10 +6,11 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntity;
 import java.util.List;
 
 public class CreateDriverDisplay {
-    DriverEntity driver;
-    DrivercarEntity drivercarEntity;
+
+    private DriverEntity driver;
+    private DrivercarEntity drivercarEntity;
     private int careInstitutionId;
-    List<String> limitationEntities;
+    private List<String> limitationEntities;
 
     public List<String> getLimitationEntities() {
         return limitationEntities;

@@ -1,7 +1,7 @@
 package org.han.ica.oose.boterbloem.domain.domainobjects;
 
 public class Location {
-    private String location;
+    private String rideLocation;
 
     /**
      * Getter for property 'location'.
@@ -9,7 +9,7 @@ public class Location {
      * @return Value for property 'location'.
      */
     public String getLocation() {
-        return location;
+        return rideLocation;
     }
 
     /**
@@ -18,6 +18,6 @@ public class Location {
      * @param location Value to set for property 'location'.
      */
     public void setLocation(String location) {
-        this.location = location;
+        this.rideLocation = location;
     }
 }

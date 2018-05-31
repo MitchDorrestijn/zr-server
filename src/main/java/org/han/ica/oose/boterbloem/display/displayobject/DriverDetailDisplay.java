@@ -8,10 +8,10 @@ import java.util.List;
 
 public class DriverDetailDisplay {
 
-    DriverEntity driver;
-    DrivercarEntity drivercarEntity;
+    private DriverEntity driver;
+    private DrivercarEntity drivercarEntity;
     private int careInstitutionId;
-    List<String> limitationEntities;
+    private List<String> limitationEntities;
 
     public DriverEntity getDriver() {
         return driver;

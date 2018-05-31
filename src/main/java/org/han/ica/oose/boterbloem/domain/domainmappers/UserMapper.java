@@ -3,7 +3,8 @@ package org.han.ica.oose.boterbloem.domain.domainmappers;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IUserDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.UserDAOImpl;
 
-public class GenericMapper {
+public class UserMapper {
+
     private IUserDAO userDAO = new UserDAOImpl();
 
     /**
