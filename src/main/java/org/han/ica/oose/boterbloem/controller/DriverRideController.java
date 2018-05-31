@@ -1,8 +1,8 @@
 package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.service.IDriverRideService;
-import org.han.ica.oose.boterbloem.service.serviceImplementation.DriverRideService;
-import org.han.ica.oose.boterbloem.display.displayObject.DriverRideDisplay;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.DriverRideService;
+import org.han.ica.oose.boterbloem.display.displayobject.DriverRideDisplay;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 

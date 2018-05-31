@@ -1,7 +1,7 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.dataAccess.entities.CareinstitutionEntity;
-import org.han.ica.oose.boterbloem.domain.domainObjects.CareInstitution;
+import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
+import org.han.ica.oose.boterbloem.domain.domainobjects.CareInstitution;
 
 import java.util.List;
 
