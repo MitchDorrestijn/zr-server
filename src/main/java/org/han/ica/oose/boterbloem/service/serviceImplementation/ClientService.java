@@ -3,7 +3,7 @@ package org.han.ica.oose.boterbloem.service.serviceImplementation;
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.*;
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.*;
 import org.han.ica.oose.boterbloem.dataAccess.entities.*;
-import org.han.ica.oose.boterbloem.domain.domainMappers.ClientMapper;
+import org.han.ica.oose.boterbloem.display.displayMapper.ClientDisplayMapper;
 import org.han.ica.oose.boterbloem.service.IClientservice;
 import org.han.ica.oose.boterbloem.display.displayObject.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayObject.CreateClientDisplay;
@@ -22,7 +22,7 @@ public class ClientService implements IClientservice {
     private IClientUtilityDAO clientUtilityDAO = new ClientUtilityDAO();
     private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl();
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
-    private ClientMapper clientMapper = new ClientMapper();
+    private ClientDisplayMapper clientDisplayMapper = new ClientDisplayMapper();
 
 
     public ClientService() {
@@ -112,7 +112,7 @@ public class ClientService implements IClientservice {
      * @return a list of information from the clients of a specific care institution
      */
     public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id){
-        return clientMapper.getAllClientsFromASpecificCareInstitution(id);
+        return clientDisplayMapper.getAllClientsFromASpecificCareInstitution(id);
     }
 
     /**
@@ -120,7 +120,7 @@ public class ClientService implements IClientservice {
      * @return method returns a list of all found clients
      */
     public List <ClientDisplay> getAllClients() {
-        return clientMapper.getAllClients();
+        return clientDisplayMapper.getAllClients();
     }
 
 }
