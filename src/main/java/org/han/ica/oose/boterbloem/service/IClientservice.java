@@ -1,9 +1,9 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.entity.ClientEntity;
-import org.han.ica.oose.boterbloem.service.displays.ClientDetailDisplay;
-import org.han.ica.oose.boterbloem.service.displays.ClientDisplay;
-import org.han.ica.oose.boterbloem.service.displays.CreateClientDisplay;
+import org.han.ica.oose.boterbloem.dataAccess.entities.ClientEntity;
+import org.han.ica.oose.boterbloem.display.displayObject.ClientDetailDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.ClientDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.CreateClientDisplay;
 
 import java.util.List;
 
