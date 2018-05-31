@@ -50,7 +50,7 @@ public class ClientService implements IClientservice {
                 clientlimitationEntity.setLimitation(s);
                 clientlimitationDAO.add(clientlimitationEntity);
             }
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
     }
@@ -59,7 +59,7 @@ public class ClientService implements IClientservice {
     public ClientEntity findById(int id) {
         try {
             return clientDAO.findById(id);
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
         return null;
@@ -68,21 +68,22 @@ public class ClientService implements IClientservice {
     @Override
     public void updateClient(ClientDetailDisplay clientDetailDisplay) {
         int clientId = clientDetailDisplay.getClient().getClientId();
-        if(clientDetailDisplay.getClient() != clientDAO.findById(clientId)){
+        if (clientDetailDisplay.getClient() != clientDAO.findById(clientId)) {
             clientDAO.update(clientDetailDisplay.getClient());
-        } if(clientDetailDisplay.getLimitations() != clientlimitationDAO.getByClientId(clientId)){
+        }
+        if (clientDetailDisplay.getLimitations() != clientlimitationDAO.getByClientId(clientId)) {
             clientlimitationDAO.updateClientLimitations(clientDetailDisplay.getLimitations(), clientId);
         }
     }
 
     @Override
-    public ClientDetailDisplay getClientDetails(int id){
+    public ClientDetailDisplay getClientDetails(int id) {
         ClientDetailDisplay clientDetailDisplay = new ClientDetailDisplay();
-        try{
+        try {
             clientDetailDisplay.setClient(clientDAO.findById(id));
             clientDetailDisplay.setLimitations(clientlimitationDAO.getByClientId(id));
-        }catch(Exception e){
-            LOGGER.log(Level.SEVERE,e.getMessage());
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
 
         return clientDetailDisplay;
@@ -102,24 +103,26 @@ public class ClientService implements IClientservice {
             ClientcareinstitutionEntity clientcareinstitutionEntity = clientCareInstitutionDAO.find(clientcareinstitutionEntityPK);
             clientcareinstitutionEntity.setActive(false);
             clientCareInstitutionDAO.update(clientcareinstitutionEntity);
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
     }
 
     /**
      * Get all the clients from a specific care institution
+     *
      * @return a list of information from the clients of a specific care institution
      */
-    public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id){
+    public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id) {
         return clientDisplayMapper.getAllClientsFromASpecificCareInstitution(id);
     }
 
     /**
      * Gets all the clients from all care institutions
+     *
      * @return method returns a list of all found clients
      */
-    public List <ClientDisplay> getAllClients() {
+    public List<ClientDisplay> getAllClients() {
         return clientDisplayMapper.getAllClients();
     }
 

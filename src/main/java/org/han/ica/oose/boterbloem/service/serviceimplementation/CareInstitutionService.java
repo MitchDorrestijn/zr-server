@@ -1,22 +1,21 @@
 package org.han.ica.oose.boterbloem.service.serviceimplementation;
 
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.CareinstitutionDAOImpl;
-
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.ICareinstitutionDAO;
-
 import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
 import org.han.ica.oose.boterbloem.domain.domainobjects.CareInstitution;
 import org.han.ica.oose.boterbloem.domain.domainmappers.CareinstitutionMapper;
 import org.han.ica.oose.boterbloem.service.ICareInstitutionService;
 
 import java.util.List;
-import java.util.logging.Logger;
+
 
 public class CareInstitutionService implements ICareInstitutionService {
-    private static final Logger LOGGER = Logger.getLogger(DriverService.class.getName());
+
 
     private ICareinstitutionDAO careinstitutionDAO = new CareinstitutionDAOImpl();
     private CareinstitutionMapper careinstitutionMapper = new CareinstitutionMapper();
+
     public CareInstitutionService() {
         // Empty constructor
     }
@@ -35,8 +34,6 @@ public class CareInstitutionService implements ICareInstitutionService {
      * @param careInstitution ICareInstitution that needs a update
      */
     public void updateCareInstitution(CareInstitution careInstitution) {
-
-        //The posted name should be put here
         careinstitutionMapper.update(careInstitution);
     }
 

@@ -17,30 +17,29 @@ public class CareinstitutionMapper {
     private static final Logger LOGGER = Logger.getLogger(CareinstitutionMapper.class.getName());
 
     /**
-     *
      * @return a list of domain objects CareInstitution
      */
-    public List<CareInstitution> getAllCareinstitution(){
-     List<CareInstitution> careInstitutions = new ArrayList<>();
-     try {
-         for (CareinstitutionEntity entity : careinstitutionDAO.findAll()){
-             CareInstitution careInstitution = new CareInstitution();
-             List<Address> addresses =  new ArrayList<>();
-             Address address = new Address();
-             address.setHouseNumber(entity.getHouseNumber());
-             address.setResidence(entity.getResidence());
-             address.setStreet(entity.getStreet());
-             address.setZipCode(entity.getZipCode());
-             addresses.add(address);
-             careInstitution.setName(entity.getName());
-             careInstitution.setAddresses(addresses);
-             careInstitution.setId(entity.getId());
-             careInstitutions.add(careInstitution);
-         }
-     } catch (Exception e){
-         LOGGER.log(Level.WARNING,e.getMessage());
-     }
-     return careInstitutions;
+    public List<CareInstitution> getAllCareinstitution() {
+        List<CareInstitution> careInstitutions = new ArrayList<>();
+        try {
+            for (CareinstitutionEntity entity : careinstitutionDAO.findAll()) {
+                CareInstitution careInstitution = new CareInstitution();
+                List<Address> addresses = new ArrayList<>();
+                Address address = new Address();
+                address.setHouseNumber(entity.getHouseNumber());
+                address.setResidence(entity.getResidence());
+                address.setStreet(entity.getStreet());
+                address.setZipCode(entity.getZipCode());
+                addresses.add(address);
+                careInstitution.setName(entity.getName());
+                careInstitution.setAddresses(addresses);
+                careInstitution.setId(entity.getId());
+                careInstitutions.add(careInstitution);
+            }
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
+        return careInstitutions;
     }
 
     public void update(CareInstitution careInstitution) {

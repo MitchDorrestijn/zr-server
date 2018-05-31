@@ -6,9 +6,11 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.ClientLimitationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEntity> implements IClientlimitationDAO {
-
+    private static final Logger LOGGER = Logger.getLogger(ClientlimitationDAOImpl.class.getName());
     /**
      * Hook up the basic CRUD queries
      */
@@ -18,6 +20,7 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<String> getByClientId(int id) {
         return getEntityManager().createQuery("SELECT limitation FROM ClientLimitationEntity " +
                 "WHERE clientId = :id").setParameter("id", id).getResultList();
@@ -47,7 +50,7 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
                 add(clientLimitationEntity);
                 getEntityManager().flush();
             } catch (Exception e) {
-                e.printStackTrace();
+               LOGGER.log(Level.WARNING,e.getMessage());
             }
         }
     }

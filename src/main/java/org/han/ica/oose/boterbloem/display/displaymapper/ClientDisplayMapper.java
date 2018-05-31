@@ -19,20 +19,21 @@ public class ClientDisplayMapper {
     private IClientDAO clientDAO = new ClientDAOImpl();
     private IRideDAO rideDAO = new RideDAOImpl();
 
-    private final double DISTANCE_MULTIPLIER = 0.005;
+    private static final double DISTANCE_MULTIPLIER = 0.005;
 
     /**
      * Gets all the clients from all care institutions
+     *
      * @return method returns a list of all found clients
      */
-    public List <ClientDisplay> getAllClients(){
-        List <ClientDisplay> clientDisplays = new ArrayList <>();
+    public List<ClientDisplay> getAllClients() {
+        List<ClientDisplay> clientDisplays = new ArrayList<>();
         try {
             for (ClientEntity c : clientDAO.findAll()) {
                 ClientDisplay client = fillClientDisplay(c);
                 clientDisplays.add(client);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return clientDisplays;
@@ -40,16 +41,17 @@ public class ClientDisplayMapper {
 
     /**
      * Get all the clients from a specific care institution
+     *
      * @return a list of information from the clients of a specific care institution
      */
-    public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id){
-        List <ClientDisplay> clientDisplays = new ArrayList <>();
+    public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id) {
+        List<ClientDisplay> clientDisplays = new ArrayList<>();
         try {
             for (ClientEntity c : clientDAO.getByCareInstitutionId(id)) {
                 ClientDisplay client = fillClientDisplay(c);
                 clientDisplays.add(client);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return clientDisplays;
@@ -63,7 +65,6 @@ public class ClientDisplayMapper {
         int clientId = c.getClientId();
         ClientDisplay client = new ClientDisplay();
         double priceToPay;
-        boolean warningPKB;
         int distance = 0;
         List<RideEntity> rideEntitiesPerClient = rideDAO.getByClient(clientId);
         for (RideEntity rideEntity : rideEntitiesPerClient) {
@@ -75,10 +76,9 @@ public class ClientDisplayMapper {
         try {
             if (distance > c.getPKB()) {
                 priceToPay = (distance * DISTANCE_MULTIPLIER);
-                warningPKB = true;
                 client.setTotalMeters(distance);
                 client.setPriceToPay(priceToPay);
-                client.setWarningPKB(warningPKB);
+                client.setWarningPKB(true);
             }
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);

@@ -16,7 +16,7 @@ public class RideMapper {
 
     public List<RideOverviewDisplay> getRideOverview() {
         List<RideOverviewDisplay> returnList = new ArrayList<>();
-        for (RideEntity r: rideDAO.findAll()) {
+        for (RideEntity r : rideDAO.findAll()) {
             try {
                 RideOverviewDisplay rideOverviewDisplay = new RideOverviewDisplay();
                 rideOverviewDisplay.setPaymentStatus(r.getPaymentStatus());
@@ -32,8 +32,8 @@ public class RideMapper {
                 rideOverviewDisplay.setPaymentDescription(r.getPaymentDescription());
                 rideOverviewDisplay.setPaymentDueBefore(r.getPaymentDueBefore());
                 returnList.add(rideOverviewDisplay);
-            } catch (Exception e){
-                LOGGER.log(Level.WARNING,e.getMessage());
+            } catch (Exception e) {
+                LOGGER.log(Level.WARNING, e.getMessage());
             }
         }
         return returnList;

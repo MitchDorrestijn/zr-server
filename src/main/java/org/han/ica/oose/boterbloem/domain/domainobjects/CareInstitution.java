@@ -4,8 +4,8 @@ package org.han.ica.oose.boterbloem.domain.domainobjects;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CareInstitution  {
-    private List<Address> addresses =  new ArrayList<>();
+public class CareInstitution {
+    private List<Address> addresses = new ArrayList<>();
     private String name;
     private int id;
 
