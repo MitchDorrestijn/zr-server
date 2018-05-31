@@ -67,4 +67,23 @@ public class RatingsMapper extends GenericMapper {
         }
         return ratings;
     }
+    
+    public List<List<Ratings>> getAllRatingsFromASpecificCareInstitution(int careInstitutionId){
+        List<List<RatingsEntity>> ratingsentities = ratingsDAO.getByCareInstitution(careInstitutionId);
+        List<List<Ratings>> ratings = new ArrayList<>();
+
+        for (List<RatingsEntity> r: ratingsentities) {
+            List<Ratings> re = new ArrayList<>();
+            for (RatingsEntity ra: r) {
+                Ratings adder = new Ratings();
+                adder.setClientName(findNameById(ra.getClientId()));
+                adder.setDriverName(findNameById(ra.getDriverId()));
+                adder.setStars(ra.getSterren());
+                adder.setComment(ra.getBeoordeling());
+                re.add(adder);
+            }
+            ratings.add(re);
+        }
+            return  ratings;
+        }
 }

@@ -36,8 +36,8 @@ public class RatingsService implements IRatingsService {
      * @return A list of ratings of a specific care institution
      */
     @Override
-    public List<Ratings> getAllRatingsFromASpecificCareInstitution(int careInstitutionId) {
-        return null;
+    public List<List<Ratings>> getAllRatingsFromASpecificCareInstitution(int careInstitutionId) {
+        return ratingsMapper.getAllRatingsFromASpecificCareInstitution(careInstitutionId);
     }
 
 }
