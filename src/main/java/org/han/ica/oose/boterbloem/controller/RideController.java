@@ -1,8 +1,11 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.service.RideService;
+import org.han.ica.oose.boterbloem.dataAccess.entities.RideEntity;
+import org.han.ica.oose.boterbloem.display.displayObject.RideOverviewDisplay;
+import org.han.ica.oose.boterbloem.service.IRideService;
 import org.han.ica.oose.boterbloem.service.displays.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.service.displays.RideDisplay;
+import org.han.ica.oose.boterbloem.service.serviceImplementation.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +16,7 @@ import java.util.List;
 @RequestMapping("/ride")
 public class RideController {
 
-    private RideService rideService = new RideService();
+    private IRideService rideService = new RideService();
 
     @Autowired
     RideController() {
@@ -21,7 +24,18 @@ public class RideController {
     }
 
     /**
-     * @return list of all rides
+     * GET Ride by Id
+     * @param id of Ride
+     * @return Ride
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public RideEntity getRideById(@PathVariable int id) {
+        return rideService.findById(id);
+    }
+
+    /**
+     * GET all Rides
+     * @return list of Rides
      */
     @RequestMapping(value = "/getAllRides", method = RequestMethod.GET)
     public List <RideDisplay> getAllRides() {
@@ -29,19 +43,29 @@ public class RideController {
     }
 
     /**
-     * @param createRideDisplay = create a ride
+     * GET all Ride information
+     * @return list of Ride information
      */
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public void createRide(@RequestBody CreateRideDisplay createRideDisplay) {
-        rideService.createRide(createRideDisplay);
+    @RequestMapping(value = "/rides/overview", method = RequestMethod.GET)
+    public List <RideOverviewDisplay> getRideOverview() {
+        return rideService.getRideOverview();
     }
 
     /**
-     * @param id the Ride
+     * POST new Ride
+     * @param ride = new Ride
      */
-    @RequestMapping(value = "{id}/delete", method = RequestMethod.DELETE)
-    public void deleteRide(@PathVariable int id) {
-        rideService.deleteRide(id);
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public void createRide(@RequestBody CreateRideDisplay ride) {
+        rideService.createRide(ride);
     }
 
+    /**
+     * DELETE Ride by Id
+     * @param id of Ride
+     */
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public void deleteRide(@PathVariable int id) {
+        rideService.deleteRideById(id);
+    }
 }

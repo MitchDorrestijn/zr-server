@@ -1,24 +1,41 @@
 package org.han.ica.oose.boterbloem.service;
 
+import org.han.ica.oose.boterbloem.dataAccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.service.displays.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.service.displays.RideDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.RideOverviewDisplay;
 
 import java.util.List;
 
 public interface IRideService {
     /**
-     * @return list of all rides
+     * GET Ride by Id
+     * @param id of Ride
+     * @return Ride
+     */
+    RideEntity findById(int id);
+
+    /**
+     * GET all Rides
+     * @return list of Rides
      */
     List <RideDisplay> getAllRides();
 
     /**
-     * @param createRideDisplay = create a ride for a Client
+     * GET information of Rides
+     * @return A list with information of a ride
+     */
+    List<RideOverviewDisplay> getRideOverview();
+
+    /**
+     * CREATE new Ride
+     * @param createRideDisplay = Ride
      */
     void createRide(CreateRideDisplay createRideDisplay);
 
     /**
-     * deletes a ride based on the given int
-     * @param id of ride
+     * DELETE Ride by Id
+     * @param id
      */
-    void deleteRide(int id);
+    void deleteRideById(int id);
 }

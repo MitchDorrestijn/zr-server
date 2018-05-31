@@ -1,10 +1,12 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.entity.ClientEntity;
-import org.han.ica.oose.boterbloem.service.ClientService;
-import org.han.ica.oose.boterbloem.service.displays.*;
+import org.han.ica.oose.boterbloem.dataAccess.entities.ClientEntity;
+import org.han.ica.oose.boterbloem.display.displayObject.ClientDetailDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.ClientDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.CreateClientDisplay;
+import org.han.ica.oose.boterbloem.service.IClientservice;
+import org.han.ica.oose.boterbloem.service.serviceImplementation.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -14,38 +16,36 @@ import java.util.*;
 @RequestMapping("/client")
 public class ClientController {
 
-    private ClientService clientService = new ClientService();
+    private IClientservice clientService = new ClientService();
 
-    /**
-     * Constructs a new ClientController.
-     */
     @Autowired
     public ClientController() {
-        //empty constructor for spring
+        // Empty Constructor for Spring
     }
 
     /**
-     * @param createClientDisplay createClientDisplay to be added
+     * GET Client by Id
+     * @param id of Client
+     * @return Client
      */
-    @RequestMapping(value = "/addClient", method = RequestMethod.POST)
-    public void addClient(@RequestBody CreateClientDisplay createClientDisplay) {
-        clientService.createClient(createClientDisplay);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ClientEntity getClientById(@PathVariable int id) {
+        return clientService.findById(id);
     }
 
     /**
-     * Method for returning clients
-     *
-     * @return A arraylist of clients
+     * GET all Clients
+     * @return list of Clients
      */
-    @CrossOrigin
     @RequestMapping(value = "/clienten", method = RequestMethod.GET)
     public List <ClientDisplay> getAllClients() {
         return clientService.getAllClients();
     }
 
     /**
+     * GET Client-details by specific client
      * @param id of Client
-     * @return details of a Client
+     * @return Client-details
      */
     @RequestMapping(value = "/getClient/{id}", method = RequestMethod.GET)
     public ClientDetailDisplay getClientDetails(@PathVariable int id) {
@@ -53,35 +53,30 @@ public class ClientController {
     }
 
     /**
-     * Method for returning a client
-     *
-     * @param id of Client
-     * @return Client
+     * POST new Client
+     * @param createClientDisplay = new Client
      */
-    @CrossOrigin
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ClientEntity getClientById(@PathVariable int id) {
-        return clientService.findById(id);
+    @RequestMapping(value = "/addClient", method = RequestMethod.POST)
+    public void addClient(@RequestBody CreateClientDisplay createClientDisplay) {
+        clientService.createClient(createClientDisplay);
     }
 
     /**
-     * @param clientDetailDisplay clientDetailDisplay
+     * UPDATE Client
+     * @param clientDetailDisplay = Client
      */
-    @CrossOrigin
     @RequestMapping(value = "/update/client", method = RequestMethod.PUT)
-    public void updateClientDetails(@RequestBody ClientDetailDisplay clientDetailDisplay) {
+    public void updateClient(@RequestBody ClientDetailDisplay clientDetailDisplay) {
         clientService.updateClient(clientDetailDisplay);
     }
 
     /**
-     * @param id of client
-     * @return new ResponseEntity with no Content
+     * DELETE Client by Id
+     * @param id of Client
      */
-    @CrossOrigin
     @RequestMapping(value = "/deleteclient/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity <ClientEntity> deleteClient(@PathVariable int id) {
-        clientService.deleteClient(id, clientService.getCareInstitutionById(id));
-        return new ResponseEntity <>(HttpStatus.NO_CONTENT);
+    public void deleteClientById(@PathVariable int id) {
+        clientService.deleteClientById(id, clientService.getCareInstitutionById(id));
     }
 
 }

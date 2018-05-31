@@ -1,6 +1,6 @@
 //package org.han.ica.oose.boterbloem.dao;
 //
-//import org.han.ica.oose.boterbloem.domain.domainImplementation.Client;
+//import org.han.ica.oose.boterbloem.domain.domainObjects.Client;
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
@@ -29,13 +29,13 @@
 //        assertEquals("Wandelstok", temp.getUtility());
 //        assertEquals(true, temp.isDriverPreferenceF());
 //        //TODO: Create method delete
-//        dao.deleteClient(1);
+//        dao.deleteClientById(1);
 //    }
 //}
 //=======
 //package org.han.ica.oose.boterbloem.dao;
 //
-//import org.han.ica.oose.boterbloem.domain.domainImplementation.Client;
+//import org.han.ica.oose.boterbloem.domain.domainObjects.Client;
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
@@ -89,6 +89,6 @@
 //        assertEquals("Wandelstok", temp.getUtility());
 //        assertEquals(true, temp.isDriverPreferenceF());
 //        //TODO: Create method delete
-//       // dao.deleteClient(1);
+//       // dao.deleteClientById(1);
 //    }
 //}

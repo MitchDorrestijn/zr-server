@@ -1,7 +1,8 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.service.DriverRideService;
-import org.han.ica.oose.boterbloem.service.displays.DriverRideDisplay;
+import org.han.ica.oose.boterbloem.service.IDriverRideService;
+import org.han.ica.oose.boterbloem.service.serviceImplementation.DriverRideService;
+import org.han.ica.oose.boterbloem.display.displayObject.DriverRideDisplay;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +13,7 @@ import java.util.*;
 @RequestMapping("/ride/driver")
 public class DriverRideController {
 
-    private DriverRideService rideService = new DriverRideService();
+    private IDriverRideService driverRideService = new DriverRideService();
 
     @Autowired
     DriverRideController() {
@@ -20,12 +21,13 @@ public class DriverRideController {
     }
 
     /**
-     * @param driverId of Driver
-     * @return list of driver rides
+     * GET all Rides by a specific Driver
+     * @param id of Driver
+     * @return list of Driver-rides
      */
-    @RequestMapping(value = "/{driverId}", method = RequestMethod.GET)
-    public List <DriverRideDisplay> getRidesFromSpecificDriver(@PathVariable int driverId) {
-        return rideService.getRidesFromSpecificDriver(driverId);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public List <DriverRideDisplay> getRidesFromSpecificDriverById(@PathVariable int id) {
+        return driverRideService.getRidesFromSpecificDriverId(id);
     }
 
 }

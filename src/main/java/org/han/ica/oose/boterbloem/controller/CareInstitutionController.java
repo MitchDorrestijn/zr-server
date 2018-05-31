@@ -1,90 +1,73 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.entity.CareinstitutionEntity;
-import org.han.ica.oose.boterbloem.service.CareInstitutionService;
+import org.han.ica.oose.boterbloem.domain.domainObjects.CareInstitution;
+import org.han.ica.oose.boterbloem.dataAccess.entities.CareinstitutionEntity;
+import org.han.ica.oose.boterbloem.service.ICareInstitutionService;
+import org.han.ica.oose.boterbloem.service.serviceImplementation.CareInstitutionService;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.logging.*;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/zorginstelling")
 public class CareInstitutionController {
 
-    protected static final Logger LOGGER = Logger.getLogger(CareInstitutionController.class.getName());
-    private CareInstitutionService careInstitutionService = new CareInstitutionService();
+    private ICareInstitutionService careInstitutionService = new CareInstitutionService();
 
     @Autowired
     CareInstitutionController() {
-        // empty constructor
+        // Empty Constructor for Spring
     }
 
     /**
-     * @param careInstitution ICareInstitution
-     * @return new ICareInstitution
-     */
-    @CrossOrigin
-    @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
-    public ResponseEntity <String> addCareInstitution(@RequestBody CareinstitutionEntity careInstitution) {
-        careInstitutionService.saveCareInstitution(careInstitution);
-        HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity <>(headers, HttpStatus.CREATED);
-    }
-
-    /**
-     * Method for returning a ICareInstitution
-     *
-     * @param id of ICareInstitution
-     * @return ICareInstitution
+     * GET CarInstitution by Id
+     * @param id of CarInstitution
+     * @return CarInstitution
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public CareinstitutionEntity getCareInstitution(@PathVariable int id) {
+    public CareinstitutionEntity getCareInstitutionById(@PathVariable int id) {
         return careInstitutionService.findById(id);
     }
 
     /**
-     * Method for returning all ICareInstitution
-     *
-     * @return List of ICareInstitution
+     * GET all CareInstitutions
+     * @return list of CareInstitutions
      */
     @RequestMapping(value = "/zorginstellingen", method = RequestMethod.GET)
-    public List <CareinstitutionEntity> getAllCareInstitutions() {
+    public List <CareInstitution> getAllCareInstitutions() {
         return careInstitutionService.getAllCareInstitutions();
     }
 
     /**
-     * @param id              of ICareInstitution
-     * @param careInstitution ICareInstitution
-     * @return ICareInstitution
+     * POST new CareInstitution
+     * @param careInstitution =  new CareInstitution
      */
-    @CrossOrigin
-    @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
-    public ResponseEntity <CareinstitutionEntity> updateCareInstitution(@PathVariable int id, @RequestBody CareinstitutionEntity careInstitution) {
-        CareinstitutionEntity currentCareInstitution = null;
-        try {
-            currentCareInstitution = careInstitutionService.findById(id);
-            currentCareInstitution.setName(careInstitution.getName());
-            careInstitutionService.updateCareInstitution(currentCareInstitution);
-        } catch ( Exception e ) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        }
-
-        return new ResponseEntity <>(currentCareInstitution, HttpStatus.OK);
-
+    @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
+    public void addCareInstitution(@RequestBody CareInstitution careInstitution) {
+        careInstitutionService.saveCareInstitution(careInstitution);
     }
 
     /**
-     * @param id of ICareInstitution
-     * @return ICareInstitution with HttpStatus.NO_CONTENT
+     * UPDATE CareInstitution
+     * @param id of CareInstitution
+     * @param careInstitution =  CareInstitution
      */
-    @CrossOrigin
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
+    public void updateCareInstitution(@PathVariable int id, @RequestBody CareInstitution careInstitution) {
+        careInstitution.setId(id);
+        careInstitutionService.updateCareInstitution(careInstitution);
+    }
+
+    /**
+     * DELETE CareInstitution by Id
+     * @param id of CareInstitution
+     */
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity <CareinstitutionEntity> deleteCareInstitution(@PathVariable int id) {
+    public void deleteCareInstitutionById(@PathVariable int id) {
         careInstitutionService.deleteCareInstitutionById(id);
-        return new ResponseEntity <>(HttpStatus.NO_CONTENT);
     }
 
 }

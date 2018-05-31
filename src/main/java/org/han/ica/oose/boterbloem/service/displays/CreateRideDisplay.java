@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.service.displays;
 
-import org.han.ica.oose.boterbloem.entity.UtilityEntity;
+import org.han.ica.oose.boterbloem.dataAccess.entities.UtilityEntity;
 
 import java.sql.Timestamp;
 

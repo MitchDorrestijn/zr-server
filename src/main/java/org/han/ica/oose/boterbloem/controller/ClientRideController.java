@@ -1,7 +1,8 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.service.ClientRideService;
-import org.han.ica.oose.boterbloem.service.displays.ClientRideDisplay;
+import org.han.ica.oose.boterbloem.service.serviceImplementation.ClientRideService;
+import org.han.ica.oose.boterbloem.service.IClientRideService;
+import org.han.ica.oose.boterbloem.display.displayObject.ClientRideDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @RequestMapping("/ride/client")
 public class ClientRideController {
 
-    private ClientRideService clientRideService = new ClientRideService();
+    private IClientRideService clientRideService = new ClientRideService();
 
     @Autowired
     public ClientRideController() {
@@ -20,13 +21,13 @@ public class ClientRideController {
     }
 
     /**
+     * GET all Rides by a specific Client
      * @param clientId of Client
-     * @return list of all rides of a specific Client
+     * @return list of Clients-rides
      */
-    @CrossOrigin
     @RequestMapping(value = "/clientRide/{clientId}", method = RequestMethod.GET)
-    public List <ClientRideDisplay> getRidesFromSpecificClient(@PathVariable int clientId) {
-        return clientRideService.getRidesFromSpecificClient(clientId);
+    public List <ClientRideDisplay> getRidesFromSpecificClientById(@PathVariable int clientId) {
+        return clientRideService.getRidesFromSpecificClientById(clientId);
     }
 
 }

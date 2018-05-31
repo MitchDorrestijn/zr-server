@@ -1,7 +1,13 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.daoHibernate.*;
-import org.han.ica.oose.boterbloem.entity.RideEntity;
+import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.IClientDAO;
+import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.IDriverDAO;
+import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.IRideDAO;
+import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.ClientDAOImpl;
+import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.DriverDAOImpl;
+import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.RideDAOImpl;
+import org.han.ica.oose.boterbloem.dataAccess.entities.RideEntity;
+import org.han.ica.oose.boterbloem.display.displayObject.RideOverviewDisplay;
 import org.han.ica.oose.boterbloem.service.displays.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.service.displays.RideDisplay;
 
@@ -13,6 +19,11 @@ public class RideService implements IRideService {
     private IRideDAO rideDAO = new RideDAOImpl();
     private IClientDAO clientDAO = new ClientDAOImpl();
     private IDriverDAO driverDAO = new DriverDAOImpl();
+
+    @Override
+    public RideEntity findById(int id) {
+        return null;
+    }
 
     @Override
     public List <RideDisplay> getAllRides() {
@@ -48,6 +59,11 @@ public class RideService implements IRideService {
     }
 
     @Override
+    public List <RideOverviewDisplay> getRideOverview() {
+        return null;
+    }
+
+    @Override
     public void createRide(CreateRideDisplay createRideDisplay) {
         try {
             RideEntity rideEntity = new RideEntity();
@@ -77,7 +93,7 @@ public class RideService implements IRideService {
      * {@inheritDoc}
      */
     @Override
-    public void deleteRide(int id) {
+    public void deleteRideById(int id) {
         try {
             RideEntity rideToRemove = rideDAO.findById(id);
             rideDAO.remove(rideToRemove);
