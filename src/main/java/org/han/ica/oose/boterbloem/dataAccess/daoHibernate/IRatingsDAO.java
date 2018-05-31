@@ -18,4 +18,10 @@ public interface IRatingsDAO extends IGenericDAO<RatingsEntity> {
      * @return a list of ratings from the driver
      */
     List<RatingsEntity> getByDriver(int driverId);
+
+    /**
+     * @param careInstitutionId the id of the careInstitution
+     * @return a list of ratings of the drivers from a specific careInstitution
+     */
+    List<List<RatingsEntity>> getByCareInstitution(int careInstitutionId);
 }

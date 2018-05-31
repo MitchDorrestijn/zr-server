@@ -23,11 +23,9 @@ public class DriverController {
 
     /**
      * Method for returning all drivers
-     *
      * @return List of chauffeurs
      */
     @RequestMapping(value = "/chauffeurs", method = RequestMethod.GET)
-
     public List<DriverDisplay> getAllDrivers() {
         return driverService.allDriversWithStatistics();
     }
@@ -57,5 +55,17 @@ public class DriverController {
     public void updateDriverDetails(@RequestBody CreateDriverDisplay driverEntity) {
         driverService.updateDriver(driverEntity);
     }
+
+
+    /**
+     * Get all the drivers from a specific care institution
+     * @return a list of information from the drivers of a specifice care institution
+     */
+    @RequestMapping(value = "/chauffeurs/zorginstelling/{id}", method = RequestMethod.GET)
+    public List<DriverDisplay> getAllDriversFromASpecificCareInstitution(@PathVariable int id) {
+        return driverService.getAllDriversFromASpecificCareInstitution(id);
+    }
+
+
 
 }

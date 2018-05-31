@@ -3,8 +3,8 @@ package org.han.ica.oose.boterbloem.service.serviceImplementation;
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.IRideDAO;
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.RideDAOImpl;
 import org.han.ica.oose.boterbloem.dataAccess.entities.RideEntity;
-import org.han.ica.oose.boterbloem.service.IDriverRideService;
 import org.han.ica.oose.boterbloem.display.displayObject.DriverRideDisplay;
+import org.han.ica.oose.boterbloem.service.IDriverRideService;
 
 import java.util.*;
 import java.util.logging.*;

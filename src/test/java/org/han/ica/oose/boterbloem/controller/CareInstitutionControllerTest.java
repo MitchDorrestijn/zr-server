@@ -1,3 +1,30 @@
+package org.han.ica.oose.boterbloem.controller;
+
+import org.han.ica.oose.boterbloem.dataAccess.entities.CareinstitutionEntity;
+import org.han.ica.oose.boterbloem.service.serviceImplementation.CareInstitutionService;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.*;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class CareInstitutionControllerTest {
+
+    private List<CareinstitutionEntity> careinstitutionEntities = new ArrayList<>();
+    private CareInstitutionService careInstitutionService = mock(CareInstitutionService.class);
+    private CareinstitutionEntity careinstitutionEntity = new CareinstitutionEntity();
+
+    @Test
+    public void getAllCareInstitutionsTest() {
+        //when(careInstitutionService.getAllCareInstitutions()).thenReturn(careinstitutionEntity);
+    }
+
 //package org.han.ica.oose.boterbloem.controller;
 //
 //import org.han.ica.oose.boterbloem.domain.domainImplementation.ICareInstitution;
@@ -73,4 +100,4 @@
 //        ICareInstitution testCareInstitution = careInstitutionController.getCareInstitutionId("6");
 //        assertEquals("instellingZ", testCareInstitution.getName());
 //    }
-//}
+}

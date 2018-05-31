@@ -24,11 +24,7 @@ public class RatingsMapper extends GenericMapper {
         List<Ratings> ratings = new ArrayList<>();
         try {
             for(RatingsEntity r : ratingsDAO.getByDriver(driverId)){
-                Ratings rating = new Ratings();
-                rating.setClientName(findNameById(r.getClientId()));
-                rating.setDriverName(findNameById(r.getDriverId()));
-                rating.setStars(r.getSterren());
-                rating.setComment(r.getBeoordeling());
+                Ratings rating = fillRatingsDomain(r);
                 ratings.add(rating);
             }
         } catch (Exception e){
@@ -38,31 +34,51 @@ public class RatingsMapper extends GenericMapper {
     }
 
     /**
-     * not implmented maybe for future use
-     * @return
-     */
-    public List<Ratings> ratingByClient() {
-        return new ArrayList<>();
-    }
-
-    /**
      * returns a list of all ratings
-     * @return
+     * @return A list of all ratings
      */
     public List<Ratings> allRatings() {
         List<Ratings> ratings = new ArrayList<>();
         try {
             for (RatingsEntity r : ratingsDAO.findAll()) {
-                Ratings rating = new Ratings();
-                rating.setClientName(findNameById(r.getClientId()));
-                rating.setDriverName(findNameById(r.getDriverId()));
-                rating.setStars(r.getSterren());
-                rating.setComment(r.getBeoordeling());
+                Ratings rating = fillRatingsDomain(r);
                 ratings.add(rating);
             }
         } catch (Exception e){
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return ratings;
+    }
+
+    /**
+     * @param careInstitutionId - The ID of the careInstitution where all driver ratings must come from
+     * @return A list of drivers with a list of their ratings for a specific careInstitution
+     */
+    public List<List<Ratings>> getAllRatingsFromASpecificCareInstitution(int careInstitutionId){
+        List<List<RatingsEntity>> ratingsEntities = ratingsDAO.getByCareInstitution(careInstitutionId);
+        List<List<Ratings>> ratings = new ArrayList<>();
+
+        for (List<RatingsEntity> ra: ratingsEntities) {
+            List<Ratings> re = new ArrayList<>();
+            for (RatingsEntity r: ra) {
+                Ratings rating = fillRatingsDomain(r);
+                re.add(rating);
+            }
+            ratings.add(re);
+        }
+        return  ratings;
+    }
+
+    /**
+     * @param r - The ratingsEntity that will be filled
+     * @return A filled RatingsEntity
+     */
+    private Ratings fillRatingsDomain(RatingsEntity r) {
+        Ratings rating = new Ratings();
+        rating.setClientName(findNameById(r.getClientId()));
+        rating.setDriverName(findNameById(r.getDriverId()));
+        rating.setStars(r.getSterren());
+        rating.setComment(r.getBeoordeling());
+        return rating;
     }
 }

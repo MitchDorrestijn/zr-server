@@ -42,4 +42,15 @@ public class RatingsController {
         return ratingsService.getAllRatingsFromASpecificDriver(driverId);
     }
 
+    /**
+     * Method for returning all ratings from a specific care institution
+     * @param careInstitutionId - The ID of the care instituton you want to get the ratings of.
+     * @return A list of all ratings from a specific care institution
+     */
+    @RequestMapping(value = "/ratings/careInstitution/{careInstitutionId}", method = RequestMethod.GET)
+    public List<List<Ratings>> getAllRatingsFromASpecificCareInstitution(@PathVariable int careInstitutionId) {
+        return ratingsService.getAllRatingsFromASpecificCareInstitution(careInstitutionId);
+    }
+
+
 }

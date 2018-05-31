@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CareInstitution  {
-
     private List<Address> addresses =  new ArrayList<>();
     private String name;
     private int id;

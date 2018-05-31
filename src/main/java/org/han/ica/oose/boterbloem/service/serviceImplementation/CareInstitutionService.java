@@ -4,8 +4,8 @@ import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.Car
 
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.ICareinstitutionDAO;
 
-import org.han.ica.oose.boterbloem.domain.domainObjects.CareInstitution;
 import org.han.ica.oose.boterbloem.dataAccess.entities.CareinstitutionEntity;
+import org.han.ica.oose.boterbloem.domain.domainObjects.CareInstitution;
 import org.han.ica.oose.boterbloem.domain.domainMappers.CareinstitutionMapper;
 import org.han.ica.oose.boterbloem.service.ICareInstitutionService;
 
@@ -45,8 +45,6 @@ public class CareInstitutionService implements ICareInstitutionService {
      * @param careInstitution that's going to be added to the database
      */
     public void saveCareInstitution(CareInstitution careInstitution) {
-        //careinstitutionDAO.add(careInstitution);
-
         careinstitutionMapper.saveCareInstitution(careInstitution);
     }
 
@@ -58,9 +56,8 @@ public class CareInstitutionService implements ICareInstitutionService {
     }
 
     /**
-     * @param int id
+     * @param id
      */
-
     public void deleteCareInstitutionById(int id) {
         CareinstitutionEntity careinstitutionEntity = this.findById(id);
         careinstitutionDAO.remove(careinstitutionEntity);

@@ -2,12 +2,18 @@ package org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation;
 
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.IRatingsDAO;
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoGeneric.GenericDAOImpl;
+import org.han.ica.oose.boterbloem.dataAccess.entities.DrivercareinstitutionEntity;
 import org.han.ica.oose.boterbloem.dataAccess.entities.RatingsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRatingsDAO {
+
+    private static final Logger LOGGER = Logger.getLogger(RatingsDAOImpl.class.getName());
 
     /**
      * Hook up the basic CRUD queries
@@ -32,4 +38,23 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
                 "WHERE driverId = :driverId").setParameter("driverId", driverId).getResultList();
     }
 
+    /**
+     * @param careInstitutionId the id of the careInstitution
+     * @return a list of drivers with a list of ratings of the drivers from a specific careInstitution
+     */
+    @Override
+    public List<List<RatingsEntity>> getByCareInstitution(int careInstitutionId) {
+        List<List<RatingsEntity>> ratings = new ArrayList<>();
+        try {
+            List<DrivercareinstitutionEntity> drivercareinstitutionEntities = getEntityManager().createQuery("FROM DrivercareinstitutionEntity " +
+                    "WHERE careInstitutionId = :careInstitutionId").setParameter("careInstitutionId", careInstitutionId).getResultList();
+
+            for (DrivercareinstitutionEntity d: drivercareinstitutionEntities) {
+                ratings.add(getByDriver(d.getDriverId()));
+            }
+        } catch (NullPointerException e){
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+        return ratings;
+    }
 }

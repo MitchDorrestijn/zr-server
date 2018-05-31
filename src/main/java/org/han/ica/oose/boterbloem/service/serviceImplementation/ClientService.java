@@ -3,6 +3,7 @@ package org.han.ica.oose.boterbloem.service.serviceImplementation;
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.*;
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.*;
 import org.han.ica.oose.boterbloem.dataAccess.entities.*;
+import org.han.ica.oose.boterbloem.display.displayMapper.ClientDisplayMapper;
 import org.han.ica.oose.boterbloem.service.IClientservice;
 import org.han.ica.oose.boterbloem.display.displayObject.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayObject.CreateClientDisplay;
@@ -11,7 +12,6 @@ import java.util.logging.*;
 
 import org.han.ica.oose.boterbloem.display.displayObject.ClientDisplay;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ClientService implements IClientservice {
@@ -22,7 +22,7 @@ public class ClientService implements IClientservice {
     private IClientUtilityDAO clientUtilityDAO = new ClientUtilityDAO();
     private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl();
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
-    private IRideDAO rideDAO = new RideDAOImpl();
+    private ClientDisplayMapper clientDisplayMapper = new ClientDisplayMapper();
 
 
     public ClientService() {
@@ -53,58 +53,6 @@ public class ClientService implements IClientservice {
         } catch ( Exception e ) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
-    }
-
-    /**
-     * @return method returns a list of all found clients
-     */
-    public List <ClientDisplay> getAllClients() {
-        List <ClientDisplay> clientDisplays = new ArrayList <>();
-        try {
-            List <ClientEntity> clientEntities = clientDAO.findAll();
-            for (ClientEntity i : clientEntities) {
-                try {
-                    int driverId = i.getClientId();
-
-                        double priceToPay;
-                        boolean warningPKB;
-
-                        List<RideEntity> rideEntitiesPerClient = rideDAO.getByClient(i.getClientId());
-
-                        int distance = 0;
-                        for(RideEntity rideEntity : rideEntitiesPerClient) {
-                            distance += rideEntity.getDistance();
-                        }
-
-                        ClientDisplay clientDisplay = new ClientDisplay();
-                        clientDisplay.setClientId(i.getClientId());
-                        clientDisplay.setName(i.getUserEntity().getFirstName());
-                        clientDisplay.setPKB(i.getPKB());
-                        try{
-                            if (distance > i.getPKB()) {
-                                priceToPay = (distance * 0.005);
-                                warningPKB = true;
-
-                                clientDisplay.setTotalMeters(distance);
-                                clientDisplay.setPriceToPay(priceToPay);
-                                clientDisplay.setWarningPKB(warningPKB);
-                            }
-                        }catch(Exception e){
-                            LOGGER.log(Level.SEVERE, e.toString(), e);
-                        }
-
-                    if (clientCareInstitutionDAO.getCareInstitutionId(driverId).isActive()) {
-                        clientDisplays.add(clientDisplay);
-                   }
-                }catch(Exception e){
-                    LOGGER.log(Level.WARNING, e.getMessage());
-                }
-            }
-            return clientDisplays;
-        } catch ( Exception e ) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        }
-        return clientDisplays;
     }
 
     @Override
@@ -158,4 +106,21 @@ public class ClientService implements IClientservice {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
     }
+
+    /**
+     * Get all the clients from a specific care institution
+     * @return a list of information from the clients of a specific care institution
+     */
+    public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id){
+        return clientDisplayMapper.getAllClientsFromASpecificCareInstitution(id);
+    }
+
+    /**
+     * Gets all the clients from all care institutions
+     * @return method returns a list of all found clients
+     */
+    public List <ClientDisplay> getAllClients() {
+        return clientDisplayMapper.getAllClients();
+    }
+
 }

@@ -2,120 +2,23 @@ package org.han.ica.oose.boterbloem.domain.domainObjects;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 public class Ride {
-    private int id;
-    private  int clientId;
-    private int driverId;
-    private int preferedCareInstitution;
-    private int preferedDriver;
     private LocalDateTime pickUpDateTime;
-    private String pickUpLocation;
-    private String dropOffLocation;
-    private int duration;
-    private int distance;
-    private int numberOfcompanions;
-    private int numberOfLuggage;
-    private boolean returnRide;
-    private boolean callService;
-    private String utility;
-    private int repeatingRideId;
-    private boolean cancelledByClient;
-    private boolean executed;
-    private float price_of_ride;
+    private Location pickUpLocation;
+    private Location dropOffLocation;
+    private List<Utility> utilities;
+    private Driver driver;
+    private Client client;
     private String paymentDescription;
     private String paymentStatus;
     private Date paymentDueBefore;
-
-    /**
-     * Getter for property 'id'.
-     *
-     * @return Value for property 'id'.
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Setter for property 'id'.
-     *
-     * @param id Value to set for property 'id'.
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * Getter for property 'clientId'.
-     *
-     * @return Value for property 'clientId'.
-     */
-    public int getClientId() {
-        return clientId;
-    }
-
-    /**
-     * Setter for property 'clientId'.
-     *
-     * @param clientId Value to set for property 'clientId'.
-     */
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
-    /**
-     * Getter for property 'driverId'.
-     *
-     * @return Value for property 'driverId'.
-     */
-    public int getDriverId() {
-        return driverId;
-    }
-
-    /**
-     * Setter for property 'driverId'.
-     *
-     * @param driverId Value to set for property 'driverId'.
-     */
-    public void setDriverId(int driverId) {
-        this.driverId = driverId;
-    }
-
-    /**
-     * Getter for property 'preferedCareInstitution'.
-     *
-     * @return Value for property 'preferedCareInstitution'.
-     */
-    public int getPreferedCareInstitution() {
-        return preferedCareInstitution;
-    }
-
-    /**
-     * Setter for property 'preferedCareInstitution'.
-     *
-     * @param preferedCareInstitution Value to set for property 'preferedCareInstitution'.
-     */
-    public void setPreferedCareInstitution(int preferedCareInstitution) {
-        this.preferedCareInstitution = preferedCareInstitution;
-    }
-
-    /**
-     * Getter for property 'preferedDriver'.
-     *
-     * @return Value for property 'preferedDriver'.
-     */
-    public int getPreferedDriver() {
-        return preferedDriver;
-    }
-
-    /**
-     * Setter for property 'preferedDriver'.
-     *
-     * @param preferedDriver Value to set for property 'preferedDriver'.
-     */
-    public void setPreferedDriver(int preferedDriver) {
-        this.preferedDriver = preferedDriver;
-    }
+    private float price_of_ride;
+    private int numberOfcompanions; //How many people are in the car besides the driver + client
+    private int numberOfLuggage;
+    private boolean returnRide;
+    private boolean callService;
 
     /**
      * Getter for property 'pickUpDateTime'.
@@ -140,7 +43,7 @@ public class Ride {
      *
      * @return Value for property 'pickUpLocation'.
      */
-    public String getPickUpLocation() {
+    public Location getPickUpLocation() {
         return pickUpLocation;
     }
 
@@ -149,7 +52,7 @@ public class Ride {
      *
      * @param pickUpLocation Value to set for property 'pickUpLocation'.
      */
-    public void setPickUpLocation(String pickUpLocation) {
+    public void setPickUpLocation(Location pickUpLocation) {
         this.pickUpLocation = pickUpLocation;
     }
 
@@ -158,7 +61,7 @@ public class Ride {
      *
      * @return Value for property 'dropOffLocation'.
      */
-    public String getDropOffLocation() {
+    public Location getDropOffLocation() {
         return dropOffLocation;
     }
 
@@ -167,44 +70,134 @@ public class Ride {
      *
      * @param dropOffLocation Value to set for property 'dropOffLocation'.
      */
-    public void setDropOffLocation(String dropOffLocation) {
+    public void setDropOffLocation(Location dropOffLocation) {
         this.dropOffLocation = dropOffLocation;
     }
 
     /**
-     * Getter for property 'duration'.
+     * Getter for property 'utilities'.
      *
-     * @return Value for property 'duration'.
+     * @return Value for property 'utilities'.
      */
-    public int getDuration() {
-        return duration;
+    public List<Utility> getUtilities() {
+        return utilities;
     }
 
     /**
-     * Setter for property 'duration'.
+     * Setter for property 'utilities'.
      *
-     * @param duration Value to set for property 'duration'.
+     * @param utilities Value to set for property 'utilities'.
      */
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setUtilities(List<Utility> utilities) {
+        this.utilities = utilities;
     }
 
     /**
-     * Getter for property 'distance'.
+     * Getter for property 'driver'.
      *
-     * @return Value for property 'distance'.
+     * @return Value for property 'driver'.
      */
-    public int getDistance() {
-        return distance;
+    public Driver getDriver() {
+        return driver;
     }
 
     /**
-     * Setter for property 'distance'.
+     * Setter for property 'driver'.
      *
-     * @param distance Value to set for property 'distance'.
+     * @param driver Value to set for property 'driver'.
      */
-    public void setDistance(int distance) {
-        this.distance = distance;
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    /**
+     * Getter for property 'client'.
+     *
+     * @return Value for property 'client'.
+     */
+    public Client getClient() {
+        return client;
+    }
+
+    /**
+     * Setter for property 'client'.
+     *
+     * @param client Value to set for property 'client'.
+     */
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    /**
+     * Getter for property 'paymentDescription'.
+     *
+     * @return Value for property 'paymentDescription'.
+     */
+    public String getPaymentDescription() {
+        return paymentDescription;
+    }
+
+    /**
+     * Setter for property 'paymentDescription'.
+     *
+     * @param paymentDescription Value to set for property 'paymentDescription'.
+     */
+    public void setPaymentDescription(String paymentDescription) {
+        this.paymentDescription = paymentDescription;
+    }
+
+    /**
+     * Getter for property 'paymentStatus'.
+     *
+     * @return Value for property 'paymentStatus'.
+     */
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    /**
+     * Setter for property 'paymentStatus'.
+     *
+     * @param paymentStatus Value to set for property 'paymentStatus'.
+     */
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    /**
+     * Getter for property 'paymentDueBefore'.
+     *
+     * @return Value for property 'paymentDueBefore'.
+     */
+    public Date getPaymentDueBefore() {
+        return paymentDueBefore;
+    }
+
+    /**
+     * Setter for property 'paymentDueBefore'.
+     *
+     * @param paymentDueBefore Value to set for property 'paymentDueBefore'.
+     */
+    public void setPaymentDueBefore(Date paymentDueBefore) {
+        this.paymentDueBefore = paymentDueBefore;
+    }
+
+    /**
+     * Getter for property 'price_of_ride'.
+     *
+     * @return Value for property 'price_of_ride'.
+     */
+    public float getPrice_of_ride() {
+        return price_of_ride;
+    }
+
+    /**
+     * Setter for property 'price_of_ride'.
+     *
+     * @param price_of_ride Value to set for property 'price_of_ride'.
+     */
+    public void setPrice_of_ride(float price_of_ride) {
+        this.price_of_ride = price_of_ride;
     }
 
     /**
@@ -277,149 +270,5 @@ public class Ride {
      */
     public void setCallService(boolean callService) {
         this.callService = callService;
-    }
-
-    /**
-     * Getter for property 'utility'.
-     *
-     * @return Value for property 'utility'.
-     */
-    public String getUtility() {
-        return utility;
-    }
-
-    /**
-     * Setter for property 'utility'.
-     *
-     * @param utility Value to set for property 'utility'.
-     */
-    public void setUtility(String utility) {
-        this.utility = utility;
-    }
-
-    /**
-     * Getter for property 'repeatingRideId'.
-     *
-     * @return Value for property 'repeatingRideId'.
-     */
-    public int getRepeatingRideId() {
-        return repeatingRideId;
-    }
-
-    /**
-     * Setter for property 'repeatingRideId'.
-     *
-     * @param repeatingRideId Value to set for property 'repeatingRideId'.
-     */
-    public void setRepeatingRideId(int repeatingRideId) {
-        this.repeatingRideId = repeatingRideId;
-    }
-
-    /**
-     * Getter for property 'cancelledByClient'.
-     *
-     * @return Value for property 'cancelledByClient'.
-     */
-    public boolean isCancelledByClient() {
-        return cancelledByClient;
-    }
-
-    /**
-     * Setter for property 'cancelledByClient'.
-     *
-     * @param cancelledByClient Value to set for property 'cancelledByClient'.
-     */
-    public void setCancelledByClient(boolean cancelledByClient) {
-        this.cancelledByClient = cancelledByClient;
-    }
-
-    /**
-     * Getter for property 'executed'.
-     *
-     * @return Value for property 'executed'.
-     */
-    public boolean isExecuted() {
-        return executed;
-    }
-
-    /**
-     * Setter for property 'executed'.
-     *
-     * @param executed Value to set for property 'executed'.
-     */
-    public void setExecuted(boolean executed) {
-        this.executed = executed;
-    }
-
-    /**
-     * Getter for property 'price_of_ride'.
-     *
-     * @return Value for property 'price_of_ride'.
-     */
-    public float getPrice_of_ride() {
-        return price_of_ride;
-    }
-
-    /**
-     * Setter for property 'price_of_ride'.
-     *
-     * @param price_of_ride Value to set for property 'price_of_ride'.
-     */
-    public void setPrice_of_ride(float price_of_ride) {
-        this.price_of_ride = price_of_ride;
-    }
-
-    /**
-     * Getter for property 'paymentDescription'.
-     *
-     * @return Value for property 'paymentDescription'.
-     */
-    public String getPaymentDescription() {
-        return paymentDescription;
-    }
-
-    /**
-     * Setter for property 'paymentDescription'.
-     *
-     * @param paymentDescription Value to set for property 'paymentDescription'.
-     */
-    public void setPaymentDescription(String paymentDescription) {
-        this.paymentDescription = paymentDescription;
-    }
-
-    /**
-     * Getter for property 'paymentStatus'.
-     *
-     * @return Value for property 'paymentStatus'.
-     */
-    public String getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    /**
-     * Setter for property 'paymentStatus'.
-     *
-     * @param paymentStatus Value to set for property 'paymentStatus'.
-     */
-    public void setPaymentStatus(String paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
-
-    /**
-     * Getter for property 'paymentDueBefore'.
-     *
-     * @return Value for property 'paymentDueBefore'.
-     */
-    public Date getPaymentDueBefore() {
-        return paymentDueBefore;
-    }
-
-    /**
-     * Setter for property 'paymentDueBefore'.
-     *
-     * @param paymentDueBefore Value to set for property 'paymentDueBefore'.
-     */
-    public void setPaymentDueBefore(Date paymentDueBefore) {
-        this.paymentDueBefore = paymentDueBefore;
     }
 }

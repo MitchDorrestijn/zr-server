@@ -2,12 +2,17 @@ package org.han.ica.oose.boterbloem.service.serviceImplementation;
 
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.*;
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.*;
-import org.han.ica.oose.boterbloem.dataAccess.entities.*;
+import org.han.ica.oose.boterbloem.dataAccess.entities.DriverlimitationmanageableEntity;
 
-import org.han.ica.oose.boterbloem.service.IDriverService;
+import org.han.ica.oose.boterbloem.domain.domainMappers.DriverMapper;
 import org.han.ica.oose.boterbloem.display.displayObject.CreateDriverDisplay;
 import org.han.ica.oose.boterbloem.display.displayObject.DriverDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayObject.DriverDisplay;
+
+import org.han.ica.oose.boterbloem.dataAccess.entities.DrivercarEntity;
+import org.han.ica.oose.boterbloem.dataAccess.entities.DrivercareinstitutionEntity;
+import org.han.ica.oose.boterbloem.dataAccess.entities.DrivercareinstitutionEntityPK;
+import org.han.ica.oose.boterbloem.service.IDriverService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +30,8 @@ public class DriverService implements IDriverService {
     private IUserDAO userDAO = new UserDAOImpl();
     private IDrivercareinstitutionDAO drivercareinstitutionDAO = new DrivercareinstitutionDAOImpl();
     private IDriverlimitationmanageableDAO driverlimitationmanageableDAO = new DriverlimitationmanageableDAOImpl();
+    private DriverMapper driverMapper = new DriverMapper();
+
 
     public DriverService() {
         //Empty constructor
@@ -35,51 +42,24 @@ public class DriverService implements IDriverService {
      */
     @Override
     public List<DrivercarEntity> getAllDrivers() {
-
         return drivercarDAO.findAll();
     }
 
+    /**
+     * @param id id of the careInstitution
+     * @return A list of drivers from a specifec care institution
+     */
+    @Override
+    public List<DriverDisplay> getAllDriversFromASpecificCareInstitution(int id){
+        return driverMapper.getAllDriversFromASpecificCareInstitution(id);
+    }
+
+    /**
+     * @return a list of all drivers from all care institutions
+     */
+    @Override
     public List<DriverDisplay> allDriversWithStatistics(){
-        try {
-            List<DriverDisplay> returnList = new ArrayList<>();
-            for (DriverEntity x : driverDao.findAll()) {
-                int driverId = x.getDriverId();
-                if (drivercareinstitutionDAO.getCareInstitutionId(driverId).isActive()) {
-                    System.out.println(drivercareinstitutionDAO.getCareInstitutionId(x.getDriverId()).isActive());
-                    DriverDisplay driver = new DriverDisplay();
-
-
-                    System.out.println(driverId);
-
-                    driver.setId(driverId);
-                    driver.setName(x.getUserEntity().getFirstName() + " " + x.getUserEntity().getLastName());
-                    driver.setTypeOfPayment(x.getTypeOfPayment());
-
-                    try {
-                        if (drivercarDAO.findCarById(driverId) == null) {
-                            driver.setNumberOfPassengers(0);
-                            driver.setNumberPlate("");
-                        } else {
-                            driver.setNumberOfPassengers(drivercarDAO.findCarById(driverId).getNumberOfPassengers());
-                            driver.setNumberPlate(drivercarDAO.findCarById(driverId).getNumberPlate());
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Nieuwe exception: " + e.getMessage());
-                    }
-
-                    driver.setRating(ratingsDAO.getAvgRatings(driverId));
-                    driver.setSegment("A");
-                    driver.setTotalEarned(rideDAO.totalEarned(driverId));
-                    driver.setTotalRides(rideDAO.rideCountById(driverId));
-
-                        returnList.add(driver);
-                    }
-                }
-            return returnList;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        return driverMapper.allDriversWithStatistics();
     }
 
     public DriverDetailDisplay getDriverDetails(int id){
