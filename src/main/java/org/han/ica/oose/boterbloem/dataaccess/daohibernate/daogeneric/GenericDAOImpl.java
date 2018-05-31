@@ -1,14 +1,10 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric;
 
-
-import org.hibernate.HibernateException;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
@@ -16,10 +12,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
     private EntityManager em;
-
-
-    private static final Logger LOGGER = Logger.getLogger(GenericDAOImpl.class.getName());
-
 
     public GenericDAOImpl(Class<T> classImpl) {
         em = entityManagerFactory.createEntityManager();
@@ -84,7 +76,7 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             List<T> entities = em.createQuery("SELECT x FROM " + classImpl.getSimpleName() + " x").getResultList();
             em.getTransaction().commit();
             return entities;
-        }catch (Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
         }
         return new ArrayList<>();

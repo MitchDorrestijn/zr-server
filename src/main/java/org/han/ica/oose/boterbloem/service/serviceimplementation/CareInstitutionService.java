@@ -34,7 +34,6 @@ public class CareInstitutionService implements ICareInstitutionService {
      * @param careInstitution ICareInstitution that needs a update
      */
     public void updateCareInstitution(CareInstitution careInstitution) {
-
         careinstitutionMapper.update(careInstitution);
     }
 

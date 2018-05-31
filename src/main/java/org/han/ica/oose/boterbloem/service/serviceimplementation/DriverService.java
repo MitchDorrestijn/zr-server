@@ -24,10 +24,7 @@ public class DriverService implements IDriverService {
 
 
     private IDriverDAO driverDao = new DriverDAOImpl();
-    private IRideDAO rideDAO = new RideDAOImpl();
     private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl();
-    private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
-    private IUserDAO userDAO = new UserDAOImpl();
     private IDrivercareinstitutionDAO drivercareinstitutionDAO = new DrivercareinstitutionDAOImpl();
     private IDriverlimitationmanageableDAO driverlimitationmanageableDAO = new DriverlimitationmanageableDAOImpl();
     private DriverMapper driverMapper = new DriverMapper();
@@ -97,7 +94,7 @@ public class DriverService implements IDriverService {
                 driverlimitationmanageableDAO.add(driverlimitationmanageableEntity);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
     }
 

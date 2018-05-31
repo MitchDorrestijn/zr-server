@@ -1,10 +1,8 @@
 package org.han.ica.oose.boterbloem.service.serviceimplementation;
 
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientDAO;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDriverDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRideDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.ClientDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.DriverDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RideDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientRideDisplay;

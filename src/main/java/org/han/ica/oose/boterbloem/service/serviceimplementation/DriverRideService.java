@@ -17,8 +17,8 @@ public class DriverRideService implements IDriverRideService {
      * {@inheritDoc}
      */
     @Override
-    public List <DriverRideDisplay> getRidesFromSpecificDriver(int id) {
-        List <DriverRideDisplay> driverRideDisplay = new ArrayList <>();
+    public List<DriverRideDisplay> getRidesFromSpecificDriver(int id) {
+        List<DriverRideDisplay> driverRideDisplay = new ArrayList<>();
         try {
             for (RideEntity ride : rideDAO.getByDriver(id)) {
                 DriverRideDisplay display = new DriverRideDisplay();
@@ -36,7 +36,7 @@ public class DriverRideService implements IDriverRideService {
                 display.setClientName(clientName);
                 driverRideDisplay.add(display);
             }
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return driverRideDisplay;

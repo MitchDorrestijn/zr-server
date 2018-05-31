@@ -5,24 +5,25 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.Lim
 import org.han.ica.oose.boterbloem.dataaccess.entities.LimitationEntity;
 import org.han.ica.oose.boterbloem.service.ILimitationService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LimitationService implements ILimitationService {
     private static final Logger LOGGER = Logger.getLogger(LimitationService.class.getName());
-    ILimitationDAO limitationDAO = new LimitationDAOImpl();
+    private ILimitationDAO limitationDAO = new LimitationDAOImpl();
 
     /**
      * {@inheritDoc}
      */
     @Override
     public List<LimitationEntity> getAll() {
-        try{
+        try {
             return limitationDAO.findAll();
         } catch (NullPointerException e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -60,7 +61,7 @@ public class LimitationService implements ILimitationService {
     public void updateLimitation(LimitationEntity limitationEntity) {
         try {
             limitationDAO.update(limitationEntity);
-        } catch(Exception e) {
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
     }
