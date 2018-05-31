@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.domain.domainImplementation.Ratings;
+import org.han.ica.oose.boterbloem.domain.domainObjects.Ratings;
 
 
 import java.util.List;

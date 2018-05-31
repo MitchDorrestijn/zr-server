@@ -1,8 +1,10 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.entity.ClientEntity;
-import org.han.ica.oose.boterbloem.service.ClientService;
-import org.han.ica.oose.boterbloem.service.displays.*;
+import org.han.ica.oose.boterbloem.dataAccess.entities.ClientEntity;
+import org.han.ica.oose.boterbloem.display.displayObject.ClientDetailDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.ClientDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.CreateClientDisplay;
+import org.han.ica.oose.boterbloem.service.serviceImplementation.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

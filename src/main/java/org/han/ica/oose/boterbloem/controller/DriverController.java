@@ -1,9 +1,9 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.service.DriverService;
-import org.han.ica.oose.boterbloem.service.displays.CreateDriverDisplay;
-import org.han.ica.oose.boterbloem.service.displays.DriverDetailDisplay;
-import org.han.ica.oose.boterbloem.service.displays.DriverDisplay;
+import org.han.ica.oose.boterbloem.service.serviceImplementation.DriverService;
+import org.han.ica.oose.boterbloem.display.displayObject.CreateDriverDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.DriverDetailDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.DriverDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

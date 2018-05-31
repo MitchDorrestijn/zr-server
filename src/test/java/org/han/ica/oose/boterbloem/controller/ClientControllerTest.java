@@ -1,7 +1,7 @@
 //package org.han.ica.oose.boterbloem.controller;
 //
-//import org.han.ica.oose.boterbloem.domain.domainImplementation.Client;
-//import org.han.ica.oose.boterbloem.service.ClientService;
+//import org.han.ica.oose.boterbloem.domain.domainObjects.Client;
+//import org.han.ica.oose.boterbloem.service.serviceImplementation.ClientService;
 //import org.junit.*;
 //
 //import java.sql.SQLException;

@@ -1,19 +1,15 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.domain.ICareInstitution;
-import org.han.ica.oose.boterbloem.domain.domainImplementation.CareInstitution;
-import org.han.ica.oose.boterbloem.entity.CareinstitutionEntity;
-import org.han.ica.oose.boterbloem.service.CareInstitutionService;
+import org.han.ica.oose.boterbloem.dataAccess.entities.CareinstitutionEntity;
+import org.han.ica.oose.boterbloem.service.serviceImplementation.CareInstitutionService;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
