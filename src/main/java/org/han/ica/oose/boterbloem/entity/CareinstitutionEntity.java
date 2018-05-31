@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "careInstitution", schema = "zorgrit")
 public class CareinstitutionEntity {
-    
+
     private int id;
     private String name;
 
