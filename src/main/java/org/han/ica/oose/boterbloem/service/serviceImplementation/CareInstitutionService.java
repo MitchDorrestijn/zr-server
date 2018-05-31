@@ -6,7 +6,7 @@ import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.ICareinstitutionDAO;
 
 import org.han.ica.oose.boterbloem.domain.domainObjects.CareInstitution;
 import org.han.ica.oose.boterbloem.dataAccess.entities.CareinstitutionEntity;
-import org.han.ica.oose.boterbloem.display.displayMapper.CareinstitutionMapper;
+import org.han.ica.oose.boterbloem.domain.domainMappers.CareinstitutionMapper;
 import org.han.ica.oose.boterbloem.service.ICareInstitutionService;
 
 import java.util.List;

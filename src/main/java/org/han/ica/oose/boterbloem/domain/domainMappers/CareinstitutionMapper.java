@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.display.displayMapper;
+package org.han.ica.oose.boterbloem.domain.domainMappers;
 
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.CareinstitutionDAOImpl;
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.ICareinstitutionDAO;
