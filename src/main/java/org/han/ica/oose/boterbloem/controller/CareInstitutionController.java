@@ -63,16 +63,8 @@ public class CareInstitutionController {
     @CrossOrigin
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
     public void updateCareInstitution(@PathVariable int id, @RequestBody CareInstitution careInstitution) {
-        try {
             careInstitution.setId(id);
             careInstitutionService.updateCareInstitution(careInstitution);
-
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.toString(), e);
-        }
-
-     //   return new ResponseEntity<>(currentCareInstitution, HttpStatus.OK);
-
     }
 
     /**
