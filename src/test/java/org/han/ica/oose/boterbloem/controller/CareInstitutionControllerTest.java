@@ -1,7 +1,7 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.dataAccess.entities.CareinstitutionEntity;
-import org.han.ica.oose.boterbloem.service.serviceImplementation.CareInstitutionService;
+import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitutionService;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,7 +28,7 @@ public class CareInstitutionControllerTest {
 //package org.han.ica.oose.boterbloem.controller;
 //
 //import org.han.ica.oose.boterbloem.domain.domainImplementation.ICareInstitution;
-//import org.han.ica.oose.boterbloem.service.serviceImplementation.CareInstitutionService;
+//import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitutionService;
 //import org.junit.*;
 //import org.junit.runner.RunWith;
 //import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.service.serviceImplementation.RideService;
-import org.han.ica.oose.boterbloem.display.displayObject.RideOverviewDisplay;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.RideService;
+import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,16 +1,16 @@
 package org.han.ica.oose.boterbloem.controller;
 
 
-import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.*;
-import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.*;
-import org.han.ica.oose.boterbloem.dataAccess.entities.ClientEntity;
-import org.han.ica.oose.boterbloem.dataAccess.entities.DriverEntity;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.*;
+import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DriverEntity;
 
-import org.han.ica.oose.boterbloem.dataAccess.entities.DrivercarEntity;
-import org.han.ica.oose.boterbloem.dataAccess.entities.DrivercarEntityPK;
-import org.han.ica.oose.boterbloem.service.serviceImplementation.DriverService;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntityPK;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.DriverService;
 
-import org.han.ica.oose.boterbloem.display.displayObject.CreateDriverDisplay;
+import org.han.ica.oose.boterbloem.display.displayobject.CreateDriverDisplay;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

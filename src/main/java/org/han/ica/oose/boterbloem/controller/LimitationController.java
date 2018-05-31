@@ -1,8 +1,8 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.dataAccess.entities.LimitationEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.LimitationEntity;
 import org.han.ica.oose.boterbloem.service.ILimitationService;
-import org.han.ica.oose.boterbloem.service.serviceImplementation.LimitationService;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.LimitationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

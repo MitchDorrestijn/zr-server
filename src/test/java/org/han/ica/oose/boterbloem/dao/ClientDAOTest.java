@@ -1,6 +1,6 @@
 //package org.han.ica.oose.boterbloem.dao;
 //
-//import org.han.ica.oose.boterbloem.domain.domainObjects.Client;
+//import org.han.ica.oose.boterbloem.domain.domainobjects.Client;
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
@@ -35,7 +35,7 @@
 //=======
 //package org.han.ica.oose.boterbloem.dao;
 //
-//import org.han.ica.oose.boterbloem.domain.domainObjects.Client;
+//import org.han.ica.oose.boterbloem.domain.domainobjects.Client;
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;

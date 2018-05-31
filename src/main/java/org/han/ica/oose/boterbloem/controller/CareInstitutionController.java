@@ -1,9 +1,9 @@
 package org.han.ica.oose.boterbloem.controller;
 
 
-import org.han.ica.oose.boterbloem.domain.domainObjects.CareInstitution;
-import org.han.ica.oose.boterbloem.dataAccess.entities.CareinstitutionEntity;
-import org.han.ica.oose.boterbloem.service.serviceImplementation.CareInstitutionService;
+import org.han.ica.oose.boterbloem.domain.domainobjects.CareInstitution;
+import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitutionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
