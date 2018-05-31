@@ -8,6 +8,15 @@ public class CareInstitution  {
 
     private List<Address> addresses =  new ArrayList<>();
     private String name;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * Getter for property 'addresses'.

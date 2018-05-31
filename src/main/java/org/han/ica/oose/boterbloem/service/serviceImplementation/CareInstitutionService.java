@@ -4,7 +4,9 @@ import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.daoImplementation.Car
 
 import org.han.ica.oose.boterbloem.dataAccess.daoHibernate.ICareinstitutionDAO;
 
+import org.han.ica.oose.boterbloem.domain.domainObjects.CareInstitution;
 import org.han.ica.oose.boterbloem.dataAccess.entities.CareinstitutionEntity;
+import org.han.ica.oose.boterbloem.domain.domainMappers.CareinstitutionMapper;
 import org.han.ica.oose.boterbloem.service.ICareInstitutionService;
 
 import java.util.List;
@@ -14,7 +16,7 @@ public class CareInstitutionService implements ICareInstitutionService {
     private static final Logger LOGGER = Logger.getLogger(DriverService.class.getName());
 
     private ICareinstitutionDAO careinstitutionDAO = new CareinstitutionDAOImpl();
-
+    private CareinstitutionMapper careinstitutionMapper = new CareinstitutionMapper();
     public CareInstitutionService() {
         // Empty constructor
     }
@@ -32,25 +34,27 @@ public class CareInstitutionService implements ICareInstitutionService {
     /**
      * @param careInstitution ICareInstitution that needs a update
      */
-    public void updateCareInstitution(CareinstitutionEntity careInstitution) {
+    public void updateCareInstitution(CareInstitution careInstitution) {
 
         //The posted name should be put here
-        careinstitutionDAO.update(careInstitution);
+        careinstitutionMapper.update(careInstitution);
     }
 
 
     /**
      * @param careInstitution that's going to be added to the database
      */
-    public void saveCareInstitution(CareinstitutionEntity careInstitution) {
-        careinstitutionDAO.add(careInstitution);
+    public void saveCareInstitution(CareInstitution careInstitution) {
+        //careinstitutionDAO.add(careInstitution);
+
+        careinstitutionMapper.saveCareInstitution(careInstitution);
     }
 
     /**
      * @return List of all CareInstitutions
      */
-    public List<CareinstitutionEntity> getAllCareInstitutions() {
-        return careinstitutionDAO.findAll();
+    public List<CareInstitution> getAllCareInstitutions() {
+        return careinstitutionMapper.getAllCareinstitution();
     }
 
     /**
