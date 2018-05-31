@@ -10,4 +10,11 @@ public interface IRatingsService {
      * @return A list of all ratings from the database
      */
     public List<Ratings> getAllRatings();
+
+    /**
+     * Method for returning all ratings from a specific care institution
+     * @param careInstitutionId - The ID of the care instituton you want to get the ratings of.
+     * @return A list of all ratings from a specific care institution
+     */
+    List<Ratings> getAllRatingsFromASpecificCareInstitution(int careInstitutionId);
 }
