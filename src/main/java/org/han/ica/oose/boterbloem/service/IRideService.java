@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.service.displays.RideOverviewDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.RideOverviewDisplay;
 
 import java.util.List;
 

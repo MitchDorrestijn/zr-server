@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.entity.LimitationEntity;
+import org.han.ica.oose.boterbloem.dataAccess.entities.LimitationEntity;
 
 import java.util.List;
 

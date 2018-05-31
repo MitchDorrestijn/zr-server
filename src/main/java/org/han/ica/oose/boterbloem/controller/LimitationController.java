@@ -1,12 +1,11 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.entity.LimitationEntity;
+import org.han.ica.oose.boterbloem.dataAccess.entities.LimitationEntity;
 import org.han.ica.oose.boterbloem.service.ILimitationService;
-import org.han.ica.oose.boterbloem.service.LimitationService;
+import org.han.ica.oose.boterbloem.service.serviceImplementation.LimitationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.DocFlavor;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.service.displays.ClientRideDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.ClientRideDisplay;
 
 import java.util.List;
 

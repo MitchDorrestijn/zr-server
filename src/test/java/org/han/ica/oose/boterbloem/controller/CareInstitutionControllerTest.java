@@ -1,7 +1,7 @@
 //package org.han.ica.oose.boterbloem.controller;
 //
 //import org.han.ica.oose.boterbloem.domain.domainImplementation.ICareInstitution;
-//import org.han.ica.oose.boterbloem.service.CareInstitutionService;
+//import org.han.ica.oose.boterbloem.service.serviceImplementation.CareInstitutionService;
 //import org.junit.*;
 //import org.junit.runner.RunWith;
 //import org.springframework.boot.test.context.SpringBootTest;
