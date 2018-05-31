@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `driver` (
 
     ON UPDATE CASCADE
 
--- -----------------------------------------------------
+  -- -----------------------------------------------------
 
 );
 
@@ -435,7 +435,9 @@ CREATE TABLE IF NOT EXISTS `ride` (
 
   warning                 BOOLEAN      NULL,
 
-  assignedDriver          BOOLEAN      NUlL,
+  assignedDriver          BOOLEAN      NOT NUlL,
+
+  fixedRide               BOOLEAN      NOT NULL ,
 
   PRIMARY KEY (id),
 
@@ -489,7 +491,7 @@ CREATE TABLE IF NOT EXISTS `rideCanceledByDriver` (
 
   CONSTRAINT CancelledRide FOREIGN KEY (rideId) REFERENCES ride (id)
 
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
 
     ON UPDATE NO ACTION,
 
@@ -517,7 +519,7 @@ CREATE TABLE IF NOT EXISTS `rideProposedForDriver` (
 
   CONSTRAINT ProposedRide FOREIGN KEY (rideId) REFERENCES ride (id)
 
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
 
     ON UPDATE NO ACTION,
 
@@ -547,7 +549,7 @@ CREATE TABLE IF NOT EXISTS `rideMatchesState` (
 
   CONSTRAINT rideMatchesStateRide FOREIGN KEY (rideId) REFERENCES ride (id)
 
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
 
     ON UPDATE NO ACTION
 

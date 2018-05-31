@@ -14,7 +14,8 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping("/chauffeur")
 public class DriverController {
-    protected DriverService driverService = new DriverService();
+
+    private DriverService driverService = new DriverService();
 
     @Autowired
     DriverController() {
@@ -28,31 +29,38 @@ public class DriverController {
      */
     @RequestMapping(value = "/chauffeurs", method = RequestMethod.GET)
 
-    public List<DriverDisplay> getAllDrivers() {
+    public List <DriverDisplay> getAllDrivers() {
         return driverService.allDriversWithStatistics();
     }
 
     /**
      * Method for creating a new driver
-     *
-     * @return List with information of a specific chauffeur
      */
     @RequestMapping(value = "/create/chauffeur", method = RequestMethod.POST)
     public void createDriverDetails(@RequestBody CreateDriverDisplay driverEntity) {
-         driverService.createChauffeur(driverEntity);
+        driverService.createChauffeur(driverEntity);
     }
 
+    /**
+     * @param id of the Driver
+     * @return details of the Driver
+     */
     @RequestMapping(value = "/getChauffeur/{id}", method = RequestMethod.GET)
-    public DriverDetailDisplay getDriverDetails (@PathVariable int id) {
+    public DriverDetailDisplay getDriverDetails(@PathVariable int id) {
         return driverService.getDriverDetails(id);
     }
 
-
+    /**
+     * @param id of Driver
+     */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.PUT)
-    public void deleteDriver(@PathVariable int id){
+    public void deleteDriver(@PathVariable int id) {
         driverService.deleteDriver(id, driverService.getCareInstitutionId(id));
     }
 
+    /**
+     * @param driverEntity = Driver
+     */
     @RequestMapping(value = "/update/chauffeur", method = RequestMethod.PUT)
     public void updateDriverDetails(@RequestBody CreateDriverDisplay driverEntity) {
         driverService.updateDriver(driverEntity);

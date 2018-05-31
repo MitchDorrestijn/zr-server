@@ -12,7 +12,7 @@ import java.util.*;
 @RequestMapping("/rating")
 public class RatingsController {
 
-    RatingsService ratingsService = new RatingsService();
+    private RatingsService ratingsService = new RatingsService();
 
     @Autowired
     RatingsController() {
@@ -26,7 +26,7 @@ public class RatingsController {
      */
     @CrossOrigin
     @RequestMapping(value = "/ratings", method = RequestMethod.GET)
-    public List<Ratings> getAllRatings() {
+    public List <Ratings> getAllRatings() {
         return ratingsService.getAllRatings();
     }
 
@@ -38,7 +38,7 @@ public class RatingsController {
      * @return A arraylist of ratings
      */
     @RequestMapping(value = "/ratings/{driverId}", method = RequestMethod.GET)
-    public List<Ratings> getAllRatingsFromASpecificDriver(@PathVariable int driverId) {
+    public List <Ratings> getAllRatingsFromASpecificDriver(@PathVariable int driverId) {
         return ratingsService.getAllRatingsFromASpecificDriver(driverId);
     }
 

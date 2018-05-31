@@ -3,9 +3,7 @@ package org.han.ica.oose.boterbloem.controller;
 import org.han.ica.oose.boterbloem.entity.CareinstitutionEntity;
 import org.han.ica.oose.boterbloem.service.CareInstitutionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -17,9 +15,9 @@ import java.util.logging.*;
 public class CareInstitutionController {
 
     protected static final Logger LOGGER = Logger.getLogger(CareInstitutionController.class.getName());
+    private CareInstitutionService careInstitutionService = new CareInstitutionService();
 
-    CareInstitutionService careInstitutionService = new CareInstitutionService();
-
+    @Autowired
     CareInstitutionController() {
         // empty constructor
     }
@@ -30,10 +28,10 @@ public class CareInstitutionController {
      */
     @CrossOrigin
     @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
-    public ResponseEntity<String> addCareInstitution(@RequestBody CareinstitutionEntity careInstitution) {
+    public ResponseEntity <String> addCareInstitution(@RequestBody CareinstitutionEntity careInstitution) {
         careInstitutionService.saveCareInstitution(careInstitution);
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+        return new ResponseEntity <>(headers, HttpStatus.CREATED);
     }
 
     /**
@@ -44,7 +42,6 @@ public class CareInstitutionController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public CareinstitutionEntity getCareInstitution(@PathVariable int id) {
-
         return careInstitutionService.findById(id);
     }
 
@@ -54,7 +51,7 @@ public class CareInstitutionController {
      * @return List of ICareInstitution
      */
     @RequestMapping(value = "/zorginstellingen", method = RequestMethod.GET)
-    public List<CareinstitutionEntity> getAllCareInstitutions() {
+    public List <CareinstitutionEntity> getAllCareInstitutions() {
         return careInstitutionService.getAllCareInstitutions();
     }
 
@@ -65,17 +62,17 @@ public class CareInstitutionController {
      */
     @CrossOrigin
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
-    public ResponseEntity<CareinstitutionEntity> updateCareInstitution(@PathVariable int id, @RequestBody CareinstitutionEntity careInstitution) {
+    public ResponseEntity <CareinstitutionEntity> updateCareInstitution(@PathVariable int id, @RequestBody CareinstitutionEntity careInstitution) {
         CareinstitutionEntity currentCareInstitution = null;
         try {
             currentCareInstitution = careInstitutionService.findById(id);
             currentCareInstitution.setName(careInstitution.getName());
             careInstitutionService.updateCareInstitution(currentCareInstitution);
-        } catch (Exception e) {
+        } catch ( Exception e ) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
 
-        return new ResponseEntity<>(currentCareInstitution, HttpStatus.OK);
+        return new ResponseEntity <>(currentCareInstitution, HttpStatus.OK);
 
     }
 
@@ -85,9 +82,9 @@ public class CareInstitutionController {
      */
     @CrossOrigin
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<CareinstitutionEntity> deleteCareInstitution(@PathVariable int id) {
+    public ResponseEntity <CareinstitutionEntity> deleteCareInstitution(@PathVariable int id) {
         careInstitutionService.deleteCareInstitutionById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
+        return new ResponseEntity <>(HttpStatus.NO_CONTENT);
     }
+
 }

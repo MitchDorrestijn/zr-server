@@ -11,6 +11,7 @@ import java.util.*;
 @CrossOrigin(origins = "*")
 @RequestMapping("/ride/driver")
 public class DriverRideController {
+
     private DriverRideService rideService = new DriverRideService();
 
     @Autowired
@@ -26,4 +27,5 @@ public class DriverRideController {
     public List <DriverRideDisplay> getRidesFromSpecificDriver(@PathVariable int driverId) {
         return rideService.getRidesFromSpecificDriver(driverId);
     }
+
 }

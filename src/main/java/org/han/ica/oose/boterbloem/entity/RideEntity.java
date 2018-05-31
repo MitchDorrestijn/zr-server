@@ -1,6 +1,8 @@
 package org.han.ica.oose.boterbloem.entity;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -25,7 +27,8 @@ public class RideEntity {
     private ClientEntity clientEntity;
     private byte warning;
     private byte assignedDriver;
-
+    private byte fixedRide;
+    private UtilityEntity utilityEntity;
 
     @OneToOne
     @JoinColumn(name = "clientId")
@@ -60,6 +63,8 @@ public class RideEntity {
 
     @Id
     @Column(name = "id")
+    @GenericGenerator(name = "id", strategy = "increment")
+    @GeneratedValue(generator = "id")
     public int getId() {
         return id;
     }
@@ -208,6 +213,25 @@ public class RideEntity {
         this.assignedDriver = assignedDriver;
     }
 
+    @Basic
+    @Column(name = "fixedRide")
+    public byte getFixedRide() {
+        return fixedRide;
+    }
+
+    public void setFixedRide(byte fixedRide) {
+        this.fixedRide = fixedRide;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "utility")
+    public UtilityEntity getUtilityEntity() {
+        return utilityEntity;
+    }
+
+    public void setUtilityEntity(UtilityEntity utilityEntity) {
+        this.utilityEntity = utilityEntity;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -226,6 +250,7 @@ public class RideEntity {
         if (executed != that.executed) return false;
         if (warning != that.warning) return false;
         if (assignedDriver != that.assignedDriver) return false;
+        if (fixedRide != that.fixedRide) return false;
         if (pickUpDateTime != null ? !pickUpDateTime.equals(that.pickUpDateTime) : that.pickUpDateTime != null)
             return false;
         if (pickUpLocation != null ? !pickUpLocation.equals(that.pickUpLocation) : that.pickUpLocation != null)
@@ -257,6 +282,7 @@ public class RideEntity {
         result = 31 * result + (int) executed;
         result = 31 * result + (int) warning;
         result = 31 * result + (int) assignedDriver;
+        result = 31 * result + (int) fixedRide;
         return result;
     }
 }

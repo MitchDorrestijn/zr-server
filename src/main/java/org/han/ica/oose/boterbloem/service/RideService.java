@@ -1,8 +1,8 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.daoHibernate.IRideDAO;
-import org.han.ica.oose.boterbloem.daoHibernate.RideDAOImpl;
+import org.han.ica.oose.boterbloem.daoHibernate.*;
 import org.han.ica.oose.boterbloem.entity.RideEntity;
+import org.han.ica.oose.boterbloem.service.displays.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.service.displays.RideDisplay;
 
 import java.util.*;
@@ -11,6 +11,8 @@ import java.util.logging.*;
 public class RideService implements IRideService {
     private static final Logger LOGGER = Logger.getLogger(RideService.class.getName());
     private IRideDAO rideDAO = new RideDAOImpl();
+    private IClientDAO clientDAO = new ClientDAOImpl();
+    private IDriverDAO driverDAO = new DriverDAOImpl();
 
     @Override
     public List <RideDisplay> getAllRides() {
@@ -45,6 +47,32 @@ public class RideService implements IRideService {
         return rideDisplay;
     }
 
+    @Override
+    public void createRide(CreateRideDisplay createRideDisplay) {
+        try {
+            RideEntity rideEntity = new RideEntity();
+            rideEntity.setClientEntity(clientDAO.findById(createRideDisplay.getClientId()));
+            rideEntity.setDriverEntity(driverDAO.findById(createRideDisplay.getDriverId()));
+
+            rideEntity.setPickUpDateTime(createRideDisplay.getDate());
+            rideEntity.setPickUpLocation(createRideDisplay.getPickUpLocation());
+            rideEntity.setDropOffLocation(createRideDisplay.getDropOffLocation());
+
+            rideEntity.setNumberOfcompanions(createRideDisplay.getNumberOfcompanions());
+            rideEntity.setNumberOfLuggage(createRideDisplay.getNumberOfLuggage());
+            rideEntity.setUtilityEntity(createRideDisplay.getUtilityEntity());
+
+            rideEntity.setReturnRide(createRideDisplay.getReturnRide());
+            rideEntity.setCallService(createRideDisplay.getCallService());
+            rideEntity.setFixedRide(createRideDisplay.getFixedRide());
+
+            rideDAO.add(rideEntity);
+
+        } catch ( Exception e ) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -53,7 +81,7 @@ public class RideService implements IRideService {
         try {
             RideEntity rideToRemove = rideDAO.findById(id);
             rideDAO.remove(rideToRemove);
-        } catch (Exception e) {
+        } catch ( Exception e ) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
     }

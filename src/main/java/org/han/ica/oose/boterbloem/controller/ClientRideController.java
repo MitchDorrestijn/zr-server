@@ -11,6 +11,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping("/ride/client")
 public class ClientRideController {
+
     private ClientRideService clientRideService = new ClientRideService();
 
     @Autowired
@@ -18,9 +19,14 @@ public class ClientRideController {
         //Empty constructor for spring
     }
 
+    /**
+     * @param clientId of Client
+     * @return list of all rides of a specific Client
+     */
     @CrossOrigin
     @RequestMapping(value = "/clientRide/{clientId}", method = RequestMethod.GET)
-    public List<ClientRideDisplay> getRidesFromSpecificClient(@PathVariable int clientId) {
+    public List <ClientRideDisplay> getRidesFromSpecificClient(@PathVariable int clientId) {
         return clientRideService.getRidesFromSpecificClient(clientId);
     }
+
 }
