@@ -4,7 +4,6 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRatingsDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RatingsEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +17,21 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
     /**
      * Hook up the basic CRUD queries
      */
-    @Autowired
+
     public RatingsDAOImpl() {
         super(RatingsEntity.class);
     }
 
     public int getAvgRatings(int id){
         try {
-            int returnValue = ((Number) getEntityManager().createQuery("SELECT AVG(sterren) FROM RatingsEntity WHERE driverId = :id").setParameter("id", id).getSingleResult()).intValue();
-            return returnValue;
+            return ((Number) getEntityManager().createQuery("SELECT AVG(sterren) FROM RatingsEntity WHERE driverId = :id").setParameter("id", id).getSingleResult()).intValue();
         } catch (NullPointerException n){
             return 0;
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<RatingsEntity> getByDriver(int driverId) {
         return getEntityManager().createQuery("FROM RatingsEntity " +
                 "WHERE driverId = :driverId").setParameter("driverId", driverId).getResultList();
@@ -43,6 +42,7 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
      * @return a list of drivers with a list of ratings of the drivers from a specific careInstitution
      */
     @Override
+    @SuppressWarnings("unchecked")
     public List<List<RatingsEntity>> getByCareInstitution(int careInstitutionId) {
         List<List<RatingsEntity>> ratings = new ArrayList<>();
         try {

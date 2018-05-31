@@ -4,54 +4,64 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDrivercareinstitutio
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntityPK;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import javax.persistence.NoResultException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<DrivercareinstitutionEntity> implements IDrivercareinstitutionDAO {
-
+    private static final Logger LOGGER = Logger.getLogger(DrivercareinstitutionDAOImpl.class.getName());
     /**
      * Hook up the basic CRUD queries
      */
-    @Autowired
+
     public DrivercareinstitutionDAOImpl() {
         super(DrivercareinstitutionEntity.class);
     }
 
-    public DrivercareinstitutionEntity find(DrivercareinstitutionEntityPK drivercareinstitutionEntityPK){
-        return getEntityManager().find(DrivercareinstitutionEntity.class, drivercareinstitutionEntityPK);
+    public DrivercareinstitutionEntity find(DrivercareinstitutionEntityPK drivercareinstitutionEntityPK) {
+        try {
+            return getEntityManager().find(DrivercareinstitutionEntity.class, drivercareinstitutionEntityPK);
+        } catch (Exception e) {
+            return new DrivercareinstitutionEntity();
+        }
     }
-    @SuppressWarnings("unchecked")
 
-    public DrivercareinstitutionEntity getCareInstitutionId(int driverId){
+    @SuppressWarnings("unchecked")
+    public DrivercareinstitutionEntity getCareInstitutionId(int driverId) {
+        try {
+            int careId;
             try {
-                int careId;
-                try {
-                    careId = (int) this.getEntityManager().createQuery("SELECT careInstitutionId FROM DrivercareinstitutionEntity dr WHERE dr.driverId = :driverId").setParameter("driverId", driverId).getSingleResult();
-                }catch (NoResultException e){
-                    return new DrivercareinstitutionEntity();
-                }
-                DrivercareinstitutionEntityPK drivercareinstitutionEntityPK = new DrivercareinstitutionEntityPK();
-                drivercareinstitutionEntityPK.setDriverId(driverId);
-                drivercareinstitutionEntityPK.setCareInstitutionId(careId);
-                return  find(drivercareinstitutionEntityPK);
-            } catch(NullPointerException e){
-                System.out.println("check");
+                careId = (int) this.getEntityManager().createQuery("SELECT careInstitutionId FROM DrivercareinstitutionEntity dr WHERE dr.driverId = :driverId").setParameter("driverId", driverId).getSingleResult();
+            } catch (NoResultException e) {
                 return new DrivercareinstitutionEntity();
             }
+            DrivercareinstitutionEntityPK drivercareinstitutionEntityPK = new DrivercareinstitutionEntityPK();
+            drivercareinstitutionEntityPK.setDriverId(driverId);
+            drivercareinstitutionEntityPK.setCareInstitutionId(careId);
+            return find(drivercareinstitutionEntityPK);
+        } catch (NullPointerException e) {
+            return new DrivercareinstitutionEntity();
         }
+    }
 
     @Override
     public void updateCareInstituion(int careId, int driverId) {
-        getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET careInstitutionId = :careId WHERE driverId = :driverId").setParameter("careId",careId).setParameter("driverId",driverId).executeUpdate();
+        getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET careInstitutionId = :careId WHERE driverId = :driverId").setParameter("careId", careId).setParameter("driverId", driverId).executeUpdate();
     }
 
     @Override
     public int getDriverCareinstitutionId(int id) {
-        return ((int) getEntityManager().createQuery("select careInstitutionId from DrivercareinstitutionEntity where driverId = :id").setParameter("id", id).getSingleResult());
+        try {
+            return ((int) getEntityManager().createQuery("select careInstitutionId from DrivercareinstitutionEntity where driverId = :id").setParameter("id", id).getSingleResult());
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
+        return 0;
     }
 
-    public DrivercareinstitutionEntity findById(DrivercareinstitutionEntity drivercareinstitutionEntity){
+    public DrivercareinstitutionEntity findById(DrivercareinstitutionEntity drivercareinstitutionEntity) {
         return getEntityManager().find(DrivercareinstitutionEntity.class, drivercareinstitutionEntity);
     }
 }

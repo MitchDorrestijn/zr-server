@@ -10,5 +10,5 @@ public interface IDriverlimitationmanageableDAO extends IGenericDAO<Driverlimita
 
 
     List<String> getByDriverId(int id);
-    void updateDriverLimitations(ArrayList<String> limitations, int driverId);
+    void updateDriverLimitations(List<String> limitations, int driverId);
 }
