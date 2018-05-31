@@ -9,8 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriverDAO {
+
+    private static final Logger LOGGER = Logger.getLogger(DriverDAOImpl.class.getName());
+
 
     /**
      * Hook up the basic CRUD queries
@@ -41,12 +46,16 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
      */
     @Override
     public List<DriverEntity> getByCareInstitutionId(int id) {
-        List<DrivercareinstitutionEntity> drivercareinstitutionEntities = getEntityManager().createQuery("FROM DrivercareinstitutionEntity " +
-                "WHERE careInstitutionId = :id").setParameter("id", id).getResultList();
-
         List<DriverEntity> driverEntities = new ArrayList<>();
-        for(int i = 0; i < drivercareinstitutionEntities.size(); i++) {
-            driverEntities.add(findById(drivercareinstitutionEntities.get(i).getDriverId()));
+        try {
+            List<DrivercareinstitutionEntity> drivercareinstitutionEntities = getEntityManager().createQuery("FROM DrivercareinstitutionEntity " +
+                    "WHERE careInstitutionId = :id").setParameter("id", id).getResultList();
+
+            for (int i = 0; i < drivercareinstitutionEntities.size(); i++) {
+                driverEntities.add(findById(drivercareinstitutionEntities.get(i).getDriverId()));
+            }
+        } catch (NullPointerException e){
+            LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return driverEntities;
     }

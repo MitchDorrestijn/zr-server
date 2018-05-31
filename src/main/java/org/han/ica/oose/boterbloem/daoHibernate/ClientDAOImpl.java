@@ -8,8 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClientDAO {
+    private static final Logger LOGGER = Logger.getLogger(ClientDAOImpl.class.getName());
+
+
     /**
      * Hook up the basic CRUD queries
      */
@@ -28,14 +33,17 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
      */
     @Override
     public List<ClientEntity> getByCareInstitutionId(int id) {
-        List<ClientcareinstitutionEntity> clientcareinstitutionEntityList = getEntityManager().createQuery("FROM ClientcareinstitutionEntity " +
-                "WHERE careInstitutionId = :id").setParameter("id", id).getResultList();
-
         List<ClientEntity> clientEntities = new ArrayList<>();
-        for(int i = 0; i < clientcareinstitutionEntityList.size(); i++) {
-            clientEntities.add(findById(clientcareinstitutionEntityList.get(i).getClientId()));
+        try {
+            List<ClientcareinstitutionEntity> clientcareinstitutionEntityList = getEntityManager().createQuery("FROM ClientcareinstitutionEntity " +
+                    "WHERE careInstitutionId = :id").setParameter("id", id).getResultList();
+
+            for (int i = 0; i < clientcareinstitutionEntityList.size(); i++) {
+                clientEntities.add(findById(clientcareinstitutionEntityList.get(i).getClientId()));
+            }
+        } catch (NullPointerException e){
+            LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return clientEntities;
     }
-
 }

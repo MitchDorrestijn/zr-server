@@ -70,7 +70,8 @@ public class ClientMapper {
         client.setPKB(c.getPKB());
         try {
             if (distance > c.getPKB()) {
-                priceToPay = (distance * 0.005);
+                final double DISTANCE_MULTIPLIER = 0.005;
+                priceToPay = (distance * DISTANCE_MULTIPLIER);
                 warningPKB = true;
                 client.setTotalMeters(distance);
                 client.setPriceToPay(priceToPay);
