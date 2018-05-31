@@ -1,8 +1,8 @@
 package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.dataAccess.entities.RideEntity;
-import org.han.ica.oose.boterbloem.service.displays.CreateRideDisplay;
-import org.han.ica.oose.boterbloem.service.displays.RideDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.CreateRideDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayObject.RideOverviewDisplay;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.service.displays;
+package org.han.ica.oose.boterbloem.display.displayObject;
 
 import org.han.ica.oose.boterbloem.dataAccess.entities.UtilityEntity;
 

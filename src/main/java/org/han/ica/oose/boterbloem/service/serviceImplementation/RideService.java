@@ -10,13 +10,11 @@ import org.han.ica.oose.boterbloem.dataAccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.domain.domainMappers.RideMapper;
 import org.han.ica.oose.boterbloem.service.IRideService;
 import org.han.ica.oose.boterbloem.display.displayObject.RideOverviewDisplay;
-import org.han.ica.oose.boterbloem.service.displays.CreateRideDisplay;
-import org.han.ica.oose.boterbloem.service.displays.RideDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.CreateRideDisplay;
+import org.han.ica.oose.boterbloem.display.displayObject.RideDisplay;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
+import java.util.logging.*;
 
 public class RideService implements IRideService {
     private static final Logger LOGGER = Logger.getLogger(RideService.class.getName());

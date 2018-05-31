@@ -447,6 +447,13 @@ CREATE TABLE IF NOT EXISTS `ride` (
 
   fixedRide               BOOLEAN      NOT NULL ,
 
+  paymentDescription      VARCHAR(255) NULL,
+
+  paymentStatus           VARCHAR(255) NULL,
+
+  paymentDueBefore        DATE         NULL,
+
+
   PRIMARY KEY (id),
 
   CONSTRAINT RideClient FOREIGN KEY (clientId) REFERENCES client (clientId)
