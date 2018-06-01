@@ -15,7 +15,8 @@ public class Ride {
     private String paymentStatus;
     private Date paymentDueBefore;
     private float price_of_ride;
-    private int numberOfcompanions; //How many people are in the car besides the driver + client
+    //How many people are in the car besides the driver + client
+    private int numberOfcompanions;
     private int numberOfLuggage;
     private boolean returnRide;
     private boolean callService;
