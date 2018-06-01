@@ -1,14 +1,15 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation;
 
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
+
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRideDAO;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 
-public class RideDAOImpl extends GenericDAOImpl <RideEntity> implements IRideDAO {
+public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO {
 
     /**
      * Hook up the basic CRUD queries

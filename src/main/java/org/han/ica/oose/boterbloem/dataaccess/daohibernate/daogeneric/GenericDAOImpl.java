@@ -1,6 +1,7 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric;
 
-import org.han.ica.oose.boterbloem.controller.*;
+
+import org.han.ica.oose.boterbloem.controller.LimitationController;
 
 import javax.persistence.*;
 

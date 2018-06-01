@@ -1,7 +1,8 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate;
 
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.IGenericDAO;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntityPK;
 
 public interface IDrivercareinstitutionDAO extends IGenericDAO<DrivercareinstitutionEntity> {
 

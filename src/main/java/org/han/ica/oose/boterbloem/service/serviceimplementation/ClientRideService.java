@@ -1,10 +1,12 @@
 package org.han.ica.oose.boterbloem.service.serviceimplementation;
 
-import org.han.ica.oose.boterbloem.service.*;
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-import org.han.ica.oose.boterbloem.display.displayobject.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientDAO;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRideDAO;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.ClientDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RideDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
+import org.han.ica.oose.boterbloem.display.displayobject.ClientRideDisplay;
+import org.han.ica.oose.boterbloem.service.IClientRideService;
 
 import java.util.ArrayList;
 import java.util.List;

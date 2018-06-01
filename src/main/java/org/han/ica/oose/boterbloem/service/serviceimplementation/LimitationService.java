@@ -1,9 +1,9 @@
 package org.han.ica.oose.boterbloem.service.serviceimplementation;
 
-import org.han.ica.oose.boterbloem.service.*;
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.ILimitationDAO;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.LimitationDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.entities.LimitationEntity;
+import org.han.ica.oose.boterbloem.service.ILimitationService;
 
 import java.util.ArrayList;
 import java.util.List;

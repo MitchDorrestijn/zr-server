@@ -1,7 +1,10 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-import org.han.ica.oose.boterbloem.display.displayobject.*;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DriverEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntity;
+import org.han.ica.oose.boterbloem.display.displayobject.CreateDriverDisplay;
+import org.han.ica.oose.boterbloem.display.displayobject.DriverDetailDisplay;
+import org.han.ica.oose.boterbloem.display.displayobject.DriverDisplay;
 
 import java.util.List;
 

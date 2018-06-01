@@ -1,8 +1,9 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation;
 
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
+
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IUserDAO;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.entities.UserEntity;
 
 public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements IUserDAO {
 

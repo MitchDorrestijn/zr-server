@@ -1,11 +1,11 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate;
 
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.IGenericDAO;
+import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
 
 import java.util.List;
 
-public interface IClientDAO extends IGenericDAO <ClientEntity> {
+public interface IClientDAO extends IGenericDAO<ClientEntity> {
     void removeById(int clientId);
 
     /**

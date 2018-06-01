@@ -1,10 +1,11 @@
 package org.han.ica.oose.boterbloem.domain.domainmappers;
 
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-import org.han.ica.oose.boterbloem.domain.domainobjects.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
-import org.han.ica.oose.boterbloem.service.serviceimplementation.*;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.*;
+
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRatingsDAO;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RatingsDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.entities.RatingsEntity;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Ratings;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.RatingsService;
 
 import java.util.ArrayList;
 import java.util.List;

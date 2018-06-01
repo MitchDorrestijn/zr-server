@@ -1,12 +1,13 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.service.*;
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-import org.han.ica.oose.boterbloem.display.displayobject.*;
-import org.han.ica.oose.boterbloem.service.serviceimplementation.*;
-
-import org.springframework.web.bind.annotation.*;
+import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
+import org.han.ica.oose.boterbloem.display.displayobject.CreateRideDisplay;
+import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
+import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
+import org.han.ica.oose.boterbloem.service.IRideService;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
