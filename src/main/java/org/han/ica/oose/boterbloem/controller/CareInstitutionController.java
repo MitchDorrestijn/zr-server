@@ -16,7 +16,6 @@ import java.util.logging.*;
 @RequestMapping("/zorginstelling")
 public class CareInstitutionController {
 
-    protected static final Logger LOGGER = Logger.getLogger(CareInstitutionController.class.getName());
 
     CareInstitutionService careInstitutionService = new CareInstitutionService();
 

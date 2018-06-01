@@ -42,7 +42,7 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
             for (ClientcareinstitutionEntity clientcareinstitutionEntity : clientcareinstitutionEntityList) {
                 clientEntities.add(findById(clientcareinstitutionEntity.getClientId()));
             }
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return clientEntities;

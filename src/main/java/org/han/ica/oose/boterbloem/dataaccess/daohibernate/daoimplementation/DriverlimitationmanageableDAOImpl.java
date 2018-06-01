@@ -5,6 +5,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAO
 import org.han.ica.oose.boterbloem.dataaccess.entities.DriverlimitationmanageableEntity;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,16 +24,19 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
     @Override
     @SuppressWarnings("unchecked")
     public List<String> getByDriverId(int id) {
-        return getEntityManager().createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id", id).getResultList();
+        try {
+            return getEntityManager().createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id", id).getResultList();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new ArrayList<>();
+        }
     }
 
     public void updateDriverLimitations(List<String> limitations, int driverId) {
         try {
-            getEntityManager().getTransaction().begin();
             getEntityManager().createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
-            getEntityManager().getTransaction().commit();
         } catch (Exception e) {
-            getEntityManager().getTransaction().rollback();
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
         for (String limitation : limitations) {
             try {

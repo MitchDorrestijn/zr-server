@@ -47,7 +47,7 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
             for (DrivercareinstitutionEntity dr : drivercareinstitutionEntities) {
                 driverEntities.add(findById(dr.getDriverId()));
             }
-        } catch (NullPointerException e){
+        } catch (Exception e){
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return driverEntities;

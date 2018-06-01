@@ -31,7 +31,8 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
             clientcareinstitutionEntityPK.setClientId(clientId);
             clientcareinstitutionEntityPK.setCareInstitutionId(getClientCareinstitutionId(clientId));
             return find(clientcareinstitutionEntityPK);
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
             return new ClientcareinstitutionEntity();
         }
     }
@@ -49,7 +50,6 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
             return ((int) getEntityManager().createQuery("select careInstitutionId from ClientcareinstitutionEntity where clientId   = :id").setParameter("id", id).getSingleResult());
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-
         }
         return 0;
     }
@@ -61,10 +61,20 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
      * @return careinstitution entity
      */
     public ClientcareinstitutionEntity find(ClientcareinstitutionEntityPK clientcareinstitutionEntityPK) {
-        return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
+        try {
+            return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new ClientcareinstitutionEntity();
+        }
     }
 
     public ClientcareinstitutionEntity findById(ClientcareinstitutionEntity clientcareinstitutionEntity) {
-        return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
+        try {
+            return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
+        }catch(Exception e){
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new ClientcareinstitutionEntity();
+        }
     }
 }
