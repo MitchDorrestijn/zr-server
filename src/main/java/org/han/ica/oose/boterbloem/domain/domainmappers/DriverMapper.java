@@ -75,13 +75,13 @@ public class DriverMapper {
                 driver.getDriverCar().setNumberOfPassengers(drivercarDAO.findCarById(driverId).getNumberOfPassengers());
                 driver.getDriverCar().setNumberPlate(drivercarDAO.findCarById(driverId).getNumberPlate());
             }
+            driver.setRating(ratingsDAO.getAvgRatings(driverId));
+            driver.getDriverCar().setSegment(driver.getDriverCar().getSegment());
+            driver.setTotalEarned(rideDAO.totalEarned(driverId));
+            driver.setTotalRides(rideDAO.rideCountById(driverId));
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
-        driver.setRating(ratingsDAO.getAvgRatings(driverId));
-        driver.getDriverCar().setSegment(driver.getDriverCar().getSegment());
-        driver.setTotalEarned(rideDAO.totalEarned(driverId));
-        driver.setTotalRides(rideDAO.rideCountById(driverId));
         return driver;
     }
 }
