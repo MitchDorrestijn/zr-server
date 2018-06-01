@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RatingsMapper {
-    private static final Logger LOGGER = Logger.getLogger(RatingsService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(RatingsMapper.class.getName());
 
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
 
