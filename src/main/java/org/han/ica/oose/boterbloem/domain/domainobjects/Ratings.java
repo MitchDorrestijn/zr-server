@@ -24,7 +24,7 @@ public class Ratings {
      * @param driverName Value to set for property 'driverName'.
      */
     public void setdriverName(String driverName) {
-        driverName = driverName;
+        this.driverName = driverName;
     }
 
     /**
@@ -78,6 +78,6 @@ public class Ratings {
      * @param clientName Value to set for property 'clientName'.
      */
     public void setclientName(String clientName) {
-        clientName = clientName;
+        this.clientName = clientName;
     }
 }

@@ -30,8 +30,9 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             em.getTransaction().commit();
             return entity;
         } catch (Exception e) {
-            em.getTransaction().rollback();
             LOGGER.log(Level.WARNING, e.getMessage());
+            em.getTransaction().rollback();
+
         }
         return null;
     }
@@ -44,8 +45,9 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             em.getTransaction().commit();
             return mergedEntity;
         } catch (Exception e) {
-            em.getTransaction().rollback();
             LOGGER.log(Level.WARNING, e.getMessage());
+            em.getTransaction().rollback();
+
         }
         return null;
     }
@@ -57,8 +59,8 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             em.remove(entity);
             em.getTransaction().commit();
         } catch (Exception e) {
-            em.getTransaction().rollback();
             LOGGER.log(Level.WARNING, e.getMessage());
+            em.getTransaction().rollback();
         }
     }
 
@@ -70,8 +72,9 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             em.getTransaction().commit();
             return entity;
         } catch (Exception e) {
-            em.getTransaction().rollback();
             LOGGER.log(Level.WARNING, e.getMessage());
+            em.getTransaction().rollback();
+
         }
         return null;
     }
@@ -85,8 +88,9 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             em.getTransaction().commit();
             return entities;
         } catch (Exception e) {
-            em.getTransaction().rollback();
             LOGGER.log(Level.WARNING, e.getMessage());
+            em.getTransaction().rollback();
+
         }
         return new ArrayList<>();
     }
