@@ -50,5 +50,4 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
             }
         }
     }
-
 }
