@@ -129,25 +129,4 @@ public class CareInstitutionControllerTest {
         assertNotEquals(11,testCareInstitution.getId());
     }
 
-    //    @Test
-//    public void addCareInstitutionTest() throws SQLException{
-//        ICareInstitution careInstitutionZ = new ICareInstitution(6, "instellingZ");
-//        careInstitutionController.addCareInstitution(careInstitutionZ);
-//        when(careInstitutionService.findById(6)).thenReturn(careInstitutionZ);
-//        ICareInstitution testCareInstitution = careInstitutionController.getCareInstitutionId("6");
-//        assertEquals("instellingZ", testCareInstitution.getName());
-//    }
-
-
-//
-//
-//    @Test
-//    public void updateCareInstitutionTest() throws SQLException{
-//        when(careInstitutionService.findById(1)).thenReturn(careInstitutionA);
-//        ICareInstitution testCareInstitution = careInstitutionController.getCareInstitutionId("1");
-//        testCareInstitution.setName("new name");
-//        careInstitutionController.updateCareInstitution(1, testCareInstitution);
-//        assertEquals("new name", testCareInstitution.getName());
-//    }
-
 }
