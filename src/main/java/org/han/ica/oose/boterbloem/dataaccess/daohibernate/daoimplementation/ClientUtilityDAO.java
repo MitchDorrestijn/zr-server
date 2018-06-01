@@ -9,7 +9,6 @@ public class ClientUtilityDAO extends GenericDAOImpl<ClientUtilityEntity> implem
     /**
      * Hook up the basic CRUD queries
      */
-
     public ClientUtilityDAO() {
         super(ClientUtilityEntity.class);
     }

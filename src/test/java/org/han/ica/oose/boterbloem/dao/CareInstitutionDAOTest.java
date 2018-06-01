@@ -34,7 +34,7 @@
 ////        dao.create(new ICareInstitution(6, "Prothese"));
 ////        ICareInstitution temp = dao.getByID(6);
 ////        assertEquals(6, temp.getId());
-////        assertEquals("Prothese", dao.getByName("Prothese").get(0).getName());
+////        assertEquals("Prothese", dao.getLimitationByName("Prothese").get(0).getName());
 ////        dao.deleteById(6);
 ////    }
 ////
@@ -55,8 +55,8 @@
 ////    }
 ////
 ////    @Test
-////    public void getByName() {
-////        List<ICareInstitution> careInstitutions = dao.getByName("Reinearde");
+////    public void getLimitationByName() {
+////        List<ICareInstitution> careInstitutions = dao.getLimitationByName("Reinearde");
 ////        assertEquals("Reinearde", careInstitutions.get(0).getName());
 ////        assertNotEquals("Cordaan", careInstitutions.get(0).getName());
 ////    }
@@ -82,7 +82,7 @@
 ////
 ////        dao.deleteById(6);
 ////        assertNotEquals(6, dao.getByID(6));
-////        assertTrue(dao.getByName("Prothese").size() == 0);
+////        assertTrue(dao.getLimitationByName("Prothese").size() == 0);
 ////    }
 ////
 ////    @Test
@@ -94,7 +94,7 @@
 ////
 ////        dao.deleteByName("Prothese");
 ////        assertNotEquals(6, dao.getByID(6));
-////        assertTrue(dao.getByName("Prothese").size() == 0);
+////        assertTrue(dao.getLimitationByName("Prothese").size() == 0);
 ////    }
 ////
 ////    @Test
@@ -144,7 +144,7 @@
 //        dao.create(new ICareInstitution(6, "Prothese"));
 //        ICareInstitution temp = dao.getByID(6);
 //        assertEquals(6, temp.getId());
-//        assertEquals("Prothese", dao.getByName("Prothese").get(0).getName());
+//        assertEquals("Prothese", dao.getLimitationByName("Prothese").get(0).getName());
 //        dao.deleteById(6);
 //    }
 //
@@ -165,8 +165,8 @@
 //    }
 //
 //    @Test
-//    public void getByName() {
-//        List<ICareInstitution> careInstitutions = dao.getByName("Reinearde");
+//    public void getLimitationByName() {
+//        List<ICareInstitution> careInstitutions = dao.getLimitationByName("Reinearde");
 //        assertEquals("Reinearde", careInstitutions.get(0).getName());
 //        assertNotEquals("Cordaan", careInstitutions.get(0).getName());
 //    }
@@ -192,7 +192,7 @@
 //
 //        dao.deleteById(6);
 //        assertNotEquals(6, dao.getByID(6));
-//        assertTrue(dao.getByName("Prothese").size() == 0);
+//        assertTrue(dao.getLimitationByName("Prothese").size() == 0);
 //    }
 //
 //    @Test
@@ -204,7 +204,7 @@
 //
 //        dao.deleteByName("Prothese");
 //        assertNotEquals(6, dao.getByID(6));
-//        assertTrue(dao.getByName("Prothese").size() == 0);
+//        assertTrue(dao.getLimitationByName("Prothese").size() == 0);
 //    }
 //
 //    @Test

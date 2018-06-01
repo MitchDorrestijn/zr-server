@@ -4,7 +4,6 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IUtilityDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.UtilityEntity;
 
-
 public class UtilityDAOImpl extends GenericDAOImpl<UtilityEntity> implements IUtilityDAO {
 
     /**

@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.dataaccess.entities;
 
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -23,6 +24,10 @@ public class RideEntity {
     private DriverEntity driverEntity;
     private float priceOfRide;
     private ClientEntity clientEntity;
+    private byte warning;
+    private byte assignedDriver;
+    private byte fixedRide;
+    private UtilityEntity utilityEntity;
     private String paymentDescription;
     private String paymentStatus;
     private String paymentDueBefore;
@@ -60,6 +65,8 @@ public class RideEntity {
 
     @Id
     @Column(name = "id")
+    @GenericGenerator(name = "id", strategy = "increment")
+    @GeneratedValue(generator = "id")
     public int getId() {
         return id;
     }
@@ -189,6 +196,45 @@ public class RideEntity {
     }
 
     @Basic
+    @Column(name = "warning")
+    public byte getWarning() {
+        return warning;
+    }
+
+    public void setWarning(byte warning) {
+        this.warning = warning;
+    }
+
+    @Basic
+    @Column(name = "assignedDriver")
+    public byte getAssignedDriver() {
+        return assignedDriver;
+    }
+
+    public void setAssignedDriver(byte assignedDriver) {
+        this.assignedDriver = assignedDriver;
+    }
+
+    @Basic
+    @Column(name = "fixedRide")
+    public byte getFixedRide() {
+        return fixedRide;
+    }
+
+    public void setFixedRide(byte fixedRide) {
+        this.fixedRide = fixedRide;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "utility")
+    public UtilityEntity getUtilityEntity() {
+        return utilityEntity;
+    }
+
+    public void setUtilityEntity(UtilityEntity utilityEntity) {
+        this.utilityEntity = utilityEntity;
+    }
+
     @Column(name = "paymentDescription")
     public String getPaymentDescription() {
         return paymentDescription;
@@ -219,8 +265,6 @@ public class RideEntity {
         this.paymentDueBefore = paymentDueBefore;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -236,6 +280,9 @@ public class RideEntity {
         if (returnRide != that.returnRide) return false;
         if (callService != that.callService) return false;
         if (executed != that.executed) return false;
+        if (warning != that.warning) return false;
+        if (assignedDriver != that.assignedDriver) return false;
+        if (fixedRide != that.fixedRide) return false;
         if (pickUpDateTime != null ? !pickUpDateTime.equals(that.pickUpDateTime) : that.pickUpDateTime != null)
             return false;
         if (pickUpLocation != null ? !pickUpLocation.equals(that.pickUpLocation) : that.pickUpLocation != null)
@@ -271,6 +318,9 @@ public class RideEntity {
         result = 31 * result + (repeatingRideId != null ? repeatingRideId.hashCode() : 0);
         result = 31 * result + (cancelledByClient != null ? cancelledByClient.hashCode() : 0);
         result = 31 * result + (int) executed;
+        result = 31 * result + (int) warning;
+        result = 31 * result + (int) assignedDriver;
+        result = 31 * result + (int) fixedRide;
         result = 31 * result + (paymentDescription != null ? paymentDescription.hashCode() : 0);
         result = 31 * result + (paymentStatus != null ? paymentStatus.hashCode() : 0);
         result = 31 * result + (paymentDueBefore != null ? paymentDueBefore.hashCode() : 0);

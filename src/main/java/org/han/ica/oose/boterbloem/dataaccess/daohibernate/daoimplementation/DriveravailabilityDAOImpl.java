@@ -4,7 +4,6 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDriveravailabilityDA
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DriveravailabilityEntity;
 
-
 public class DriveravailabilityDAOImpl extends GenericDAOImpl<DriveravailabilityEntity> implements IDriveravailabilityDAO {
 
     /**

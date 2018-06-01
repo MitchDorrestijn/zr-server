@@ -29,7 +29,7 @@
 //        assertEquals("Wandelstok", temp.getUtility());
 //        assertEquals(true, temp.isDriverPreferenceF());
 //        //TODO: Create method delete
-//        dao.deleteClient(1);
+//        dao.deleteClientById(1);
 //    }
 //}
 //=======
@@ -89,6 +89,6 @@
 //        assertEquals("Wandelstok", temp.getUtility());
 //        assertEquals(true, temp.isDriverPreferenceF());
 //        //TODO: Create method delete
-//       // dao.deleteClient(1);
+//       // dao.deleteClientById(1);
 //    }
 //}

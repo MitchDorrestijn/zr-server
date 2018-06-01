@@ -9,7 +9,6 @@ public class DriverclientpreferenceDAOImpl extends GenericDAOImpl<Driverclientpr
     /**
      * Hook up the basic CRUD queries
      */
-
     public DriverclientpreferenceDAOImpl() {
         super(DriverclientpreferenceEntity.class);
     }

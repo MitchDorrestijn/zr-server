@@ -1,9 +1,9 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation;
 
+
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRidematchesrejectedDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RidematchesrejectedEntity;
-
 
 public class RidematchesrejectedDAOImpl extends GenericDAOImpl<RidematchesrejectedEntity> implements IRidematchesrejectedDAO {
 

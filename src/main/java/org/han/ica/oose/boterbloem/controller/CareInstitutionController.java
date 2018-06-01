@@ -1,81 +1,73 @@
 package org.han.ica.oose.boterbloem.controller;
 
 
-import org.han.ica.oose.boterbloem.domain.domainobjects.CareInstitution;
 import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
+import org.han.ica.oose.boterbloem.domain.domainobjects.CareInstitution;
+import org.han.ica.oose.boterbloem.service.ICareInstitutionService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitutionService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*;
-import java.util.logging.*;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/zorginstelling")
 public class CareInstitutionController {
 
+    private ICareInstitutionService careInstitutionService = new CareInstitutionService();
 
-    CareInstitutionService careInstitutionService = new CareInstitutionService();
-
+    @Autowired
     CareInstitutionController() {
-        // empty constructor
+        // Empty Constructor for Spring
     }
 
     /**
-     * @param careInstitution ICareInstitution
-     * @return new ICareInstitution
+     * GET CarInstitution by Id
+     * @param id of CarInstitution
+     * @return CarInstitution
      */
-    @CrossOrigin
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public CareinstitutionEntity getCareInstitutionById(@PathVariable int id) {
+        return careInstitutionService.findById(id);
+    }
+
+    /**
+     * GET all CareInstitutions
+     * @return list of CareInstitutions
+     */
+    @RequestMapping(value = "/zorginstellingen", method = RequestMethod.GET)
+    public List <CareInstitution> getAllCareInstitutions() {
+        return careInstitutionService.getAllCareInstitutions();
+    }
+
+    /**
+     * POST new CareInstitution
+     * @param careInstitution =  new CareInstitution
+     */
     @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
     public void addCareInstitution(@RequestBody CareInstitution careInstitution) {
         careInstitutionService.saveCareInstitution(careInstitution);
     }
 
     /**
-     * Method for returning a ICareInstitution
-     *
-     * @param id of ICareInstitution
-     * @return ICareInstitution
+     * UPDATE CareInstitution
+     * @param id of CareInstitution
+     * @param careInstitution =  CareInstitution
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public CareinstitutionEntity getCareInstitution(@PathVariable int id) {
-
-        return careInstitutionService.findById(id);
-    }
-
-    /**
-     * Method for returning all ICareInstitution
-     *
-     * @return List of ICareInstitution
-     */
-    @RequestMapping(value = "/zorginstellingen", method = RequestMethod.GET)
-    public List<CareInstitution> getAllCareInstitutions() {
-        return careInstitutionService.getAllCareInstitutions();
-    }
-
-    /**
-     * @param id              of ICareInstitution
-     * @param careInstitution ICareInstitution
-     * @return ICareInstitution
-     */
-    @CrossOrigin
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
     public void updateCareInstitution(@PathVariable int id, @RequestBody CareInstitution careInstitution) {
-            careInstitution.setId(id);
-            careInstitutionService.updateCareInstitution(careInstitution);
+        careInstitution.setId(id);
+        careInstitutionService.updateCareInstitution(careInstitution);
     }
 
     /**
-     * @param id of ICareInstitution
-     * @return ICareInstitution with HttpStatus.NO_CONTENT
+     * DELETE CareInstitution by Id
+     * @param id of CareInstitution
      */
-    @CrossOrigin
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<CareinstitutionEntity> deleteCareInstitution(@PathVariable int id) {
+    public void deleteCareInstitutionById(@PathVariable int id) {
         careInstitutionService.deleteCareInstitutionById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
     }
+
 }

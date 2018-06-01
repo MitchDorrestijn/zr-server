@@ -1,16 +1,20 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation;
 
+
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRideDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+
 
 public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO {
 
     /**
      * Hook up the basic CRUD queries
      */
+    @Autowired
     public RideDAOImpl() {
         super(RideEntity.class);
     }
@@ -18,9 +22,10 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
     @Override
     public int rideCountById(int id) {
         try {
-            return ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
+            int returnvalue = ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
+            return returnvalue;
 
-        } catch (NullPointerException n) {
+        } catch ( NullPointerException n ) {
             return 0;
         }
     }
@@ -40,7 +45,7 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<RideEntity> getByDriver(int id) {
+    public List <RideEntity> getByDriver(int id) {
         String query = "FROM RideEntity WHERE driverEntity.driverId = :id";
         return getEntityManager().createQuery(query).setParameter("id", id).getResultList();
     }
@@ -49,7 +54,7 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
     public float totalEarned(int id) {
         try {
             return ((Number) getEntityManager().createQuery("SELECT SUM(priceOfRide) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
-        } catch (NullPointerException n) {
+        } catch ( NullPointerException n ) {
             return 0;
         }
     }

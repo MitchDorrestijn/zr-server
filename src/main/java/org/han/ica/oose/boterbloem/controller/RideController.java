@@ -1,12 +1,13 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.service.serviceimplementation.RideService;
+import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
+import org.han.ica.oose.boterbloem.display.displayobject.CreateRideDisplay;
+import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
+import org.han.ica.oose.boterbloem.service.IRideService;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,21 +15,57 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping("/ride")
 public class RideController {
-    private RideService rideService = new RideService();
 
+    private IRideService rideService = new RideService();
 
     @Autowired
-    public RideController() {
-        //empty constructor for spring
+    RideController() {
+        // Empty Constructor for Spring
     }
 
     /**
-     * Method for returning a overview of rides with information
-     * @return A arraylist of rides
+     * GET Ride by Id
+     * @param id of Ride
+     * @return Ride
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public RideEntity getRideById(@PathVariable int id) {
+        return rideService.findById(id);
+    }
+
+    /**
+     * GET all Rides
+     * @return list of Rides
+     */
+    @RequestMapping(value = "/getAllRides", method = RequestMethod.GET)
+    public List <RideDisplay> getAllRides() {
+        return rideService.getAllRides();
+    }
+
+    /**
+     * GET all Ride information
+     * @return list of Ride information
      */
     @RequestMapping(value = "/rides/overview", method = RequestMethod.GET)
-    public List<RideOverviewDisplay> getRideOverview() {
+    public List <RideOverviewDisplay> getRideOverview() {
         return rideService.getRideOverview();
     }
 
+    /**
+     * POST new Ride
+     * @param ride = new Ride
+     */
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public void createRide(@RequestBody CreateRideDisplay ride) {
+        rideService.createRide(ride);
+    }
+
+    /**
+     * DELETE Ride by Id
+     * @param id of Ride
+     */
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public void deleteRide(@PathVariable int id) {
+        rideService.deleteRideById(id);
+    }
 }

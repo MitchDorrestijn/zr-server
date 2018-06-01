@@ -4,11 +4,13 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRatingsDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RatingsEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRatingsDAO {
 
@@ -17,7 +19,7 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
     /**
      * Hook up the basic CRUD queries
      */
-
+    @Autowired
     public RatingsDAOImpl() {
         super(RatingsEntity.class);
     }
@@ -57,4 +59,5 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
         }
         return ratings;
     }
+
 }

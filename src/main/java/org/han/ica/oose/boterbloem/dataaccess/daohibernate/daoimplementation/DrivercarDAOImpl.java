@@ -4,9 +4,11 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDrivercarDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntityPK;
+
 import javax.persistence.NoResultException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements IDrivercarDAO {
     private static final Logger LOGGER = Logger.getLogger(DrivercarDAOImpl.class.getName());

@@ -4,24 +4,25 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDriverDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DriverEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriverDAO {
 
     private static final Logger LOGGER = Logger.getLogger(DriverDAOImpl.class.getName());
 
-
     /**
      * Hook up the basic CRUD queries
      */
+    @Autowired
     public DriverDAOImpl() {
         super(DriverEntity.class);
     }
-
 
     public int latestId(){
         return ((Number) getEntityManager().createQuery("SELECT MAX(driverId) FROM DriverEntity").getSingleResult()).intValue();

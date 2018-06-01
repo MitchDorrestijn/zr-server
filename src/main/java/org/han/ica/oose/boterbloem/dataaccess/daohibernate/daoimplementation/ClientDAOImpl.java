@@ -4,6 +4,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,10 @@ import java.util.logging.Logger;
 public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClientDAO {
     private static final Logger LOGGER = Logger.getLogger(ClientDAOImpl.class.getName());
 
-
     /**
      * Hook up the basic CRUD queries
      */
-
+    @Autowired
     public ClientDAOImpl() {
         super(ClientEntity.class);
     }

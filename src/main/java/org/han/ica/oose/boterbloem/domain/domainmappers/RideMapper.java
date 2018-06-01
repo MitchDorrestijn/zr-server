@@ -22,7 +22,8 @@ public class RideMapper {
                 rideOverviewDisplay.setPaymentStatus(r.getPaymentStatus());
                 try {
                     rideOverviewDisplay.setId(r.getDriverEntity().getDriverId());
-                    rideOverviewDisplay.setDriverName(r.getDriverEntity().getUserEntity().getFirstName());
+                    rideOverviewDisplay.setDriverName(r.getDriverEntity().getUserEntity().getFirstName() + " " +
+                            r.getDriverEntity().getUserEntity().getLastName());
                     rideOverviewDisplay.setAccountnr(r.getDriverEntity().getAccountnr());
                 } catch (NullPointerException e) {
                     rideOverviewDisplay.setDriverName("Geen chauffeur gevonden");
