@@ -1,15 +1,14 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.dataaccess.entities.DriverEntity;
-import org.han.ica.oose.boterbloem.service.IDriverService;
-import org.han.ica.oose.boterbloem.service.serviceimplementation.DriverService;
-import org.han.ica.oose.boterbloem.display.displayobject.CreateDriverDisplay;
-import org.han.ica.oose.boterbloem.display.displayobject.DriverDetailDisplay;
-import org.han.ica.oose.boterbloem.display.displayobject.DriverDisplay;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.han.ica.oose.boterbloem.service.*;
+import org.han.ica.oose.boterbloem.dataaccess.entities.*;
+import org.han.ica.oose.boterbloem.display.displayobject.*;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.*;
 
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -78,5 +77,14 @@ public class DriverController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.PUT)
     public void deleteDriverById(@PathVariable int id) {
         driverService.deleteDriverById(id, driverService.getCareInstitutionId(id));
+    }
+
+    /**
+     * GET all the drivers from a specific care institution
+     * @return a list of information from the drivers of a specifice care institution
+     */
+    @RequestMapping(value = "/chauffeurs/zorginstelling/{id}", method = RequestMethod.GET)
+    public List <DriverDisplay> getAllDriversFromASpecificCareInstitution(@PathVariable int id) {
+        return driverService.getAllDriversFromASpecificCareInstitution(id);
     }
 }

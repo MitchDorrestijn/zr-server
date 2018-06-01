@@ -1,14 +1,15 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation;
 
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientcareinstitutionDAO;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntity;
-import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntityPK;
+import org.han.ica.oose.boterbloem.dataaccess.entities.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.NoResultException;
+import java.util.logging.*;
 
 public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<ClientcareinstitutionEntity> implements IClientcareinstitutionDAO {
+    private static final Logger LOGGER = Logger.getLogger(ClientcareinstitutionDAOImpl.class.getName());
 
     /**
      * Hook up the basic CRUD queries
@@ -18,28 +19,36 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
         super(ClientcareinstitutionEntity.class);
     }
 
+    /**
+     * returns careinstituion based on clientId
+     * @param clientId id fo a client
+     * @return Clientcareinstitution entity
+     */
     @SuppressWarnings("unchecked")
-    public ClientcareinstitutionEntity getCareInstitutionId(int clientId){
+    public ClientcareinstitutionEntity getCareInstitutionId(int clientId) {
         try {
-            int careId;
-            try {
-                careId = (int) this.getEntityManager().createQuery("SELECT careInstitutionId FROM ClientcareinstitutionEntity c WHERE c.clientId = :clientid").setParameter("clientid", clientId).getSingleResult();
-            }catch (NoResultException e){
-                return new ClientcareinstitutionEntity();
-            }
             ClientcareinstitutionEntityPK clientcareinstitutionEntityPK = new ClientcareinstitutionEntityPK();
             clientcareinstitutionEntityPK.setClientId(clientId);
-            clientcareinstitutionEntityPK.setCareInstitutionId(careId);
-            return  find(clientcareinstitutionEntityPK);
-        } catch(NullPointerException e){
-            System.out.println("check");
+            clientcareinstitutionEntityPK.setCareInstitutionId(getClientCareinstitutionId(clientId));
+            return find(clientcareinstitutionEntityPK);
+        } catch (NullPointerException e) {
             return new ClientcareinstitutionEntity();
         }
     }
 
+    /**
+     * returns the id of the carinstitution in which the client resides
+     * @param id of the client
+     * @return id of careinstitution
+     */
     @Override
     public int getClientCareinstitutionId(int id) {
-        return ((int) getEntityManager().createQuery("select careInstitutionId from ClientcareinstitutionEntity where clientId   = :id").setParameter("id", id).getSingleResult());
+        try {
+            return ((int) getEntityManager().createQuery("select careInstitutionId from ClientcareinstitutionEntity where clientId   = :id").setParameter("id", id).getSingleResult());
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
+        return 0;
     }
 
     public ClientcareinstitutionEntity find(ClientcareinstitutionEntityPK clientcareinstitutionEntityPK){

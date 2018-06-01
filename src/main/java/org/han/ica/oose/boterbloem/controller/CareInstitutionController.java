@@ -1,12 +1,12 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.domain.domainobjects.CareInstitution;
-import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
-import org.han.ica.oose.boterbloem.service.ICareInstitutionService;
-import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitutionService;
+import org.han.ica.oose.boterbloem.service.*;
+import org.han.ica.oose.boterbloem.dataaccess.entities.*;
+import org.han.ica.oose.boterbloem.domain.domainobjects.*;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 

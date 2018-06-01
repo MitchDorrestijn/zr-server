@@ -1,9 +1,6 @@
 package org.han.ica.oose.boterbloem.domain.domainobjects;
 
-
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Driver extends User {
 
@@ -21,7 +18,6 @@ public class Driver extends User {
      *
      * @return Value for property 'driverCars'.
      */
-
     public List<DriverCar> getDriverCars() {
         return driverCars;
     }
@@ -31,7 +27,6 @@ public class Driver extends User {
      *
      * @param driverCars Value to set for property 'driverCars'.
      */
-
     public void setDriverCars(List<DriverCar> driverCars) {
         this.driverCars = driverCars;
     }
@@ -41,7 +36,6 @@ public class Driver extends User {
      *
      * @return Value for property 'totalEarned'.
      */
-
     public float getTotalEarned() {
         return totalEarned;
     }
@@ -51,7 +45,6 @@ public class Driver extends User {
      *
      * @param totalEarned Value to set for property 'totalEarned'.
      */
-
     public void setTotalEarned(float totalEarned) {
         this.totalEarned = totalEarned;
     }
@@ -61,7 +54,6 @@ public class Driver extends User {
      *
      * @return Value for property 'totalRides'.
      */
-
     public int getTotalRides() {
         return totalRides;
     }
@@ -71,7 +63,6 @@ public class Driver extends User {
      *
      * @param totalRides Value to set for property 'totalRides'.
      */
-
     public void setTotalRides(int totalRides) {
         this.totalRides = totalRides;
     }
@@ -81,7 +72,6 @@ public class Driver extends User {
      *
      * @return Value for property 'verification'.
      */
-
     public byte getVerification() {
         return verification;
     }
@@ -91,7 +81,6 @@ public class Driver extends User {
      *
      * @param verification Value to set for property 'verification'.
      */
-
     public void setVerification(byte verification) {
         this.verification = verification;
     }
@@ -101,7 +90,6 @@ public class Driver extends User {
      *
      * @return Value for property 'type_of_payment'.
      */
-
     public String getType_of_payment() {
         return type_of_payment;
     }
@@ -111,7 +99,6 @@ public class Driver extends User {
      *
      * @param type_of_payment Value to set for property 'type_of_payment'.
      */
-
     public void setType_of_payment(String type_of_payment) {
         this.type_of_payment = type_of_payment;
     }
@@ -121,7 +108,6 @@ public class Driver extends User {
      *
      * @return Value for property 'image'.
      */
-
     public String getImage() {
         return image;
     }
@@ -131,7 +117,6 @@ public class Driver extends User {
      *
      * @param image Value to set for property 'image'.
      */
-
     public void setImage(String image) {
         this.image = image;
     }
@@ -141,7 +126,6 @@ public class Driver extends User {
      *
      * @return Value for property 'accountnr'.
      */
-
     public String getAccountnr() {
         return accountnr;
     }
@@ -151,7 +135,6 @@ public class Driver extends User {
      *
      * @param accountnr Value to set for property 'accountnr'.
      */
-
     public void setAccountnr(String accountnr) {
         this.accountnr = accountnr;
     }

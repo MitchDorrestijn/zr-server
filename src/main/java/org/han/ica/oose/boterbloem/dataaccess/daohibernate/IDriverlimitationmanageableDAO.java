@@ -1,14 +1,13 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate;
 
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.IGenericDAO;
-import org.han.ica.oose.boterbloem.dataaccess.entities.DriverlimitationmanageableEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public interface IDriverlimitationmanageableDAO extends IGenericDAO<DriverlimitationmanageableEntity> {
 
 
     List<String> getByDriverId(int id);
-    void updateDriverLimitations(ArrayList<String> limitations, int driverId);
+    void updateDriverLimitations(List<String> limitations, int driverId);
 }

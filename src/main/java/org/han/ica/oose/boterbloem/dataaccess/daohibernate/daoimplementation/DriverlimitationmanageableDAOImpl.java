@@ -1,34 +1,36 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation;
 
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDriverlimitationmanageableDAO;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.entities.DriverlimitationmanageableEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.han.ica.oose.boterbloem.dataaccess.entities.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.logging.*;
 
 public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<DriverlimitationmanageableEntity> implements IDriverlimitationmanageableDAO {
+    private static final Logger LOGGER = Logger.getLogger(DrivercareinstitutionDAOImpl.class.getName());
 
     /**
      * Hook up the basic CRUD queries
      */
-    @Autowired
+
     public DriverlimitationmanageableDAOImpl() {
         super(DriverlimitationmanageableEntity.class);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<String> getByDriverId(int id) {
         return getEntityManager().createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id", id).getResultList();
     }
 
-    public void updateDriverLimitations(ArrayList<String> limitations, int driverId) {
+    @Override
+    public void updateDriverLimitations(List<String> limitations, int driverId) {
         try {
             getEntityManager().getTransaction().begin();
             getEntityManager().createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
             getEntityManager().getTransaction().commit();
-        } catch(Exception e){
+        } catch (Exception e) {
             getEntityManager().getTransaction().rollback();
         }
         for (String limitation : limitations) {
@@ -38,10 +40,9 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
                 driverlimitationmanageableEntity.setLimitation(limitation);
                 add(driverlimitationmanageableEntity);
                 getEntityManager().flush();
-            }catch(Exception e){
-
+            } catch (Exception e) {
+                LOGGER.log(Level.WARNING, e.getMessage());
             }
         }
     }
-
 }

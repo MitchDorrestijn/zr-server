@@ -1,28 +1,31 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation;
 
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDrivercareinstitutionDAO;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntity;
-import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntityPK;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.han.ica.oose.boterbloem.dataaccess.entities.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
 
 import javax.persistence.NoResultException;
+import java.util.logging.*;
 
 public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<DrivercareinstitutionEntity> implements IDrivercareinstitutionDAO {
+    private static final Logger LOGGER = Logger.getLogger(DrivercareinstitutionDAOImpl.class.getName());
 
     /**
      * Hook up the basic CRUD queries
      */
-    @Autowired
     public DrivercareinstitutionDAOImpl() {
         super(DrivercareinstitutionEntity.class);
     }
 
-    public DrivercareinstitutionEntity find(DrivercareinstitutionEntityPK drivercareinstitutionEntityPK){
-        return getEntityManager().find(DrivercareinstitutionEntity.class, drivercareinstitutionEntityPK);
+    public DrivercareinstitutionEntity find(DrivercareinstitutionEntityPK drivercareinstitutionEntityPK) {
+        try {
+            return getEntityManager().find(DrivercareinstitutionEntity.class, drivercareinstitutionEntityPK);
+        } catch (Exception e) {
+            return new DrivercareinstitutionEntity();
+        }
     }
-    @SuppressWarnings("unchecked")
 
+    @SuppressWarnings("unchecked")
     public DrivercareinstitutionEntity getCareInstitutionId(int driverId){
             try {
                 int careId;
@@ -48,7 +51,12 @@ public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<Drivercareinsti
 
     @Override
     public int getDriverCareinstitutionId(int id) {
-        return ((int) getEntityManager().createQuery("select careInstitutionId from DrivercareinstitutionEntity where driverId = :id").setParameter("id", id).getSingleResult());
+        try {
+            return ((int) getEntityManager().createQuery("select careInstitutionId from DrivercareinstitutionEntity where driverId = :id").setParameter("id", id).getSingleResult());
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
+        return 0;
     }
 
     public DrivercareinstitutionEntity findById(DrivercareinstitutionEntity drivercareinstitutionEntity){

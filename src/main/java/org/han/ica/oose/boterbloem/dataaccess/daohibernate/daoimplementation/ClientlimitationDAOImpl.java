@@ -1,14 +1,16 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation;
 
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientlimitationDAO;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.entities.ClientLimitationEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import java.util.*;
+import java.util.logging.*;
 
 public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEntity> implements IClientlimitationDAO {
-
+    private static final Logger LOGGER = Logger.getLogger(ClientlimitationDAOImpl.class.getName());
     /**
      * Hook up the basic CRUD queries
      */
@@ -18,6 +20,7 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<String> getByClientId(int id) {
         return getEntityManager().createQuery("SELECT limitation FROM ClientLimitationEntity " +
                 "WHERE clientId = :id").setParameter("id", id).getResultList();
@@ -47,7 +50,7 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
                 add(clientLimitationEntity);
                 getEntityManager().flush();
             } catch (Exception e) {
-                e.printStackTrace();
+               LOGGER.log(Level.WARNING,e.getMessage());
             }
         }
     }

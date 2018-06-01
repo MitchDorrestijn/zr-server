@@ -52,4 +52,11 @@ public interface IClientservice {
      * @return CareInstitution
      */
     int getCareInstitutionById(int id);
+
+    /**
+     * GET all Clients from a specific CarInstitution
+     * @param id of CareInstitution
+     * @return list of Clients
+     */
+    List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id);
 }

@@ -1,7 +1,7 @@
 //package org.han.ica.oose.boterbloem.controller;
 //
-//import org.han.ica.oose.boterbloem.domain.domainObjects.Driver;
-//import org.han.ica.oose.boterbloem.service.serviceImplementation.DriverService;
+//import org.han.ica.oose.boterbloem.domain.domainobjects.Driver;
+//import org.han.ica.oose.boterbloem.service.serviceimplementation.DriverService;
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;

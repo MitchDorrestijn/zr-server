@@ -1,11 +1,11 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation;
 
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRideDAO;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import java.util.*;
 
 public class RideDAOImpl extends GenericDAOImpl <RideEntity> implements IRideDAO {
 
@@ -35,12 +35,14 @@ public class RideDAOImpl extends GenericDAOImpl <RideEntity> implements IRideDAO
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List <RideEntity> getByClient(int id) {
         return getEntityManager().createQuery("FROM RideEntity " +
                 "WHERE clientEntity.clientId = :id").setParameter("id", id).getResultList();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List <RideEntity> getByDriver(int id) {
         String query = "FROM RideEntity WHERE driverEntity.driverId = :id";
         return getEntityManager().createQuery(query).setParameter("id", id).getResultList();
@@ -49,8 +51,7 @@ public class RideDAOImpl extends GenericDAOImpl <RideEntity> implements IRideDAO
     @Override
     public float totalEarned(int id) {
         try {
-            float returnvalue = ((Number) getEntityManager().createQuery("SELECT SUM(priceOfRide) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
-            return returnvalue;
+            return ((Number) getEntityManager().createQuery("SELECT SUM(priceOfRide) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
         } catch ( NullPointerException n ) {
             return 0;
         }

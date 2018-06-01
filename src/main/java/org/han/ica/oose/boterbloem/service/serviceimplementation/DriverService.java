@@ -1,13 +1,11 @@
 package org.han.ica.oose.boterbloem.service.serviceimplementation;
 
+import org.han.ica.oose.boterbloem.service.*;
+import org.han.ica.oose.boterbloem.dataaccess.entities.*;
+import org.han.ica.oose.boterbloem.domain.domainmappers.*;
+import org.han.ica.oose.boterbloem.display.displayobject.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.*;
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-
-import org.han.ica.oose.boterbloem.service.IDriverService;
-import org.han.ica.oose.boterbloem.display.displayobject.CreateDriverDisplay;
-import org.han.ica.oose.boterbloem.display.displayobject.DriverDetailDisplay;
-import org.han.ica.oose.boterbloem.display.displayobject.DriverDisplay;
 
 import java.util.*;
 import java.util.logging.*;
@@ -16,35 +14,26 @@ public class DriverService implements IDriverService {
     private static final Logger LOGGER = Logger.getLogger(DriverService.class.getName());
 
     private IDriverDAO driverDao = new DriverDAOImpl();
-    private IRideDAO rideDAO = new RideDAOImpl();
     private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl();
-    private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
     private IDrivercareinstitutionDAO drivercareinstitutionDAO = new DrivercareinstitutionDAOImpl();
     private IDriverlimitationmanageableDAO driverlimitationmanageableDAO = new DriverlimitationmanageableDAOImpl();
+    private DriverMapper driverMapper = new DriverMapper();
+
 
     public DriverService() {
         //Empty constructor
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public DriverEntity findById(int id) {
         return driverDao.findById(id);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public List <DrivercarEntity> getAllDrivers() {
         return drivercarDAO.findAll();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public DriverDetailDisplay getDriverDetails(int id) {
         DriverDetailDisplay driverDetailDisplay = new DriverDetailDisplay();
@@ -59,56 +48,11 @@ public class DriverService implements IDriverService {
         return driverDetailDisplay;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public List <DriverDisplay> allDriversWithStatistics() {
-        try {
-            List <DriverDisplay> returnList = new ArrayList <>();
-            for (DriverEntity x : driverDao.findAll()) {
-                int driverId = x.getDriverId();
-                if (drivercareinstitutionDAO.getCareInstitutionId(driverId).isActive()) {
-                    System.out.println(drivercareinstitutionDAO.getCareInstitutionId(x.getDriverId()).isActive());
-                    DriverDisplay driver = new DriverDisplay();
-
-
-                    System.out.println(driverId);
-
-                    driver.setId(driverId);
-                    driver.setName(x.getUserEntity().getFirstName() + " " + x.getUserEntity().getLastName());
-                    driver.setTypeOfPayment(x.getTypeOfPayment());
-
-                    try {
-                        if (drivercarDAO.findCarById(driverId) == null) {
-                            driver.setNumberOfPassengers(0);
-                            driver.setNumberPlate("");
-                        } else {
-                            driver.setNumberOfPassengers(drivercarDAO.findCarById(driverId).getNumberOfPassengers());
-                            driver.setNumberPlate(drivercarDAO.findCarById(driverId).getNumberPlate());
-                        }
-                    } catch ( Exception e ) {
-                        System.out.println("Nieuwe exception: " + e.getMessage());
-                    }
-
-                    driver.setRating(ratingsDAO.getAvgRatings(driverId));
-                    driver.setSegment("A");
-                    driver.setTotalEarned(rideDAO.totalEarned(driverId));
-                    driver.setTotalRides(rideDAO.rideCountById(driverId));
-
-                    returnList.add(driver);
-                }
-            }
-            return returnList;
-        } catch ( Exception e ) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        return driverMapper.allDriversWithStatistics();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void createChauffeur(CreateDriverDisplay createDriverDisplay) {
         try {
@@ -129,13 +73,10 @@ public class DriverService implements IDriverService {
                 driverlimitationmanageableDAO.add(driverlimitationmanageableEntity);
             }
         } catch ( Exception e ) {
-            System.out.println(e.getMessage());
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void updateDriver(CreateDriverDisplay createDriverDisplay) {
         int driverId = createDriverDisplay.getDriver().getDriverId();
@@ -158,9 +99,6 @@ public class DriverService implements IDriverService {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void deleteDriverById(int id, int idCare) {
         DrivercareinstitutionEntityPK drivercareinstitutionEntityPK = new DrivercareinstitutionEntityPK();
@@ -171,12 +109,14 @@ public class DriverService implements IDriverService {
         drivercareinstitutionDAO.update(drivercareinstitutionEntity);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int getCareInstitutionId(int id) {
         return (drivercareinstitutionDAO.getCareInstitutionId(id).getCareInstitutionId());
+    }
+
+    @Override
+    public List <DriverDisplay> getAllDriversFromASpecificCareInstitution(int id) {
+        return driverMapper.getAllDriversFromASpecificCareInstitution(id);
     }
 
     public CreateDriverDisplay getThisThing() {
@@ -184,12 +124,11 @@ public class DriverService implements IDriverService {
         createDriverDisplay.setDrivercarEntity(drivercarDAO.findCarById(1));
         createDriverDisplay.setDriver(driverDao.findById(1));
         createDriverDisplay.setCareInstitutionId(1);
-        ArrayList <String> asd = new ArrayList <>();
+        ArrayList<String> asd = new ArrayList<>();
         asd.add("Limitation");
         asd.add("something else");
 
         createDriverDisplay.setLimitationEntities(asd);
         return createDriverDisplay;
     }
-
 }

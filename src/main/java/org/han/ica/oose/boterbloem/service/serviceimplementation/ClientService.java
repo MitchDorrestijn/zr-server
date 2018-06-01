@@ -1,12 +1,11 @@
 package org.han.ica.oose.boterbloem.service.serviceimplementation;
 
+import org.han.ica.oose.boterbloem.service.*;
+import org.han.ica.oose.boterbloem.dataaccess.entities.*;
+import org.han.ica.oose.boterbloem.display.displaymapper.*;
+import org.han.ica.oose.boterbloem.display.displayobject.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.*;
-import org.han.ica.oose.boterbloem.dataaccess.entities.*;
-import org.han.ica.oose.boterbloem.service.IClientservice;
-import org.han.ica.oose.boterbloem.display.displayobject.ClientDetailDisplay;
-import org.han.ica.oose.boterbloem.display.displayobject.CreateClientDisplay;
-import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
 
 import java.util.*;
 import java.util.logging.*;
@@ -19,7 +18,7 @@ public class ClientService implements IClientservice {
     private IClientUtilityDAO clientUtilityDAO = new ClientUtilityDAO();
     private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl();
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
-    private IRideDAO rideDAO = new RideDAOImpl();
+    private ClientDisplayMapper clientDisplayMapper = new ClientDisplayMapper();
 
     public ClientService() {
         //Empty constructor
@@ -42,53 +41,8 @@ public class ClientService implements IClientservice {
      * {@inheritDoc}
      */
     @Override
-    public List <ClientDisplay> getAllClients() {
-        List <ClientDisplay> clientDisplays = new ArrayList <>();
-        try {
-            List <ClientEntity> clientEntities = clientDAO.findAll();
-            for (ClientEntity i : clientEntities) {
-                try {
-                    int driverId = i.getClientId();
-
-                    double priceToPay;
-                    boolean warningPKB;
-
-                    List <RideEntity> rideEntitiesPerClient = rideDAO.getByClient(i.getClientId());
-
-                    int distance = 0;
-                    for (RideEntity rideEntity : rideEntitiesPerClient) {
-                        distance += rideEntity.getDistance();
-                    }
-
-                    ClientDisplay clientDisplay = new ClientDisplay();
-                    clientDisplay.setClientId(i.getClientId());
-                    clientDisplay.setName(i.getUserEntity().getFirstName());
-                    clientDisplay.setPKB(i.getPKB());
-                    try {
-                        if (distance > i.getPKB()) {
-                            priceToPay = (distance * 0.005);
-                            warningPKB = true;
-
-                            clientDisplay.setTotalMeters(distance);
-                            clientDisplay.setPriceToPay(priceToPay);
-                            clientDisplay.setWarningPKB(warningPKB);
-                        }
-                    } catch ( Exception e ) {
-                        LOGGER.log(Level.SEVERE, e.toString(), e);
-                    }
-
-                    if (clientCareInstitutionDAO.getCareInstitutionId(driverId).isActive()) {
-                        clientDisplays.add(clientDisplay);
-                    }
-                } catch ( Exception e ) {
-                    LOGGER.log(Level.WARNING, e.getMessage());
-                }
-            }
-            return clientDisplays;
-        } catch ( Exception e ) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        }
-        return clientDisplays;
+    public List<ClientDisplay> getAllClients() {
+        return clientDisplayMapper.getAllClients();
     }
 
     /**
@@ -100,10 +54,9 @@ public class ClientService implements IClientservice {
         try {
             clientDetailDisplay.setClient(clientDAO.findById(id));
             clientDetailDisplay.setLimitations(clientlimitationDAO.getByClientId(id));
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.getMessage());
         }
-
         return clientDetailDisplay;
     }
 
@@ -132,7 +85,7 @@ public class ClientService implements IClientservice {
                 clientlimitationEntity.setLimitation(s);
                 clientlimitationDAO.add(clientlimitationEntity);
             }
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
     }
@@ -151,6 +104,8 @@ public class ClientService implements IClientservice {
         }
     }
 
+
+
     /**
      * {@inheritDoc}
      */
@@ -163,7 +118,7 @@ public class ClientService implements IClientservice {
             ClientcareinstitutionEntity clientcareinstitutionEntity = clientCareInstitutionDAO.find(clientcareinstitutionEntityPK);
             clientcareinstitutionEntity.setActive(false);
             clientCareInstitutionDAO.update(clientcareinstitutionEntity);
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
     }
@@ -176,4 +131,9 @@ public class ClientService implements IClientservice {
         return (clientCareInstitutionDAO.getCareInstitutionId(id).getCareInstitutionId());
 
     }
+
+    public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id) {
+        return clientDisplayMapper.getAllClientsFromASpecificCareInstitution(id);
+    }
+
 }
