@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/client")
 public class ClientController {
 
-    private IClientservice clientService = new ClientService();
+    protected IClientservice clientService = new ClientService();
 
     @Autowired
     public ClientController() {
