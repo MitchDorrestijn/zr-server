@@ -5,15 +5,17 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 
 import java.util.List;
 
-public interface IRideDAO extends IGenericDAO <RideEntity> {
+public interface IRideDAO extends IGenericDAO<RideEntity> {
 
     int rideCountById(int id);
 
     int totalRideClient(int id);
 
-    List <RideEntity> getByClient(int id);
+    List<RideEntity> getByClient(int id);
 
-    List <RideEntity> getByDriver(int id);
+    List<RideEntity> getByDriver(int id);
 
     float totalEarned(int id);
+
+    List<RideEntity> ridesWithCareinstitution(int careId);
 }

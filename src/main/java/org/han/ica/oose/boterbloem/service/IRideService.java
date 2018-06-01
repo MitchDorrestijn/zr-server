@@ -4,6 +4,7 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Ride;
 
 import java.util.List;
 
@@ -38,4 +39,6 @@ public interface IRideService {
      * @param id
      */
     void deleteRideById(int id);
+
+    List<Ride> getRidesFromCareInstitution(int careId);
 }

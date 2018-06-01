@@ -82,5 +82,18 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
             return 0;
         }
     }
+
+    /**
+     * return rides from a careinstitution
+     */
+    @SuppressWarnings("unchecked")
+    public List<RideEntity> ridesWithCareinstitution(int careId) {
+        try {
+            return getEntityManager().createQuery("FROM RideEntity WHERE driverId IN (SELECT 1 FROM DrivercareinstitutionEntity WHERE careInstitutionId = :careId) ").setParameter("careId", careId).getResultList();
+        } catch (NullPointerException e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new ArrayList<>();
+        }
+    }
 }
 

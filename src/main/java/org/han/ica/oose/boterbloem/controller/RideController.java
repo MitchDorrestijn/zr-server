@@ -4,6 +4,7 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Ride;
 import org.han.ica.oose.boterbloem.service.IRideService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class RideController {
 
     /**
      * GET Ride by Id
+     *
      * @param id of Ride
      * @return Ride
      */
@@ -35,24 +37,27 @@ public class RideController {
 
     /**
      * GET all Rides
+     *
      * @return list of Rides
      */
     @RequestMapping(value = "/getAllRides", method = RequestMethod.GET)
-    public List <RideDisplay> getAllRides() {
+    public List<RideDisplay> getAllRides() {
         return rideService.getAllRides();
     }
 
     /**
      * GET all Ride information
+     *
      * @return list of Ride information
      */
     @RequestMapping(value = "/rides/overview", method = RequestMethod.GET)
-    public List <RideOverviewDisplay> getRideOverview() {
+    public List<RideOverviewDisplay> getRideOverview() {
         return rideService.getRideOverview();
     }
 
     /**
      * POST new Ride
+     *
      * @param ride = new Ride
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -62,10 +67,16 @@ public class RideController {
 
     /**
      * DELETE Ride by Id
+     *
      * @param id of Ride
      */
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
     public void deleteRide(@PathVariable int id) {
         rideService.deleteRideById(id);
+    }
+
+    @RequestMapping(value = "careinstitutionRides", method = RequestMethod.GET)
+    public List<Ride> ridesFromCareinstitution(@PathVariable int careId) {
+      return rideService.getRidesFromCareInstitution(careId);
     }
 }

@@ -6,6 +6,8 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntityPK;
 
 import javax.persistence.NoResultException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,6 +58,21 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
         } catch (NoResultException e) {
             return "";
         }
+    }
+
+    /**
+     * @param driverId id of a driver
+     * @return List of driverCars
+     */
+    @SuppressWarnings("unchecked")
+    private List<DrivercarEntity> drivercarEntityListByDriverId(int driverId) {
+        try {
+            return getEntityManager().createQuery("FROM DrivercarEntity WHERE driverId = :driverId").setParameter("driverId", driverId).getResultList();
+        } catch (NullPointerException e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new ArrayList<>();
+        }
+
     }
 
 }

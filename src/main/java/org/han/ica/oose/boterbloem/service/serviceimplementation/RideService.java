@@ -11,6 +11,7 @@ import org.han.ica.oose.boterbloem.display.displayobject.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
 import org.han.ica.oose.boterbloem.domain.domainmappers.RideMapper;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Ride;
 import org.han.ica.oose.boterbloem.service.IRideService;
 
 import java.util.ArrayList;
@@ -117,5 +118,10 @@ public class RideService implements IRideService {
         } catch ( Exception e ) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
+    }
+
+    @Override
+    public List<Ride> getRidesFromCareInstitution(int careId) {
+        return rideMapper.getAllRidesByInstitution(careId);
     }
 }
