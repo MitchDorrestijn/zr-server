@@ -7,7 +7,7 @@ import org.han.ica.oose.boterbloem.domain.domainmappers.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.*;
 
-import java.util.*;
+import java.util.List;
 
 public class CareInstitutionService implements ICareInstitutionService {
 

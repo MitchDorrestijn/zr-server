@@ -4,7 +4,9 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
 
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<DrivercareinstitutionEntity> implements IDrivercareinstitutionDAO {
     private static final Logger LOGGER = Logger.getLogger(DrivercareinstitutionDAOImpl.class.getName());

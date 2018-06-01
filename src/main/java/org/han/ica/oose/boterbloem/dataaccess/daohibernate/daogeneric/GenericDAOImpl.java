@@ -4,8 +4,10 @@ import org.han.ica.oose.boterbloem.controller.*;
 
 import javax.persistence.*;
 
-import java.util.*;
-import java.util.logging.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
     private static final Logger LOGGER = Logger.getLogger(LimitationController.class.getName());

@@ -5,8 +5,11 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*;
-import java.util.logging.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRatingsDAO {
 

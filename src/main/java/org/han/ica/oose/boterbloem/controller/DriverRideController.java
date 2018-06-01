@@ -7,7 +7,7 @@ import org.han.ica.oose.boterbloem.service.serviceimplementation.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")

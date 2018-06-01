@@ -6,8 +6,10 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*;
-import java.util.logging.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClientDAO {
     private static final Logger LOGGER = Logger.getLogger(ClientDAOImpl.class.getName());

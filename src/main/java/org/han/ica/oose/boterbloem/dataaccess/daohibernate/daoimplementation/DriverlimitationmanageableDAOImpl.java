@@ -4,8 +4,10 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
 
-import java.util.*;
-import java.util.logging.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<DriverlimitationmanageableEntity> implements IDriverlimitationmanageableDAO {

@@ -5,7 +5,8 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*;
+import java.util.List;
+
 
 public class RideDAOImpl extends GenericDAOImpl <RideEntity> implements IRideDAO {
 
@@ -36,7 +37,7 @@ public class RideDAOImpl extends GenericDAOImpl <RideEntity> implements IRideDAO
 
     @Override
     @SuppressWarnings("unchecked")
-    public List <RideEntity> getByClient(int id) {
+    public List<RideEntity> getByClient(int id) {
         return getEntityManager().createQuery("FROM RideEntity " +
                 "WHERE clientEntity.clientId = :id").setParameter("id", id).getResultList();
     }

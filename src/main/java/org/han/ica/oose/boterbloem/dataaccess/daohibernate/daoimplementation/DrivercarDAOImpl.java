@@ -4,8 +4,9 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.*;
 
-import javax.persistence.*;
-import java.util.logging.*;
+import javax.persistence.NoResultException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements IDrivercarDAO {

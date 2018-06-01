@@ -6,8 +6,9 @@ import org.han.ica.oose.boterbloem.service.serviceimplementation.LimitationServi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
-import java.util.logging.*;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @CrossOrigin(origins = "*")

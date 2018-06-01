@@ -6,8 +6,10 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.*;
 
-import java.util.*;
-import java.util.logging.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RatingsMapper {
     private static final Logger LOGGER = Logger.getLogger(RatingsService.class.getName());

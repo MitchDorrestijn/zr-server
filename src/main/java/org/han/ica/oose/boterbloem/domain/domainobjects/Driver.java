@@ -1,6 +1,7 @@
 package org.han.ica.oose.boterbloem.domain.domainobjects;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Driver extends User {
 
