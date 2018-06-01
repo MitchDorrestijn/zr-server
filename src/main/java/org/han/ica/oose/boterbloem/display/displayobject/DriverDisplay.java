@@ -1,16 +1,35 @@
 package org.han.ica.oose.boterbloem.display.displayobject;
 
+import org.han.ica.oose.boterbloem.domain.domainobjects.DriverCar;
+
 public class DriverDisplay {
 
     private int id;
     private String name;
+    private DriverCar driverCar;
     private String typeOfPayment;
     private Float totalEarned;
     private int totalRides;
-    private String numberPlate;
-    private int numberOfPassengers;
-    private String segment;
     private int rating;
+
+
+    /**
+     * Getter for property 'driverCar'.
+     *
+     * @return Value for property 'driverCar'.
+     */
+    public DriverCar getDriverCar() {
+        return driverCar;
+    }
+
+    /**
+     * Setter for property 'driverCar'.
+     *
+     * @param driverCar Value to set for property 'driverCar'.
+     */
+    public void setDriverCar(DriverCar driverCar) {
+        this.driverCar = driverCar;
+    }
 
     /**
      * Getter for property 'id'.
@@ -100,60 +119,6 @@ public class DriverDisplay {
      */
     public void setTotalRides(int totalRides) {
         this.totalRides = totalRides;
-    }
-
-    /**
-     * Getter for property 'numberPlate'.
-     *
-     * @return Value for property 'numberPlate'.
-     */
-    public String getNumberPlate() {
-        return numberPlate;
-    }
-
-    /**
-     * Setter for property 'numberPlate'.
-     *
-     * @param numberPlate Value to set for property 'numberPlate'.
-     */
-    public void setNumberPlate(String numberPlate) {
-        this.numberPlate = numberPlate;
-    }
-
-    /**
-     * Getter for property 'numberOfPassengers'.
-     *
-     * @return Value for property 'numberOfPassengers'.
-     */
-    public int getNumberOfPassengers() {
-        return numberOfPassengers;
-    }
-
-    /**
-     * Setter for property 'numberOfPassengers'.
-     *
-     * @param numberOfPassengers Value to set for property 'numberOfPassengers'.
-     */
-    public void setNumberOfPassengers(int numberOfPassengers) {
-        this.numberOfPassengers = numberOfPassengers;
-    }
-
-    /**
-     * Getter for property 'segment'.
-     *
-     * @return Value for property 'segment'.
-     */
-    public String getSegment() {
-        return segment;
-    }
-
-    /**
-     * Setter for property 'segment'.
-     *
-     * @param segment Value to set for property 'segment'.
-     */
-    public void setSegment(String segment) {
-        this.segment = segment;
     }
 
     /**

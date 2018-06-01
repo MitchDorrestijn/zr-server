@@ -78,8 +78,8 @@ public class RatingsMapper {
     private Ratings fillRatingsDomain(RatingsEntity r) {
         UserMapper userMapper = new UserMapper();
         Ratings rating = new Ratings();
-        rating.setClientName(userMapper.findNameById(r.getClientId()));
-        rating.setDriverName(userMapper.findNameById(r.getDriverId()));
+        rating.setclientName(userMapper.findNameById(r.getClientId()));
+        rating.setdriverName(userMapper.findNameById(r.getDriverId()));
         rating.setStars(r.getSterren());
         rating.setComment(r.getBeoordeling());
         return rating;

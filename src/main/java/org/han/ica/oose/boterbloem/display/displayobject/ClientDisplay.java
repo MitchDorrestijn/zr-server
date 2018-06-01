@@ -5,7 +5,8 @@ public class ClientDisplay {
     private String companion;
     private String utility;
     private boolean driverPreferenceForced;
-    private int PKB;
+    // personal kilometer budget
+    private int pkb;
     private int totalMeters;
     private String name;
     private boolean warningPKB;
@@ -45,11 +46,11 @@ public class ClientDisplay {
     }
 
     public int getPKB() {
-        return PKB;
+        return pkb;
     }
 
-    public void setPKB(int PKB) {
-        this.PKB = PKB;
+    public void setPKB(int pkb) {
+        this.pkb = pkb;
     }
 
     public int getTotalMeters() {
