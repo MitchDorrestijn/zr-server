@@ -1,8 +1,5 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric;
 
-
-import org.han.ica.oose.boterbloem.controller.LimitationController;
-
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -11,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
-    private static final Logger LOGGER = Logger.getLogger(LimitationController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(GenericDAOImpl.class.getName());
     private Class<T> classImpl;
 
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
