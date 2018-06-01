@@ -25,17 +25,7 @@ public class ClientRideService implements IClientRideService {
         List<ClientRideDisplay> clientRideDisplays = new ArrayList<>();
         try {
             for (RideEntity rideEntity : rideDAO.getByClient(clientId)) {
-                ClientRideDisplay display = new ClientRideDisplay();
-                display.setDate(rideEntity.getPickUpDateTime());
-                display.setPickupLocation(rideEntity.getPickUpLocation());
-                display.setDestination(rideEntity.getDropOffLocation());
-                display.setClientName(clientDAO.findById(clientId).getUserEntity().getFirstName() + " " + clientDAO.findById(clientId).getUserEntity().getLastName());
-                try {
-                    display.setDriverName(rideEntity.getDriverEntity().getUserEntity().getFirstName() + " " + rideEntity.getDriverEntity().getUserEntity().getLastName());
-                } catch (NullPointerException e) {
-                    LOGGER.log(Level.WARNING, e.toString(), e);
-                    display.setDriverName("Geen chauffeur gevonden");
-                }
+                ClientRideDisplay display = setClientRideDisplay(clientId, rideEntity);
                 clientRideDisplays.add(display);
             }
             return clientRideDisplays;
@@ -43,5 +33,20 @@ public class ClientRideService implements IClientRideService {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return new ArrayList<>();
+    }
+
+    private ClientRideDisplay setClientRideDisplay(int clientId, RideEntity rideEntity) {
+        ClientRideDisplay display = new ClientRideDisplay();
+        display.setDate(rideEntity.getPickUpDateTime());
+        display.setPickupLocation(rideEntity.getPickUpLocation());
+        display.setDestination(rideEntity.getDropOffLocation());
+        display.setClientName(clientDAO.findById(clientId).getUserEntity().getFirstName() + " " + clientDAO.findById(clientId).getUserEntity().getLastName());
+        try {
+            display.setDriverName(rideEntity.getDriverEntity().getUserEntity().getFirstName() + " " + rideEntity.getDriverEntity().getUserEntity().getLastName());
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+            display.setDriverName("Geen chauffeur gevonden");
+        }
+        return display;
     }
 }

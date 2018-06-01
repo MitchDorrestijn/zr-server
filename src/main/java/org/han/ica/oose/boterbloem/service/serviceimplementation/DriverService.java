@@ -132,7 +132,7 @@ public class DriverService implements IDriverService {
         if (createDriverDisplay.getDriver() != driverDao.findById(driverId)) {
             driverDao.update(createDriverDisplay.getDriver());
         }
-        if (createDriverDisplay.getDrivercarEntity() != drivercarDAO.findCarById(driverId)) {
+        if (!createDriverDisplay.getDrivercarEntity().equals(drivercarDAO.findCarById(driverId))) {
             try {
                 drivercarDAO.remove(drivercarDAO.findCarById(driverId));
                 drivercarDAO.update(createDriverDisplay.getDrivercarEntity());
@@ -143,7 +143,7 @@ public class DriverService implements IDriverService {
         if (createDriverDisplay.getCareInstitutionId() != drivercareinstitutionDAO.getDriverCareinstitutionId(driverId)) {
             drivercareinstitutionDAO.updateCareInstituion(createDriverDisplay.getCareInstitutionId(), driverId);
         }
-        if (createDriverDisplay.getLimitationEntities() != driverlimitationmanageableDAO.getByDriverId(driverId)) {
+        if (!createDriverDisplay.getLimitationEntities().equals(driverlimitationmanageableDAO.getByDriverId(driverId))) {
             driverlimitationmanageableDAO.updateDriverLimitations(createDriverDisplay.getLimitationEntities(), driverId);
         }
     }
