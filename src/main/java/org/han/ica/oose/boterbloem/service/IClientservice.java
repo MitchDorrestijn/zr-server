@@ -8,37 +8,55 @@ import org.han.ica.oose.boterbloem.display.displayobject.CreateClientDisplay;
 import java.util.List;
 
 public interface IClientservice {
-
     /**
-     * @param id the clientId thats used for the query
-     * @return A specific client with the given id
+     * GET Client by Id
+     * @param id of Client
+     * @return Client
      */
     ClientEntity findById(int id);
 
     /**
-     * @return method returns a list of all found clients
+     * GET all Clients
+     * @return list of Clients
      */
     List <ClientDisplay> getAllClients();
 
     /**
+     * GET Client-details by specific client
      * @param id of Client
-     * @return details of a Client
+     * @return Client-details
      */
     ClientDetailDisplay getClientDetails(int id);
+
     /**
-     * @param client that's going to be added to the database
+     * CREATE new Client
+     * @param client = new Client
      */
     void createClient(CreateClientDisplay client);
 
     /**
-     * @param clientDetailDisplay Client that needs a update
+     * UPDATE Client
+     * @param clientDetailDisplay = Client
      */
     void updateClient(ClientDetailDisplay clientDetailDisplay);
 
     /**
-     * @param id delete a Client
+     * DELETE Client by Id
+     * @param id of Client
      */
-    void deleteClient(int id, int idcare);
+    void deleteClientById(int id, int idcare);
 
+    /**
+     * GET CareInstitution by Id
+     * @param id of CareInstitution
+     * @return CareInstitution
+     */
     int getCareInstitutionById(int id);
+
+    /**
+     * GET all Clients from a specific CarInstitution
+     * @param id of CareInstitution
+     * @return list of Clients
+     */
+    List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id);
 }

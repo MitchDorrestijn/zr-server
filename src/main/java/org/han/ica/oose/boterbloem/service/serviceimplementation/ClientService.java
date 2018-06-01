@@ -4,15 +4,15 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.*;
 import org.han.ica.oose.boterbloem.dataaccess.entities.*;
 import org.han.ica.oose.boterbloem.display.displaymapper.ClientDisplayMapper;
-import org.han.ica.oose.boterbloem.service.IClientservice;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDetailDisplay;
-import org.han.ica.oose.boterbloem.display.displayobject.CreateClientDisplay;
-
-import java.util.logging.*;
-
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
+import org.han.ica.oose.boterbloem.display.displayobject.CreateClientDisplay;
+import org.han.ica.oose.boterbloem.service.IClientservice;
 
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
 
 public class ClientService implements IClientservice {
     private static final Logger LOGGER = Logger.getLogger(ClientService.class.getName());
@@ -24,11 +24,50 @@ public class ClientService implements IClientservice {
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
     private ClientDisplayMapper clientDisplayMapper = new ClientDisplayMapper();
 
-
     public ClientService() {
         //Empty constructor
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ClientEntity findById(int id) {
+        try {
+            return clientDAO.findById(id);
+        } catch ( Exception e ) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<ClientDisplay> getAllClients() {
+        return clientDisplayMapper.getAllClients();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ClientDetailDisplay getClientDetails(int id) {
+        ClientDetailDisplay clientDetailDisplay = new ClientDetailDisplay();
+        try {
+            clientDetailDisplay.setClient(clientDAO.findById(id));
+            clientDetailDisplay.setLimitations(clientlimitationDAO.getByClientId(id));
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, e.getMessage());
+        }
+        return clientDetailDisplay;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void createClient(CreateClientDisplay createClientDisplay) {
         try {
             userDAO.add(createClientDisplay.getClientEntity().getUserEntity());
@@ -55,16 +94,9 @@ public class ClientService implements IClientservice {
         }
     }
 
-    @Override
-    public ClientEntity findById(int id) {
-        try {
-            return clientDAO.findById(id);
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        }
-        return null;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateClient(ClientDetailDisplay clientDetailDisplay) {
         int clientId = clientDetailDisplay.getClient().getClientId();
@@ -76,26 +108,11 @@ public class ClientService implements IClientservice {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ClientDetailDisplay getClientDetails(int id) {
-        ClientDetailDisplay clientDetailDisplay = new ClientDetailDisplay();
-        try {
-            clientDetailDisplay.setClient(clientDAO.findById(id));
-            clientDetailDisplay.setLimitations(clientlimitationDAO.getByClientId(id));
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getMessage());
-        }
-
-        return clientDetailDisplay;
-    }
-
-    @Override
-    public int getCareInstitutionById(int id) {
-        return (clientCareInstitutionDAO.getCareInstitutionId(id).getCareInstitutionId());
-    }
-
-    @Override
-    public void deleteClient(int id, int idcare) {
+    public void deleteClientById(int id, int idcare) {
         try {
             ClientcareinstitutionEntityPK clientcareinstitutionEntityPK = new ClientcareinstitutionEntityPK();
             clientcareinstitutionEntityPK.setCareInstitutionId(idcare);
@@ -109,21 +126,20 @@ public class ClientService implements IClientservice {
     }
 
     /**
-     * Get all the clients from a specific care institution
-     *
-     * @return a list of information from the clients of a specific care institution
+     * {@inheritDoc}
      */
-    public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id) {
-        return clientDisplayMapper.getAllClientsFromASpecificCareInstitution(id);
+    @Override
+    public int getCareInstitutionById(int id) {
+        return (clientCareInstitutionDAO.getCareInstitutionId(id).getCareInstitutionId());
+
     }
 
     /**
-     * Gets all the clients from all care institutions
-     *
-     * @return method returns a list of all found clients
+     * {@inheritDoc}
      */
-    public List<ClientDisplay> getAllClients() {
-        return clientDisplayMapper.getAllClients();
+    @Override
+    public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id) {
+        return clientDisplayMapper.getAllClientsFromASpecificCareInstitution(id);
     }
 
 }

@@ -4,9 +4,11 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientcareinstitutio
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntityPK;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<ClientcareinstitutionEntity> implements IClientcareinstitutionDAO {
     private static final Logger LOGGER = Logger.getLogger(ClientcareinstitutionDAOImpl.class.getName());
@@ -14,13 +16,13 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
     /**
      * Hook up the basic CRUD queries
      */
+    @Autowired
     public ClientcareinstitutionDAOImpl() {
         super(ClientcareinstitutionEntity.class);
     }
 
     /**
      * returns careinstituion based on clientId
-     *
      * @param clientId id fo a client
      * @return Clientcareinstitution entity
      */
@@ -37,10 +39,8 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
         }
     }
 
-
     /**
      * returns the id of the carinstitution in which the client resides
-     *
      * @param id of the client
      * @return id of careinstitution
      */
@@ -54,27 +54,11 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
         return 0;
     }
 
-    /**
-     * finds careinstitution by compositekey
-     *
-     * @param clientcareinstitutionEntityPK compositeKey
-     * @return careinstitution entity
-     */
-    public ClientcareinstitutionEntity find(ClientcareinstitutionEntityPK clientcareinstitutionEntityPK) {
-        try {
-            return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
-        }catch(Exception e){
-            LOGGER.log(Level.WARNING, e.getMessage());
-            return new ClientcareinstitutionEntity();
-        }
+    public ClientcareinstitutionEntity find(ClientcareinstitutionEntityPK clientcareinstitutionEntityPK){
+        return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
     }
 
     public ClientcareinstitutionEntity findById(ClientcareinstitutionEntity clientcareinstitutionEntity) {
-        try {
-            return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
-        }catch(Exception e){
-            LOGGER.log(Level.WARNING, e.getMessage());
-            return new ClientcareinstitutionEntity();
-        }
+        return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
     }
 }

@@ -12,5 +12,5 @@ public interface IClientDAO extends IGenericDAO<ClientEntity> {
      * @param id id of the careinstitution
      * @return a list of clients from a specific care institution
      */
-    List<ClientEntity> getByCareInstitutionId(int id);
+    List <ClientEntity> getByCareInstitutionId(int id);
 }

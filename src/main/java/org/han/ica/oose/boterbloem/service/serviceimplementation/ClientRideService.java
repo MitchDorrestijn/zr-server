@@ -21,7 +21,7 @@ public class ClientRideService implements IClientRideService {
 
 
     @Override
-    public List<ClientRideDisplay> getRidesFromSpecificClient(int clientId) {
+    public List<ClientRideDisplay> getRidesFromSpecificClientById(int clientId) {
         List<ClientRideDisplay> clientRideDisplays = new ArrayList<>();
         try {
             for (RideEntity rideEntity : rideDAO.getByClient(clientId)) {

@@ -8,13 +8,13 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEnti
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<DrivercareinstitutionEntity> implements IDrivercareinstitutionDAO {
     private static final Logger LOGGER = Logger.getLogger(DrivercareinstitutionDAOImpl.class.getName());
 
     /**
      * Hook up the basic CRUD queries
      */
-
     public DrivercareinstitutionDAOImpl() {
         super(DrivercareinstitutionEntity.class);
     }
@@ -51,10 +51,9 @@ public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<Drivercareinsti
         }
     }
 
-
     @Override
     public void updateCareInstituion(int careId, int driverId) {
-        getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET careInstitutionId = :careId WHERE driverId = :driverId").setParameter("careId", careId).setParameter("driverId", driverId).executeUpdate();
+        getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET careInstitutionId = :careId WHERE driverId = :driverId").setParameter("careId",careId).setParameter("driverId",driverId).executeUpdate();
     }
 
     @Override
@@ -68,7 +67,7 @@ public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<Drivercareinsti
 
     }
 
-    public DrivercareinstitutionEntity findById(DrivercareinstitutionEntity drivercareinstitutionEntity) {
+    public DrivercareinstitutionEntity findById(DrivercareinstitutionEntity drivercareinstitutionEntity){
         return getEntityManager().find(DrivercareinstitutionEntity.class, drivercareinstitutionEntity);
     }
 }

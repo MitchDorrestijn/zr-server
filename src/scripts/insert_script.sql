@@ -236,33 +236,33 @@ INSERT INTO `driverCareInstitution` (driverId, careInstitutionId, active) VALUES
 
 
 
-INSERT INTO `ride` (clientId, driverId, pickUpDateTime, pickUpLocation, dropOffLocation, numberOfcompanions, numberOfLuggage, returnRide, callService, utility, repeatingRideId, cancelledByClient, executed, duration, distance, price_of_ride)
+INSERT INTO `ride` (clientId, driverId, pickUpDateTime, pickUpLocation, dropOffLocation, numberOfcompanions, numberOfLuggage, returnRide, callService, utility, repeatingRideId, cancelledByClient, executed, duration, distance, price_of_ride, warning, assignedDriver, fixedRide, paymentDescription, paymentStatus, paymentDueBefore)
 
 VALUES
 
-  (2, 1, '2018-01-03 12:00:00', 'Steenstraat 2, Arnhem', 'Kalverstraat 2, Amsterdam', 1, 0, TRUE, FALSE, 'rollator', 2, FALSE, TRUE, 30, 1500, 25.4),
+  (2, 1, '2018-01-03 12:00:00', 'Steenstraat 2, Arnhem', 'Kalverstraat 2, Amsterdam', 1, 0, TRUE, FALSE, 'rollator', 2, FALSE, TRUE, 30, 1500, 25.4, FALSE, TRUE,FALSE, 'Uitbetaling September', 'Onbetaald', '2018-07-23'),
 
-  (2, 1, '2018-06-28 12:00:00', 'Ketelstraat 3, Arnhem', 'Coolsingen 3, Rotterdam', 0, 3, TRUE, FALSE, 'rollator', 2, FALSE, FALSE, 30, 6500, 25.4),
+  (2, 1, '2018-06-28 12:00:00', 'Ketelstraat 3, Arnhem', 'Coolsingen 3, Rotterdam', 0, 3, TRUE, FALSE, 'rollator', 2, FALSE, FALSE, 30, 6500, 25.4, FALSE, TRUE, FALSE, 'Restant September', 'Onbetaald', '2018-07-23'),
 
-  (2, 1, '2018-03-03 12:00:00', 'Velperplein 4, Arnhem', 'Blaak 4, Rotterdam', 1, 0, TRUE, FALSE, 'rollator', 2, TRUE, FALSE, 30, 8500, 25.4),
+  (2, 1, '2018-03-03 12:00:00', 'Velperplein 4, Arnhem', 'Blaak 4, Rotterdam', 1, 0, TRUE, FALSE, 'rollator', 2, TRUE, FALSE, 30, 8500, 25.4, FALSE, TRUE, FALSE, 'Boete flitspaal', 'Onbetaald', '2018-07-23'),
 
-  (2, 4, '2018-03-03 12:00:00', 'Barteljorisstraat 5, Haarlem', 'Vreeburg 5, Utrecht', 1, 2, TRUE, FALSE, 'rollator', 2, FALSE, FALSE, 30, 4000, 25.4),
+  (2, 4, '2018-03-03 12:00:00', 'Barteljorisstraat 5, Haarlem', 'Vreeburg 5, Utrecht', 1, 2, TRUE, FALSE, 'rollator', 2, FALSE, FALSE, 30, 4000, 25.4, FALSE, TRUE, FALSE, 'Voorschot Oktober', 'Onbetaald', '2018-07-23'),
 
-  (3, 4, '2018-04-12 12:56:23', 'Steenstraat 6, Arnhem', 'Kalverstraat 6, Amsterdam', 1, 0, TRUE, FALSE, 'rollator', NULL, FALSE, FALSE, 30, 1568, 25.4),
+  (3, 4, '2018-04-12 12:56:23', 'Steenstraat 6, Arnhem', 'Kalverstraat 6, Amsterdam', 1, 0, TRUE, FALSE, 'rollator', NULL, FALSE, FALSE, 30, 1568, 25.4, FALSE, TRUE, FALSE, 'Uitbetaling Augustus', 'Onbetaald', '2018-07-23'),
 
-  (6, NULL, '2018-06-03 16:00:00', 'Willemsplein 13, Arnhem', 'Dorpstraat 3, Kesteren', 0, 0, TRUE, FALSE, 'rollator', NULL, FALSE, FALSE, 30, 3000, 25.4),
+  (6, NULL, '2018-06-03 16:00:00', 'Willemsplein 13, Arnhem', 'Dorpstraat 3, Kesteren', 0, 0, TRUE, FALSE, 'rollator', NULL, FALSE, FALSE, 30, 3000, 25.4, FALSE, FALSE, FALSE, 'Uitbetaling Augustus', 'Onbetaald', '2018-07-23'),
 
-  (7, NULL, '2018-02-03 16:00:00', 'Willemsplein 25, Arnhem', 'Nedereindsestraat 12, Kesteren', 0, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 5690, 25.4),
+  (7, NULL, '2018-02-03 16:00:00', 'Willemsplein 25, Arnhem', 'Nedereindsestraat 12, Kesteren', 0, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 5690, 25.4, FALSE, FALSE, FALSE, 'Reparatiekosten auto', 'Onbetaald', '2018-07-23'),
 
-  (5, NULL, '2018-12-10 14:22:53', 'Willemsplein 5, Arnhem', 'Konings-plein 11, Amsterdam', 1, 4, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 9850, 25.4),
+  (5, NULL, '2018-12-10 14:22:53', 'Willemsplein 5, Arnhem', 'Konings-plein 11, Amsterdam', 1, 4, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 9850, 25.4, FALSE, FALSE, FALSE, 'Reparatiekosten bus', 'Onbetaald', '2018-07-23'),
 
-  (5, NULL, '2018-12-10 14:22:53', 'Velperplein 5, Arnhem', 'Konings-plein 11, Amsterdam', 0, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 5670, 25.4),
+  (5, NULL, '2018-12-10 14:22:53', 'Velperplein 5, Arnhem', 'Konings-plein 11, Amsterdam', 0, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 5670, 25.4, FALSE, FALSE,FALSE, 'Declaratie kouwgom', 'Onbetaald', '2018-07-23'),
 
-  (3, NULL, '2018-11-06 14:22:53', 'Velperplein 5, Arnhem', 'Konings-plein 25, Amsterdam', 1, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 3200, 25.4),
+  (3, NULL, '2018-11-06 14:22:53', 'Velperplein 5, Arnhem', 'Konings-plein 25, Amsterdam', 1, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 3200, 25.4, FALSE, FALSE,FALSE, 'Pensioen betaling', 'Onbetaald', '2018-07-23'),
 
-  (6, NULL, '2018-12-08 09:16:00', 'Velperplein 5, Arnhem', 'Raamsteeg 46, Amsterdam', 1, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 3450, 25.4),
+  (6, NULL, '2018-12-08 09:16:00', 'Velperplein 5, Arnhem', 'Raamsteeg 46, Amsterdam', 1, 0, TRUE, FALSE, 'scootmobiel', NULL, FALSE, FALSE, 30, 3450, 25.4, FALSE, FALSE,FALSE, 'Uitbetaling zorginstelling', 'Onbetaald', '2018-07-23'),
 
-  (7, NULL, '2018-01-06 11:00:00', 'Steenstraat 8, Arnhem', 'Kalverstraat 8, Amsterdam', 0, 0, TRUE, FALSE, 'rollator', NULL, FALSE, FALSE, 30, 8650, 25.4);
+  (7, NULL, '2018-01-06 11:00:00', 'Steenstraat 8, Arnhem', 'Kalverstraat 8, Amsterdam', 0, 0, TRUE, FALSE, 'rollator', NULL, FALSE, FALSE, 30, 8650, 25.4, FALSE, FALSE,FALSE, 'Overschot Maart', 'Onbetaald', '2018-07-23');
 
 
 

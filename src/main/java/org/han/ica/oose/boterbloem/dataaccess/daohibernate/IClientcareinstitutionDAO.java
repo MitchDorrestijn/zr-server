@@ -4,7 +4,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.IGenericDA
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntityPK;
 
-public interface IClientcareinstitutionDAO extends IGenericDAO<ClientcareinstitutionEntity> {
+public interface IClientcareinstitutionDAO extends IGenericDAO <ClientcareinstitutionEntity> {
     ClientcareinstitutionEntity find(ClientcareinstitutionEntityPK drivercareinstitutionEntityPK);
 
     int getClientCareinstitutionId(int id);

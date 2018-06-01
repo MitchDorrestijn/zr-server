@@ -7,31 +7,15 @@ import org.han.ica.oose.boterbloem.service.ILimitationService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class LimitationService implements ILimitationService {
     private static final Logger LOGGER = Logger.getLogger(LimitationService.class.getName());
     private ILimitationDAO limitationDAO = new LimitationDAOImpl();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public List<LimitationEntity> getAll() {
-        try {
-            return limitationDAO.findAll();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.toString(), e);
-            return new ArrayList<>();
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public LimitationEntity getByName(String name) {
+    public LimitationEntity getLimitationByName(String name) {
         try {
             return limitationDAO.findByName(name);
         } catch (Exception e) {
@@ -42,9 +26,16 @@ public class LimitationService implements ILimitationService {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
+    public List <LimitationEntity> getAllLimitations() {
+        try {
+            return limitationDAO.findAll();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+            return new ArrayList<>();
+        }
+    }
+
     @Override
     public void addLimitation(LimitationEntity limitationEntity) {
         try {
@@ -54,9 +45,6 @@ public class LimitationService implements ILimitationService {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void updateLimitation(LimitationEntity limitationEntity) {
         try {
@@ -66,9 +54,6 @@ public class LimitationService implements ILimitationService {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void deleteLimitation(String name) {
         try {

@@ -1,13 +1,16 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation;
 
+
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRideDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO {
 
@@ -16,6 +19,7 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
     /**
      * Hook up the basic CRUD queries
      */
+    @Autowired
     public RideDAOImpl() {
         super(RideEntity.class);
     }
@@ -55,6 +59,8 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
 
     @Override
     @SuppressWarnings("unchecked")
+
+
     public List<RideEntity> getByDriver(int id) {
         try {
             String query = "FROM RideEntity WHERE driverEntity.driverId = :id";
@@ -69,10 +75,12 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
     public float totalEarned(int id) {
         try {
             return ((Number) getEntityManager().createQuery("SELECT SUM(priceOfRide) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
+
         } catch (Exception n) {
             LOGGER.log(Level.WARNING, n.getMessage());
+
             return 0;
         }
     }
-
 }
+

@@ -5,5 +5,10 @@ import org.han.ica.oose.boterbloem.display.displayobject.ClientRideDisplay;
 import java.util.List;
 
 public interface IClientRideService {
-    List<ClientRideDisplay> getRidesFromSpecificClient(int clientId);
+    /**
+     * GET all Rides by a specific Client
+     * @param id of Client
+     * @return list of Client-rides
+     */
+    List <ClientRideDisplay> getRidesFromSpecificClientById(int id);
 }

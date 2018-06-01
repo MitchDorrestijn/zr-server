@@ -11,7 +11,7 @@ public interface IRatingsDAO extends IGenericDAO<RatingsEntity> {
      * @param id the id from the driver
      * @return the average rating from the driver
      */
-    public int getAvgRatings(int id);
+    int getAvgRatings(int id);
 
     /**
      * @param driverId the id of the driver

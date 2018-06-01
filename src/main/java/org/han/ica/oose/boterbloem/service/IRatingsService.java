@@ -2,14 +2,22 @@ package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.domain.domainobjects.Ratings;
 
-
 import java.util.List;
 
 public interface IRatingsService {
     /**
-     * @return A list of all ratings from the database
+     * GET all Ratings
+     * @return list of Ratings
      */
-    public List<Ratings> getAllRatings();
+    List<Ratings> getAllRatings();
+
+    /**
+     * GET all Ratings by a specific Driver
+     * @param id of Driver
+     * @return list of Driver-ratings
+     */
+    List<Ratings> getAllRatingsFromASpecificDriverById(int id);
+
 
     /**
      * Method for returning all ratings from a specific care institution

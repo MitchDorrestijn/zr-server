@@ -18,6 +18,7 @@ public class RideMapper {
         List<RideOverviewDisplay> returnList = new ArrayList<>();
         for (RideEntity r : rideDAO.findAll()) {
             try {
+
                 returnList.add(setRideDisplay(r));
             } catch (Exception e) {
                 LOGGER.log(Level.WARNING, e.getMessage());

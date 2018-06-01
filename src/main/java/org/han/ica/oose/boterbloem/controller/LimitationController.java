@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.controller;
 
+
 import org.han.ica.oose.boterbloem.dataaccess.entities.LimitationEntity;
 import org.han.ica.oose.boterbloem.service.ILimitationService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.LimitationService;
@@ -15,7 +16,6 @@ import java.util.logging.Logger;
 @RequestMapping("/limitation")
 public class LimitationController {
     private static final Logger LOGGER = Logger.getLogger(LimitationController.class.getName());
-
     private ILimitationService limitationService = new LimitationService();
 
     @Autowired
@@ -24,46 +24,43 @@ public class LimitationController {
     }
 
     /**
-     * Get all limitations from the database
-     * @return
+     * GET specific limitation from the database
+     * @param name of Limitation
+     * @return Limitation
      */
-    @CrossOrigin
-    @RequestMapping(value = "/getAllLimitations", method = RequestMethod.GET)
-    public List<LimitationEntity> getAll() {
-        return limitationService.getAll();
-    }
-
-    /**
-     * Get specific limitation from the database
-     * @param name
-     * @return
-     */
-    @CrossOrigin
     @RequestMapping(value = "getLimitation/{name}", method = RequestMethod.GET)
     public LimitationEntity getByName(@PathVariable String name) {
-        return limitationService.getByName(name);
+        return limitationService.getLimitationByName(name);
     }
 
     /**
-     * Add new limitation to the database
-     * @param limitationEntity
+     * GET all limitations from the database
+     * @return list of Limitations
      */
-    @CrossOrigin
+    @RequestMapping(value = "/getAllLimitations", method = RequestMethod.GET)
+    public List<LimitationEntity> getAllLimitations() {
+        return limitationService.getAllLimitations();
+    }
+
+
+    /**
+     * POST new limitation to the database
+     * @param limitationEntity = new Limitation
+     */
     @RequestMapping(value = "/addLimitation", method = RequestMethod.POST)
     public void addLimitation(@RequestBody LimitationEntity limitationEntity) {
         limitationService.addLimitation(limitationEntity);
     }
 
     /**
-     * Update existing limitation
-     * @param name
-     * @param limitationEntity
+     * UPDATE existing limitation
+     * @param name of Limitation
+     * @param limitationEntity = Limitation
      */
-    @CrossOrigin
     @RequestMapping(value = "{name}/edit", method = RequestMethod.PUT)
     public void updateLimitation(@PathVariable String name, @RequestBody LimitationEntity limitationEntity) {
         try {
-            LimitationEntity current = limitationService.getByName(name);
+            LimitationEntity current = limitationService.getLimitationByName(name);
             current.setName(limitationEntity.getName());
             limitationService.updateLimitation(current);
         } catch(Exception e) {
@@ -72,8 +69,8 @@ public class LimitationController {
     }
 
     /**
-     * Delete existing limitation
-     * @param name
+     * DELETE existing limitation
+     * @param name of Limitation
      */
     @CrossOrigin
     @RequestMapping(value = "{name}/delete", method = RequestMethod.DELETE)

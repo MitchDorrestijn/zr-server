@@ -4,11 +4,11 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDriverlimitationmana
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DriverlimitationmanageableEntity;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<DriverlimitationmanageableEntity> implements IDriverlimitationmanageableDAO {
     private static final Logger LOGGER = Logger.getLogger(DrivercareinstitutionDAOImpl.class.getName());
@@ -32,6 +32,7 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
         }
     }
 
+    @Override
     public void updateDriverLimitations(List<String> limitations, int driverId) {
         try {
             getEntityManager().createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();

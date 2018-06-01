@@ -9,5 +9,5 @@ public interface IDriverRideService {
      * @param driverId of Driver
      * @return list of driver rides
      */
-    List <DriverRideDisplay> getRidesFromSpecificDriver(int driverId);
+    List <DriverRideDisplay> getRidesFromSpecificDriverId(int driverId);
 }

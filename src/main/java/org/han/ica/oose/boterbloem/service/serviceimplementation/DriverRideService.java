@@ -6,8 +6,10 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.DriverRideDisplay;
 import org.han.ica.oose.boterbloem.service.IDriverRideService;
 
-import java.util.*;
-import java.util.logging.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class DriverRideService implements IDriverRideService {
     private static final Logger LOGGER = Logger.getLogger(DriverRideService.class.getName());
@@ -17,7 +19,7 @@ public class DriverRideService implements IDriverRideService {
      * {@inheritDoc}
      */
     @Override
-    public List<DriverRideDisplay> getRidesFromSpecificDriver(int id) {
+    public List <DriverRideDisplay> getRidesFromSpecificDriverId(int id) {
         List<DriverRideDisplay> driverRideDisplay = new ArrayList<>();
         try {
             for (RideEntity ride : rideDAO.getByDriver(id)) {

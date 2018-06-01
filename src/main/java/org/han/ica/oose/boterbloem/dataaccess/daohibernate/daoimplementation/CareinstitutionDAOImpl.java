@@ -9,9 +9,7 @@ public class CareinstitutionDAOImpl extends GenericDAOImpl<CareinstitutionEntity
     /**
      * Hook up the basic CRUD queries
      */
-
     public CareinstitutionDAOImpl() {
         super(CareinstitutionEntity.class);
     }
-
 }

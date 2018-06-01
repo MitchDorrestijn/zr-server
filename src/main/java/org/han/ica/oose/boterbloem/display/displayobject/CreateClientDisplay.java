@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.display.displayobject;
 
+
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
 
 import java.util.List;
