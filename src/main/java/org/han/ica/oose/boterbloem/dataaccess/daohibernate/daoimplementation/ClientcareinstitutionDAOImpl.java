@@ -31,7 +31,8 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
             clientcareinstitutionEntityPK.setClientId(clientId);
             clientcareinstitutionEntityPK.setCareInstitutionId(getClientCareinstitutionId(clientId));
             return find(clientcareinstitutionEntityPK);
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
             return new ClientcareinstitutionEntity();
         }
     }
@@ -55,7 +56,7 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
         return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
     }
 
-    public ClientcareinstitutionEntity findById(ClientcareinstitutionEntity clientcareinstitutionEntity){
+    public ClientcareinstitutionEntity findById(ClientcareinstitutionEntity clientcareinstitutionEntity) {
         return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
     }
 }

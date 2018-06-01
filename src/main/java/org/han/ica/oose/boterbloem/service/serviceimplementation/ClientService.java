@@ -104,8 +104,6 @@ public class ClientService implements IClientservice {
         }
     }
 
-
-
     /**
      * {@inheritDoc}
      */
@@ -132,6 +130,10 @@ public class ClientService implements IClientservice {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id) {
         return clientDisplayMapper.getAllClientsFromASpecificCareInstitution(id);
     }

@@ -1,10 +1,14 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric;
 
+import org.han.ica.oose.boterbloem.controller.*;
+
 import javax.persistence.*;
+
 import java.util.*;
+import java.util.logging.*;
 
 public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
-
+    private static final Logger LOGGER = Logger.getLogger(LimitationController.class.getName());
     private Class<T> classImpl;
 
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
@@ -24,6 +28,7 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             return entity;
         } catch (Exception e) {
             em.getTransaction().rollback();
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
         return null;
     }
@@ -37,6 +42,7 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             return mergedEntity;
         } catch (Exception e) {
             em.getTransaction().rollback();
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
         return null;
     }
@@ -49,6 +55,7 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
     }
 
@@ -61,6 +68,7 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             return entity;
         } catch (Exception e) {
             em.getTransaction().rollback();
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
         return null;
     }
@@ -75,6 +83,7 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             return entities;
         } catch (Exception e) {
             em.getTransaction().rollback();
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
         return new ArrayList<>();
     }
