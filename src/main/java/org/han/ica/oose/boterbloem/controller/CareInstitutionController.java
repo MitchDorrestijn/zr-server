@@ -15,6 +15,14 @@ import java.util.List;
 @RequestMapping("/zorginstelling")
 public class CareInstitutionController {
 
+    public ICareInstitutionService getCareInstitutionService() {
+        return careInstitutionService;
+    }
+
+    public void setCareInstitutionService(ICareInstitutionService careInstitutionService) {
+        this.careInstitutionService = careInstitutionService;
+    }
+
     private ICareInstitutionService careInstitutionService = new CareInstitutionService();
 
     @Autowired
