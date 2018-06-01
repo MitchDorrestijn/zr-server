@@ -5,7 +5,8 @@ public class ClientDisplay {
     private String companion;
     private String utility;
     private boolean driverPreferenceForced;
-    private int pkb; // personal kilometer budget
+    // personal kilometer budget
+    private int pkb;
     private int totalMeters;
     private String name;
     private boolean warningPKB;
