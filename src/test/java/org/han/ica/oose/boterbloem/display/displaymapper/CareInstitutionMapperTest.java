@@ -25,7 +25,7 @@ import static org.mockito.Mockito.*;
 public class CareInstitutionMapperTest {
 
     @Test
-    public void OOGABOOGA(){
+    public void emptyTestForCoverage(){
 
     }
 }
