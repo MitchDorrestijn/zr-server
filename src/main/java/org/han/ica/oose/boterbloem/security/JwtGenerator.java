@@ -3,20 +3,31 @@ package org.han.ica.oose.boterbloem.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.han.ica.oose.boterbloem.dataaccess.daosecurity.JwtUser;
+import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.AuthService;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JwtGenerator {
-    public String generate(JwtUser jwtUser) {
-        Claims claims = Jwts.claims()
-                .setSubject(jwtUser.getUserName());
-        claims.put("password", jwtUser.getPassword());
-        claims.put("role", jwtUser.getRole());
+    AuthService authService = new AuthService();
 
-        return Jwts.builder()
-                .setClaims(claims)
-                .signWith(SignatureAlgorithm.HS512, "zorgrit")
-                .compact();
+    public String generate(JwtUser jwtUser) {
+        System.out.println("In JwtGenerator");
+
+        if (authService.userIsValid(jwtUser.getUserName(), jwtUser.getPassword())) {
+            Claims claims = Jwts.claims()
+                    .setSubject(jwtUser.getUserName());
+            claims.put("password", jwtUser.getPassword());
+            claims.put("role", jwtUser.getRole());
+            claims.put("careInstitutionId", jwtUser.getCareInstitutionId());
+
+            return Jwts.builder()
+                    .setClaims(claims)
+                    .signWith(SignatureAlgorithm.HS512, "zorgrit")
+                    .compact();
+        } else {
+         throw new RuntimeException("Gebruiker bestaat niet of credentials zijn ongeldig");
+        }
     }
 }

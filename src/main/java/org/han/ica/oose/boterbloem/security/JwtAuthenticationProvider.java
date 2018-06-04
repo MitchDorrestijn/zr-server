@@ -1,8 +1,10 @@
 package org.han.ica.oose.boterbloem.security;
 
-import org.han.ica.oose.boterbloem.dataaccess.daosecurity.JwtAuthenticationToken;
-import org.han.ica.oose.boterbloem.dataaccess.daosecurity.JwtUser;
-import org.han.ica.oose.boterbloem.dataaccess.daosecurity.JwtUserDetails;
+import org.han.ica.oose.boterbloem.domain.domainobjects.JwtAuthenticationToken;
+import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
+import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUserDetails;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.AuthService;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
@@ -22,11 +24,15 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
-
+        AuthService authService = new AuthService();
+        if (authService.userIsValid(userDetails.getUsername(), userDetails.getPassword()) == false) {
+            throw new RuntimeException("Gebruiker bestaat niet of credentials zijn ongeldig");
+        }
     }
 
     @Override
     protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
+        System.out.println("In JwtAuthenticationProvider");
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) usernamePasswordAuthenticationToken;
         String token = jwtAuthenticationToken.getToken();
         JwtUser jwtUser = validator.validate(token);

@@ -15,6 +15,7 @@ public class JwtSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+        System.out.println("In JwtSuccessHandler");
         LOGGER.log(Level.INFO, "Succesvol geauthenticeerd");
 
     }

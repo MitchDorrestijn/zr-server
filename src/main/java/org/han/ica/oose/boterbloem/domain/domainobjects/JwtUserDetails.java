@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.dataaccess.daosecurity;
+package org.han.ica.oose.boterbloem.domain.domainobjects;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +14,7 @@ public class JwtUserDetails implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     public JwtUserDetails(String userName, String password, String token, List<GrantedAuthority> grantedAuthorities) {
+        System.out.println("In JwtUserDetails");
         this.userName = userName;
         this.password = password;
         this.token = token;
@@ -54,4 +55,6 @@ public class JwtUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

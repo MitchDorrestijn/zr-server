@@ -2,7 +2,7 @@ package org.han.ica.oose.boterbloem.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import org.han.ica.oose.boterbloem.dataaccess.daosecurity.JwtUser;
+import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
 import org.springframework.stereotype.Component;
 
 import java.util.logging.Level;
@@ -15,6 +15,7 @@ public class JwtValidator {
 
 
     public JwtUser validate(String token) {
+        System.out.println("In JwtValidator");
         JwtUser jwtUser = null;
 
         try {
@@ -27,6 +28,7 @@ public class JwtValidator {
             jwtUser.setUserName(body.getSubject());
             jwtUser.setPassword((String) body.get("password"));
             jwtUser.setRole((String) body.get("role"));
+            jwtUser.setCareInstitutionId((int) body.get("careInstitutionId"));
         } catch (Exception e){
             LOGGER.log(Level.WARNING, e.getMessage());
         }

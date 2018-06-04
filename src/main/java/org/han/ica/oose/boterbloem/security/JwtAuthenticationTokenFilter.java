@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.security;
 
-import org.han.ica.oose.boterbloem.dataaccess.daosecurity.JwtAuthenticationToken;
+import org.han.ica.oose.boterbloem.domain.domainobjects.JwtAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
@@ -19,11 +19,12 @@ public class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessi
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
+        System.out.println("in JwtAuthenticationTokenFilter");
         String header = httpServletRequest.getHeader("Authorization");
 
-        if(header == null || !header.startsWith("Token ")){
-            throw new RuntimeException("JWT token is er niet");
-        }
+//        if(header.isEmpty() || !header.startsWith("Token ")){
+//            throw new RuntimeException("JWT token is er niet");
+//        }
 
         String authenticationToken = header.substring(6);
 

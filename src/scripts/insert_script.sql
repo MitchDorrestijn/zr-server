@@ -337,3 +337,8 @@ INSERT INTO `ratings` (driverId, clientId, beoordeling, sterren) VALUES
   (4, 6, 'Echt een schat van een kerel!', 4),
 
   (10, 7, 'Een aanrader', 4);
+
+
+INSERT INTO `authUsers` (userName, password, role, careInstitutionId) VALUES
+('Mitch', 'qwerty123', 'ROLE_ADMIN', NULL),
+('Fred', 'qwerty123', 'ROLE_ZORGINSTELLING', 1)

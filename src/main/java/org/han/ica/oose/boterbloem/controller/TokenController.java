@@ -1,11 +1,12 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.dataaccess.daosecurity.JwtUser;
+import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
 import org.han.ica.oose.boterbloem.security.JwtGenerator;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/token")
+@CrossOrigin(origins = "*")
+@RequestMapping("/login")
 public class TokenController {
     private JwtGenerator jwtGenerator;
 

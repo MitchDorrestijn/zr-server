@@ -1,4 +1,4 @@
-package org.han.ica.oose.boterbloem.dataaccess.daosecurity;
+package org.han.ica.oose.boterbloem.domain.domainobjects;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
