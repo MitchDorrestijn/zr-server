@@ -9,7 +9,10 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.Dri
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RatingsDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RideDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DriverEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.DriverDisplay;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Driver;
+import org.han.ica.oose.boterbloem.domain.domainobjects.DriverCar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,8 @@ public class DriverMapper {
     private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl();
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
     private IRideDAO rideDAO = new RideDAOImpl();
+
+    private DriverCarMapper driverCarMapper = new DriverCarMapper();
 
     /**
      * @param id id of the careInstitution
@@ -83,5 +88,45 @@ public class DriverMapper {
         driver.setTotalEarned(rideDAO.totalEarned(driverId));
         driver.setTotalRides(rideDAO.rideCountById(driverId));
         return driver;
+    }
+
+    public Driver extractDriver(DriverEntity driverEntity) {
+        Driver driver = new Driver();
+
+        driver.setVerification(driverEntity.getVerification());
+        driver.setTypeOfPayment(driverEntity.getTypeOfPayment());
+        driver.setImage(driverEntity.getImage());
+        driver.setAccountnr(driverEntity.getAccountnr());
+        driver.setDriverCars(setDriverCarsByDriverId(driverEntity.getDriverId()));
+        driver.setTotalEarned(rideDAO.totalEarned(driverEntity.getDriverId()));
+        driver.setTotalRides(rideDAO.totalRideClient(driverEntity.getDriverId()));
+
+        return driver;
+    }
+
+    public DriverEntity convertDriver(Driver driver) {
+        DriverEntity driverEntity = new DriverEntity();
+        driverEntity.setDriverId(driver.getId());
+        driverEntity.setVerification(driver.getVerification());
+        driverEntity.setImage(driver.getImage());
+        driverEntity.setAccountnr(driver.getAccountnr());
+        for(int i = 0; i < setDriverCarsByDriverId(driver.getId()).size(); i++) {
+            drivercarDAO.update(driverCarMapper.convertDriverCar(setDriverCarsByDriverId(driver.getId()).get(i)));
+        }
+        return driverEntity;
+    }
+
+    /**
+     * Set the driverCars of a driver
+     *
+     * @param driverId id of the driver
+     * @return List of drivercars
+     */
+    private List<DriverCar> setDriverCarsByDriverId(int driverId) {
+        List<DriverCar> driverCars = new ArrayList<>();
+        for (DrivercarEntity driverCarEntity : drivercarDAO.drivercarEntityListByDriverId(driverId)) {
+            driverCars.add(driverCarMapper.extractDriverCar(driverCarEntity));
+        }
+        return driverCars;
     }
 }

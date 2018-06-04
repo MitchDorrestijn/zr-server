@@ -6,7 +6,10 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAO
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO {
@@ -56,6 +59,16 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
             return ((Number) getEntityManager().createQuery("SELECT SUM(priceOfRide) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
         } catch ( NullPointerException n ) {
             return 0;
+        }
+    }
+
+    @Override
+    public RideEntity getByClientAndDateTime(int clientId, Timestamp date) {
+        try {
+            return (RideEntity) getEntityManager().createQuery("FROM RideEntity WHERE clientEntity.clientId = :id AND pickUpDateTime = :date").setParameter("id", "%" + clientId + "%").setParameter("date", date).getSingleResult();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+            return new RideEntity();
         }
     }
 

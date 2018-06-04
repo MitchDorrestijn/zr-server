@@ -5,8 +5,9 @@ import java.util.List;
 
 public class Client extends User {
 
+    private int id;
     private String companion; // Supervisor of the client
-    private byte warningPKB; // Show warning
+    private boolean warningPKB; // Show warning
     private int PKB; // Personal kilometer budget
     private byte companionRequired; // A superviser is required
     private String image;
@@ -18,7 +19,7 @@ public class Client extends User {
      *
      * @return Value for property 'warningPKB'.
      */
-    public byte getWarningPKB() {
+    public boolean getWarningPKB() {
         return warningPKB;
     }
 
@@ -27,7 +28,7 @@ public class Client extends User {
      *
      * @param warningPKB Value to set for property 'warningPKB'.
      */
-    public void setWarningPKB(byte warningPKB) {
+    public void setWarningPKB(boolean warningPKB) {
         this.warningPKB = warningPKB;
     }
 
@@ -121,6 +122,10 @@ public class Client extends User {
         this.limitations = limitations;
     }
 
+    public void addLimitation(Limitation limitation) {
+        this.limitations.add(limitation);
+    }
+
     /**
      * Getter for property 'companion'.
      *
@@ -137,5 +142,13 @@ public class Client extends User {
      */
     public void setCompanion(String companion) {
         this.companion = companion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

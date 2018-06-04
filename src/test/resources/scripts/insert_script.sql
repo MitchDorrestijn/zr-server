@@ -78,7 +78,7 @@ INSERT INTO `client` (clientId, companion, driverPreferenceForced, warningPKB, P
 
 
 
-INSERT INTO `driver` (driverId, verification, type_of_payment, image, accountnr) VALUES
+INSERT INTO `driver` (driverId, verification, typeOfPayment, image, accountnr) VALUES
 
   (1, TRUE, 'Vrijwillig', 'base64String', 'NLING3102347823974'),
 
@@ -236,7 +236,7 @@ INSERT INTO `driverCareInstitution` (driverId, careInstitutionId, active) VALUES
 
 
 
-INSERT INTO `ride` (clientId, driverId, pickUpDateTime, pickUpLocation, dropOffLocation, numberOfcompanions, numberOfLuggage, returnRide, callService, utility, repeatingRideId, cancelledByClient, executed, duration, distance, price_of_ride, paymentDescription, paymentStatus, paymentDueBefore)
+INSERT INTO `ride` (clientId, driverId, pickUpDateTime, pickUpLocation, dropOffLocation, numberOfcompanions, numberOfLuggage, returnRide, callService, utility, repeatingRideId, cancelledByClient, executed, duration, distance, priceOfRide, paymentDescription, paymentStatus, paymentDueBefore)
 
 VALUES
 
