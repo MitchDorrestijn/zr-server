@@ -65,4 +65,23 @@ public class CareinstitutionMapper {
         careinstitutionEntity.setStreet(address.get(0).getStreet());
         careinstitutionDAO.add(careinstitutionEntity);
     }
+
+    /**
+     * Getter for property 'careinstitutionDAO'.
+     *
+     * @return Value for property 'careinstitutionDAO'.
+     */
+    public ICareinstitutionDAO getCareinstitutionDAO() {
+        return careinstitutionDAO;
+    }
+
+    /**
+     * Setter for property 'careinstitutionDAO'.
+     *
+     * @param careinstitutionDAO Value to set for property 'careinstitutionDAO'.
+     */
+    public void setCareinstitutionDAO(ICareinstitutionDAO careinstitutionDAO) {
+        this.careinstitutionDAO = careinstitutionDAO;
+    }
+
 }
