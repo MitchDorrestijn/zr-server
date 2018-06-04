@@ -28,7 +28,6 @@ public class RideMapper {
         List<RideOverviewDisplay> returnList = new ArrayList<>();
         for (RideEntity r : rideDAO.findAll()) {
             try {
-
                 returnList.add(setRideDisplay(r));
             } catch (Exception e) {
                 LOGGER.log(Level.WARNING, e.getMessage());
@@ -54,10 +53,8 @@ public class RideMapper {
         ride.setPickUpDateTime(rideEntity.getPickUpDateTime());
         ride.setPickUpLocation(rideEntity.getPickUpLocation());
         ride.setDropOffLocation(rideEntity.getDropOffLocation());
-        for (int i = 0; i < rideEntity.getUtilityEntity().size(); i++) {
-            Utility utility = new Utility();
-            utility.setUtility(rideEntity.getUtilityEntity().get(i).getName());
-            ride.addUtility(utility);
+        for(UtilityEntity utilityEntity: rideEntity.getUtilityEntity()) {
+            ride.addUtility(utilityMapper.extractUtility(utilityEntity));
         }
         ride.setDriver(driverMapper.extractDriver(rideEntity.getDriverEntity()));
         ride.setClient(clientMapper.extractClient(rideEntity.getClientEntity()));
@@ -90,8 +87,8 @@ public class RideMapper {
         rideEntity.setPickUpLocation(ride.getPickUpLocation());
         rideEntity.setDropOffLocation(ride.getDropOffLocation());
         List<UtilityEntity> utilityEntities = new ArrayList<>();
-        for (int i = 0; i < ride.getUtilities().size(); i++) {
-            utilityEntities.add(utilityMapper.convertUtility(ride.getUtilities().get(i)));
+        for(Utility utility : ride.getUtilities()) {
+            utilityEntities.add(utilityMapper.convertUtility(utility));
         }
         rideEntity.setUtilityEntities(utilityEntities);
         rideEntity.setClientEntity(clientMapper.convertClient(ride.getClient()));

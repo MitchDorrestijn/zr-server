@@ -60,7 +60,7 @@ public class UtilityMapper {
      * @param u - The utilityEntity that will be filled
      * @return - A filled UtilityEntity
      */
-    private Utility extractUtility(UtilityEntity u) {
+    public Utility extractUtility(UtilityEntity u) {
         Utility utility = new Utility();
         utility.setUtility(u.getName());
         return utility;

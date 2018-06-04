@@ -110,8 +110,8 @@ public class DriverMapper {
         driverEntity.setVerification(driver.getVerification());
         driverEntity.setImage(driver.getImage());
         driverEntity.setAccountnr(driver.getAccountnr());
-        for(int i = 0; i < setDriverCarsByDriverId(driver.getId()).size(); i++) {
-            drivercarDAO.update(driverCarMapper.convertDriverCar(setDriverCarsByDriverId(driver.getId()).get(i)));
+        for(DriverCar driverCar : setDriverCarsByDriverId(driver.getId())) {
+            drivercarDAO.update(driverCarMapper.convertDriverCar(driverCar));
         }
         return driverEntity;
     }
