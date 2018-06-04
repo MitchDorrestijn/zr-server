@@ -11,7 +11,7 @@ public class DriverEntity {
     private int driverId;
     private byte verification;
     private UserEntity userEntity;
-    private String type_of_payment;
+    private String typeOfPayment;
     private String image;
     private String accountnr;
 
@@ -41,11 +41,11 @@ public class DriverEntity {
     @Basic
     @Column(name = "type_of_payment")
     public String getTypeOfPayment() {
-        return type_of_payment;
+        return typeOfPayment;
     }
 
     public void setTypeOfPayment(String type_of_payment) {
-        this.type_of_payment = type_of_payment;
+        this.typeOfPayment = type_of_payment;
     }
 
     @Basic

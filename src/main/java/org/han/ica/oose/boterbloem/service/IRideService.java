@@ -38,4 +38,10 @@ public interface IRideService {
      * @param id
      */
     void deleteRideById(int id);
+
+    /**
+     * Updates a ride with the same parameters as by create ride
+     * @param ride
+     */
+    void update(CreateRideDisplay ride);
 }

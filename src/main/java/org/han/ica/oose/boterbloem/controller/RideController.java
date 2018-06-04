@@ -68,4 +68,9 @@ public class RideController {
     public void deleteRide(@PathVariable int id) {
         rideService.deleteRideById(id);
     }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public void updateRide(@PathVariable CreateRideDisplay ride) {
+        rideService.update(ride);
+    }
 }

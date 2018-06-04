@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Driver extends User {
 
+    private int id;
     //  VOG verified
     private byte verification;
-    private String type_of_payment;
+    private String typeOfPayment;
     // copy of driver's licence
     private String image;
     // bank account number for payment purposes
@@ -90,21 +91,21 @@ public class Driver extends User {
     }
 
     /**
-     * Getter for property 'type_of_payment'.
+     * Getter for property 'typeOfPayment'.
      *
-     * @return Value for property 'type_of_payment'.
+     * @return Value for property 'typeOfPayment'.
      */
-    public String getType_of_payment() {
-        return type_of_payment;
+    public String getTypeOfPayment() {
+        return typeOfPayment;
     }
 
     /**
-     * Setter for property 'type_of_payment'.
+     * Setter for property 'typeOfPayment'.
      *
-     * @param type_of_payment Value to set for property 'type_of_payment'.
+     * @param typeOfPayment Value to set for property 'typeOfPayment'.
      */
-    public void setType_of_payment(String type_of_payment) {
-        this.type_of_payment = type_of_payment;
+    public void setTypeOfPayment(String typeOfPayment) {
+        this.typeOfPayment = typeOfPayment;
     }
 
     /**
@@ -141,5 +142,13 @@ public class Driver extends User {
      */
     public void setAccountnr(String accountnr) {
         this.accountnr = accountnr;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

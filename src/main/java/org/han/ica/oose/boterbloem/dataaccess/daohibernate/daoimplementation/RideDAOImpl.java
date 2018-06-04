@@ -6,6 +6,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAO
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -80,6 +81,16 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
             LOGGER.log(Level.WARNING, n.getMessage());
 
             return 0;
+        }
+    }
+
+    @Override
+    public RideEntity getByClientAndDateTime(int clientId, Timestamp date) {
+        try {
+            return (RideEntity) getEntityManager().createQuery("FROM RideEntity WHERE clientEntity.clientId = :id AND pickUpDateTime = :date").setParameter("id", "%" + clientId + "%").setParameter("date", date).getSingleResult();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+            return new RideEntity();
         }
     }
 }

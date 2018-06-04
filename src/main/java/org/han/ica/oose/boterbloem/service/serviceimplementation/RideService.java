@@ -7,10 +7,14 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.Cli
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.DriverDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RideDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.UtilityEntity;
+import org.han.ica.oose.boterbloem.display.displaymapper.RideDisplayMapper;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
 import org.han.ica.oose.boterbloem.domain.domainmappers.RideMapper;
+import org.han.ica.oose.boterbloem.domain.domainmappers.UtilityMapper;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Utility;
 import org.han.ica.oose.boterbloem.service.IRideService;
 
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ public class RideService implements IRideService {
     private IClientDAO clientDAO = new ClientDAOImpl();
     private IDriverDAO driverDAO = new DriverDAOImpl();
     private RideMapper rideMapper = new RideMapper();
+    private UtilityMapper utilityMapper = new UtilityMapper();
 
     /**
      * {@inheritDoc}
@@ -37,8 +42,8 @@ public class RideService implements IRideService {
      * {@inheritDoc}
      */
     @Override
-    public List <RideDisplay> getAllRides() {
-        List <RideDisplay> rideDisplay = new ArrayList<>();
+    public List<RideDisplay> getAllRides() {
+        List<RideDisplay> rideDisplay = new ArrayList<>();
         try {
             for (RideEntity ride : rideDAO.findAll()) {
                 RideDisplay display = new RideDisplay();
@@ -58,12 +63,12 @@ public class RideService implements IRideService {
 
                     display.setDriverName(driverName);
                     display.setClientName(clientName);
-                } catch ( NullPointerException e ) {
+                } catch (NullPointerException e) {
                     display.setDriverName("Geen chauffeur gevonden");
                 }
                 rideDisplay.add(display);
             }
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return rideDisplay;
@@ -73,7 +78,7 @@ public class RideService implements IRideService {
      * {@inheritDoc}
      */
     @Override
-    public List <RideOverviewDisplay> getRideOverview() {
+    public List<RideOverviewDisplay> getRideOverview() {
         return rideMapper.getRideOverview();
     }
 
@@ -93,7 +98,12 @@ public class RideService implements IRideService {
 
             rideEntity.setNumberOfcompanions(createRideDisplay.getNumberOfcompanions());
             rideEntity.setNumberOfLuggage(createRideDisplay.getNumberOfLuggage());
-            rideEntity.setUtilityEntity(createRideDisplay.getUtilityEntity());
+
+            List<UtilityEntity> utilityEntities = new ArrayList<>();
+            for (int i = 0; i < createRideDisplay.getUtilityEntity().size(); i++) {
+                utilityEntities.add(utilityMapper.convertUtility(createRideDisplay.getUtilityEntity().get(i)));
+            }
+            rideEntity.setUtilityEntities(utilityEntities);
 
             rideEntity.setReturnRide(createRideDisplay.getReturnRide());
             rideEntity.setCallService(createRideDisplay.getCallService());
@@ -101,7 +111,7 @@ public class RideService implements IRideService {
 
             rideDAO.add(rideEntity);
 
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
     }
@@ -114,7 +124,17 @@ public class RideService implements IRideService {
         try {
             RideEntity rideToRemove = rideDAO.findById(id);
             rideDAO.remove(rideToRemove);
-        } catch ( Exception e ) {
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+    }
+
+    @Override
+    public void update(CreateRideDisplay ride) {
+        RideDisplayMapper rideDisplayMapper = new RideDisplayMapper();
+        try {
+
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
     }

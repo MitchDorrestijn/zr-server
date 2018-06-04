@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "ride", schema = "zorgrit")
@@ -27,7 +28,7 @@ public class RideEntity {
     private byte warning;
     private byte assignedDriver;
     private byte fixedRide;
-    private UtilityEntity utilityEntity;
+    private List<UtilityEntity> utilityEntities;
     private String paymentDescription;
     private String paymentStatus;
     private String paymentDueBefore;
@@ -225,14 +226,18 @@ public class RideEntity {
         this.fixedRide = fixedRide;
     }
 
-    @OneToOne
-    @JoinColumn(name = "utility")
-    public UtilityEntity getUtilityEntity() {
-        return utilityEntity;
+    @OneToMany
+    @JoinColumn(name = "name")
+    public List<UtilityEntity> getUtilityEntity() {
+        return utilityEntities;
     }
 
-    public void setUtilityEntity(UtilityEntity utilityEntity) {
-        this.utilityEntity = utilityEntity;
+    public void setUtilityEntities(List<UtilityEntity> utilityEntities) {
+        this.utilityEntities = utilityEntities;
+    }
+
+    public void addUtilityEntity(UtilityEntity utilityEntity) {
+        this.utilityEntities.add(utilityEntity);
     }
 
     @Column(name = "paymentDescription")

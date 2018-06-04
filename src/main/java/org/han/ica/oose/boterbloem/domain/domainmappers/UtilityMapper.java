@@ -13,7 +13,30 @@ import java.util.logging.Logger;
 public class UtilityMapper {
     private static final Logger LOGGER = Logger.getLogger(UtilityMapper.class.getName());
 
-    private IUtilityDAO utilityDAO = new UtilityDAOImpl();
+    IUtilityDAO utilityDAO = new UtilityDAOImpl();
+
+    /**
+     * Gets an utility by name from the database
+     * @param name
+     * @return
+     */
+    public Utility getUtility(String name) {
+        UtilityEntity utilityEntity = utilityDAO.findByName(name);
+        Utility utility = new Utility();
+        utility.setUtility(utilityEntity.getName());
+        return utility;
+    }
+
+    /**
+     * Converts a Utility into a UtilityEntity
+     * @param utility
+     * @return
+     */
+    public UtilityEntity convertUtility(Utility utility) {
+        UtilityEntity utilityEntity = new UtilityEntity();
+        utilityEntity.setName(utility.getUtility());
+        return utilityEntity;
+    }
 
     /**
      * GET all Utilities
@@ -23,7 +46,7 @@ public class UtilityMapper {
         List<Utility> utilities = new ArrayList<>();
         try {
             for (UtilityEntity u : utilityDAO.findAll()) {
-                Utility utility = fillUtilityDomain(u);
+                Utility utility = extractUtility(u);
                 utilities.add(utility);
             }
         } catch (Exception e) {
@@ -37,7 +60,7 @@ public class UtilityMapper {
      * @param u - The utilityEntity that will be filled
      * @return - A filled UtilityEntity
      */
-    private Utility fillUtilityDomain(UtilityEntity u) {
+    public Utility extractUtility(UtilityEntity u) {
         Utility utility = new Utility();
         utility.setUtility(u.getName());
         return utility;

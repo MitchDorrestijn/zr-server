@@ -12,4 +12,9 @@ public class UtilityDAOImpl extends GenericDAOImpl<UtilityEntity> implements IUt
     public UtilityDAOImpl() {
         super(UtilityEntity.class);
     }
+
+    @Override
+    public UtilityEntity findByName(String name) {
+        return (UtilityEntity) getEntityManager().createQuery("FROM UtilityEntity where name =: name").setParameter("name", name).getSingleResult();
+    }
 }
