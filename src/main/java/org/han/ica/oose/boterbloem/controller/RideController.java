@@ -7,13 +7,14 @@ import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
 import org.han.ica.oose.boterbloem.service.IRideService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/ride")
+@RequestMapping("/rest/ride")
 public class RideController {
 
     private IRideService rideService = new RideService();
@@ -28,6 +29,7 @@ public class RideController {
      * @param id of Ride
      * @return Ride
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ZORGINSTELLING')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public RideEntity getRideById(@PathVariable int id) {
         return rideService.findById(id);
@@ -37,6 +39,7 @@ public class RideController {
      * GET all Rides
      * @return list of Rides
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/getAllRides", method = RequestMethod.GET)
     public List <RideDisplay> getAllRides() {
         return rideService.getAllRides();
@@ -46,6 +49,7 @@ public class RideController {
      * GET all Ride information
      * @return list of Ride information
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/rides/overview", method = RequestMethod.GET)
     public List <RideOverviewDisplay> getRideOverview() {
         return rideService.getRideOverview();
@@ -55,6 +59,7 @@ public class RideController {
      * POST new Ride
      * @param ride = new Ride
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ZORGINSTELLING')")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public void createRide(@RequestBody CreateRideDisplay ride) {
         rideService.createRide(ride);
@@ -64,6 +69,7 @@ public class RideController {
      * DELETE Ride by Id
      * @param id of Ride
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ZORGINSTELLING')")
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
     public void deleteRide(@PathVariable int id) {
         rideService.deleteRideById(id);
