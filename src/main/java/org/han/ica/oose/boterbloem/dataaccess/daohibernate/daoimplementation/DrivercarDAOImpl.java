@@ -24,7 +24,7 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
     public DrivercarEntity findByPK(DrivercarEntityPK drivercarEntityPK) {
         try {
             return getEntityManager().find(DrivercarEntity.class, drivercarEntityPK);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new DrivercarEntity();
         }
@@ -44,7 +44,7 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
             drivercarEntityPK.setUtility(utility);
             return findByPK(drivercarEntityPK);
 
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new DrivercarEntity();
         }

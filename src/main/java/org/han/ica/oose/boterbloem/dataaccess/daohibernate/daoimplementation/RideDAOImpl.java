@@ -76,7 +76,7 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
         try {
             return ((Number) getEntityManager().createQuery("SELECT SUM(priceOfRide) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
 
-        } catch (Exception n) {
+        } catch (NullPointerException n) {
             LOGGER.log(Level.WARNING, n.getMessage());
 
             return 0;

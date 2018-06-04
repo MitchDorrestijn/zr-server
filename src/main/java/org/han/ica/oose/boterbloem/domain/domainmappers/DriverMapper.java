@@ -9,6 +9,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.Dri
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RatingsDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RideDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DriverEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.DriverDisplay;
 
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class DriverMapper {
         driver.setName(d.getUserEntity().getFirstName() + " " + d.getUserEntity().getLastName());
         driver.setTypeOfPayment(d.getTypeOfPayment());
         try {
-            if (drivercarDAO.findCarById(driverId) == null) {
+            if (drivercarDAO.findCarById(driverId).equals(new DrivercarEntity())) {
                 driver.getDriverCar().setNumberOfPassengers(0);
                 driver.getDriverCar().setNumberPlate("Geen nummerplaat gevonden");
             } else {

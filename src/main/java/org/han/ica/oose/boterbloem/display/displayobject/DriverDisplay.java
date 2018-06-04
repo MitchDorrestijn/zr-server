@@ -6,11 +6,11 @@ public class DriverDisplay {
 
     private int id;
     private String name;
-    private DriverCar driverCar;
+    private DriverCar driverCar =  new DriverCar();
     private String typeOfPayment;
-    private Float totalEarned;
-    private int totalRides;
-    private int rating;
+    private Float totalEarned = (float) 0;
+    private int totalRides = 0;
+    private int rating = 0;
 
 
     /**
