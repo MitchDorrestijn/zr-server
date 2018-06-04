@@ -42,7 +42,7 @@ public class Client extends User {
      *
      * @return Value for property 'pkb'.
      */
-    public int getpkb() {
+    public int getPkb() {
         return pkb;
     }
 
@@ -51,7 +51,7 @@ public class Client extends User {
      *
      * @param pkb Value to set for property 'pkb'.
      */
-    public void setpkb(int pkb) {
+    public void setPkb(int pkb) {
         this.pkb = pkb;
     }
 

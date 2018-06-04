@@ -43,6 +43,11 @@ public class RideMapper {
         return ride;
     }
 
+    /**
+     * Extracts ride object from ride entity
+     * @param rideEntity
+     * @return
+     */
     private Ride extractRide(RideEntity rideEntity) {
         Ride ride = new Ride();
 
@@ -74,6 +79,12 @@ public class RideMapper {
         return ride;
     }
 
+    /**
+     * Converts ride to rideEntity
+     * @param ride
+     * @param rideEntity
+     * @return
+     */
     public RideEntity convertRide(Ride ride, RideEntity rideEntity) {
         rideEntity.setPickUpDateTime(ride.getPickUpDateTime());
         rideEntity.setPickUpLocation(ride.getPickUpLocation());
@@ -96,11 +107,20 @@ public class RideMapper {
         return rideEntity;
     }
 
+    /**
+     * Updates ride in the database
+     * @param ride
+     */
     public void updateRide(Ride ride) {
         RideEntity rideEntity = rideDAO.getByClientAndDateTime(ride.getClient().getId(), ride.getPickUpDateTime());
         rideDAO.update(convertRide(ride, rideEntity));
     }
 
+    /**
+     * Puts all required information into ridedisplay
+     * @param r
+     * @return
+     */
     private RideOverviewDisplay setRideDisplay(RideEntity r) {
         RideOverviewDisplay rideOverviewDisplay = new RideOverviewDisplay();
         rideOverviewDisplay.setPaymentStatus(r.getPaymentStatus());

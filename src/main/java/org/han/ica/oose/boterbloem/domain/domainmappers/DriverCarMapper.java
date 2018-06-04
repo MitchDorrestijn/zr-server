@@ -5,6 +5,11 @@ import org.han.ica.oose.boterbloem.domain.domainobjects.DriverCar;
 
 public class DriverCarMapper {
 
+    /**
+     * Extracts drivercar from drivercarEntity
+     * @param drivercarEntity
+     * @return
+     */
     public DriverCar extractDriverCar(DrivercarEntity drivercarEntity) {
         DriverCar driverCar = new DriverCar();
 
@@ -17,6 +22,11 @@ public class DriverCarMapper {
         return driverCar;
     }
 
+    /**
+     * Converts drivercar to drivercarEntity
+     * @param driverCar
+     * @return
+     */
     public DrivercarEntity convertDriverCar(DriverCar driverCar) {
         DrivercarEntity drivercarEntity = new DrivercarEntity();
 

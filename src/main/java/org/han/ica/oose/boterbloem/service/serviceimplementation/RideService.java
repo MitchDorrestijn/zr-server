@@ -103,7 +103,7 @@ public class RideService implements IRideService {
             for (int i = 0; i < createRideDisplay.getUtilityEntity().size(); i++) {
                 utilityEntities.add(utilityMapper.convertUtility(createRideDisplay.getUtilityEntity().get(i)));
             }
-            rideEntity.setUtilityEntity(utilityEntities);
+            rideEntity.setUtilityEntities(utilityEntities);
 
             rideEntity.setReturnRide(createRideDisplay.getReturnRide());
             rideEntity.setCallService(createRideDisplay.getCallService());

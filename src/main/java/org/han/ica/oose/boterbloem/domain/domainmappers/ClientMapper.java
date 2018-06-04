@@ -7,15 +7,15 @@ import org.han.ica.oose.boterbloem.domain.domainobjects.Client;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Limitation;
 
 public class ClientMapper {
-    IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
-    LimitationMapper limitationMapper = new LimitationMapper();
+    private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
+    private LimitationMapper limitationMapper = new LimitationMapper();
 
     public Client extractClient(ClientEntity clientEntity) {
         Client client = new Client();
 
         client.setCompanion(clientEntity.getCompanion());
         client.setWarningPKB(clientEntity.isWarningPKB());
-        client.setPKB(clientEntity.getPKB());
+        client.setPkb(clientEntity.getPKB());
         client.setCompanionRequired(clientEntity.getCompanionRequired());
         client.setImage(clientEntity.getImage());
         client.setBankAccount(clientEntity.getBankAccount());
@@ -33,7 +33,7 @@ public class ClientMapper {
 
         clientEntity.setCompanion(client.getCompanion());
         clientEntity.setWarningPKB(client.getWarningPkb());
-        clientEntity.setPKB(client.getPKB());
+        clientEntity.setPKB(client.getPkb());
         clientEntity.setCompanionRequired(client.getCompanionRequired());
         clientEntity.setImage(client.getImage());
         clientEntity.setBankAccount(client.getBankAccount());

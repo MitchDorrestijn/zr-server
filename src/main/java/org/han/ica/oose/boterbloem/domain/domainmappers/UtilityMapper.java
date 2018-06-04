@@ -15,6 +15,11 @@ public class UtilityMapper {
 
     IUtilityDAO utilityDAO = new UtilityDAOImpl();
 
+    /**
+     * Gets an utility by name from the database
+     * @param name
+     * @return
+     */
     public Utility getUtility(String name) {
         UtilityEntity utilityEntity = utilityDAO.findByName(name);
         Utility utility = new Utility();
@@ -22,6 +27,11 @@ public class UtilityMapper {
         return utility;
     }
 
+    /**
+     * Converts a Utility into a UtilityEntity
+     * @param utility
+     * @return
+     */
     public UtilityEntity convertUtility(Utility utility) {
         UtilityEntity utilityEntity = new UtilityEntity();
         utilityEntity.setName(utility.getUtility());
