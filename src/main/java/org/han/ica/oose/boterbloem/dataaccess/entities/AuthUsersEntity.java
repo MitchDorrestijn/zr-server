@@ -10,6 +10,7 @@ public class AuthUsersEntity {
     private String password;
     private String role;
     private Integer careInstitutionId;
+    private String latestToken;
 
     @Id
     @Column(name = "userName")
@@ -49,6 +50,16 @@ public class AuthUsersEntity {
 
     public void setCareInstitutionId(Integer careInstitutionId) {
         this.careInstitutionId = careInstitutionId;
+    }
+
+    @Basic
+    @Column(name = "latestToken")
+    public String getLatestToken() {
+        return latestToken;
+    }
+
+    public void setLatestToken(String latestToken) {
+        this.latestToken = latestToken;
     }
 
     @Override

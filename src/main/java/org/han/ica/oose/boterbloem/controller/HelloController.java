@@ -19,7 +19,7 @@ public class HelloController {
         return "Hello, world";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/addAuthenticatedUser", method = RequestMethod.POST)
     public void addAuthenticatedUser(@RequestBody JwtUser jwtUser){
         authService.createAuthenticatedUser(jwtUser);

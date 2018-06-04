@@ -10,6 +10,7 @@ public class JwtUser {
     private String password;
     private String role;
     private int careInstitutionId;
+    private String latestToken;
     private IAuthUsersDAO authUsersDAO = new AuthUsersDAOImpl();
 
     /**
@@ -84,12 +85,41 @@ public class JwtUser {
         this.role = role;
     }
 
+    /**
+     * Getter for property 'latestToken'.
+     *
+     * @return Value for property 'latestToken'.
+     */
+    public String getLatestToken() {
+        return latestToken;
+    }
+
+    /**
+     * Setter for property 'latestToken'.
+     *
+     * @param latestToken Value to set for property 'latestToken'.
+     */
+    public void setLatestToken(String latestToken) {
+        this.latestToken = latestToken;
+    }
+
     public void saveAuthenticatedUser(JwtUser jwtUser){
         AuthUsersEntity authUsersEntity = new AuthUsersEntity();
         authUsersEntity.setUserName(jwtUser.getUserName());
         authUsersEntity.setPassword(BCrypt.hashpw(jwtUser.getPassword(), BCrypt.gensalt()));
         authUsersEntity.setRole(jwtUser.getRole());
         authUsersEntity.setCareInstitutionId(jwtUser.getCareInstitutionId());
+        authUsersEntity.setLatestToken(jwtUser.getLatestToken());
         authUsersDAO.add(authUsersEntity);
+    }
+
+    public void updateToken(JwtUser jwtUser) {
+        AuthUsersEntity authUsersEntity = new AuthUsersEntity();
+        authUsersEntity.setUserName(jwtUser.getUserName());
+        authUsersEntity.setPassword(BCrypt.hashpw(jwtUser.getPassword(), BCrypt.gensalt()));
+        authUsersEntity.setRole(jwtUser.getRole());
+        authUsersEntity.setCareInstitutionId(jwtUser.getCareInstitutionId());
+        authUsersEntity.setLatestToken(jwtUser.getLatestToken());
+        authUsersDAO.update(authUsersEntity);
     }
 }

@@ -21,10 +21,11 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
 
     @Autowired
     private JwtValidator validator;
+    AuthService authService = new AuthService();
+
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
-        AuthService authService = new AuthService();
         if (authService.userIsValid(userDetails.getUsername(), userDetails.getPassword()) == false) {
             throw new RuntimeException("Gebruiker bestaat niet of credentials zijn ongeldig");
         }
