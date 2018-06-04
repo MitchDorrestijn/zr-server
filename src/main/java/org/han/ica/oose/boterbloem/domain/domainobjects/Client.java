@@ -6,48 +6,53 @@ import java.util.List;
 public class Client extends User {
 
     private int id;
-    private String companion; // Supervisor of the client
-    private boolean warningPKB; // Show warning
-    private int PKB; // Personal kilometer budget
-    private byte companionRequired; // A superviser is required
+    // Supervisor of the client
+    private String companion;
+    // Show warning
+    private boolean warningPkb;
+    // Personal kilometer budget
+    private int pkb;
+    // A superviser is required
+    private byte companionRequired;
     private String image;
-    private String bankAccount; // bankaccount number.
+    // bankaccount number.
+    private String bankAccount;
     private List<Limitation> limitations = new ArrayList<>();
 
     /**
-     * Getter for property 'warningPKB'.
+     * Getter for property 'warningPkb'.
      *
-     * @return Value for property 'warningPKB'.
+     * @return Value for property 'warningPkb'.
      */
-    public boolean getWarningPKB() {
-        return warningPKB;
+    public boolean getWarningPkb() {
+        return warningPkb;
     }
 
     /**
-     * Setter for property 'warningPKB'.
+     * Setter for property 'warningPkb'.
      *
-     * @param warningPKB Value to set for property 'warningPKB'.
+     * @param warningPkb Value to set for property 'warningPkb'.
      */
-    public void setWarningPKB(boolean warningPKB) {
-        this.warningPKB = warningPKB;
+    public void setWarningPKB(boolean warningPkb) {
+        this.warningPkb = warningPkb;
     }
 
     /**
-     * Getter for property 'PKB'.
+     * Getter for property 'pkb'.
      *
-     * @return Value for property 'PKB'.
+     * @return Value for property 'pkb'.
      */
-    public int getPKB() {
-        return PKB;
+    public int getpkb() {
+        return pkb;
     }
 
     /**
-     * Setter for property 'PKB'.
+     * Setter for property 'pkb'.
      *
-     * @param PKB Value to set for property 'PKB'.
+     * @param pkb Value to set for property 'pkb'.
      */
-    public void setPKB(int PKB) {
-        this.PKB = PKB;
+    public void setpkb(int pkb) {
+        this.pkb = pkb;
     }
 
     /**

@@ -4,7 +4,7 @@ public class RideOverviewDisplay {
     private int id;
     private String driverName;
     private String accountnr;
-    private float price_of_ride;
+    private float priceOfRide;
     private String paymentDescription;
     private String paymentStatus;
     private String paymentDueBefore;
@@ -64,21 +64,21 @@ public class RideOverviewDisplay {
     }
 
     /**
-     * Getter for property 'price_of_ride'.
+     * Getter for property 'priceOfRide'.
      *
-     * @return Value for property 'price_of_ride'.
+     * @return Value for property 'priceOfRide'.
      */
-    public float getPrice_of_ride() {
-        return price_of_ride;
+    public float getpriceOfRide() {
+        return priceOfRide;
     }
 
     /**
-     * Setter for property 'price_of_ride'.
+     * Setter for property 'priceOfRide'.
      *
-     * @param price_of_ride Value to set for property 'price_of_ride'.
+     * @param priceOfRide Value to set for property 'priceOfRide'.
      */
-    public void setPrice_of_ride(float price_of_ride) {
-        this.price_of_ride = price_of_ride;
+    public void setpriceOfRide(float priceOfRide) {
+        this.priceOfRide = priceOfRide;
     }
 
     /**

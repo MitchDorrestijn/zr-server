@@ -3,8 +3,6 @@ package org.han.ica.oose.boterbloem.domain.domainmappers;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientlimitationDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.ClientlimitationDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
-import org.han.ica.oose.boterbloem.dataaccess.entities.ClientLimitationEntity;
-import org.han.ica.oose.boterbloem.dataaccess.entities.LimitationEntity;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Client;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Limitation;
 
@@ -34,7 +32,7 @@ public class ClientMapper {
         ClientEntity clientEntity = new ClientEntity();
 
         clientEntity.setCompanion(client.getCompanion());
-        clientEntity.setWarningPKB(client.getWarningPKB());
+        clientEntity.setWarningPKB(client.getWarningPkb());
         clientEntity.setPKB(client.getPKB());
         clientEntity.setCompanionRequired(client.getCompanionRequired());
         clientEntity.setImage(client.getImage());

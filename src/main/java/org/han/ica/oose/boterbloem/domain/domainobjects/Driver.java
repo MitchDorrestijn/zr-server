@@ -6,11 +6,14 @@ import java.util.List;
 public class Driver extends User {
 
     private int id;
-    private byte verification; //  VOG verified
-    private String typeOfPayment; //
-    private String image; //   copy of driver's licence
-    private String accountnr; // bank account number for payment purposes
-    private List<DriverCar> driverCars =  new ArrayList<>();
+    //  VOG verified
+    private byte verification;
+    private String typeOfPayment;
+    // copy of driver's licence
+    private String image;
+    // bank account number for payment purposes
+    private String accountnr;
+    private List<DriverCar> driverCars = new ArrayList<>();
     private float totalEarned;
     private int totalRides;
 

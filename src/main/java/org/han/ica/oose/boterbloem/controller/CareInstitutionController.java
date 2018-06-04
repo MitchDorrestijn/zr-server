@@ -17,6 +17,7 @@ public class CareInstitutionController {
 
     private ICareInstitutionService careInstitutionService = new CareInstitutionService();
 
+    /** Constructs a new CareInstitutionController. */
     @Autowired
     CareInstitutionController() {
         // Empty Constructor for Spring
@@ -68,6 +69,24 @@ public class CareInstitutionController {
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void deleteCareInstitutionById(@PathVariable int id) {
         careInstitutionService.deleteCareInstitutionById(id);
+    }
+    
+    /**
+     * Getter for property 'careInstitutionService'.
+     *
+     * @return Value for property 'careInstitutionService'.
+     */
+    public ICareInstitutionService getCareInstitutionService() {
+        return careInstitutionService;
+    }
+
+    /**
+     * Setter for property 'careInstitutionService'.
+     *
+     * @param careInstitutionService Value to set for property 'careInstitutionService'.
+     */
+    public void setCareInstitutionService(ICareInstitutionService careInstitutionService) {
+        this.careInstitutionService = careInstitutionService;
     }
 
 }

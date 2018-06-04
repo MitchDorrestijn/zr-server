@@ -74,19 +74,19 @@ public class DriverMapper {
         driver.setTypeOfPayment(d.getTypeOfPayment());
         try {
             if (drivercarDAO.findCarById(driverId) == null) {
-                driver.setNumberOfPassengers(0);
-                driver.setNumberPlate("Geen nummerplaat gevonden");
+                driver.getDriverCar().setNumberOfPassengers(0);
+                driver.getDriverCar().setNumberPlate("Geen nummerplaat gevonden");
             } else {
-                driver.setNumberOfPassengers(drivercarDAO.findCarById(driverId).getNumberOfPassengers());
-                driver.setNumberPlate(drivercarDAO.findCarById(driverId).getNumberPlate());
+                driver.getDriverCar().setNumberOfPassengers(drivercarDAO.findCarById(driverId).getNumberOfPassengers());
+                driver.getDriverCar().setNumberPlate(drivercarDAO.findCarById(driverId).getNumberPlate());
             }
+            driver.setRating(ratingsDAO.getAvgRatings(driverId));
+            driver.getDriverCar().setSegment(driver.getDriverCar().getSegment());
+            driver.setTotalEarned(rideDAO.totalEarned(driverId));
+            driver.setTotalRides(rideDAO.rideCountById(driverId));
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
-        driver.setRating(ratingsDAO.getAvgRatings(driverId));
-        driver.setSegment(driver.getSegment());
-        driver.setTotalEarned(rideDAO.totalEarned(driverId));
-        driver.setTotalRides(rideDAO.rideCountById(driverId));
         return driver;
     }
 

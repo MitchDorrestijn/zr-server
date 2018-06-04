@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RatingsMapper {
-    private static final Logger LOGGER = Logger.getLogger(RatingsService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(RatingsMapper.class.getName());
 
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
 
@@ -78,8 +78,8 @@ public class RatingsMapper {
     private Ratings fillRatingsDomain(RatingsEntity r) {
         UserMapper userMapper = new UserMapper();
         Ratings rating = new Ratings();
-        rating.setClientName(userMapper.findNameById(r.getClientId()));
-        rating.setDriverName(userMapper.findNameById(r.getDriverId()));
+        rating.setclientName(userMapper.findNameById(r.getClientId()));
+        rating.setdriverName(userMapper.findNameById(r.getDriverId()));
         rating.setStars(r.getSterren());
         rating.setComment(r.getBeoordeling());
         return rating;

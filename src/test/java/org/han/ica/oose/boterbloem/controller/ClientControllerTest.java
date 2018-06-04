@@ -1,49 +1,110 @@
-//package org.han.ica.oose.boterbloem.controller;
-//
-//import org.han.ica.oose.boterbloem.domain.domainobjects.Client;
-//import org.han.ica.oose.boterbloem.service.serviceimplementation.ClientService;
-//import org.junit.*;
-//
-//import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import static org.junit.Assert.*;
-//import static org.mockito.Mockito.*;
-//
-//public class ClientControllerTest {
-//
-//    private Client clientA = new Client(1,"Mees",500,false,0,500);
-//    private Client clientB = new Client(2,"Mitch",850,true,0,1000);
-//    private Client clientC = new Client(3,"Martijn",320,true,0,500);
-//    private Client clientD = new Client(4,"Mees",500,false,0,500);
-//
-//    private List<Client> clients = new ArrayList<>();
-//
-//    private ClientController clientController = new ClientController();
-//    private ClientService clientService = mock(ClientService.class);
-//
-//    @Before
-//    public void setup() {
-//        clients.add(clientA);
-//        clients.add(clientB);
-//        clients.add(clientC);
-//        clients.add(clientD);
-//        clientController.clientService = clientService;
-//    }
-//
-//    @Test
-//    public void getAllClients() throws SQLException {
-//        when(clientService.getAllClients()).thenReturn(clients);
-//        List<Client> testClients = clientController.getAllCliënten();
-//        assertEquals(4, testClients.size());
-//    }
-//
-//    @Test
-//    public void getCareInstitutionTest() throws SQLException {
-//        when(clientService.findById(1)).thenReturn(clientA);
-//        Client testClient = clientController.getCliëntById("1");
-//        assertEquals("Mees", testClient.getName());
-//    }
-//
-//}
+package org.han.ica.oose.boterbloem.controller;
+
+
+import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
+import org.han.ica.oose.boterbloem.display.displayobject.ClientDetailDisplay;
+import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Address;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Client;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.ClientService;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class ClientControllerTest {
+
+    private Client clientA = new Client();
+    private Client clientB = new Client();
+    private Client clientC = new Client();
+
+    ClientEntity clientEntity = new ClientEntity();
+
+    private ClientDisplay clientDisplayA = new ClientDisplay();
+    private ClientDisplay clientDisplayB = new ClientDisplay();
+
+    ClientDetailDisplay clientDetailDisplayA = new ClientDetailDisplay();
+
+    private List<Client> clients = new ArrayList<>();
+    private List<ClientDisplay> clientDisplays = new ArrayList<>();
+
+    private ClientController clientController = new ClientController();
+    private ClientService clientService = mock(ClientService.class);
+
+
+    @Before
+    public void setup() {
+        Address address = new Address();
+
+        address.setHouseNumber("5");
+        address.setResidence("somewhere");
+        address.setStreet("SomeString");
+        address.setZipCode("SomeString");
+
+        clientA.setFirstName("Henk");
+        clientA.setLastName("lastname");
+        clientA.setAddress(address);
+
+        clientB.setFirstName("Klaas");
+        clientB.setLastName("lastname");
+        clientB.setAddress(address);
+
+        clientC.setFirstName("Kees");
+        clientC.setLastName("lastname");
+        clientC.setAddress(address);
+
+        clientDisplayA.setName("Slagathor");
+        clientDisplayA.setClientId(1);
+
+        clientDisplayB.setName("Snorfiets");
+        clientDisplayB.setClientId(2);
+
+        clientEntity.setClientId(1);
+
+        clientDetailDisplayA.setClient(clientEntity);
+
+
+        clients.add(clientA);
+        clients.add(clientB);
+        clients.add(clientC);
+        clientDisplays.add(clientDisplayA);
+        clientDisplays.add(clientDisplayB);
+
+        clientController.clientService = clientService;
+    }
+
+    @Test
+    public void getAllClients() {
+        when(clientService.getAllClients()).thenReturn(clientDisplays);
+        List<ClientDisplay> testClients = clientController.getAllClients();
+        assertEquals(2, testClients.size());
+    }
+
+    @Test
+    public void getClientById() {
+
+
+        when(clientService.findById(1)).thenReturn(clientEntity);
+        ClientEntity testClient = clientController.getClientById(1);
+        assertEquals(1, testClient.getClientId());
+    }
+
+    @Test
+    public void getClientDetails() {
+        when(clientService.getClientDetails(1)).thenReturn(clientDetailDisplayA);
+        ClientDetailDisplay clientDetailDisplay = clientController.getClientDetails(1);
+        assertEquals(clientDetailDisplayA.getClient().getClientId(), clientDetailDisplay.getClient().getClientId());
+    }
+
+}

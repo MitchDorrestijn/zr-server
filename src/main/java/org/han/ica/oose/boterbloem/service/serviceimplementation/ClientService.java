@@ -100,10 +100,10 @@ public class ClientService implements IClientservice {
     @Override
     public void updateClient(ClientDetailDisplay clientDetailDisplay) {
         int clientId = clientDetailDisplay.getClient().getClientId();
-        if (clientDetailDisplay.getClient() != clientDAO.findById(clientId)) {
+        if (!clientDetailDisplay.getClient().equals(clientDAO.findById(clientId))) {
             clientDAO.update(clientDetailDisplay.getClient());
         }
-        if (clientDetailDisplay.getLimitations() != clientlimitationDAO.getByClientId(clientId)) {
+        if (!clientDetailDisplay.getLimitations().equals(clientlimitationDAO.getByClientId(clientId))) {
             clientlimitationDAO.updateClientLimitations(clientDetailDisplay.getLimitations(), clientId);
         }
     }

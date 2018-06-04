@@ -30,7 +30,7 @@ public class LimitationService implements ILimitationService {
     public List <LimitationEntity> getAllLimitations() {
         try {
             return limitationDAO.findAll();
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
             return new ArrayList<>();
         }

@@ -24,10 +24,11 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
         super(RatingsEntity.class);
     }
 
-    public int getAvgRatings(int id){
+    public int getAvgRatings(int id) {
         try {
             return ((Number) getEntityManager().createQuery("SELECT AVG(sterren) FROM RatingsEntity WHERE driverId = :id").setParameter("id", id).getSingleResult()).intValue();
-        } catch (NullPointerException n){
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
             return 0;
         }
     }
@@ -35,8 +36,13 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
     @Override
     @SuppressWarnings("unchecked")
     public List<RatingsEntity> getByDriver(int driverId) {
-        return getEntityManager().createQuery("FROM RatingsEntity " +
-                "WHERE driverId = :driverId").setParameter("driverId", driverId).getResultList();
+        try {
+            return getEntityManager().createQuery("FROM RatingsEntity " +
+                    "WHERE driverId = :driverId").setParameter("driverId", driverId).getResultList();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+            return new ArrayList<>();
+        }
     }
 
     /**
@@ -51,10 +57,10 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
             List<DrivercareinstitutionEntity> drivercareinstitutionEntities = getEntityManager().createQuery("FROM DrivercareinstitutionEntity " +
                     "WHERE careInstitutionId = :careInstitutionId").setParameter("careInstitutionId", careInstitutionId).getResultList();
 
-            for (DrivercareinstitutionEntity d: drivercareinstitutionEntities) {
+            for (DrivercareinstitutionEntity d : drivercareinstitutionEntities) {
                 ratings.add(getByDriver(d.getDriverId()));
             }
-        } catch (NullPointerException e){
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return ratings;
