@@ -53,7 +53,7 @@ public class RideMapper {
         ride.setPickUpDateTime(rideEntity.getPickUpDateTime());
         ride.setPickUpLocation(rideEntity.getPickUpLocation());
         ride.setDropOffLocation(rideEntity.getDropOffLocation());
-        for(UtilityEntity utilityEntity: rideEntity.getUtilityEntity()) {
+        for(UtilityEntity utilityEntity: rideEntity.getUtilityEntities()) {
             ride.addUtility(utilityMapper.extractUtility(utilityEntity));
         }
         ride.setDriver(driverMapper.extractDriver(rideEntity.getDriverEntity()));
@@ -62,7 +62,7 @@ public class RideMapper {
         ride.setPaymentStatus(rideEntity.getPaymentStatus());
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(rideEntity.getPaymentDueBefore());
-            ride.setPaymentDueBefore(date);
+            ride.setPaymentDueBefore((java.sql.Date)date);
         } catch (ParseException e) {
             LOGGER.log(Level.WARNING, "Problem while parsing the date", e);
             ride.setPaymentDueBefore(null);

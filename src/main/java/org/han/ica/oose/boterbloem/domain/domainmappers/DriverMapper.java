@@ -124,9 +124,9 @@ public class DriverMapper {
      */
     private List<DriverCar> setDriverCarsByDriverId(int driverId) {
         List<DriverCar> driverCars = new ArrayList<>();
-        for (DrivercarEntity driverCarEntity : drivercarDAO.drivercarEntityListByDriverId(driverId)) {
-            driverCars.add(driverCarMapper.extractDriverCar(driverCarEntity));
-        }
+//        for (DrivercarEntity driverCarEntity : drivercarDAO.drivercarEntityListByDriverId(driverId)) {
+//            driverCars.add(driverCarMapper.extractDriverCar(driverCarEntity));
+//        }
         return driverCars;
     }
 }

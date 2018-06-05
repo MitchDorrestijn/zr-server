@@ -54,7 +54,7 @@ public class RideEntity {
     }
 
     @Basic
-    @Column(name = "price_of_ride")
+    @Column(name = "priceOfRide")
     public float getPriceOfRide() {
         return priceOfRide;
     }
@@ -228,7 +228,7 @@ public class RideEntity {
 
     @OneToMany
     @JoinColumn(name = "name")
-    public List<UtilityEntity> getUtilityEntity() {
+    public List<UtilityEntity> getUtilityEntities() {
         return utilityEntities;
     }
 

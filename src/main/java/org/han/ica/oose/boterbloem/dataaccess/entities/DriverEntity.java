@@ -39,13 +39,13 @@ public class DriverEntity {
 
 
     @Basic
-    @Column(name = "type_of_payment")
+    @Column(name = "typeOfPayment")
     public String getTypeOfPayment() {
         return typeOfPayment;
     }
 
-    public void setTypeOfPayment(String type_of_payment) {
-        this.typeOfPayment = type_of_payment;
+    public void setTypeOfPayment(String typeOfPayment) {
+        this.typeOfPayment = typeOfPayment;
     }
 
     @Basic
