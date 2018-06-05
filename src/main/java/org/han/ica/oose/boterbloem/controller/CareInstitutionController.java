@@ -18,7 +18,7 @@ public class CareInstitutionController {
     private ICareInstitutionService careInstitutionService = new CareInstitutionService();
 
     /** Constructs a new CareInstitutionController. */
-    @Autowired
+
     CareInstitutionController() {
         // Empty Constructor for Spring
     }

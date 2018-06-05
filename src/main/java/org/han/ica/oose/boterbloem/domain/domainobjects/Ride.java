@@ -1,32 +1,32 @@
 package org.han.ica.oose.boterbloem.domain.domainobjects;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 public class Ride {
-    private LocalDateTime pickUpDateTime;
-    private Location pickUpLocation;
-    private Location dropOffLocation;
+    private Timestamp pickUpDateTime;
+    private String pickUpLocation;
+    private String dropOffLocation;
     private List<Utility> utilities;
     private Driver driver;
     private Client client;
     private String paymentDescription;
     private String paymentStatus;
     private Date paymentDueBefore;
-    private float price_of_ride;
+    private float priceOfRide;
     //How many people are in the car besides the driver + client
     private int numberOfcompanions;
     private int numberOfLuggage;
-    private boolean returnRide;
-    private boolean callService;
+    private byte returnRide;
+    private byte callService;
 
     /**
      * Getter for property 'pickUpDateTime'.
      *
      * @return Value for property 'pickUpDateTime'.
      */
-    public LocalDateTime getPickUpDateTime() {
+    public Timestamp getPickUpDateTime() {
         return pickUpDateTime;
     }
 
@@ -35,7 +35,7 @@ public class Ride {
      *
      * @param pickUpDateTime Value to set for property 'pickUpDateTime'.
      */
-    public void setPickUpDateTime(LocalDateTime pickUpDateTime) {
+    public void setPickUpDateTime(Timestamp pickUpDateTime) {
         this.pickUpDateTime = pickUpDateTime;
     }
 
@@ -44,7 +44,7 @@ public class Ride {
      *
      * @return Value for property 'pickUpLocation'.
      */
-    public Location getPickUpLocation() {
+    public String getPickUpLocation() {
         return pickUpLocation;
     }
 
@@ -53,7 +53,7 @@ public class Ride {
      *
      * @param pickUpLocation Value to set for property 'pickUpLocation'.
      */
-    public void setPickUpLocation(Location pickUpLocation) {
+    public void setPickUpLocation(String pickUpLocation) {
         this.pickUpLocation = pickUpLocation;
     }
 
@@ -62,7 +62,7 @@ public class Ride {
      *
      * @return Value for property 'dropOffLocation'.
      */
-    public Location getDropOffLocation() {
+    public String getDropOffLocation() {
         return dropOffLocation;
     }
 
@@ -71,7 +71,7 @@ public class Ride {
      *
      * @param dropOffLocation Value to set for property 'dropOffLocation'.
      */
-    public void setDropOffLocation(Location dropOffLocation) {
+    public void setDropOffLocation(String dropOffLocation) {
         this.dropOffLocation = dropOffLocation;
     }
 
@@ -87,10 +87,10 @@ public class Ride {
     /**
      * Setter for property 'utilities'.
      *
-     * @param utilities Value to set for property 'utilities'.
+     * @param utility Value to set for property 'utilities'.
      */
-    public void setUtilities(List<Utility> utilities) {
-        this.utilities = utilities;
+    public void addUtility(Utility utility) {
+        this.utilities.add(utility);
     }
 
     /**
@@ -184,21 +184,21 @@ public class Ride {
     }
 
     /**
-     * Getter for property 'price_of_ride'.
+     * Getter for property 'priceOfRide'.
      *
-     * @return Value for property 'price_of_ride'.
+     * @return Value for property 'priceOfRide'.
      */
-    public float getPrice_of_ride() {
-        return price_of_ride;
+    public float getPriceOfRide() {
+        return priceOfRide;
     }
 
     /**
-     * Setter for property 'price_of_ride'.
+     * Setter for property 'priceOfRide'.
      *
-     * @param price_of_ride Value to set for property 'price_of_ride'.
+     * @param priceOfRide Value to set for property 'priceOfRide'.
      */
-    public void setPrice_of_ride(float price_of_ride) {
-        this.price_of_ride = price_of_ride;
+    public void setPriceOfRide(float priceOfRide) {
+        this.priceOfRide = priceOfRide;
     }
 
     /**
@@ -242,7 +242,7 @@ public class Ride {
      *
      * @return Value for property 'returnRide'.
      */
-    public boolean isReturnRide() {
+    public byte isReturnRide() {
         return returnRide;
     }
 
@@ -251,7 +251,7 @@ public class Ride {
      *
      * @param returnRide Value to set for property 'returnRide'.
      */
-    public void setReturnRide(boolean returnRide) {
+    public void setReturnRide(byte returnRide) {
         this.returnRide = returnRide;
     }
 
@@ -260,7 +260,7 @@ public class Ride {
      *
      * @return Value for property 'callService'.
      */
-    public boolean isCallService() {
+    public byte isCallService() {
         return callService;
     }
 
@@ -269,7 +269,7 @@ public class Ride {
      *
      * @param callService Value to set for property 'callService'.
      */
-    public void setCallService(boolean callService) {
+    public void setCallService(byte callService) {
         this.callService = callService;
     }
 }

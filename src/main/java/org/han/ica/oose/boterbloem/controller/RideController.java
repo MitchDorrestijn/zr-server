@@ -4,6 +4,7 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
+import org.han.ica.oose.boterbloem.display.displayobject.RidesByCareinstitutionDisplay;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Ride;
 import org.han.ica.oose.boterbloem.service.IRideService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.RideService;
@@ -75,8 +76,15 @@ public class RideController {
         rideService.deleteRideById(id);
     }
 
-    @RequestMapping(value = "careinstitutionRides", method = RequestMethod.GET)
-    public List<Ride> ridesFromCareinstitution(@PathVariable int careId) {
-      return rideService.getRidesFromCareInstitution(careId);
+
+    @RequestMapping(value = "/careinstitutionRides/{careId}", method = RequestMethod.GET)
+    public List<RidesByCareinstitutionDisplay> ridesFromCareinstitution(@PathVariable int careId) {
+        return rideService.getRidesFromCareInstitution(careId);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public void updateRide(@PathVariable CreateRideDisplay ride) {
+        rideService.update(ride);
+
     }
 }

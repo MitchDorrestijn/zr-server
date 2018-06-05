@@ -5,10 +5,11 @@ import java.util.List;
 
 public class Client extends User {
 
+    private int id;
     // Supervisor of the client
     private String companion;
     // Show warning
-    private byte warningpkb;
+    private boolean warningPkb;
     // Personal kilometer budget
     private int pkb;
     // A superviser is required
@@ -19,21 +20,21 @@ public class Client extends User {
     private List<Limitation> limitations = new ArrayList<>();
 
     /**
-     * Getter for property 'warningpkb'.
+     * Getter for property 'warningPkb'.
      *
-     * @return Value for property 'warningpkb'.
+     * @return Value for property 'warningPkb'.
      */
-    public byte getWarningpkb() {
-        return warningpkb;
+    public boolean getWarningPkb() {
+        return warningPkb;
     }
 
     /**
-     * Setter for property 'warningpkb'.
+     * Setter for property 'warningPkb'.
      *
-     * @param warningpkb Value to set for property 'warningpkb'.
+     * @param warningPkb Value to set for property 'warningPkb'.
      */
-    public void setWarningpkb(byte warningpkb) {
-        this.warningpkb = warningpkb;
+    public void setWarningPKB(boolean warningPkb) {
+        this.warningPkb = warningPkb;
     }
 
     /**
@@ -41,7 +42,7 @@ public class Client extends User {
      *
      * @return Value for property 'pkb'.
      */
-    public int getpkb() {
+    public int getPkb() {
         return pkb;
     }
 
@@ -50,7 +51,7 @@ public class Client extends User {
      *
      * @param pkb Value to set for property 'pkb'.
      */
-    public void setpkb(int pkb) {
+    public void setPkb(int pkb) {
         this.pkb = pkb;
     }
 
@@ -126,6 +127,10 @@ public class Client extends User {
         this.limitations = limitations;
     }
 
+    public void addLimitation(Limitation limitation) {
+        this.limitations.add(limitation);
+    }
+
     /**
      * Getter for property 'companion'.
      *
@@ -142,5 +147,13 @@ public class Client extends User {
      */
     public void setCompanion(String companion) {
         this.companion = companion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

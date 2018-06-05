@@ -3,6 +3,7 @@ package org.han.ica.oose.boterbloem.dataaccess.daohibernate;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.IGenericDAO;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface IRideDAO extends IGenericDAO<RideEntity> {
@@ -17,5 +18,9 @@ public interface IRideDAO extends IGenericDAO<RideEntity> {
 
     float totalEarned(int id);
 
+
     List<RideEntity> ridesWithCareinstitution(int careId);
+
+    RideEntity getByClientAndDateTime(int clientId, Timestamp date);
+
 }
