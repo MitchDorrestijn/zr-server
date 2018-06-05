@@ -1,7 +1,6 @@
 package org.han.ica.oose.boterbloem.dataaccess.entities;
 
 
-
 import javax.persistence.*;
 
 
@@ -37,15 +36,14 @@ public class DriverEntity {
     }
 
 
-
     @Basic
-    @Column(name = "type_of_payment")
+    @Column(name = "typeOfPayment")
     public String getTypeOfPayment() {
         return typeOfPayment;
     }
 
-    public void setTypeOfPayment(String type_of_payment) {
-        this.typeOfPayment = type_of_payment;
+    public void setTypeOfPayment(String typeOfPayment) {
+        this.typeOfPayment = typeOfPayment;
     }
 
     @Basic
@@ -58,15 +56,6 @@ public class DriverEntity {
         this.verification = verification;
     }
 
-//    @Basic
-//    @Column(name = "utility")
-//    public String getUtility() {
-//        return utility;
-//    }
-//
-//    public void setUtility(String utility) {
-//        this.utility = utility;
-//    }
 
     @Basic
     @Column(name = "image")

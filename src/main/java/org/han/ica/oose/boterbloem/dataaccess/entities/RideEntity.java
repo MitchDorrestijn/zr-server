@@ -54,7 +54,7 @@ public class RideEntity {
     }
 
     @Basic
-    @Column(name = "price_of_ride")
+    @Column(name = "priceOfRide")
     public float getPriceOfRide() {
         return priceOfRide;
     }
@@ -226,12 +226,19 @@ public class RideEntity {
         this.fixedRide = fixedRide;
     }
 
+    @Transient
     @OneToMany
     @JoinColumn(name = "name")
     public List<UtilityEntity> getUtilityEntity() {
         return utilityEntities;
     }
 
+    /**
+     * Setter for property 'utilityEntities'.
+     *
+     * @param utilityEntities Value to set for property 'utilityEntities'.
+     */
+    @Transient
     public void setUtilityEntities(List<UtilityEntity> utilityEntities) {
         this.utilityEntities = utilityEntities;
     }
