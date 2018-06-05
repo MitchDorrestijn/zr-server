@@ -84,4 +84,8 @@ public class RatingsMapper {
         rating.setComment(r.getBeoordeling());
         return rating;
     }
+
+    public int getAvgRating(int id) {
+        return ratingsDAO.getAvgRatings(id);
+    }
 }
