@@ -133,7 +133,7 @@ public class RideService implements IRideService {
     public void update(CreateRideDisplay ride) {
         RideDisplayMapper rideDisplayMapper = new RideDisplayMapper();
         try {
-
+            rideDisplayMapper.updateRide(ride);
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
