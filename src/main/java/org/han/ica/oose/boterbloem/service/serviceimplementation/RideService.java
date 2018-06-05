@@ -14,7 +14,6 @@ import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RidesByCareinstitutionDisplay;
 import org.han.ica.oose.boterbloem.domain.domainmappers.RideMapper;
-import org.han.ica.oose.boterbloem.domain.domainobjects.Ride;
 
 import org.han.ica.oose.boterbloem.domain.domainmappers.UtilityMapper;
 
