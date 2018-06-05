@@ -159,6 +159,11 @@ public class RideMapper {
     }
 
 
+    /**
+     *
+     * @param careId careisntitution id
+     * @return all (Domein) rides from a careisntitution
+     */
     public List<Ride> getAllRidesByInstitution(int careId) {
         List<RideEntity> rideEntities = rideDAO.ridesWithCareinstitution(careId);
         List<Ride> rides = new ArrayList<>();
@@ -168,10 +173,6 @@ public class RideMapper {
             } catch (Exception e) {
                 LOGGER.log(Level.WARNING, e.getMessage());
             }
-        }
-        System.out.println(rides.size() + "   Rides size");
-        for (Ride ride : rides) {
-            System.out.println(ride.getPickUpDateTime());
         }
         return rides;
     }

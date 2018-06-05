@@ -20,6 +20,11 @@ public class RideDisplayMapper {
         rideMapper.updateRide(ride);
     }
 
+    /**
+     *  finds all the rides with a driver or client who is assigned to a carinstitution
+     * @param careId of the careinstitution
+     * @return list of display's
+     */
     public List<RidesByCareinstitutionDisplay> getAllRidesByInstitution(int careId) {
         List<Ride> rides = rideMapper.getAllRidesByInstitution(careId);
         List<RidesByCareinstitutionDisplay> ridesByCareinstitutionDisplays = new ArrayList<>();
