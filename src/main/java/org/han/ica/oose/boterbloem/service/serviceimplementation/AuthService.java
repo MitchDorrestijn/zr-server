@@ -2,6 +2,7 @@ package org.han.ica.oose.boterbloem.service.serviceimplementation;
 
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IAuthUsersDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.AuthUsersDAOImpl;
+import org.han.ica.oose.boterbloem.domain.domainmappers.AuthenticationMapper;
 import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
 import org.han.ica.oose.boterbloem.dataaccess.entities.AuthUsersEntity;
 import org.han.ica.oose.boterbloem.service.IAuthService;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 
 public class AuthService implements IAuthService {
     private static final Logger LOGGER = Logger.getLogger(AuthService.class.getName());
+    private AuthenticationMapper authenticationMapper = new AuthenticationMapper();
     private IAuthUsersDAO authUsersDAO = new AuthUsersDAOImpl();
 
     /**
@@ -83,6 +85,27 @@ public class AuthService implements IAuthService {
             LOGGER.log(Level.WARNING, e.getMessage());
         }
         return careInstitutionId;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<JwtUser> getAllAuthenticatedUsers() {
+        return authenticationMapper.getAllAuthenticatedUsers();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void deleteAuthenticatedUser(String userName) {
+        try {
+            AuthUsersEntity authenticatedUserToBeRemoved = authUsersDAO.findByUserName(userName);
+            authUsersDAO.remove(authenticatedUserToBeRemoved);
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
     }
 
     /**

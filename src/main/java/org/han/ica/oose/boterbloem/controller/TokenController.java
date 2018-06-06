@@ -38,13 +38,4 @@ public class TokenController {
         return authService.tokenExists(token);
     }
 
-    /**
-     * The endpoint to add a new authenticated user
-     * @param jwtUser the user that needs to be added as authenticated user
-     */
-    @AdminAuthorization
-    @RequestMapping(value = "/rest/addAuthenticatedUser", method = RequestMethod.POST)
-    public void addAuthenticatedUser(@RequestBody JwtUser jwtUser){
-        authService.createAuthenticatedUser(jwtUser);
-    }
 }

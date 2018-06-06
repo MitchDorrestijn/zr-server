@@ -4,4 +4,11 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.IGenericDA
 import org.han.ica.oose.boterbloem.dataaccess.entities.AuthUsersEntity;
 
 public interface IAuthUsersDAO extends IGenericDAO<AuthUsersEntity> {
+
+    /**
+     * Find auhenticated user by a given name
+     * @param userName
+     * @return
+     */
+    AuthUsersEntity findByUserName(String userName);
 }

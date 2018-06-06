@@ -2,6 +2,8 @@ package org.han.ica.oose.boterbloem.service;
 
 import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
 
+import java.util.List;
+
 public interface IAuthService {
 
     /**
@@ -45,4 +47,16 @@ public interface IAuthService {
      * @return the careInstitutionId of the user
      */
     int findCareInstitutionIdByUsernameAndPassword(String userName, String password);
+
+    /**
+     * This method gets all the authenticated users
+     * @return a list of all authenticated users
+     */
+    List<JwtUser> getAllAuthenticatedUsers();
+
+    /**
+     * This method removes a authenticated user based on the given username
+     * @param userName the username that needs to be removed
+     */
+    void deleteAuthenticatedUser(String userName);
 }

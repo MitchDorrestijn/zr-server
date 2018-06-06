@@ -4,11 +4,6 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IAuthUsersDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.AuthUsersEntity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class AuthUsersDAOImpl extends GenericDAOImpl<AuthUsersEntity> implements IAuthUsersDAO {
 
     /**
@@ -18,4 +13,12 @@ public class AuthUsersDAOImpl extends GenericDAOImpl<AuthUsersEntity> implements
         super(AuthUsersEntity.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AuthUsersEntity findByUserName(String userName) {
+        return (AuthUsersEntity) getEntityManager().createQuery("FROM AuthUsersEntity "+
+                "WHERE userName = :userName").setParameter("userName", userName).getSingleResult();
+    }
 }
