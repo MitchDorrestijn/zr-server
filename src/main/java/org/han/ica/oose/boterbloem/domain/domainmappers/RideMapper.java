@@ -1,18 +1,22 @@
 package org.han.ica.oose.boterbloem.domain.domainmappers;
 
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDrivercarDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRideDAO;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.DrivercarDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RideDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.UtilityEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
+import org.han.ica.oose.boterbloem.domain.domainobjects.DriverCar;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Ride;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Utility;
 
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,9 +24,12 @@ import java.util.logging.Logger;
 public class RideMapper {
     private static final Logger LOGGER = Logger.getLogger(RideMapper.class.getName());
     private IRideDAO rideDAO = new RideDAOImpl();
+
+    private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl();
     private UtilityMapper utilityMapper = new UtilityMapper();
     private DriverMapper driverMapper = new DriverMapper();
     private ClientMapper clientMapper = new ClientMapper();
+
 
     public List<RideOverviewDisplay> getRideOverview() {
         List<RideOverviewDisplay> returnList = new ArrayList<>();
@@ -44,40 +51,50 @@ public class RideMapper {
 
     /**
      * Extracts ride object from ride entity
+     *
      * @param rideEntity
      * @return
      */
     private Ride extractRide(RideEntity rideEntity) {
         Ride ride = new Ride();
-
-        ride.setPickUpDateTime(rideEntity.getPickUpDateTime());
-        ride.setPickUpLocation(rideEntity.getPickUpLocation());
-        ride.setDropOffLocation(rideEntity.getDropOffLocation());
-        for(UtilityEntity utilityEntity: rideEntity.getUtilityEntities()) {
-            ride.addUtility(utilityMapper.extractUtility(utilityEntity));
+        try {
+            ride.setPickUpDateTime(rideEntity.getPickUpDateTime());
+            ride.setPickUpLocation(rideEntity.getPickUpLocation());
+            ride.setDropOffLocation(rideEntity.getDropOffLocation());
+            ride.setDriver(driverMapper.extractDriver(rideEntity.getDriverEntity()));
+            ride.setClient(clientMapper.extractClient(rideEntity.getClientEntity()));
+            ride.setPaymentDescription(rideEntity.getPaymentDescription());
+            ride.setPaymentStatus(rideEntity.getPaymentStatus());
+            for (UtilityEntity utilityEntity : rideEntity.getUtilityEntities()) {
+                ride.addUtility(utilityMapper.extractUtility(utilityEntity));
+            }
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
-        ride.setDriver(driverMapper.extractDriver(rideEntity.getDriverEntity()));
-        ride.setClient(clientMapper.extractClient(rideEntity.getClientEntity()));
-        ride.setPaymentDescription(rideEntity.getPaymentDescription());
-        ride.setPaymentStatus(rideEntity.getPaymentStatus());
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(rideEntity.getPaymentDueBefore());
-            ride.setPaymentDueBefore((java.sql.Date)date);
+            ride.setPaymentDueBefore((java.sql.Date) date);
         } catch (ParseException e) {
             LOGGER.log(Level.WARNING, "Problem while parsing the date", e);
             ride.setPaymentDueBefore(null);
         }
-        ride.setPriceOfRide(rideEntity.getPriceOfRide());
-        ride.setNumberOfcompanions(rideEntity.getNumberOfcompanions());
-        ride.setNumberOfLuggage(rideEntity.getNumberOfLuggage());
-        ride.setReturnRide(rideEntity.getReturnRide());
-        ride.setCallService(rideEntity.getCallService());
+        try {
+            ride.setPriceOfRide(rideEntity.getPriceOfRide());
+            ride.setNumberOfcompanions(rideEntity.getNumberOfcompanions());
+            ride.setNumberOfLuggage(rideEntity.getNumberOfLuggage());
+            ride.setReturnRide(rideEntity.getReturnRide());
+            ride.setCallService(rideEntity.getCallService());
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
 
         return ride;
     }
 
+
     /**
      * Converts ride to rideEntity
+     *
      * @param ride
      * @param rideEntity
      * @return
@@ -87,7 +104,7 @@ public class RideMapper {
         rideEntity.setPickUpLocation(ride.getPickUpLocation());
         rideEntity.setDropOffLocation(ride.getDropOffLocation());
         List<UtilityEntity> utilityEntities = new ArrayList<>();
-        for(Utility utility : ride.getUtilities()) {
+        for (Utility utility : ride.getUtilities()) {
             utilityEntities.add(utilityMapper.convertUtility(utility));
         }
         rideEntity.setUtilityEntities(utilityEntities);
@@ -106,6 +123,7 @@ public class RideMapper {
 
     /**
      * Updates ride in the database
+     *
      * @param ride
      */
     public void updateRide(Ride ride) {
@@ -115,6 +133,7 @@ public class RideMapper {
 
     /**
      * Puts all required information into ridedisplay
+     *
      * @param r
      * @return
      */
@@ -135,4 +154,44 @@ public class RideMapper {
         rideOverviewDisplay.setPaymentDueBefore(r.getPaymentDueBefore());
         return rideOverviewDisplay;
     }
+
+
+    /**
+     * @param careId careisntitution id
+     * @return all (Domein) rides from a careisntitution
+     */
+    public List<Ride> getAllRidesByInstitution(int careId) {
+        List<RideEntity> rideEntities = rideDAO.ridesWithCareinstitution(careId);
+        List<Ride> rides = new ArrayList<>();
+        for (RideEntity rideEntity : rideEntities) {
+            try {
+                rides.add(extractRide(rideEntity));
+            } catch (Exception e) {
+                LOGGER.log(Level.WARNING, e.getMessage());
+            }
+        }
+        return rides;
+    }
+
+    /**
+     * Set the driverCars of a driver
+     *
+     * @param driverId id of the driver
+     * @return List of drivercars
+     */
+    private List<DriverCar> setDriverCarsByDriverId(int driverId) {
+        List<DriverCar> driverCars = new ArrayList<>();
+        for (DrivercarEntity driverCarEntities : drivercarDAO.drivercarEntityListByDriverId(driverId)) {
+            DriverCar driverCar = new DriverCar();
+            driverCar.setNumberOfPassengers(driverCarEntities.getNumberOfPassengers());
+            driverCar.setNumberPlate(driverCarEntities.getNumberPlate());
+            driverCar.setSegment(driverCarEntities.getSegment());
+            driverCar.setBrand(driverCarEntities.getBrand());
+            driverCar.setUtility(driverCarEntities.getUtility());
+            driverCars.add(driverCar);
+        }
+        return driverCars;
+    }
+
+
 }

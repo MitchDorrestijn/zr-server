@@ -14,8 +14,8 @@ public class Driver extends User {
     // bank account number for payment purposes
     private String accountnr;
     private List<DriverCar> driverCars = new ArrayList<>();
-    private float totalEarned;
-    private int totalRides;
+    private float totalEarned = 0;
+    private int totalRides = 0;
 
 
     /**

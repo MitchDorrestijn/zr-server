@@ -84,6 +84,20 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
         }
     }
 
+    /**
+     * return rides from a careinstitution
+     */
+    @SuppressWarnings("unchecked")
+    public List<RideEntity> ridesWithCareinstitution(int careId) {
+        try {
+            return getEntityManager().createQuery("FROM RideEntity s WHERE driverEntity.driverId IN (SELECT driverId FROM DrivercareinstitutionEntity WHERE careInstitutionId = :careId) OR clientEntity.clientId IN (SELECT clientId from ClientcareinstitutionEntity WHERE careInstitutionId = :careId) ").setParameter("careId", careId).getResultList();
+        } catch (NullPointerException e) {
+
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
     @Override
     public RideEntity getByClientAndDateTime(int clientId, Timestamp date) {
         try {
@@ -91,7 +105,9 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
             return new RideEntity();
+
         }
     }
 }
+
 

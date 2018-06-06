@@ -10,7 +10,9 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.Rat
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RideDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DriverEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntity;
+import org.han.ica.oose.boterbloem.dataaccess.entities.UserEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.DriverDisplay;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Address;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Driver;
 import org.han.ica.oose.boterbloem.domain.domainobjects.DriverCar;
 
@@ -19,7 +21,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DriverMapper {
+public class DriverMapper extends UserMapper {
     private static final Logger LOGGER = Logger.getLogger(DriverMapper.class.getName());
 
     private IDriverDAO driverDAO = new DriverDAOImpl();
@@ -92,7 +94,20 @@ public class DriverMapper {
 
     public Driver extractDriver(DriverEntity driverEntity) {
         Driver driver = new Driver();
+        Address address = new Address();
+        address.setHouseNumber(driverEntity.getUserEntity().getHouseNumber());
+        address.setResidence(driverEntity.getUserEntity().getResidence());
+        address.setStreet(driverEntity.getUserEntity().getStreet());
+        address.setZipCode(driverEntity.getUserEntity().getZipCode());
 
+        driver.setFirstName(driverEntity.getUserEntity().getFirstName());
+        driver.setLastName(driverEntity.getUserEntity().getLastName());
+        driver.setAddress(address);
+        driver.setDateOfBirth(driverEntity.getUserEntity().getDateOfBirth());
+        driver.setEmail(driverEntity.getUserEntity().getEmail());
+        driver.setPhoneNumber(driverEntity.getUserEntity().getPhoneNumber());
+        driver.setFirstTimeProfileCheck(driverEntity.getUserEntity().getFirstTimeProfileCheck());
+        driver.setPassword(driverEntity.getUserEntity().getPassword());
         driver.setVerification(driverEntity.getVerification());
         driver.setTypeOfPayment(driverEntity.getTypeOfPayment());
         driver.setImage(driverEntity.getImage());
@@ -106,11 +121,13 @@ public class DriverMapper {
 
     public DriverEntity convertDriver(Driver driver) {
         DriverEntity driverEntity = new DriverEntity();
+        UserEntity userEntity = convertUser(driver, driver.getId());
+        driverEntity.setUserEntity(userEntity);
         driverEntity.setDriverId(driver.getId());
         driverEntity.setVerification(driver.getVerification());
         driverEntity.setImage(driver.getImage());
         driverEntity.setAccountnr(driver.getAccountnr());
-        for(DriverCar driverCar : setDriverCarsByDriverId(driver.getId())) {
+        for (DriverCar driverCar : setDriverCarsByDriverId(driver.getId())) {
             drivercarDAO.update(driverCarMapper.convertDriverCar(driverCar));
         }
         return driverEntity;

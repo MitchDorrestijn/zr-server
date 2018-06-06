@@ -12,9 +12,11 @@ import org.han.ica.oose.boterbloem.display.displaymapper.RideDisplayMapper;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateRideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
+import org.han.ica.oose.boterbloem.display.displayobject.RidesByCareinstitutionDisplay;
 import org.han.ica.oose.boterbloem.domain.domainmappers.RideMapper;
+
 import org.han.ica.oose.boterbloem.domain.domainmappers.UtilityMapper;
-import org.han.ica.oose.boterbloem.domain.domainobjects.Utility;
+
 import org.han.ica.oose.boterbloem.service.IRideService;
 
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class RideService implements IRideService {
     private IDriverDAO driverDAO = new DriverDAOImpl();
     private RideMapper rideMapper = new RideMapper();
     private UtilityMapper utilityMapper = new UtilityMapper();
+    private RideDisplayMapper rideDisplayMapper = new RideDisplayMapper();
 
     /**
      * {@inheritDoc}
@@ -137,5 +140,10 @@ public class RideService implements IRideService {
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
+    }
+
+    @Override
+    public List<RidesByCareinstitutionDisplay> getRidesFromCareInstitution(int careId) {
+        return rideDisplayMapper.getAllRidesByInstitution(careId);
     }
 }
