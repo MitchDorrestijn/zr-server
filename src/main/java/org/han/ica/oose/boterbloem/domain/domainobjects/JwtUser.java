@@ -3,10 +3,7 @@ package org.han.ica.oose.boterbloem.domain.domainobjects;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IAuthUsersDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.AuthUsersDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.AuthUsersEntity;
-import org.han.ica.oose.boterbloem.service.serviceimplementation.NotificationService;
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
 
 public class JwtUser {
     private String userName;
@@ -16,9 +13,6 @@ public class JwtUser {
     private int careInstitutionId;
     private String latestToken;
     private IAuthUsersDAO authUsersDAO = new AuthUsersDAOImpl();
-
-    @Autowired
-    private NotificationService notificationService;
 
     /**
      * Getter for property 'careInstitutionId'.
@@ -142,11 +136,6 @@ public class JwtUser {
     public void saveAuthenticatedUser(JwtUser jwtUser){
         AuthUsersEntity authUsersEntity = fillAuthUsersEntity(jwtUser);
         authUsersDAO.add(authUsersEntity);
-        try {
-            notificationService.sendNotification(jwtUser);
-        } catch (MailException e){
-            System.out.println("error: " + e.getMessage());
-        }
     }
 
     /**
