@@ -229,7 +229,7 @@ public class RideEntity {
     @Transient
     @OneToMany
     @JoinColumn(name = "name")
-    public List<UtilityEntity> getUtilityEntity() {
+    public List<UtilityEntity> getUtilityEntities() {
         return utilityEntities;
     }
 

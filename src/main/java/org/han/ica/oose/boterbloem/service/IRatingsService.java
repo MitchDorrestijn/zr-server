@@ -1,22 +1,22 @@
 package org.han.ica.oose.boterbloem.service;
 
-import org.han.ica.oose.boterbloem.domain.domainobjects.Ratings;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Rating;
 
 import java.util.List;
 
 public interface IRatingsService {
     /**
-     * GET all Ratings
-     * @return list of Ratings
+     * GET all Rating
+     * @return list of Rating
      */
-    List<Ratings> getAllRatings();
+    List<Rating> getAllRatings();
 
     /**
-     * GET all Ratings by a specific Driver
+     * GET all Rating by a specific Driver
      * @param id of Driver
      * @return list of Driver-ratings
      */
-    List<Ratings> getAllRatingsFromASpecificDriverById(int id);
+    List<Rating> getAllRatingsFromASpecificDriverById(int id);
 
 
     /**
@@ -24,5 +24,5 @@ public interface IRatingsService {
      * @param careInstitutionId - The ID of the care instituton you want to get the ratings of.
      * @return A list of all ratings from a specific care institution
      */
-    List<List<Ratings>> getAllRatingsFromASpecificCareInstitution(int careInstitutionId);
+    List<List<Rating>> getAllRatingsFromASpecificCareInstitution(int careInstitutionId);
 }
