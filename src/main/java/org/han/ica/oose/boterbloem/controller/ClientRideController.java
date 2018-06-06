@@ -2,6 +2,7 @@ package org.han.ica.oose.boterbloem.controller;
 
 
 import org.han.ica.oose.boterbloem.display.displayobject.ClientRideDisplay;
+import org.han.ica.oose.boterbloem.security.AdminAndCareInstitutionAuthorization;
 import org.han.ica.oose.boterbloem.service.IClientRideService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.ClientRideService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ClientRideController {
      * @param clientId of Client
      * @return list of Clients-rides
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ZORGINSTELLING')")
+    @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/clientRide/{clientId}", method = RequestMethod.GET)
     public List <ClientRideDisplay> getRidesFromSpecificClientById(@PathVariable int clientId) {
         return clientRideService.getRidesFromSpecificClientById(clientId);

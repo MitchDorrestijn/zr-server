@@ -2,6 +2,7 @@ package org.han.ica.oose.boterbloem.controller;
 
 
 import org.han.ica.oose.boterbloem.display.displayobject.DriverRideDisplay;
+import org.han.ica.oose.boterbloem.security.AdminAndCareInstitutionAuthorization;
 import org.han.ica.oose.boterbloem.service.IDriverRideService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.DriverRideService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class DriverRideController {
      * @param id of Driver
      * @return list of Driver-rides
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ZORGINSTELLING')")
+    @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List <DriverRideDisplay> getRidesFromSpecificDriverById(@PathVariable int id) {
         return driverRideService.getRidesFromSpecificDriverId(id);

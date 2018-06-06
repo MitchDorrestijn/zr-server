@@ -15,7 +15,6 @@ public class JwtUser {
 
     /**
      * Getter for property 'careInstitutionId'.
-     *
      * @return Value for property 'careInstitutionId'.
      */
     public int getCareInstitutionId() {
@@ -24,7 +23,6 @@ public class JwtUser {
 
     /**
      * Setter for property 'careInstitutionId'.
-     *
      * @param careInstitutionId Value to set for property 'careInstitutionId'.
      */
     public void setCareInstitutionId(int careInstitutionId) {
@@ -33,7 +31,6 @@ public class JwtUser {
 
     /**
      * Getter for property 'userName'.
-     *
      * @return Value for property 'userName'.
      */
     public String getUserName() {
@@ -42,7 +39,6 @@ public class JwtUser {
 
     /**
      * Setter for property 'userName'.
-     *
      * @param userName Value to set for property 'userName'.
      */
     public void setUserName(String userName) {
@@ -51,7 +47,6 @@ public class JwtUser {
 
     /**
      * Getter for property 'password'.
-     *
      * @return Value for property 'password'.
      */
     public String getPassword() {
@@ -60,7 +55,6 @@ public class JwtUser {
 
     /**
      * Setter for property 'password'.
-     *
      * @param password Value to set for property 'password'.
      */
     public void setPassword(String password) {
@@ -69,7 +63,6 @@ public class JwtUser {
 
     /**
      * Getter for property 'role'.
-     *
      * @return Value for property 'role'.
      */
     public String getRole() {
@@ -78,7 +71,6 @@ public class JwtUser {
 
     /**
      * Setter for property 'role'.
-     *
      * @param role Value to set for property 'role'.
      */
     public void setRole(String role) {
@@ -87,7 +79,6 @@ public class JwtUser {
 
     /**
      * Getter for property 'latestToken'.
-     *
      * @return Value for property 'latestToken'.
      */
     public String getLatestToken() {
@@ -96,30 +87,42 @@ public class JwtUser {
 
     /**
      * Setter for property 'latestToken'.
-     *
      * @param latestToken Value to set for property 'latestToken'.
      */
     public void setLatestToken(String latestToken) {
         this.latestToken = latestToken;
     }
 
-    public void saveAuthenticatedUser(JwtUser jwtUser){
+    /**
+     * This method fills the user entity based on the data in JwtUser
+     * @param jwtUser the user that needs to be mapped to the entity
+     * @return A filled userEntity
+     */
+    private AuthUsersEntity fillAuthUsersEntity(JwtUser jwtUser) {
         AuthUsersEntity authUsersEntity = new AuthUsersEntity();
         authUsersEntity.setUserName(jwtUser.getUserName());
         authUsersEntity.setPassword(BCrypt.hashpw(jwtUser.getPassword(), BCrypt.gensalt()));
         authUsersEntity.setRole(jwtUser.getRole());
         authUsersEntity.setCareInstitutionId(jwtUser.getCareInstitutionId());
         authUsersEntity.setLatestToken(jwtUser.getLatestToken());
+        return authUsersEntity;
+    }
+
+    /**
+     * This method creates a new authenticated user
+     * @param jwtUser the user that needs to be created
+     */
+    public void saveAuthenticatedUser(JwtUser jwtUser){
+        AuthUsersEntity authUsersEntity = fillAuthUsersEntity(jwtUser);
         authUsersDAO.add(authUsersEntity);
     }
 
+    /**
+     * This method updates a existing authenticated user
+     * @param jwtUser the user that needs to be updated
+     */
     public void updateToken(JwtUser jwtUser) {
-        AuthUsersEntity authUsersEntity = new AuthUsersEntity();
-        authUsersEntity.setUserName(jwtUser.getUserName());
-        authUsersEntity.setPassword(BCrypt.hashpw(jwtUser.getPassword(), BCrypt.gensalt()));
-        authUsersEntity.setRole(jwtUser.getRole());
-        authUsersEntity.setCareInstitutionId(jwtUser.getCareInstitutionId());
-        authUsersEntity.setLatestToken(jwtUser.getLatestToken());
+        AuthUsersEntity authUsersEntity = fillAuthUsersEntity(jwtUser);
         authUsersDAO.update(authUsersEntity);
     }
 }

@@ -1,6 +1,7 @@
 package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.domain.domainobjects.Utility;
+import org.han.ica.oose.boterbloem.security.AdminAndCareInstitutionAuthorization;
 import org.han.ica.oose.boterbloem.service.IUtilityService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,7 @@ public class UtilityController {
      * GET all Utilities from the database
      * @return list of Utilities
      */
-    @CrossOrigin
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ZORGINSTELLING')")
+    @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/all/utilities", method = RequestMethod.GET)
     public List<Utility> getAllUtilities() {
         return utilityService.getAllUtilities();

@@ -10,12 +10,17 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This class is responsible for handeling methods when the authentication of a user is succesfull
+ */
 public class JwtSuccessHandler implements AuthenticationSuccessHandler {
     private static final Logger LOGGER = Logger.getLogger(JwtSuccessHandler.class.getName());
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        System.out.println("In JwtSuccessHandler");
         LOGGER.log(Level.INFO, "Succesvol geauthenticeerd");
 
     }

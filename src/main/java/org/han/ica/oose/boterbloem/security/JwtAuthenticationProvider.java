@@ -4,7 +4,8 @@ import org.han.ica.oose.boterbloem.domain.domainobjects.JwtAuthenticationToken;
 import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
 import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUserDetails;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.AuthService;
-import org.mindrot.jbcrypt.BCrypt;
+import org.han.ica.oose.boterbloem.utils.exceptions.JwtTokenIsIncorrectException;
+import org.han.ica.oose.boterbloem.utils.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
@@ -16,6 +17,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * This class is responsible for retreving the user details based on a JWT
+ */
 @Component
 public class JwtAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
@@ -23,23 +27,27 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
     private JwtValidator validator;
     AuthService authService = new AuthService();
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
-        if (authService.userIsValid(userDetails.getUsername(), userDetails.getPassword()) == false) {
-            throw new RuntimeException("Gebruiker bestaat niet of credentials zijn ongeldig");
+        if (authService.userIsValid(userDetails.getUsername()) == false) {
+            throw new UserNotFoundException("USER DOES NOT EXISTS");
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
-        System.out.println("In JwtAuthenticationProvider");
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) usernamePasswordAuthenticationToken;
         String token = jwtAuthenticationToken.getToken();
         JwtUser jwtUser = validator.validate(token);
 
         if(jwtUser == null){
-            throw new RuntimeException("Jwt token klopt niet");
+            throw new JwtTokenIsIncorrectException("JWT IS NOT VALID");
         }
 
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
@@ -48,6 +56,9 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
         return new JwtUserDetails(jwtUser.getUserName(), jwtUser.getPassword(), token, grantedAuthorities);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean supports(Class<?> aClass) {
         return (JwtAuthenticationToken.class.isAssignableFrom(aClass));

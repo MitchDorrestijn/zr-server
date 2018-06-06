@@ -13,7 +13,6 @@ public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken 
 
     /**
      * Getter for property 'token'.
-     *
      * @return Value for property 'token'.
      */
     public String getToken() {
@@ -22,18 +21,23 @@ public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken 
 
     /**
      * Setter for property 'token'.
-     *
      * @param token Value to set for property 'token'.
      */
     public void setToken(String token) {
         this.token = token;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object getCredentials(){
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Object getPrincipal(){
         return null;

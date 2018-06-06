@@ -1,6 +1,7 @@
 package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
+import org.han.ica.oose.boterbloem.security.AdminAuthorization;
 import org.han.ica.oose.boterbloem.security.JwtGenerator;
 import org.han.ica.oose.boterbloem.service.IAuthService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.AuthService;
@@ -17,15 +18,34 @@ public class TokenController {
         this.jwtGenerator = jwtGenerator;
     }
 
+    /**
+     * The endpoint for logging in
+     * @param jwtUser the user that wants to login
+     * @return a token if the user is valid
+     */
     @RequestMapping("/login")
     @PostMapping
     public String generate(@RequestBody final JwtUser jwtUser){
         return jwtGenerator.generate(jwtUser);
     }
 
+    /**
+     * The endpoint to check if the token exist in the database
+     * @param token the token that need to be validated
+     * @return true if the token exists, false if the token does not exist
+     */
     @RequestMapping(value = "/tokenExists", method = RequestMethod.GET)
     public boolean tokenExists(@RequestParam("token") String token) {
         return authService.tokenExists(token);
     }
 
+    /**
+     * The endpoint to add a new authenticated user
+     * @param jwtUser the user that needs to be added as authenticated user
+     */
+    @AdminAuthorization
+    @RequestMapping(value = "/rest/addAuthenticatedUser", method = RequestMethod.POST)
+    public void addAuthenticatedUser(@RequestBody JwtUser jwtUser){
+        authService.createAuthenticatedUser(jwtUser);
+    }
 }

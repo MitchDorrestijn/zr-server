@@ -15,61 +15,49 @@ public class AuthService implements IAuthService {
     private static final Logger LOGGER = Logger.getLogger(AuthService.class.getName());
     private IAuthUsersDAO authUsersDAO = new AuthUsersDAOImpl();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean userIsValid(String userName, String password){
-        List<AuthUsersEntity> authUsersEntities = authUsersDAO.findAll();
-        boolean userIsValid = false;
-        try {
-            for (int i = 0; i < authUsersEntities.size(); i++) {
-                if (authUsersEntities.get(i).getUserName().equals(userName) && BCrypt.checkpw(password, authUsersEntities.get(i).getPassword())) {
-                    userIsValid = true;
-                }
-            }
-        } catch (Exception e){
-            LOGGER.log(Level.WARNING, e.getMessage());
-        }
-        return userIsValid;
+    public boolean userIsValid(String userName){
+        return checkIfItemHasTheSameValue(userName, "userName");
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean tokenExists(String token) {
+        return checkIfItemHasTheSameValue(token, "token");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateToken(JwtUser jwtUser) {
         jwtUser.updateToken(jwtUser);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean tokenExists(String token) {
-        List<AuthUsersEntity> authUsersEntities = authUsersDAO.findAll();
-        boolean tokenExists = false;
-        int i = 0;
-        try {
-            System.out.println(authUsersEntities.size());
-            for (AuthUsersEntity authUsersEntity : authUsersEntities) {
-                System.out.println(authUsersEntities.get(i));
-                System.out.println("-----------------------------------------");
-                System.out.println("Token vergelijken 1=db, 2=meegegeven:");
-                System.out.println(authUsersEntity.getLatestToken());
-                System.out.println(token);
-                System.out.println("-----------------------------------------");
-
-                if (authUsersEntity.getLatestToken().equals(token)) {
-                    tokenExists = true;
-                }
-                i++;
-            }
-        } catch (Exception e){
-            LOGGER.log(Level.WARNING, e.getMessage());
-        }
-        return tokenExists;
+    public void createAuthenticatedUser(JwtUser jwtUser) {
+        jwtUser.saveAuthenticatedUser(jwtUser);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String findUserRoleByUsernameAndPassword(String userName, String password) {
         List<AuthUsersEntity> authUsersEntities = authUsersDAO.findAll();
         String userRole = "";
         try {
-            for (int i = 0; i < authUsersEntities.size(); i++) {
-                if (authUsersEntities.get(i).getUserName().equals(userName) && BCrypt.checkpw(password, authUsersEntities.get(i).getPassword())) {
-                    userRole = authUsersEntities.get(i).getRole();
+            for (AuthUsersEntity authUsersEntity : authUsersEntities) {
+                if (userExists(userName, password, authUsersEntity)) {
+                    userRole = authUsersEntity.getRole();
                 }
             }
         } catch (Exception e){
@@ -78,14 +66,17 @@ public class AuthService implements IAuthService {
         return userRole;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int findCareInstitutionIdByUsernameAndPassword(String userName, String password) {
         List<AuthUsersEntity> authUsersEntities = authUsersDAO.findAll();
         int careInstitutionId = 0;
         try {
-            for (int i = 0; i < authUsersEntities.size(); i++) {
-                if (authUsersEntities.get(i).getUserName().equals(userName) && BCrypt.checkpw(password, authUsersEntities.get(i).getPassword())) {
-                    careInstitutionId = authUsersEntities.get(i).getCareInstitutionId();
+            for (AuthUsersEntity authUsersEntity : authUsersEntities) {
+                if (userExists(userName, password, authUsersEntity)){
+                    careInstitutionId = authUsersEntity.getCareInstitutionId();
                 }
             }
         } catch (Exception e){
@@ -94,10 +85,41 @@ public class AuthService implements IAuthService {
         return careInstitutionId;
     }
 
-    @Override
-    public void createAuthenticatedUser(JwtUser jwtUser) {
-        jwtUser.saveAuthenticatedUser(jwtUser);
+    /**
+     * This method checks if the user exists and can only be called in a loop
+     * @param userName the username of the user
+     * @param password the password of the user
+     * @param authUsersEntity the list of userEntities where the user has to be found in
+     * @return true if the user is found, false if the user is not found
+     */
+    private boolean userExists(String userName, String password, AuthUsersEntity authUsersEntity) {
+        return authUsersEntity.getUserName().equals(userName) && BCrypt.checkpw(password, authUsersEntity.getPassword());
     }
 
-
+    /**
+     * This method checks if an item matches another item within the user entities
+     * @param theItem the items that needs to be matched
+     * @param valueToCheckFor where @param theItem must be equal to
+     * @return true is the item matches, fals if it does not match
+     */
+    public boolean checkIfItemHasTheSameValue(String theItem, String valueToCheckFor){
+        List<AuthUsersEntity> authUsersEntities = authUsersDAO.findAll();
+        boolean theItemHasTheSameValue = false;
+        try {
+            for (AuthUsersEntity authUsersEntity : authUsersEntities) {
+                if(valueToCheckFor == "token") {
+                    if (authUsersEntity.getLatestToken().equals(theItem)) {
+                        theItemHasTheSameValue = true;
+                    }
+                } else if(valueToCheckFor == "userName") {
+                    if (authUsersEntity.getUserName().equals(theItem)) {
+                        theItemHasTheSameValue = true;
+                    }
+                }
+            }
+        } catch (Exception e){
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
+        return theItemHasTheSameValue;
+    }
 }

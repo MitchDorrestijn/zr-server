@@ -9,11 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * This class handles the errors when a user is not authorized to do the request
+ */
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        System.out.println("In JwtAuthenticationEntryPoint");
         httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UNAUTHORIZED");
     }
 }

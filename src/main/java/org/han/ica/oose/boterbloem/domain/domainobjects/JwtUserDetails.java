@@ -14,43 +14,63 @@ public class JwtUserDetails implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     public JwtUserDetails(String userName, String password, String token, List<GrantedAuthority> grantedAuthorities) {
-        System.out.println("In JwtUserDetails");
         this.userName = userName;
         this.password = password;
         this.token = token;
         this.authorities = grantedAuthorities;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPassword() {
         return password;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUsername() {
         return userName;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEnabled() {
         return true;

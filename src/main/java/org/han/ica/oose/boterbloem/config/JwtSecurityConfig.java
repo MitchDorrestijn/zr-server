@@ -1,12 +1,11 @@
 package org.han.ica.oose.boterbloem.config;
 
-import org.han.ica.oose.boterbloem.security.JwtAuthenticationEntryPoint;
-import org.han.ica.oose.boterbloem.security.JwtAuthenticationProvider;
-import org.han.ica.oose.boterbloem.security.JwtAuthenticationTokenFilter;
-import org.han.ica.oose.boterbloem.security.JwtSuccessHandler;
+import org.han.ica.oose.boterbloem.security.*;
+import org.han.ica.oose.boterbloem.utils.enumerations.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
@@ -31,6 +30,8 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint entryPoint;
 
+    private SecurityProperties securityProperties = new SecurityProperties();
+
     @Bean
     public AuthenticationManager authenticationManager(){
         return new ProviderManager(Collections.singletonList(authenticationProvider));
@@ -44,11 +45,15 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         return filter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                //.authorizeRequests().antMatchers("**/rest/**").authenticated()
-                .authorizeRequests().antMatchers("/rest/**").access("hasRole('ROLE_ADMIN')")
+                .authorizeRequests()
+                    .antMatchers(HttpMethod.OPTIONS, securityProperties.getDefaultAntPattern()).permitAll()
+                    .antMatchers(securityProperties.getDefaultAntPattern()).access("hasRole('" + Roles.ROLE_ADMIN.toString() + "') or hasRole('"+ Roles.ROLE_ZORGINSTELLING.toString() +"')")
                 .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()

@@ -8,25 +8,29 @@ import org.springframework.stereotype.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This class validates the JWT form the user
+ */
 @Component
 public class JwtValidator {
-    private String secret = "zorgrit";
     private static final Logger LOGGER = Logger.getLogger(JwtValidator.class.getName());
+    SecurityProperties securityProperties = new SecurityProperties();
 
-
+    /**
+     * @param token The token that needs to be validated
+     * @return a jwtUser based on the given JWT
+     */
     public JwtUser validate(String token) {
-        System.out.println("In JwtValidator");
         JwtUser jwtUser = null;
 
         try {
             Claims body = Jwts.parser()
-                    .setSigningKey(secret)
+                    .setSigningKey(securityProperties.getSigningkey())
                     .parseClaimsJws(token)
                     .getBody();
 
             jwtUser = new JwtUser();
             jwtUser.setUserName(body.getSubject());
-            jwtUser.setPassword((String) body.get("password"));
             jwtUser.setRole((String) body.get("role"));
             jwtUser.setCareInstitutionId((int) body.get("careInstitutionId"));
         } catch (Exception e){

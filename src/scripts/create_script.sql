@@ -675,9 +675,10 @@ CREATE TABLE IF NOT EXISTS `clientUtility` (
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `authUsers` (
-  userName			    VARCHAR(255)	NOT NULL,
-  password			    VARCHAR(255)	NOT NULL,
-  role				      VARCHAR(255)	NOT NULL,
-  careInstitutionId	INT 	NULL,
-	PRIMARY KEY (userName)
+    userName			      VARCHAR(255)	NOT NULL,
+    password			      VARCHAR(255)	NOT NULL,
+    role				        VARCHAR(255)	NOT NULL,
+    careInstitutionId	  INT     			NULL,
+    latestToken			    VARCHAR(1000)	NULL,
+	  PRIMARY KEY (userName)
 );

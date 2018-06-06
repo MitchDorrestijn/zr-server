@@ -5,28 +5,35 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.AuthService;
-import org.mindrot.jbcrypt.BCrypt;
+import org.han.ica.oose.boterbloem.utils.exceptions.UserNotFoundException;
 import org.springframework.stereotype.Component;
 
+/**
+ * This class generates a JWT for a user
+ */
 @Component
 public class JwtGenerator {
     AuthService authService = new AuthService();
+    SecurityProperties securityProperties = new SecurityProperties();
 
+    /**
+     * This method generates a JWT for the necessary properties in JwtUser
+     * @param jwtUser the user that needs a token
+     * @return a new JWT
+     */
     public String generate(JwtUser jwtUser) {
-        System.out.println("In JwtGenerator");
-        if (authService.userIsValid(jwtUser.getUserName(), jwtUser.getPassword())) {
+        if (authService.userIsValid(jwtUser.getUserName())) {
             jwtUser.setRole(authService.findUserRoleByUsernameAndPassword(jwtUser.getUserName(), jwtUser.getPassword()));
             jwtUser.setCareInstitutionId(authService.findCareInstitutionIdByUsernameAndPassword(jwtUser.getUserName(), jwtUser.getPassword()));
 
             Claims claims = Jwts.claims()
                     .setSubject(jwtUser.getUserName());
-            claims.put("password", jwtUser.getPassword());
             claims.put("role", jwtUser.getRole());
             claims.put("careInstitutionId", jwtUser.getCareInstitutionId());
 
             String theToken = Jwts.builder()
                                 .setClaims(claims)
-                                .signWith(SignatureAlgorithm.HS512, "zorgrit")
+                                .signWith(SignatureAlgorithm.HS512, securityProperties.getSigningkey())
                                 .compact();
 
             jwtUser.setLatestToken(theToken);
@@ -34,7 +41,7 @@ public class JwtGenerator {
 
             return theToken;
         } else {
-         throw new RuntimeException("Gebruiker bestaat niet of credentials zijn ongeldig");
+         throw new UserNotFoundException("USER DOES NOT EXIST OR CREDENTIALS ARE NOT VALID");
         }
     }
 }
