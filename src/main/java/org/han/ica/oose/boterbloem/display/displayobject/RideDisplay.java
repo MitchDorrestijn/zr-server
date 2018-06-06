@@ -3,6 +3,7 @@ package org.han.ica.oose.boterbloem.display.displayobject;
 import java.sql.Timestamp;
 
 public class RideDisplay {
+    private int driverId;
     private byte warning;
     private Timestamp date;
     private String pickUpLocation;
@@ -135,5 +136,41 @@ public class RideDisplay {
      */
     public void setClientName(String clientName) {
         this.clientName = clientName;
+    }
+
+    /**
+     * Getter for property 'driverId'.
+     *
+     * @return Value for property 'driverId'.
+     */
+    public int getDriverId() {
+        return driverId;
+    }
+
+    /**
+     * Setter for property 'driverId'.
+     *
+     * @param driverId Value to set for property 'driverId'.
+     */
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
+    }
+
+    /**
+     * Getter for property 'warning'.
+     *
+     * @return Value for property 'warning'.
+     */
+    public byte getWarning() {
+        return warning;
+    }
+
+    /**
+     * Getter for property 'assignedDriver'.
+     *
+     * @return Value for property 'assignedDriver'.
+     */
+    public byte getAssignedDriver() {
+        return assignedDriver;
     }
 }

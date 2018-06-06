@@ -6,6 +6,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRideDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.ClientDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.DriverDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RideDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.entities.DriverEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.UtilityEntity;
 import org.han.ica.oose.boterbloem.display.displaymapper.RideDisplayMapper;
@@ -17,6 +18,7 @@ import org.han.ica.oose.boterbloem.domain.domainmappers.RideMapper;
 
 import org.han.ica.oose.boterbloem.domain.domainmappers.UtilityMapper;
 
+import org.han.ica.oose.boterbloem.domain.domainobjects.Driver;
 import org.han.ica.oose.boterbloem.service.IRideService;
 
 import java.util.ArrayList;
@@ -50,13 +52,11 @@ public class RideService implements IRideService {
         try {
             for (RideEntity ride : rideDAO.findAll()) {
                 RideDisplay display = new RideDisplay();
-
                 display.setWarning(ride.getWarning());
                 display.setDate(ride.getPickUpDateTime());
                 display.setPickUpLocation(ride.getPickUpLocation());
                 display.setDropOffLocation(ride.getDropOffLocation());
                 display.setAssignedDriver(ride.getAssignedDriver());
-
                 try {
                     String driverName = ride.getDriverEntity().getUserEntity().getFirstName() + " " +
                             ride.getDriverEntity().getUserEntity().getLastName();
@@ -66,6 +66,7 @@ public class RideService implements IRideService {
 
                     display.setDriverName(driverName);
                     display.setClientName(clientName);
+                    display.setDriverId(ride.getDriverEntity().getDriverId());
                 } catch (NullPointerException e) {
                     display.setDriverName("Geen chauffeur gevonden");
                 }
