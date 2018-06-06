@@ -1,14 +1,15 @@
 package org.han.ica.oose.boterbloem.domain.domainobjects;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ride {
     private Timestamp pickUpDateTime;
     private String pickUpLocation;
     private String dropOffLocation;
-    private List<Utility> utilities;
+    private List<Utility> utilities = new ArrayList<>();
     private Driver driver;
     private Client client;
     private String paymentDescription;
@@ -84,10 +85,14 @@ public class Ride {
         return utilities;
     }
 
+    public void setUtilities(List<Utility> utilities) {
+        this.utilities = utilities;
+    }
+
     /**
-     * Setter for property 'utilities'.
+     * Adder for property 'utilities'.
      *
-     * @param utility Value to set for property 'utilities'.
+     * @param utility Value to add for property 'utilities'.
      */
     public void addUtility(Utility utility) {
         this.utilities.add(utility);
