@@ -4,8 +4,7 @@ package org.han.ica.oose.boterbloem.domain.domainmappers;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRatingsDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RatingsDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RatingsEntity;
-import org.han.ica.oose.boterbloem.domain.domainobjects.Ratings;
-import org.han.ica.oose.boterbloem.service.serviceimplementation.RatingsService;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Rating;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +20,11 @@ public class RatingsMapper {
      * @param driverId the driverID where you wnat to get the specific ratings from
      * @return a list of ratings from a specific driver
      */
-    public List<Ratings> getAllRatingsFromASpecificDriver(int driverId) {
-        List<Ratings> ratings = new ArrayList<>();
+    public List<Rating> getAllRatingsFromASpecificDriver(int driverId) {
+        List<Rating> ratings = new ArrayList<>();
         try {
             for (RatingsEntity r : ratingsDAO.getByDriver(driverId)) {
-                Ratings rating = fillRatingsDomain(r);
+                Rating rating = fillRatingsDomain(r);
                 ratings.add(rating);
             }
         } catch (Exception e) {
@@ -39,11 +38,11 @@ public class RatingsMapper {
      *
      * @return A list of all ratings
      */
-    public List<Ratings> allRatings() {
-        List<Ratings> ratings = new ArrayList<>();
+    public List<Rating> allRatings() {
+        List<Rating> ratings = new ArrayList<>();
         try {
             for (RatingsEntity r : ratingsDAO.findAll()) {
-                Ratings rating = fillRatingsDomain(r);
+                Rating rating = fillRatingsDomain(r);
                 ratings.add(rating);
             }
         } catch (Exception e) {
@@ -56,14 +55,14 @@ public class RatingsMapper {
      * @param careInstitutionId - The ID of the careInstitution where all driver ratings must come from
      * @return A list of drivers with a list of their ratings for a specific careInstitution
      */
-    public List<List<Ratings>> getAllRatingsFromASpecificCareInstitution(int careInstitutionId) {
+    public List<List<Rating>> getAllRatingsFromASpecificCareInstitution(int careInstitutionId) {
         List<List<RatingsEntity>> ratingsEntities = ratingsDAO.getByCareInstitution(careInstitutionId);
-        List<List<Ratings>> ratings = new ArrayList<>();
+        List<List<Rating>> ratings = new ArrayList<>();
 
         for (List<RatingsEntity> ra : ratingsEntities) {
-            List<Ratings> re = new ArrayList<>();
+            List<Rating> re = new ArrayList<>();
             for (RatingsEntity r : ra) {
-                Ratings rating = fillRatingsDomain(r);
+                Rating rating = fillRatingsDomain(r);
                 re.add(rating);
             }
             ratings.add(re);
@@ -75,13 +74,17 @@ public class RatingsMapper {
      * @param r - The ratingsEntity that will be filled
      * @return A filled RatingsEntity
      */
-    private Ratings fillRatingsDomain(RatingsEntity r) {
+    private Rating fillRatingsDomain(RatingsEntity r) {
         UserMapper userMapper = new UserMapper();
-        Ratings rating = new Ratings();
-        rating.setclientName(userMapper.findNameById(r.getClientId()));
-        rating.setdriverName(userMapper.findNameById(r.getDriverId()));
+        Rating rating = new Rating();
+        rating.setClientName(userMapper.findNameById(r.getClientId()));
+        rating.setDriverName(userMapper.findNameById(r.getDriverId()));
         rating.setStars(r.getSterren());
         rating.setComment(r.getBeoordeling());
         return rating;
+    }
+
+    public int getAvgRating(int id) {
+        return ratingsDAO.getAvgRatings(id);
     }
 }

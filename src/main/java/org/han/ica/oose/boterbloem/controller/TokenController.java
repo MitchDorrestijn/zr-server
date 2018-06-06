@@ -13,7 +13,6 @@ public class TokenController {
     private JwtGenerator jwtGenerator;
     protected IAuthService authService = new AuthService();
 
-
     public TokenController(JwtGenerator jwtGenerator) {
         this.jwtGenerator = jwtGenerator;
     }

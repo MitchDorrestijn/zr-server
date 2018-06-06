@@ -6,6 +6,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAO
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -76,11 +77,37 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
         try {
             return ((Number) getEntityManager().createQuery("SELECT SUM(priceOfRide) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
 
-        } catch (Exception n) {
+        } catch (NullPointerException n) {
             LOGGER.log(Level.WARNING, n.getMessage());
 
             return 0;
         }
     }
+
+    /**
+     * return rides from a careinstitution
+     */
+    @SuppressWarnings("unchecked")
+    public List<RideEntity> ridesWithCareinstitution(int careId) {
+        try {
+            return getEntityManager().createQuery("FROM RideEntity s WHERE driverEntity.driverId IN (SELECT driverId FROM DrivercareinstitutionEntity WHERE careInstitutionId = :careId) OR clientEntity.clientId IN (SELECT clientId from ClientcareinstitutionEntity WHERE careInstitutionId = :careId) ").setParameter("careId", careId).getResultList();
+        } catch (NullPointerException e) {
+
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public RideEntity getByClientAndDateTime(int clientId, Timestamp date) {
+        try {
+            return (RideEntity) getEntityManager().createQuery("FROM RideEntity WHERE clientEntity.clientId = :id AND pickUpDateTime = :date").setParameter("id", "%" + clientId + "%").setParameter("date", date).getSingleResult();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+            return new RideEntity();
+
+        }
+    }
 }
+
 

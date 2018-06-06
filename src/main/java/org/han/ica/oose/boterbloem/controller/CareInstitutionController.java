@@ -20,26 +20,15 @@ public class CareInstitutionController {
 
     private ICareInstitutionService careInstitutionService = new CareInstitutionService();
 
-    /** Constructs a new CareInstitutionController. */
-    @Autowired
     CareInstitutionController() {
         // Empty Constructor for Spring
     }
-
-//    @RequestMapping(value= "/zorginstellingen", method=RequestMethod.OPTIONS)
-//    public void corsHeaders(HttpServletResponse response) {
-//        response.addHeader("Access-Control-Allow-Origin", "*");
-//        response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-//        response.addHeader("Access-Control-Allow-Headers", "origin, content-type, accept, x-requested-with");
-//        response.addHeader("Access-Control-Max-Age", "3600");
-//    }
 
     /**
      * GET CarInstitution by Id
      * @param id of CarInstitution
      * @return CarInstitution
      */
-    //@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ZORGINSTELLING')")
     @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public CareinstitutionEntity getCareInstitutionById(@PathVariable int id) {
@@ -50,7 +39,6 @@ public class CareInstitutionController {
      * GET all CareInstitutions
      * @return list of CareInstitutions
      */
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @AdminAuthorization
     @RequestMapping(value = "/zorginstellingen", method = RequestMethod.GET)
     public List <CareInstitution> getAllCareInstitutions() {
@@ -61,7 +49,6 @@ public class CareInstitutionController {
      * POST new CareInstitution
      * @param careInstitution =  new CareInstitution
      */
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @AdminAuthorization
     @RequestMapping(value = "/addZorginstelling", method = RequestMethod.POST)
     public void addCareInstitution(@RequestBody CareInstitution careInstitution) {
@@ -73,7 +60,6 @@ public class CareInstitutionController {
      * @param id of CareInstitution
      * @param careInstitution =  CareInstitution
      */
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @AdminAuthorization
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
     public void updateCareInstitution(@PathVariable int id, @RequestBody CareInstitution careInstitution) {
@@ -85,7 +71,6 @@ public class CareInstitutionController {
      * DELETE CareInstitution by Id
      * @param id of CareInstitution
      */
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @AdminAuthorization
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void deleteCareInstitutionById(@PathVariable int id) {
@@ -94,7 +79,6 @@ public class CareInstitutionController {
     
     /**
      * Getter for property 'careInstitutionService'.
-     *
      * @return Value for property 'careInstitutionService'.
      */
     public ICareInstitutionService getCareInstitutionService() {

@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  * This class loads properties from from a file that have to do with the security of the application
  */
 public class SecurityProperties {
-    private static final Logger LOGGER = Logger.getLogger(JwtValidator.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(SecurityProperties.class.getName());
 
     /**
      * Gets the content of the application.properties file

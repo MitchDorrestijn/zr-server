@@ -1,7 +1,7 @@
 package org.han.ica.oose.boterbloem.service.serviceimplementation;
 
 
-import org.han.ica.oose.boterbloem.domain.domainobjects.Ratings;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Rating;
 import org.han.ica.oose.boterbloem.domain.domainmappers.RatingsMapper;
 import org.han.ica.oose.boterbloem.service.IRatingsService;
 
@@ -16,18 +16,18 @@ public class RatingsService implements IRatingsService {
         //Empty constructor
     }
 
-    public List<Ratings> getAllRatings() {
+    public List<Rating> getAllRatings() {
         return ratingsMapper.allRatings();
     }
 
     @Override
-    public List <Ratings> getAllRatingsFromASpecificDriverById(int id) {
+    public List <Rating> getAllRatingsFromASpecificDriverById(int id) {
         return ratingsMapper.getAllRatingsFromASpecificDriver(id);
 
     }
 
     @Override
-    public List<List<Ratings>> getAllRatingsFromASpecificCareInstitution(int careInstitutionId) {
+    public List<List<Rating>> getAllRatingsFromASpecificCareInstitution(int careInstitutionId) {
         return ratingsMapper.getAllRatingsFromASpecificCareInstitution(careInstitutionId);
     }
 

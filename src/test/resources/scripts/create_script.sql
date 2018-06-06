@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `driver` (
 
   verification    BOOLEAN      NOT NULL,
 
-  type_of_payment VARCHAR(255) NULL,
+  typeOfPayment VARCHAR(255) NULL,
 
   image           LONGTEXT     NULL,
 
@@ -436,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `ride` (
 
   executed                BOOLEAN      NOT NULL DEFAULT FALSE,
 
-  price_of_ride           FLOAT        NOT NULL,
+  priceOfRide           FLOAT        NOT NULL,
 
   paymentDescription      VARCHAR(255) NULL,
 

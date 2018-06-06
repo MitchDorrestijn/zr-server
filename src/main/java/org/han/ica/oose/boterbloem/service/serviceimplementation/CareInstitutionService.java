@@ -59,4 +59,40 @@ public class CareInstitutionService implements ICareInstitutionService {
         careinstitutionDAO.remove(careinstitutionEntity);
     }
 
+    /**
+     * Getter for property 'careinstitutionDAO'.
+     *
+     * @return Value for property 'careinstitutionDAO'.
+     */
+    public ICareinstitutionDAO getCareinstitutionDAO() {
+        return careinstitutionDAO;
+    }
+
+    /**
+     * Setter for property 'careinstitutionDAO'.
+     *
+     * @param careinstitutionDAO Value to set for property 'careinstitutionDAO'.
+     */
+    public void setCareinstitutionDAO(ICareinstitutionDAO careinstitutionDAO) {
+        this.careinstitutionDAO = careinstitutionDAO;
+    }
+
+    /**
+     * Getter for property 'careinstitutionMapper'.
+     *
+     * @return Value for property 'careinstitutionMapper'.
+     */
+    public CareinstitutionMapper getCareinstitutionMapper() {
+        return careinstitutionMapper;
+    }
+
+    /**
+     * Setter for property 'careinstitutionMapper'.
+     *
+     * @param careinstitutionMapper Value to set for property 'careinstitutionMapper'.
+     */
+    public void setCareinstitutionMapper(CareinstitutionMapper careinstitutionMapper) {
+        this.careinstitutionMapper = careinstitutionMapper;
+    }
+
 }

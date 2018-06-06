@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.domain.domainobjects;
 
-public class Ratings {
+public class Rating {
 
     // Rating is based on a driver.
     private String driverName;
@@ -14,7 +14,7 @@ public class Ratings {
      *
      * @return Value for property 'driverName'.
      */
-    public String getdriverName() {
+    public String getDriverName() {
         return driverName;
     }
 
@@ -23,7 +23,7 @@ public class Ratings {
      *
      * @param driverName Value to set for property 'driverName'.
      */
-    public void setdriverName(String driverName) {
+    public void setDriverName(String driverName) {
         this.driverName = driverName;
     }
 
@@ -68,7 +68,7 @@ public class Ratings {
      *
      * @return Value for property 'clientName'.
      */
-    public String getclientName() {
+    public String getClientName() {
         return clientName;
     }
 
@@ -77,7 +77,7 @@ public class Ratings {
      *
      * @param clientName Value to set for property 'clientName'.
      */
-    public void setclientName(String clientName) {
+    public void setClientName(String clientName) {
         this.clientName = clientName;
     }
 }

@@ -1,8 +1,10 @@
 package org.han.ica.oose.boterbloem.display.displayobject;
 
 import org.han.ica.oose.boterbloem.dataaccess.entities.UtilityEntity;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Utility;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class CreateRideDisplay {
     private int clientId;
@@ -12,7 +14,7 @@ public class CreateRideDisplay {
     private String dropOffLocation;
     private int numberOfcompanions;
     private int numberOfLuggage;
-    private UtilityEntity utilityEntity;
+    private List<Utility> utilities;
     private byte returnRide;
     private byte callService;
     private byte fixedRide;
@@ -148,17 +150,26 @@ public class CreateRideDisplay {
      *
      * @return Value for property 'utilityEntity'.
      */
-    public UtilityEntity getUtilityEntity() {
-        return utilityEntity;
+    public List<Utility> getUtilityEntity() {
+        return utilities;
     }
 
     /**
-     * Setter for property 'utilityEntity'.
+     * Setter for property 'utilities'.
      *
-     * @param utilityEntity Value to set for property 'utilityEntity'.
+     * @param utilities Value to set for property utilities
      */
-    public void setUtilityEntity(UtilityEntity utilityEntity) {
-        this.utilityEntity = utilityEntity;
+    public void setUtilities(List<Utility> utilities) {
+        this.utilities = utilities;
+    }
+
+    /**
+     * Adder for property 'utilityEntity'.
+     *
+     * @param utility Value to add for property 'utilities'.
+     */
+    public void addUtility(Utility utility) {
+        this.utilities.add(utility);
     }
 
     /**

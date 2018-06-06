@@ -6,10 +6,10 @@ import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
 import org.han.ica.oose.boterbloem.security.AdminAndCareInstitutionAuthorization;
 import org.han.ica.oose.boterbloem.security.AdminAuthorization;
+import org.han.ica.oose.boterbloem.display.displayobject.RidesByCareinstitutionDisplay;
 import org.han.ica.oose.boterbloem.service.IRideService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +28,7 @@ public class RideController {
 
     /**
      * GET Ride by Id
+     *
      * @param id of Ride
      * @return Ride
      */
@@ -39,26 +40,29 @@ public class RideController {
 
     /**
      * GET all Rides
+     *
      * @return list of Rides
      */
     @AdminAuthorization
     @RequestMapping(value = "/getAllRides", method = RequestMethod.GET)
-    public List <RideDisplay> getAllRides() {
+    public List<RideDisplay> getAllRides() {
         return rideService.getAllRides();
     }
 
     /**
      * GET all Ride information
+     *
      * @return list of Ride information
      */
     @AdminAuthorization
     @RequestMapping(value = "/rides/overview", method = RequestMethod.GET)
-    public List <RideOverviewDisplay> getRideOverview() {
+    public List<RideOverviewDisplay> getRideOverview() {
         return rideService.getRideOverview();
     }
 
     /**
      * POST new Ride
+     *
      * @param ride = new Ride
      */
     @AdminAndCareInstitutionAuthorization
@@ -69,11 +73,34 @@ public class RideController {
 
     /**
      * DELETE Ride by Id
+     *
      * @param id of Ride
      */
     @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
     public void deleteRide(@PathVariable int id) {
         rideService.deleteRideById(id);
+    }
+
+    /**
+     * Get all rides by a specific careInstitution
+     * @param careId the careinstitution you want to get the rides of
+     * @return a list of rides from a specific care institution
+     */
+    @AdminAndCareInstitutionAuthorization
+    @RequestMapping(value = "/careinstitutionRides/{careId}", method = RequestMethod.GET)
+    public List<RidesByCareinstitutionDisplay> ridesFromCareinstitution(@PathVariable int careId) {
+        return rideService.getRidesFromCareInstitution(careId);
+    }
+
+    /**
+     * Updates a ride
+     * @param ride the ride that needs to be updated
+     */
+    @AdminAndCareInstitutionAuthorization
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public void updateRide(@PathVariable CreateRideDisplay ride) {
+        rideService.update(ride);
+
     }
 }
