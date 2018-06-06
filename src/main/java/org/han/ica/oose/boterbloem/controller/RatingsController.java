@@ -1,6 +1,6 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.domain.domainobjects.Ratings;
+import org.han.ica.oose.boterbloem.domain.domainobjects.Rating;
 import org.han.ica.oose.boterbloem.service.IRatingsService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.RatingsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +21,22 @@ public class RatingsController {
     }
 
     /**
-     * GET all Ratings
-     * @return list of Ratings
+     * GET all Rating
+     * @return list of Rating
      */
     @CrossOrigin
     @RequestMapping(value = "/ratings", method = RequestMethod.GET)
-    public List <Ratings> getAllRatings() {
+    public List <Rating> getAllRatings() {
         return ratingsService.getAllRatings();
     }
 
     /**
-     * GET all Ratings by a specific Driver
+     * GET all Rating by a specific Driver
      * @param driverId of Driver
      * @return list of Driver-ratings
      */
     @RequestMapping(value = "/ratings/{driverId}", method = RequestMethod.GET)
-    public List <Ratings> getAllRatingsFromASpecificDriverById(@PathVariable int driverId) {
+    public List <Rating> getAllRatingsFromASpecificDriverById(@PathVariable int driverId) {
         return ratingsService.getAllRatingsFromASpecificDriverById(driverId);
     }
 
@@ -46,7 +46,7 @@ public class RatingsController {
      * @return A list of all ratings from a specific care institution
      */
     @RequestMapping(value = "/ratings/careInstitution/{careInstitutionId}", method = RequestMethod.GET)
-    public List<List<Ratings>> getAllRatingsFromASpecificCareInstitution(@PathVariable int careInstitutionId) {
+    public List<List<Rating>> getAllRatingsFromASpecificCareInstitution(@PathVariable int careInstitutionId) {
         return ratingsService.getAllRatingsFromASpecificCareInstitution(careInstitutionId);
     }
 }
