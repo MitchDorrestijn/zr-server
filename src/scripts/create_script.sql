@@ -680,5 +680,6 @@ CREATE TABLE IF NOT EXISTS `authUsers` (
     role				        VARCHAR(255)	NOT NULL,
     careInstitutionId	  INT     			NULL,
     latestToken			    VARCHAR(1000)	NULL,
+    email               VARCHAR(255)  NOT NULL,
 	  PRIMARY KEY (userName)
 );

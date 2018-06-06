@@ -11,6 +11,7 @@ public class AuthUsersEntity {
     private String role;
     private Integer careInstitutionId;
     private String latestToken;
+    private String email;
 
     @Id
     @Column(name = "userName")
@@ -62,6 +63,16 @@ public class AuthUsersEntity {
         this.latestToken = latestToken;
     }
 
+    @Basic
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,12 +81,13 @@ public class AuthUsersEntity {
         return Objects.equals(userName, that.userName) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(role, that.role) &&
-                Objects.equals(careInstitutionId, that.careInstitutionId);
+                Objects.equals(careInstitutionId, that.careInstitutionId) &&
+                Objects.equals(latestToken, that.latestToken) &&
+                Objects.equals(email, that.email);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(userName, password, role, careInstitutionId);
+        return Objects.hash(userName, password, role, careInstitutionId, latestToken, email);
     }
 }

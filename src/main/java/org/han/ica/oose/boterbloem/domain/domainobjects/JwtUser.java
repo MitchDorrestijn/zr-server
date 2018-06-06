@@ -3,15 +3,22 @@ package org.han.ica.oose.boterbloem.domain.domainobjects;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IAuthUsersDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.AuthUsersDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.AuthUsersEntity;
+import org.han.ica.oose.boterbloem.service.serviceimplementation.NotificationService;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 
 public class JwtUser {
     private String userName;
     private String password;
     private String role;
+    private String email;
     private int careInstitutionId;
     private String latestToken;
     private IAuthUsersDAO authUsersDAO = new AuthUsersDAOImpl();
+
+    @Autowired
+    private NotificationService notificationService;
 
     /**
      * Getter for property 'careInstitutionId'.
@@ -93,6 +100,25 @@ public class JwtUser {
         this.latestToken = latestToken;
     }
 
+
+    /**
+     * Getter for property 'email'.
+     *
+     * @return Value for property 'email'.
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Setter for property 'email'.
+     *
+     * @param email Value to set for property 'email'.
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     /**
      * This method fills the user entity based on the data in JwtUser
      * @param jwtUser the user that needs to be mapped to the entity
@@ -105,6 +131,7 @@ public class JwtUser {
         authUsersEntity.setRole(jwtUser.getRole());
         authUsersEntity.setCareInstitutionId(jwtUser.getCareInstitutionId());
         authUsersEntity.setLatestToken(jwtUser.getLatestToken());
+        authUsersEntity.setEmail(jwtUser.getEmail());
         return authUsersEntity;
     }
 
@@ -115,6 +142,11 @@ public class JwtUser {
     public void saveAuthenticatedUser(JwtUser jwtUser){
         AuthUsersEntity authUsersEntity = fillAuthUsersEntity(jwtUser);
         authUsersDAO.add(authUsersEntity);
+        try {
+            notificationService.sendNotification(jwtUser);
+        } catch (MailException e){
+            System.out.println("error: " + e.getMessage());
+        }
     }
 
     /**
