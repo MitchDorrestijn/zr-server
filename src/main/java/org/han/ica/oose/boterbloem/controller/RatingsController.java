@@ -1,16 +1,19 @@
 package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.domain.domainobjects.Ratings;
+import org.han.ica.oose.boterbloem.security.AdminAndCareInstitutionAuthorization;
+import org.han.ica.oose.boterbloem.security.AdminAuthorization;
 import org.han.ica.oose.boterbloem.service.IRatingsService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.RatingsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/rating")
+@RequestMapping("/rest/rating")
 public class RatingsController {
 
     private IRatingsService ratingsService = new RatingsService();
@@ -24,7 +27,7 @@ public class RatingsController {
      * GET all Ratings
      * @return list of Ratings
      */
-    @CrossOrigin
+    @AdminAuthorization
     @RequestMapping(value = "/ratings", method = RequestMethod.GET)
     public List <Ratings> getAllRatings() {
         return ratingsService.getAllRatings();
@@ -35,6 +38,7 @@ public class RatingsController {
      * @param driverId of Driver
      * @return list of Driver-ratings
      */
+    @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/ratings/{driverId}", method = RequestMethod.GET)
     public List <Ratings> getAllRatingsFromASpecificDriverById(@PathVariable int driverId) {
         return ratingsService.getAllRatingsFromASpecificDriverById(driverId);
@@ -45,6 +49,7 @@ public class RatingsController {
      * @param careInstitutionId - The ID of the care instituton you want to get the ratings of.
      * @return A list of all ratings from a specific care institution
      */
+    @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/ratings/careInstitution/{careInstitutionId}", method = RequestMethod.GET)
     public List<List<Ratings>> getAllRatingsFromASpecificCareInstitution(@PathVariable int careInstitutionId) {
         return ratingsService.getAllRatingsFromASpecificCareInstitution(careInstitutionId);
