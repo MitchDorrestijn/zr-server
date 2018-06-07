@@ -21,7 +21,9 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     @Override
     public T add(T entity) {
-        em.getTransaction().begin();
+        if (!em.getTransaction().isActive()) {
+            em.getTransaction().begin();
+        }
         try {
             em.persist(entity);
             em.getTransaction().commit();
@@ -36,7 +38,9 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     @Override
     public T update(T entity) {
-        em.getTransaction().begin();
+        if (!em.getTransaction().isActive()) {
+            em.getTransaction().begin();
+        }
         try {
             T mergedEntity = em.merge(entity);
             em.getTransaction().commit();
@@ -51,7 +55,9 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     @Override
     public void remove(T entity) {
-        em.getTransaction().begin();
+        if (!em.getTransaction().isActive()) {
+            em.getTransaction().begin();
+        }
         try {
             em.remove(entity);
             em.getTransaction().commit();
@@ -63,7 +69,9 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     @Override
     public T findById(int id) {
-        em.getTransaction().begin();
+        if (!em.getTransaction().isActive()) {
+            em.getTransaction().begin();
+        }
         try {
             T entity = em.find(classImpl, id);
             em.getTransaction().commit();
@@ -79,7 +87,9 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findAll() {
-        em.getTransaction().begin();
+        if (!em.getTransaction().isActive()) {
+            em.getTransaction().begin();
+        }
         try {
             List<T> entities = em.createQuery("SELECT x FROM " + classImpl.getSimpleName() + " x").getResultList();
             em.getTransaction().commit();
