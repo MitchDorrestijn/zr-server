@@ -66,6 +66,7 @@ public class RideService implements IRideService {
 
                     display.setDriverName(driverName);
                     display.setClientName(clientName);
+                    display.setDriverId(ride.getDriverEntity().getDriverId());
                 } catch (NullPointerException e) {
                     display.setDriverName("Geen chauffeur gevonden");
                 }
