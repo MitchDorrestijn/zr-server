@@ -55,7 +55,6 @@ public class RideDisplayMapper {
      */
     public List<RideOverviewDisplay> getPaymentsAtCareinstitution(int id) {
         List<Ride> rides = rideMapper.getAllRidesByInstitution(id);
-        System.out.println(rides.size());
         List<RideOverviewDisplay> rideOverviewDisplays = new ArrayList<>();
         for (Ride ride : rides) {
             RideOverviewDisplay rideOverviewDisplay = new RideOverviewDisplay();
