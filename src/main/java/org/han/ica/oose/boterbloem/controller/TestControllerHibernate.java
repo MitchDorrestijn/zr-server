@@ -28,6 +28,7 @@ public class TestControllerHibernate {
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
     private IClientDAO dao = new ClientDAOImpl();
 
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public DriverEntity getDriverEntity(@PathVariable int id) {
 
