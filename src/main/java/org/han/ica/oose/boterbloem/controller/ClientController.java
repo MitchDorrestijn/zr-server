@@ -69,7 +69,6 @@ public class ClientController {
     @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/addClient", method = RequestMethod.POST)
     public void addClient(@RequestBody CreateClientDisplay createClientDisplay) {
-        System.out.println(createClientDisplay.getClient());
         clientService.createClient(createClientDisplay);
     }
 
