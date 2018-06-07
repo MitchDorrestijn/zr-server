@@ -39,7 +39,7 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
         try {
             getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET DrivercareinstitutionEntity.active = false " +
                     "WHERE DrivercareinstitutionEntity.driverId = :driverId").setParameter("driverId", driverId).getResultList();
-            getEntityManager().flush();
+            getEntityManager().getTransaction().commit();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
         }

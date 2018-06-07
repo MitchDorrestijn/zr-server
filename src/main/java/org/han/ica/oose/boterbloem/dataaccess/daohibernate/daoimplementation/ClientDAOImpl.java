@@ -28,7 +28,7 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
         try {
             getEntityManager().createQuery("UPDATE ClientcareinstitutionEntity SET ClientcareinstitutionEntity .active = false " +
                     "WHERE ClientcareinstitutionEntity.clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
-            getEntityManager().flush();
+            getEntityManager().getTransaction().commit();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
         }
