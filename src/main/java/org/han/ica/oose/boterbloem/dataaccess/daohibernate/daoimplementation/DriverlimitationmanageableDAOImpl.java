@@ -25,27 +25,21 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
     @Override
     @SuppressWarnings("unchecked")
     public List<String> getByDriverId(int id) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return em.createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id", id).getResultList();
+            return getEntityManager().createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id", id).getResultList();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new ArrayList<>();
-        } finally {
-            em.close();
         }
     }
 
     @Override
     public void updateDriverLimitations(List<String> limitations, int driverId) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
-        em.getTransaction().begin();
         try {
-            em.createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
-            em.getTransaction().commit();
+            getEntityManager().createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
+            getEntityManager().flush();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-            em.getTransaction().rollback();
         }
         for (String limitation : limitations) {
             try {
@@ -53,11 +47,9 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
                 driverlimitationmanageableEntity.setDriverId(driverId);
                 driverlimitationmanageableEntity.setLimitation(limitation);
                 add(driverlimitationmanageableEntity);
-                em.flush();
+                getEntityManager().flush();
             } catch (Exception e) {
                 LOGGER.log(Level.WARNING, e.getMessage());
-            } finally {
-                em.close();
             }
         }
     }

@@ -25,14 +25,11 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
     }
 
     public DrivercarEntity findByPK(DrivercarEntityPK drivercarEntityPK) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return em.find(DrivercarEntity.class, drivercarEntityPK);
+            return getEntityManager().find(DrivercarEntity.class, drivercarEntityPK);
         } catch (NullPointerException e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new DrivercarEntity();
-        } finally {
-            em.close();
         }
     }
 
@@ -58,13 +55,10 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
     }
 
     private String getUtility(int driverId) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return (String) em.createQuery("SELECT utility FROM DrivercarEntity dr WHERE dr.driverId = :driverId").setParameter("driverId", driverId).getSingleResult();
+            return (String) getEntityManager().createQuery("SELECT utility FROM DrivercarEntity dr WHERE dr.driverId = :driverId").setParameter("driverId", driverId).getSingleResult();
         } catch (NoResultException e) {
             return "";
-        } finally {
-            em.close();
         }
     }
 
@@ -74,16 +68,12 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
      */
     @SuppressWarnings("unchecked")
     public List<DrivercarEntity> drivercarEntityListByDriverId(int driverId) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return em.createQuery("FROM DrivercarEntity WHERE driverId = :driverId").setParameter("driverId", driverId).getResultList();
+            return getEntityManager().createQuery("FROM DrivercarEntity WHERE driverId = :driverId").setParameter("driverId", driverId).getResultList();
         } catch (NullPointerException e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new ArrayList<>();
-        } finally {
-            em.close();
         }
-
     }
 
 }
