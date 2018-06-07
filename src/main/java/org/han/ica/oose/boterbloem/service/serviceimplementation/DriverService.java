@@ -63,9 +63,6 @@ public class DriverService implements IDriverService {
     public void createChauffeur(CreateDriverDisplay createDriverDisplay) {
         try {
             driverDao.add(createDriverDisplay.getDriver());
-
-            DrivercarEntity drivercarEntity = createDriverDisplay.getDrivercar();
-            drivercarEntity.setDriverId(driverDao.latestId());
             DrivercareinstitutionEntity drivercareinstitutionEntity = new DrivercareinstitutionEntity();
             drivercareinstitutionEntity.setDriverId(driverDao.latestId());
             drivercareinstitutionEntity.setCareInstitutionId(createDriverDisplay.getCareInstitutionId());
@@ -86,11 +83,7 @@ public class DriverService implements IDriverService {
     @Override
     public void updateDriver(CreateDriverDisplay createDriverDisplay) {
         int driverId = createDriverDisplay.getDriver().getDriverId();
-
-        if (createDriverDisplay.getDriver().equals(driverDao.findById(driverId)) || createDriverDisplay.getDriver().getUserEntity().equals(userDAO.findById(driverId))) {
             driverDao.update(createDriverDisplay.getDriver());
-            userDAO.update(createDriverDisplay.getDriver().getUserEntity());
-        }
         if (!createDriverDisplay.getDrivercar().equals(drivercarDAO.findCarById(driverId))) {
             try {
                 drivercarDAO.remove(drivercarDAO.findCarById(driverId));
