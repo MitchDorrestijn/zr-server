@@ -63,9 +63,6 @@ public class DriverService implements IDriverService {
     public void createChauffeur(CreateDriverDisplay createDriverDisplay) {
         try {
             driverDao.add(createDriverDisplay.getDriver());
-
-            DrivercarEntity drivercarEntity = createDriverDisplay.getDrivercar();
-            drivercarEntity.setDriverId(driverDao.latestId());
             DrivercareinstitutionEntity drivercareinstitutionEntity = new DrivercareinstitutionEntity();
             drivercareinstitutionEntity.setDriverId(driverDao.latestId());
             drivercareinstitutionEntity.setCareInstitutionId(createDriverDisplay.getCareInstitutionId());
