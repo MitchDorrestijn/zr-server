@@ -125,7 +125,7 @@ public class JwtUser {
         authUsersEntity.setRole(jwtUser.getRole());
         authUsersEntity.setCareInstitutionId(jwtUser.getCareInstitutionId());
         authUsersEntity.setLatestToken(jwtUser.getLatestToken());
-        authUsersEntity.setEmail(jwtUser.getEmail());
+       // authUsersEntity.setEmail(jwtUser.getEmail());
         return authUsersEntity;
     }
 

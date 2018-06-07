@@ -340,5 +340,5 @@ INSERT INTO `ratings` (driverId, clientId, beoordeling, sterren) VALUES
 
 
 INSERT INTO `authUsers` (userName, password, role, careInstitutionId, latestToken, email) VALUES
-('Alex', '$2a$10$pPz1NB6EM2Nh.olZeNgKyuuQBCBtH9tNVGKfoU64AUhDi/0BBNWWC', 'ROLE_ADMIN', 1, NULL, 'oose.boterbloem@gmail.com'),
+('Alex', '$2a$10$pPz1NB6EM2Nh.olZeNgKyuuQBCBtH9tNVGKfoU64AUhDi/0BBNWWC', 'ROLE_ADMIN', 1, NULL, 'alex@example.com'),
 ('Mitch', '$2a$10$t9oda9Urp..59PfZ5xnOR.mCGWpnxBMiEHZPvDuv6qxXnx3WHdele', 'ROLE_ZORGINSTELLING', 1, NULL, 'oose.boterbloem@gmail.com')

@@ -59,4 +59,5 @@ public interface IAuthService {
      * @param userName the username that needs to be removed
      */
     void deleteAuthenticatedUser(String userName);
+
 }
