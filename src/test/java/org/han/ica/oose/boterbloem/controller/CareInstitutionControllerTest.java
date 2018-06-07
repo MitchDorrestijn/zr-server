@@ -62,15 +62,15 @@ public class CareInstitutionControllerTest {
     @Test
     public void getCareInstitutionById(){
         when(careInstitutionService.findById(4)).thenReturn(careinstitutionEntity);
-        CareinstitutionEntity testCareinstitutionEntity = careInstitutionController.getCareInstitutionById(4);
-        assertEquals(4,testCareinstitutionEntity.getId());
+        List<CareinstitutionEntity> testCareinstitutionEntity = careInstitutionController.getCareInstitutionById(4);
+        assertEquals(4,testCareinstitutionEntity.get(1).getId());
     }
 
     @Test
     public void getCareInstitutionByIdFailed(){
         when(careInstitutionService.findById(4)).thenReturn(careinstitutionEntity);
-        CareinstitutionEntity testCareinstitutionEntity = careInstitutionController.getCareInstitutionById(4);
-        assertNotEquals(5,testCareinstitutionEntity.getId());
+        List<CareinstitutionEntity> testCareinstitutionEntity = careInstitutionController.getCareInstitutionById(4);
+        assertNotEquals(5,testCareinstitutionEntity.get(1).getId());
     }
 
     @Test
@@ -113,8 +113,8 @@ public class CareInstitutionControllerTest {
         test.setName(toBeAdded.getName());
         careInstitutionController.addCareInstitution(test);
         when(careInstitutionService.findById(10)).thenReturn(toBeAdded);
-        CareinstitutionEntity testCareInstitution = careInstitutionController.getCareInstitutionById(10);
-        assertEquals(10,testCareInstitution.getId());
+        List<CareinstitutionEntity> testCareInstitution = careInstitutionController.getCareInstitutionById(10);
+        assertEquals(10,testCareInstitution.get(1).getId());
     }
 
     @Test
@@ -127,8 +127,8 @@ public class CareInstitutionControllerTest {
         test.setName(toBeAdded.getName());
         careInstitutionController.addCareInstitution(test);
         when(careInstitutionService.findById(10)).thenReturn(toBeAdded);
-        CareinstitutionEntity testCareInstitution = careInstitutionController.getCareInstitutionById(10);
-        assertNotEquals(11,testCareInstitution.getId());
+        List<CareinstitutionEntity> testCareInstitution = careInstitutionController.getCareInstitutionById(10);
+        assertNotEquals(11,testCareInstitution.get(1).getId());
     }
 
 }
