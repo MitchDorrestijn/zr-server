@@ -83,11 +83,7 @@ public class DriverService implements IDriverService {
     @Override
     public void updateDriver(CreateDriverDisplay createDriverDisplay) {
         int driverId = createDriverDisplay.getDriver().getDriverId();
-
-        if (createDriverDisplay.getDriver().equals(driverDao.findById(driverId)) || createDriverDisplay.getDriver().getUserEntity().equals(userDAO.findById(driverId))) {
             driverDao.update(createDriverDisplay.getDriver());
-            userDAO.update(createDriverDisplay.getDriver().getUserEntity());
-        }
         if (!createDriverDisplay.getDrivercar().equals(drivercarDAO.findCarById(driverId))) {
             try {
                 drivercarDAO.remove(drivercarDAO.findCarById(driverId));
