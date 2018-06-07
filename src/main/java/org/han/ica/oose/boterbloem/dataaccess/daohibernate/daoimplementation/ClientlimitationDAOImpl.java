@@ -25,14 +25,11 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
     @Override
     @SuppressWarnings("unchecked")
     public List<String> getByClientId(int id) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return em.createQuery("SELECT limitation FROM ClientLimitationEntity " +
+            return getEntityManager().createQuery("SELECT limitation FROM ClientLimitationEntity " +
                     "WHERE clientId = :id").setParameter("id", id).getResultList();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-        } finally {
-            em.close();
         }
         return new ArrayList<>();
 
@@ -45,36 +42,28 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
 
     @SuppressWarnings("unchecked")
     public List<String> getAllLimitationById(int id) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return em.createQuery("SELECT limitation FROM ClientLimitationEntity " +
+            return getEntityManager().createQuery("SELECT limitation FROM ClientLimitationEntity " +
                     "WHERE clientId = :id").setParameter("id", id).getResultList();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new ArrayList<>();
-        } finally {
-            em.close();
         }
     }
 
     @Override
     public void updateClientLimitations(List<String> limitations, int clientId) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
-        em.getTransaction().begin();
-        em.createQuery("DELETE FROM ClientLimitationEntity WHERE clientId  = :clientId").setParameter("clientId", clientId).executeUpdate();
+        getEntityManager().createQuery("DELETE FROM ClientLimitationEntity WHERE clientId  = :clientId").setParameter("clientId", clientId).executeUpdate();
+        getEntityManager().flush();
         for (String limitation : limitations) {
             try {
                 ClientLimitationEntity clientLimitationEntity = new ClientLimitationEntity();
                 clientLimitationEntity.setClientId(clientId);
                 clientLimitationEntity.setLimitation(limitation);
                 add(clientLimitationEntity);
-                em.flush();
-                em.getTransaction().commit();
+                getEntityManager().flush();
             } catch (Exception e) {
                 LOGGER.log(Level.WARNING, e.getMessage());
-                em.getTransaction().rollback();
-            } finally {
-                em.close();
             }
         }
     }

@@ -25,17 +25,12 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
 
     @Override
     public void removeById(int clientId) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            em.getTransaction().begin();
-            em.createQuery("UPDATE ClientcareinstitutionEntity SET ClientcareinstitutionEntity .active = false " +
+            getEntityManager().createQuery("UPDATE ClientcareinstitutionEntity SET ClientcareinstitutionEntity .active = false " +
                     "WHERE ClientcareinstitutionEntity.clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
-            em.getTransaction().commit();
+            getEntityManager().flush();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
         }
     }
 
@@ -45,10 +40,9 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
     @Override
     @SuppressWarnings("unchecked")
     public List<ClientEntity> getByCareInstitutionId(int id) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         List<ClientEntity> clientEntities = new ArrayList<>();
         try {
-            List<ClientcareinstitutionEntity> clientcareinstitutionEntityList = em.createQuery("FROM ClientcareinstitutionEntity " +
+            List<ClientcareinstitutionEntity> clientcareinstitutionEntityList = getEntityManager().createQuery("FROM ClientcareinstitutionEntity " +
                     "WHERE careInstitutionId = :id").setParameter("id", id).getResultList();
 
             for (ClientcareinstitutionEntity clientcareinstitutionEntity : clientcareinstitutionEntityList) {
@@ -56,20 +50,15 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
             }
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
-        } finally {
-            em.close();
         }
         return clientEntities;
     }
 
     public int latestId() {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return ((Number) em.createQuery("SELECT MAX(clientId) FROM ClientEntity").getSingleResult()).intValue();
+            return ((Number) getEntityManager().createQuery("SELECT MAX(clientId) FROM ClientEntity").getSingleResult()).intValue();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-        } finally {
-            em.close();
         }
         return 0;
     }

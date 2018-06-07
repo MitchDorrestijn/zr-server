@@ -21,14 +21,11 @@ public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<Drivercareinsti
     }
 
     public DrivercareinstitutionEntity find(DrivercareinstitutionEntityPK drivercareinstitutionEntityPK) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return em.find(DrivercareinstitutionEntity.class, drivercareinstitutionEntityPK);
+            return getEntityManager().find(DrivercareinstitutionEntity.class, drivercareinstitutionEntityPK);
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new DrivercareinstitutionEntity();
-        } finally {
-            em.close();
         }
     }
 
@@ -47,54 +44,39 @@ public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<Drivercareinsti
     }
 
     private int getCareId(int driverId) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return (int) em.createQuery("SELECT careInstitutionId FROM DrivercareinstitutionEntity dr WHERE dr.driverId = :driverId").setParameter("driverId", driverId).getSingleResult();
+            return (int) getEntityManager().createQuery("SELECT careInstitutionId FROM DrivercareinstitutionEntity dr WHERE dr.driverId = :driverId").setParameter("driverId", driverId).getSingleResult();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return 0;
-        } finally {
-            em.close();
         }
     }
 
     @Override
     public void updateCareInstituion(int careId, int driverId) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            em.getTransaction().begin();
-            em.createQuery("UPDATE DrivercareinstitutionEntity SET careInstitutionId = :careId WHERE driverId = :driverId").setParameter("careId", careId).setParameter("driverId", driverId).executeUpdate();
-            em.getTransaction().commit();
+            getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET careInstitutionId = :careId WHERE driverId = :driverId").setParameter("careId", careId).setParameter("driverId", driverId).executeUpdate();
+            getEntityManager().flush();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
         }
     }
 
     @Override
     public int getDriverCareinstitutionId(int id) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return ((int) em.createQuery("select careInstitutionId from DrivercareinstitutionEntity where driverId = :id").setParameter("id", id).getSingleResult());
+            return ((int) getEntityManager().createQuery("select careInstitutionId from DrivercareinstitutionEntity where driverId = :id").setParameter("id", id).getSingleResult());
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return 0;
-        } finally {
-            em.close();
         }
-
     }
 
     public DrivercareinstitutionEntity findById(DrivercareinstitutionEntity drivercareinstitutionEntity) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return em.find(DrivercareinstitutionEntity.class, drivercareinstitutionEntity);
+            return getEntityManager().find(DrivercareinstitutionEntity.class, drivercareinstitutionEntity);
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-        } finally {
-            em.close();
         }
         return null;
     }

@@ -6,7 +6,6 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEnti
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntityPK;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,28 +48,21 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
      */
     @Override
     public int getClientCareinstitutionId(int id) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return ((int) em.createQuery("select careInstitutionId from ClientcareinstitutionEntity where clientId   = :id").setParameter("id", id).getSingleResult());
+            return ((int) getEntityManager().createQuery("select careInstitutionId from ClientcareinstitutionEntity where clientId   = :id").setParameter("id", id).getSingleResult());
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-        } finally {
-            em.close();
         }
         return 0;
     }
 
     public ClientcareinstitutionEntity find(ClientcareinstitutionEntityPK clientcareinstitutionEntityPK) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
-        ClientcareinstitutionEntity clientcareinstitutionEntity = em.find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
-        em.close();
+        ClientcareinstitutionEntity clientcareinstitutionEntity = getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
         return clientcareinstitutionEntity;
     }
 
     public ClientcareinstitutionEntity findById(ClientcareinstitutionEntity clientcareinstitutionEntity) {
-        EntityManager em = getEntityManagerFactory().createEntityManager();
-        ClientcareinstitutionEntity clientcareinstitutionEntityA = em.find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
-        em.close();
+        ClientcareinstitutionEntity clientcareinstitutionEntityA = getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
         return clientcareinstitutionEntityA;
     }
 }
