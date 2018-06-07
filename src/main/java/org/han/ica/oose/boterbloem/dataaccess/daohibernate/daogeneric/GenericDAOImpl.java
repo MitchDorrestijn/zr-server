@@ -31,8 +31,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             LOGGER.log(Level.WARNING, e.getMessage());
             em.getTransaction().rollback();
 
-        } finally {
-            em.close();
         }
         return null;
     }
@@ -49,8 +47,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             LOGGER.log(Level.WARNING, e.getMessage());
             em.getTransaction().rollback();
 
-        } finally {
-            em.close();
         }
         return null;
     }
@@ -65,8 +61,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             em.getTransaction().rollback();
-        } finally {
-            em.close();
         }
     }
 
@@ -82,8 +76,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             LOGGER.log(Level.WARNING, e.getMessage());
             em.getTransaction().rollback();
 
-        } finally {
-            em.close();
         }
         return null;
     }
@@ -101,8 +93,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             LOGGER.log(Level.WARNING, e.getMessage());
             em.getTransaction().rollback();
 
-        } finally {
-            em.close();
         }
         return new ArrayList<>();
     }
