@@ -6,6 +6,7 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,8 +25,15 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
 
     @Override
     public void removeById(int clientId) {
-        getEntityManager().createQuery("UPDATE ClientcareinstitutionEntity SET ClientcareinstitutionEntity .active = false " +
-                "WHERE ClientcareinstitutionEntity.clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
+        EntityManager em = getEntityManagerFactory().createEntityManager();
+        try {
+            em.createQuery("UPDATE ClientcareinstitutionEntity SET ClientcareinstitutionEntity .active = false " +
+                    "WHERE ClientcareinstitutionEntity.clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        } finally {
+            em.close();
+        }
     }
 
     /**
@@ -34,6 +42,7 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
     @Override
     @SuppressWarnings("unchecked")
     public List<ClientEntity> getByCareInstitutionId(int id) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         List<ClientEntity> clientEntities = new ArrayList<>();
         try {
             List<ClientcareinstitutionEntity> clientcareinstitutionEntityList = getEntityManager().createQuery("FROM ClientcareinstitutionEntity " +
@@ -44,6 +53,8 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
             }
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
+        } finally {
+            em.close();
         }
         return clientEntities;
     }

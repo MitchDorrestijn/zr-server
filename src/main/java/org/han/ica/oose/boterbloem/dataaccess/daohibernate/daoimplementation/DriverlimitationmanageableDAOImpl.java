@@ -4,6 +4,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDriverlimitationmana
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DriverlimitationmanageableEntity;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,18 +25,22 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
     @Override
     @SuppressWarnings("unchecked")
     public List<String> getByDriverId(int id) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return getEntityManager().createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id", id).getResultList();
+            return em.createQuery("SELECT limitation FROM DriverlimitationmanageableEntity WHERE driverId = :id").setParameter("id", id).getResultList();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new ArrayList<>();
+        }finally {
+            em.close();
         }
     }
 
     @Override
     public void updateDriverLimitations(List<String> limitations, int driverId) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            getEntityManager().createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
+            em.createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
         }
@@ -48,6 +53,8 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
                 getEntityManager().flush();
             } catch (Exception e) {
                 LOGGER.log(Level.WARNING, e.getMessage());
+            }finally {
+                em.close();
             }
         }
     }

@@ -5,12 +5,15 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAO
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientLimitationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEntity> implements IClientlimitationDAO {
     private static final Logger LOGGER = Logger.getLogger(ClientlimitationDAOImpl.class.getName());
+
     /**
      * Hook up the basic CRUD queries
      */
@@ -22,8 +25,17 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
     @Override
     @SuppressWarnings("unchecked")
     public List<String> getByClientId(int id) {
-        return getEntityManager().createQuery("SELECT limitation FROM ClientLimitationEntity " +
-                "WHERE clientId = :id").setParameter("id", id).getResultList();
+        EntityManager em = getEntityManagerFactory().createEntityManager();
+        try {
+            return em.createQuery("SELECT limitation FROM ClientLimitationEntity " +
+                    "WHERE clientId = :id").setParameter("id", id).getResultList();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        } finally {
+            em.close();
+        }
+        return new ArrayList<>();
+
     }
 
     /**
@@ -33,15 +45,23 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
 
     @SuppressWarnings("unchecked")
     public List<String> getAllLimitationById(int id) {
-        return getEntityManager().createQuery("SELECT limitation FROM ClientLimitationEntity " +
-                "WHERE clientId = :id").setParameter("id", id).getResultList();
+        EntityManager em = getEntityManagerFactory().createEntityManager();
+        try {
+            return em.createQuery("SELECT limitation FROM ClientLimitationEntity " +
+                    "WHERE clientId = :id").setParameter("id", id).getResultList();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new ArrayList<>();
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public void updateClientLimitations(List<String> limitations, int clientId) {
-        getEntityManager().getTransaction().begin();
-        getEntityManager().createQuery("DELETE FROM ClientLimitationEntity WHERE clientId  = :clientId").setParameter("clientId", clientId).executeUpdate();
-        getEntityManager().getTransaction().commit();
+        EntityManager em = getEntityManagerFactory().createEntityManager();
+        em.createQuery("DELETE FROM ClientLimitationEntity WHERE clientId  = :clientId").setParameter("clientId", clientId).executeUpdate();
+
         for (String limitation : limitations) {
             try {
                 ClientLimitationEntity clientLimitationEntity = new ClientLimitationEntity();
@@ -50,7 +70,9 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
                 add(clientLimitationEntity);
                 getEntityManager().flush();
             } catch (Exception e) {
-               LOGGER.log(Level.WARNING,e.getMessage());
+                LOGGER.log(Level.WARNING, e.getMessage());
+            } finally {
+                em.close();
             }
         }
     }
