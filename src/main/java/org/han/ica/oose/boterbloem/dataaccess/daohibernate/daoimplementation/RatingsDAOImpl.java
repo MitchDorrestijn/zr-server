@@ -6,6 +6,7 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEnti
 import org.han.ica.oose.boterbloem.dataaccess.entities.RatingsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,23 +26,29 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
     }
 
     public int getAvgRatings(int id) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return ((Number) getEntityManager().createQuery("SELECT AVG(sterren) FROM RatingsEntity WHERE driverId = :id").setParameter("id", id).getSingleResult()).intValue();
+            return ((Number) em.createQuery("SELECT AVG(sterren) FROM RatingsEntity WHERE driverId = :id").setParameter("id", id).getSingleResult()).intValue();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
             return 0;
+        } finally {
+            em.close();
         }
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<RatingsEntity> getByDriver(int driverId) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return getEntityManager().createQuery("FROM RatingsEntity " +
+            return em.createQuery("FROM RatingsEntity " +
                     "WHERE driverId = :driverId").setParameter("driverId", driverId).getResultList();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
             return new ArrayList<>();
+        } finally {
+            em.close();
         }
     }
 
@@ -52,9 +59,10 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
     @Override
     @SuppressWarnings("unchecked")
     public List<List<RatingsEntity>> getByCareInstitution(int careInstitutionId) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         List<List<RatingsEntity>> ratings = new ArrayList<>();
         try {
-            List<DrivercareinstitutionEntity> drivercareinstitutionEntities = getEntityManager().createQuery("FROM DrivercareinstitutionEntity " +
+            List<DrivercareinstitutionEntity> drivercareinstitutionEntities = em.createQuery("FROM DrivercareinstitutionEntity " +
                     "WHERE careInstitutionId = :careInstitutionId").setParameter("careInstitutionId", careInstitutionId).getResultList();
 
             for (DrivercareinstitutionEntity d : drivercareinstitutionEntities) {
@@ -62,6 +70,8 @@ public class RatingsDAOImpl extends GenericDAOImpl<RatingsEntity> implements IRa
             }
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
+        }finally {
+            em.close();
         }
         return ratings;
     }

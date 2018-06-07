@@ -6,6 +6,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAO
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,60 +28,71 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
 
     @Override
     public int rideCountById(int id) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
+            return ((Number) em.createQuery("SELECT count(*) FROM RideEntity  WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).intValue();
         } catch (Exception n) {
             LOGGER.log(Level.WARNING, n.getMessage());
             return 0;
+        } finally {
+            em.close();
         }
     }
 
     @Override
     public int totalRideClient(int id) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return ((Number) getEntityManager().createQuery("SELECT count(*) FROM RideEntity  " +
+            return ((Number) em.createQuery("SELECT count(*) FROM RideEntity  " +
                     "WHERE clientEntity.clientId = :id").setParameter("id", id).getSingleResult()).intValue();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return 0;
+        } finally {
+            em.close();
         }
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<RideEntity> getByClient(int id) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return getEntityManager().createQuery("FROM RideEntity " +
+            return em.createQuery("FROM RideEntity " +
                     "WHERE clientEntity.clientId = :id").setParameter("id", id).getResultList();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new ArrayList<>();
+        } finally {
+            em.close();
         }
     }
 
     @Override
     @SuppressWarnings("unchecked")
-
-
     public List<RideEntity> getByDriver(int id) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
             String query = "FROM RideEntity WHERE driverEntity.driverId = :id";
-            return getEntityManager().createQuery(query).setParameter("id", id).getResultList();
+            return em.createQuery(query).setParameter("id", id).getResultList();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new ArrayList<>();
+        } finally {
+            em.close();
         }
     }
 
     @Override
     public float totalEarned(int id) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return ((Number) getEntityManager().createQuery("SELECT SUM(priceOfRide) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
-
+            return ((Number) em.createQuery("SELECT SUM(priceOfRide) FROM RideEntity WHERE driverEntity.driverId = :id").setParameter("id", id).getSingleResult()).floatValue();
         } catch (NullPointerException n) {
             LOGGER.log(Level.WARNING, n.getMessage());
-
             return 0;
+        } finally {
+            em.close();
         }
     }
 
@@ -89,23 +101,27 @@ public class RideDAOImpl extends GenericDAOImpl<RideEntity> implements IRideDAO 
      */
     @SuppressWarnings("unchecked")
     public List<RideEntity> ridesWithCareinstitution(int careId) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return getEntityManager().createQuery("FROM RideEntity s WHERE driverEntity.driverId IN (SELECT driverId FROM DrivercareinstitutionEntity WHERE careInstitutionId = :careId) OR clientEntity.clientId IN (SELECT clientId from ClientcareinstitutionEntity WHERE careInstitutionId = :careId) ").setParameter("careId", careId).getResultList();
+            return em.createQuery("FROM RideEntity s WHERE driverEntity.driverId IN (SELECT driverId FROM DrivercareinstitutionEntity WHERE careInstitutionId = :careId) OR clientEntity.clientId IN (SELECT clientId from ClientcareinstitutionEntity WHERE careInstitutionId = :careId) ").setParameter("careId", careId).getResultList();
         } catch (NullPointerException e) {
-
             LOGGER.log(Level.WARNING, e.getMessage());
             return new ArrayList<>();
+        }finally {
+            em.close();
         }
     }
 
     @Override
     public RideEntity getByClientAndDateTime(int clientId, Timestamp date) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return (RideEntity) getEntityManager().createQuery("FROM RideEntity WHERE clientEntity.clientId = :id AND pickUpDateTime = :date").setParameter("id", "%" + clientId + "%").setParameter("date", date).getSingleResult();
+            return (RideEntity) em.createQuery("FROM RideEntity WHERE clientEntity.clientId = :id AND pickUpDateTime = :date").setParameter("id", "%" + clientId + "%").setParameter("date", date).getSingleResult();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
             return new RideEntity();
-
+        }finally {
+            em.close();
         }
     }
 }

@@ -6,6 +6,7 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEnti
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntityPK;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

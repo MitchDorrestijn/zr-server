@@ -4,6 +4,9 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IUtilityDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.UtilityEntity;
 
+import javax.persistence.EntityManager;
+import java.util.logging.Level;
+
 public class UtilityDAOImpl extends GenericDAOImpl<UtilityEntity> implements IUtilityDAO {
 
     /**
@@ -15,6 +18,14 @@ public class UtilityDAOImpl extends GenericDAOImpl<UtilityEntity> implements IUt
 
     @Override
     public UtilityEntity findByName(String name) {
-        return (UtilityEntity) getEntityManager().createQuery("FROM UtilityEntity where name =: name").setParameter("name", name).getSingleResult();
+        EntityManager em = getEntityManagerFactory().createEntityManager();
+        try {
+            return (UtilityEntity) em.createQuery("FROM UtilityEntity where name =: name").setParameter("name", name).getSingleResult();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new UtilityEntity();
+        } finally {
+            em.close();
+        }
     }
 }

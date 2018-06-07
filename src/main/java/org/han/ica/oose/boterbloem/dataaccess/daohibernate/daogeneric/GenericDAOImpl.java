@@ -8,19 +8,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
-    private static final Logger LOGGER = Logger.getLogger(GenericDAOImpl.class.getName());
+    protected static final Logger LOGGER = Logger.getLogger(GenericDAOImpl.class.getName());
     private Class<T> classImpl;
 
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
     private EntityManager em;
 
     public GenericDAOImpl(Class<T> classImpl) {
-        em = entityManagerFactory.createEntityManager();
         this.classImpl = classImpl;
     }
 
     @Override
     public T add(T entity) {
+        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
             em.persist(entity);
@@ -30,12 +30,15 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             LOGGER.log(Level.WARNING, e.getMessage());
             em.getTransaction().rollback();
 
+        } finally {
+            em.close();
         }
         return null;
     }
 
     @Override
     public T update(T entity) {
+        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
             T mergedEntity = em.merge(entity);
@@ -45,12 +48,15 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             LOGGER.log(Level.WARNING, e.getMessage());
             em.getTransaction().rollback();
 
+        } finally {
+            em.close();
         }
         return null;
     }
 
     @Override
     public void remove(T entity) {
+        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
             em.remove(entity);
@@ -58,11 +64,14 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             em.getTransaction().rollback();
+        } finally {
+            em.close();
         }
     }
 
     @Override
     public T findById(int id) {
+        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
             T entity = em.find(classImpl, id);
@@ -72,6 +81,8 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             LOGGER.log(Level.WARNING, e.getMessage());
             em.getTransaction().rollback();
 
+        } finally {
+            em.close();
         }
         return null;
     }
@@ -79,6 +90,7 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findAll() {
+        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
             List<T> entities = em.createQuery("SELECT x FROM " + classImpl.getSimpleName() + " x").getResultList();
@@ -88,6 +100,8 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             LOGGER.log(Level.WARNING, e.getMessage());
             em.getTransaction().rollback();
 
+        } finally {
+            em.close();
         }
         return new ArrayList<>();
     }
@@ -109,5 +123,14 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
      */
     public EntityManager getEntityManager() {
         return em;
+    }
+
+    /**
+     * Getter for property 'entityManagerFactory'.
+     *
+     * @return Value for property 'entityManagerFactory'.
+     */
+    public static EntityManagerFactory getEntityManagerFactory() {
+        return entityManagerFactory;
     }
 }
