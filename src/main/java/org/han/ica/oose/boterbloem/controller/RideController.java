@@ -27,6 +27,16 @@ public class RideController {
     }
 
     /**
+     *  payments of a specific careisntitution
+     * @param id of a careinstitution
+     * @return display of Payments
+     */
+    @RequestMapping(value = "/paymentsAtCareinstitution/{id}", method = RequestMethod.GET)
+    public List<RideOverviewDisplay> paymentsAtCareinstitution(@PathVariable int id) {
+        return rideService.getPaymentsAtCareInstitution(id);
+    }
+
+    /**
      * GET Ride by Id
      *
      * @param id of Ride

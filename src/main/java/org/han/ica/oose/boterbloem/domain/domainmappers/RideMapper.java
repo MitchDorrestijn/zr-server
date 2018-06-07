@@ -45,8 +45,8 @@ public class RideMapper {
 
     public Ride getRide(CreateRideDisplay rideDisplay) {
         RideEntity rideEntity = rideDAO.getByClientAndDateTime(rideDisplay.getClientId(), rideDisplay.getDate());
-        Ride ride = extractRide(rideEntity);
-        return ride;
+        return extractRide(rideEntity);
+
     }
 
     /**
@@ -72,9 +72,8 @@ public class RideMapper {
             LOGGER.log(Level.WARNING, e.getMessage());
         }
         try {
-            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(rideEntity.getPaymentDueBefore());
-            ride.setPaymentDueBefore((java.sql.Date) date);
-        } catch (ParseException e) {
+            ride.setPaymentDueBefore(rideEntity.getPaymentDueBefore());
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Problem while parsing the date", e);
             ride.setPaymentDueBefore(null);
         }

@@ -49,7 +49,7 @@ public class RideControllerTest {
         rideA.setClient(new Client());
         rideA.setPaymentDescription("Graag zsm betalen");
         rideA.setPaymentStatus("Nog te betalen");
-        rideA.setPaymentDueBefore(new Date(System.currentTimeMillis()));
+        rideA.setPaymentDueBefore(new Date(System.currentTimeMillis()).toString());
         rideA.setPriceOfRide(50.00f);
         rideA.setNumberOfcompanions(2);
         rideA.setNumberOfLuggage(5);
