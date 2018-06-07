@@ -14,7 +14,7 @@ public class Ride {
     private Client client;
     private String paymentDescription;
     private String paymentStatus;
-    private Date paymentDueBefore;
+    private String paymentDueBefore;
     private float priceOfRide;
     //How many people are in the car besides the driver + client
     private int numberOfcompanions;
@@ -175,7 +175,7 @@ public class Ride {
      *
      * @return Value for property 'paymentDueBefore'.
      */
-    public Date getPaymentDueBefore() {
+    public String getPaymentDueBefore() {
         return paymentDueBefore;
     }
 
@@ -184,7 +184,7 @@ public class Ride {
      *
      * @param paymentDueBefore Value to set for property 'paymentDueBefore'.
      */
-    public void setPaymentDueBefore(Date paymentDueBefore) {
+    public void setPaymentDueBefore(String paymentDueBefore) {
         this.paymentDueBefore = paymentDueBefore;
     }
 

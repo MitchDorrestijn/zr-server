@@ -56,4 +56,10 @@ public interface IRideService {
      */
     void update(CreateRideDisplay ride);
 
+    /**
+     *  payments of a specific careisntitution
+     * @param id of a careinstitution
+     * @return display of Payments
+     */
+    List<RideOverviewDisplay> getPaymentsAtCareInstitution(int id);
 }

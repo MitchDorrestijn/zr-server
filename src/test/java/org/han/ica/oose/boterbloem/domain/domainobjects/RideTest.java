@@ -220,7 +220,7 @@ public class RideTest {
     public void testSetterPaymentDueBefore() throws NoSuchFieldException, IllegalAccessException {
         final Ride ride = new Ride();
         Date date = new Date(System.currentTimeMillis());
-        ride.setPaymentDueBefore(date);
+        ride.setPaymentDueBefore(date.toString());
 
         final Field field = ride.getClass().getDeclaredField("paymentDueBefore");
         field.setAccessible(true);
@@ -233,11 +233,11 @@ public class RideTest {
         final Ride ride = new Ride();
         final Field field = ride.getClass().getDeclaredField("paymentDueBefore");
         field.setAccessible(true);
-        Date date = new Date(System.currentTimeMillis());
+        String date = new Date(System.currentTimeMillis()).toString();
 
         field.set(ride, date);
 
-        final Date result = ride.getPaymentDueBefore();
+        final String result = ride.getPaymentDueBefore();
 
         assertEquals("Field wasn't retrieved properly", date, result);
     }
