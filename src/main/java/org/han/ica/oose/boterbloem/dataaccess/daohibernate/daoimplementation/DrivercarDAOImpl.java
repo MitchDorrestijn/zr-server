@@ -48,6 +48,7 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
 
         } catch (NullPointerException e) {
             LOGGER.log(Level.WARNING, e.getMessage());
+            getEntityManager().getTransaction().rollback();
             return new DrivercarEntity();
         }
     }

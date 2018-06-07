@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CreateClientDisplay {
     private String utility;
-    private ClientEntity clientEntity;
+    private ClientEntity client;
     private boolean companionForced;
     private List<String> limitations;
 
@@ -30,21 +30,21 @@ public class CreateClientDisplay {
     }
 
     /**
-     * Getter for property 'clientEntity'.
+     * Getter for property 'client'.
      *
-     * @return Value for property 'clientEntity'.
+     * @return Value for property 'client'.
      */
-    public ClientEntity getClientEntity() {
-        return clientEntity;
+    public ClientEntity getClient() {
+        return client;
     }
 
     /**
-     * Setter for property 'clientEntity'.
+     * Setter for property 'client'.
      *
-     * @param clientEntity Value to set for property 'clientEntity'.
+     * @param client Value to set for property 'client'.
      */
-    public void setClientEntity(ClientEntity clientEntity) {
-        this.clientEntity = clientEntity;
+    public void setClient(ClientEntity client) {
+        this.client = client;
     }
 
     /**

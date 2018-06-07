@@ -69,15 +69,15 @@ public class DriverService implements IDriverService {
         try {
             driverDao.add(createDriverDisplay.getDriver());
 
-            DrivercarEntity drivercarEntity = createDriverDisplay.getDrivercarEntity();
+            DrivercarEntity drivercarEntity = createDriverDisplay.getDrivercar();
             drivercarEntity.setDriverId(driverDao.latestId());
             DrivercareinstitutionEntity drivercareinstitutionEntity = new DrivercareinstitutionEntity();
             drivercareinstitutionEntity.setDriverId(driverDao.latestId());
             drivercareinstitutionEntity.setCareInstitutionId(createDriverDisplay.getCareInstitutionId());
             drivercareinstitutionEntity.setActive(true);
             drivercareinstitutionDAO.add(drivercareinstitutionEntity);
-            drivercarDAO.add(createDriverDisplay.getDrivercarEntity());
-            for (String lm : createDriverDisplay.getLimitationEntities()) {
+            drivercarDAO.add(createDriverDisplay.getDrivercar());
+            for (String lm : createDriverDisplay.getLimitations()) {
                 DriverlimitationmanageableEntity driverlimitationmanageableEntity = new DriverlimitationmanageableEntity();
                 driverlimitationmanageableEntity.setDriverId(driverDao.latestId());
                 driverlimitationmanageableEntity.setLimitation(lm);
@@ -91,13 +91,14 @@ public class DriverService implements IDriverService {
     @Override
     public void updateDriver(CreateDriverDisplay createDriverDisplay) {
         int driverId = createDriverDisplay.getDriver().getDriverId();
-        if (createDriverDisplay.getDriver() != driverDao.findById(driverId)) {
+
+        if (createDriverDisplay.getDriver().equals(driverDao.findById(driverId))) {
             driverDao.update(createDriverDisplay.getDriver());
         }
-        if (!createDriverDisplay.getDrivercarEntity().equals(drivercarDAO.findCarById(driverId))) {
+        if (!createDriverDisplay.getDrivercar().equals(drivercarDAO.findCarById(driverId))) {
             try {
                 drivercarDAO.remove(drivercarDAO.findCarById(driverId));
-                drivercarDAO.update(createDriverDisplay.getDrivercarEntity());
+                drivercarDAO.update(createDriverDisplay.getDrivercar());
             } catch ( Exception e ) {
                 LOGGER.log(Level.WARNING, e.getMessage());
             }
@@ -105,8 +106,8 @@ public class DriverService implements IDriverService {
         if (createDriverDisplay.getCareInstitutionId() != drivercareinstitutionDAO.getDriverCareinstitutionId(driverId)) {
             drivercareinstitutionDAO.updateCareInstituion(createDriverDisplay.getCareInstitutionId(), driverId);
         }
-        if (!createDriverDisplay.getLimitationEntities().equals(driverlimitationmanageableDAO.getByDriverId(driverId))) {
-            driverlimitationmanageableDAO.updateDriverLimitations(createDriverDisplay.getLimitationEntities(), driverId);
+        if (!createDriverDisplay.getLimitations().equals(driverlimitationmanageableDAO.getByDriverId(driverId))) {
+            driverlimitationmanageableDAO.updateDriverLimitations(createDriverDisplay.getLimitations(), driverId);
         }
     }
 
@@ -132,14 +133,14 @@ public class DriverService implements IDriverService {
 
     public CreateDriverDisplay getThisThing() {
         CreateDriverDisplay createDriverDisplay = new CreateDriverDisplay();
-        createDriverDisplay.setDrivercarEntity(drivercarDAO.findCarById(1));
+        createDriverDisplay.setDrivercar(drivercarDAO.findCarById(1));
         createDriverDisplay.setDriver(driverDao.findById(1));
         createDriverDisplay.setCareInstitutionId(1);
         ArrayList<String> asd = new ArrayList<>();
         asd.add("Limitation");
         asd.add("something else");
 
-        createDriverDisplay.setLimitationEntities(asd);
+        createDriverDisplay.setLimitations(asd);
         return createDriverDisplay;
     }
 }

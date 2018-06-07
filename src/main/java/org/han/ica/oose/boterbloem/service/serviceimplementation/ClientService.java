@@ -70,22 +70,22 @@ public class ClientService implements IClientservice {
     @Override
     public void createClient(CreateClientDisplay createClientDisplay) {
         try {
-            userDAO.add(createClientDisplay.getClientEntity().getUserEntity());
-            clientDAO.add(createClientDisplay.getClientEntity());
+            userDAO.add(createClientDisplay.getClient().getUserEntity());
+            clientDAO.add(createClientDisplay.getClient());
             ClientUtilityEntity clientUtilityEntity = new ClientUtilityEntity();
-            clientUtilityEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
+            clientUtilityEntity.setClientId(createClientDisplay.getClient().getClientId());
             clientUtilityEntity.setUtility(createClientDisplay.getUtility());
             clientUtilityDAO.add(clientUtilityEntity);
 
             ClientcareinstitutionEntity clientcareinstitutionEntity = new ClientcareinstitutionEntity();
-            clientcareinstitutionEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
+            clientcareinstitutionEntity.setClientId(createClientDisplay.getClient().getClientId());
             clientcareinstitutionEntity.setCareInstitutionId(1);
             clientcareinstitutionEntity.setActive(true);
             clientCareInstitutionDAO.add(clientcareinstitutionEntity);
 
             for (String s : createClientDisplay.getLimitations()) {
                 ClientLimitationEntity clientlimitationEntity = new ClientLimitationEntity();
-                clientlimitationEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
+                clientlimitationEntity.setClientId(createClientDisplay.getClient().getClientId());
                 clientlimitationEntity.setLimitation(s);
                 clientlimitationDAO.add(clientlimitationEntity);
             }
