@@ -45,7 +45,7 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
         EntityManager em = getEntityManagerFactory().createEntityManager();
         List<ClientEntity> clientEntities = new ArrayList<>();
         try {
-            List<ClientcareinstitutionEntity> clientcareinstitutionEntityList = getEntityManager().createQuery("FROM ClientcareinstitutionEntity " +
+            List<ClientcareinstitutionEntity> clientcareinstitutionEntityList = em.createQuery("FROM ClientcareinstitutionEntity " +
                     "WHERE careInstitutionId = :id").setParameter("id", id).getResultList();
 
             for (ClientcareinstitutionEntity clientcareinstitutionEntity : clientcareinstitutionEntityList) {

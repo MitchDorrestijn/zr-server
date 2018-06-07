@@ -24,6 +24,7 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
 
     /**
      * returns careinstituion based on clientId
+     *
      * @param clientId id fo a client
      * @return Clientcareinstitution entity
      */
@@ -42,24 +43,34 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
 
     /**
      * returns the id of the carinstitution in which the client resides
+     *
      * @param id of the client
      * @return id of careinstitution
      */
     @Override
     public int getClientCareinstitutionId(int id) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
-            return ((int) getEntityManager().createQuery("select careInstitutionId from ClientcareinstitutionEntity where clientId   = :id").setParameter("id", id).getSingleResult());
+            return ((int) em.createQuery("select careInstitutionId from ClientcareinstitutionEntity where clientId   = :id").setParameter("id", id).getSingleResult());
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
+        } finally {
+            em.close();
         }
         return 0;
     }
 
-    public ClientcareinstitutionEntity find(ClientcareinstitutionEntityPK clientcareinstitutionEntityPK){
-        return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
+    public ClientcareinstitutionEntity find(ClientcareinstitutionEntityPK clientcareinstitutionEntityPK) {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
+        ClientcareinstitutionEntity clientcareinstitutionEntity = em.find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
+        em.close();
+        return clientcareinstitutionEntity;
     }
 
     public ClientcareinstitutionEntity findById(ClientcareinstitutionEntity clientcareinstitutionEntity) {
-        return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
+        EntityManager em = getEntityManagerFactory().createEntityManager();
+        ClientcareinstitutionEntity clientcareinstitutionEntityA = em.find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
+        em.close();
+        return clientcareinstitutionEntityA;
     }
 }

@@ -30,7 +30,6 @@ public class AuthUsersDAOImpl extends GenericDAOImpl<AuthUsersEntity> implements
         } finally {
             em.close();
         }
-        return null;
+        return new AuthUsersEntity();
     }
-
 }
