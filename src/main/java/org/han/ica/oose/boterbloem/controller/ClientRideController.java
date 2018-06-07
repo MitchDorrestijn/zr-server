@@ -2,16 +2,18 @@ package org.han.ica.oose.boterbloem.controller;
 
 
 import org.han.ica.oose.boterbloem.display.displayobject.ClientRideDisplay;
+import org.han.ica.oose.boterbloem.security.AdminAndCareInstitutionAuthorization;
 import org.han.ica.oose.boterbloem.service.IClientRideService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.ClientRideService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/ride/client")
+@RequestMapping("/rest/ride/client")
 public class ClientRideController {
 
     private IClientRideService clientRideService = new ClientRideService();
@@ -26,6 +28,7 @@ public class ClientRideController {
      * @param clientId of Client
      * @return list of Clients-rides
      */
+    @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/clientRide/{clientId}", method = RequestMethod.GET)
     public List <ClientRideDisplay> getRidesFromSpecificClientById(@PathVariable int clientId) {
         return clientRideService.getRidesFromSpecificClientById(clientId);

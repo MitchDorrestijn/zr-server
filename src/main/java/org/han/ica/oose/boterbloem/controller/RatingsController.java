@@ -1,5 +1,7 @@
 package org.han.ica.oose.boterbloem.controller;
 
+import org.han.ica.oose.boterbloem.security.AdminAndCareInstitutionAuthorization;
+import org.han.ica.oose.boterbloem.security.AdminAuthorization;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Rating;
 import org.han.ica.oose.boterbloem.service.IRatingsService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.RatingsService;
@@ -10,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/rating")
+@RequestMapping("/rest/rating")
 public class RatingsController {
 
     private IRatingsService ratingsService = new RatingsService();
@@ -24,7 +26,7 @@ public class RatingsController {
      * GET all Rating
      * @return list of Rating
      */
-    @CrossOrigin
+    @AdminAuthorization
     @RequestMapping(value = "/ratings", method = RequestMethod.GET)
     public List <Rating> getAllRatings() {
         return ratingsService.getAllRatings();
@@ -35,6 +37,7 @@ public class RatingsController {
      * @param driverId of Driver
      * @return list of Driver-ratings
      */
+    @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/ratings/{driverId}", method = RequestMethod.GET)
     public List <Rating> getAllRatingsFromASpecificDriverById(@PathVariable int driverId) {
         return ratingsService.getAllRatingsFromASpecificDriverById(driverId);
@@ -45,6 +48,7 @@ public class RatingsController {
      * @param careInstitutionId - The ID of the care instituton you want to get the ratings of.
      * @return A list of all ratings from a specific care institution
      */
+    @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/ratings/careInstitution/{careInstitutionId}", method = RequestMethod.GET)
     public List<List<Rating>> getAllRatingsFromASpecificCareInstitution(@PathVariable int careInstitutionId) {
         return ratingsService.getAllRatingsFromASpecificCareInstitution(careInstitutionId);
