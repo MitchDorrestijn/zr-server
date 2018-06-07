@@ -61,4 +61,16 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
         }
         return clientEntities;
     }
+
+    public int latestId() {
+        EntityManager em = getEntityManagerFactory().createEntityManager();
+        try {
+            return ((Number) em.createQuery("SELECT MAX(clientId) FROM ClientEntity").getSingleResult()).intValue();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        } finally {
+            em.close();
+        }
+        return 0;
+    }
 }

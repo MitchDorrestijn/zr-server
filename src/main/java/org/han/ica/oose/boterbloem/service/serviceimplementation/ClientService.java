@@ -70,26 +70,26 @@ public class ClientService implements IClientservice {
      */
     @Override
     public void createClient(CreateClientDisplay createClientDisplay) {
+        System.out.println(createClientDisplay.getClient());
         try {
-            userDAO.add(createClientDisplay.getClient().getUserEntity());
             clientDAO.add(createClientDisplay.getClient());
             ClientUtilityEntity clientUtilityEntity = new ClientUtilityEntity();
-            clientUtilityEntity.setClientId(createClientDisplay.getClient().getClientId());
+            clientUtilityEntity.setClientId(clientDAO.latestId());
             clientUtilityEntity.setUtility(createClientDisplay.getUtility());
             clientUtilityDAO.add(clientUtilityEntity);
 
             ClientcareinstitutionEntity clientcareinstitutionEntity = new ClientcareinstitutionEntity();
-            clientcareinstitutionEntity.setClientId(createClientDisplay.getClient().getClientId());
+            clientcareinstitutionEntity.setClientId(clientDAO.latestId());
             clientcareinstitutionEntity.setCareInstitutionId(createClientDisplay.getCareId());
             clientcareinstitutionEntity.setActive(true);
             clientCareInstitutionDAO.add(clientcareinstitutionEntity);
 
-            for (String s : createClientDisplay.getLimitations()) {
-                ClientLimitationEntity clientlimitationEntity = new ClientLimitationEntity();
-                clientlimitationEntity.setClientId(createClientDisplay.getClient().getClientId());
-                clientlimitationEntity.setLimitation(s);
-                clientlimitationDAO.add(clientlimitationEntity);
-            }
+//            for (String s : createClientDisplay.getLimitations()) {
+//                ClientLimitationEntity clientlimitationEntity = new ClientLimitationEntity();
+//                clientlimitationEntity.setClientId(createClientDisplay.getClient().getClientId());
+//                clientlimitationEntity.setLimitation(s);
+//                clientlimitationDAO.add(clientlimitationEntity);
+ //           }
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
