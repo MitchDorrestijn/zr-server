@@ -53,7 +53,13 @@ public class DrivercareinstitutionDAOImpl extends GenericDAOImpl<Drivercareinsti
 
     @Override
     public void updateCareInstituion(int careId, int driverId) {
-        getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET careInstitutionId = :careId WHERE driverId = :driverId").setParameter("careId",careId).setParameter("driverId",driverId).executeUpdate();
+        try {
+            System.out.println("TRANSACTION ACTIVE? " + getEntityManager().getTransaction().isActive());
+            getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET careInstitutionId = :careId WHERE driverId = :driverId").setParameter("careId", careId).setParameter("driverId", driverId).executeUpdate();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.toString(), e);
+            getEntityManager().getTransaction().rollback();
+        }
     }
 
     @Override

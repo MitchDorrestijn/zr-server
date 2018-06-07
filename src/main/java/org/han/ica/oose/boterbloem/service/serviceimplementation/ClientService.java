@@ -7,6 +7,7 @@ import org.han.ica.oose.boterbloem.display.displaymapper.ClientDisplayMapper;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateClientDisplay;
+import org.han.ica.oose.boterbloem.domain.domainobjects.User;
 import org.han.ica.oose.boterbloem.service.IClientservice;
 
 import java.util.List;
@@ -100,8 +101,11 @@ public class ClientService implements IClientservice {
     @Override
     public void updateClient(ClientDetailDisplay clientDetailDisplay) {
         int clientId = clientDetailDisplay.getClient().getClientId();
-        if (!clientDetailDisplay.getClient().equals(clientDAO.findById(clientId))) {
+        if (!clientDetailDisplay.getClient().equals(clientDAO.findById(clientId)) || !clientDetailDisplay.getClient().getUserEntity().equals(userDAO.findById(clientId))) {
             clientDAO.update(clientDetailDisplay.getClient());
+            UserEntity userEntity = clientDetailDisplay.getClient().getUserEntity();
+            System.out.println(userEntity.toString());
+            userDAO.update(clientDetailDisplay.getClient().getUserEntity());
         }
         if (!clientDetailDisplay.getLimitations().equals(clientlimitationDAO.getByClientId(clientId))) {
             clientlimitationDAO.updateClientLimitations(clientDetailDisplay.getLimitations(), clientId);

@@ -1,13 +1,7 @@
 package org.han.ica.oose.boterbloem.service.serviceimplementation;
 
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDriverDAO;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDrivercarDAO;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDrivercareinstitutionDAO;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDriverlimitationmanageableDAO;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.DriverDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.DrivercarDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.DrivercareinstitutionDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.DriverlimitationmanageableDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.*;
 import org.han.ica.oose.boterbloem.dataaccess.entities.*;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateDriverDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.DriverDetailDisplay;
@@ -29,6 +23,7 @@ public class DriverService implements IDriverService {
     private IDrivercareinstitutionDAO drivercareinstitutionDAO = new DrivercareinstitutionDAOImpl();
     private IDriverlimitationmanageableDAO driverlimitationmanageableDAO = new DriverlimitationmanageableDAOImpl();
     private DriverMapper driverMapper = new DriverMapper();
+    private IUserDAO userDAO = new UserDAOImpl();
 
 
     public DriverService() {
@@ -92,8 +87,9 @@ public class DriverService implements IDriverService {
     public void updateDriver(CreateDriverDisplay createDriverDisplay) {
         int driverId = createDriverDisplay.getDriver().getDriverId();
 
-        if (createDriverDisplay.getDriver().equals(driverDao.findById(driverId))) {
+        if (createDriverDisplay.getDriver().equals(driverDao.findById(driverId)) || createDriverDisplay.getDriver().getUserEntity().equals(userDAO.findById(driverId))) {
             driverDao.update(createDriverDisplay.getDriver());
+            userDAO.update(createDriverDisplay.getDriver().getUserEntity());
         }
         if (!createDriverDisplay.getDrivercar().equals(drivercarDAO.findCarById(driverId))) {
             try {
