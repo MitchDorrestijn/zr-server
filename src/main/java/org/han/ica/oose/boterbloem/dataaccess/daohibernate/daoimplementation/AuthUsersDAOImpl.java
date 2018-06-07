@@ -21,7 +21,6 @@ public class AuthUsersDAOImpl extends GenericDAOImpl<AuthUsersEntity> implements
      */
     @Override
     public AuthUsersEntity findByUserName(String userName) {
-
         try {
             return (AuthUsersEntity) getEntityManager().createQuery("FROM AuthUsersEntity " +
                     "WHERE userName = :userName").setParameter("userName", userName).getSingleResult();
