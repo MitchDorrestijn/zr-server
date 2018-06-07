@@ -7,6 +7,7 @@ import java.util.List;
 
 public class CreateClientDisplay {
     private String utility;
+    int careId;
     private ClientEntity client;
     private boolean companionForced;
     private List<String> limitations;
@@ -81,5 +82,23 @@ public class CreateClientDisplay {
      */
     public void setLimitations(List<String> limitations) {
         this.limitations = limitations;
+    }
+
+    /**
+     * Getter for property 'careId'.
+     *
+     * @return Value for property 'careId'.
+     */
+    public int getCareId() {
+        return careId;
+    }
+
+    /**
+     * Setter for property 'careId'.
+     *
+     * @param careId Value to set for property 'careId'.
+     */
+    public void setCareId(int careId) {
+        this.careId = careId;
     }
 }

@@ -27,10 +27,13 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
     public void removeById(int clientId) {
         EntityManager em = getEntityManagerFactory().createEntityManager();
         try {
+            em.getTransaction().begin();
             em.createQuery("UPDATE ClientcareinstitutionEntity SET ClientcareinstitutionEntity .active = false " +
                     "WHERE ClientcareinstitutionEntity.clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
+            em.getTransaction().commit();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
+            em.getTransaction().rollback();
         } finally {
             em.close();
         }

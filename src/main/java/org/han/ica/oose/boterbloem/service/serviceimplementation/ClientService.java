@@ -80,7 +80,7 @@ public class ClientService implements IClientservice {
 
             ClientcareinstitutionEntity clientcareinstitutionEntity = new ClientcareinstitutionEntity();
             clientcareinstitutionEntity.setClientId(createClientDisplay.getClient().getClientId());
-            clientcareinstitutionEntity.setCareInstitutionId(1);
+            clientcareinstitutionEntity.setCareInstitutionId(createClientDisplay.getCareId());
             clientcareinstitutionEntity.setActive(true);
             clientCareInstitutionDAO.add(clientcareinstitutionEntity);
 
@@ -103,8 +103,6 @@ public class ClientService implements IClientservice {
         int clientId = clientDetailDisplay.getClient().getClientId();
         if (!clientDetailDisplay.getClient().equals(clientDAO.findById(clientId)) || !clientDetailDisplay.getClient().getUserEntity().equals(userDAO.findById(clientId))) {
             clientDAO.update(clientDetailDisplay.getClient());
-            UserEntity userEntity = clientDetailDisplay.getClient().getUserEntity();
-            System.out.println(userEntity.toString());
             userDAO.update(clientDetailDisplay.getClient().getUserEntity());
         }
         if (!clientDetailDisplay.getLimitations().equals(clientlimitationDAO.getByClientId(clientId))) {

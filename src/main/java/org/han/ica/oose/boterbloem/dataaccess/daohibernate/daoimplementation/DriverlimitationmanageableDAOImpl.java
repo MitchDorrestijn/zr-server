@@ -39,10 +39,13 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
     @Override
     public void updateDriverLimitations(List<String> limitations, int driverId) {
         EntityManager em = getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
         try {
             em.createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
+            em.getTransaction().commit();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
+            em.getTransaction().rollback();
         }
         for (String limitation : limitations) {
             try {
