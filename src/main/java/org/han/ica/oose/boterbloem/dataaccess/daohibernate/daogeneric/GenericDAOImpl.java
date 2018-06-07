@@ -21,7 +21,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     @Override
     public T add(T entity) {
-        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
             em.persist(entity);
@@ -37,7 +36,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     @Override
     public T update(T entity) {
-        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
             T mergedEntity = em.merge(entity);
@@ -53,7 +51,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     @Override
     public void remove(T entity) {
-        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
             em.remove(entity);
@@ -66,7 +63,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
     @Override
     public T findById(int id) {
-        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
             T entity = em.find(classImpl, id);
@@ -83,7 +79,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findAll() {
-        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
         try {
             List<T> entities = em.createQuery("SELECT x FROM " + classImpl.getSimpleName() + " x").getResultList();
