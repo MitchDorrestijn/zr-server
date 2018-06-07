@@ -6,6 +6,7 @@ import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitution
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class CareInstitutionControllerTest {
     }
 
     @Test
+    @WithMockUser(username="admin",roles="ROLE_ADMIN")
     public void getAllCareInstitutionsTest() {
         when(careInstitutionService.getAllCareInstitutions()).thenReturn(careInstitutions);
         List<CareInstitution> testList = careInstitutionController.getAllCareInstitutions();
