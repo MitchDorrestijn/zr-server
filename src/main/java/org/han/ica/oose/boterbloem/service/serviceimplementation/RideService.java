@@ -94,7 +94,11 @@ public class RideService implements IRideService {
         try {
             RideEntity rideEntity = new RideEntity();
             rideEntity.setClientEntity(clientDAO.findById(createRideDisplay.getClientId()));
-            rideEntity.setDriverEntity(driverDAO.findById(createRideDisplay.getDriverId()));
+            try {
+                rideEntity.setDriverEntity(driverDAO.findById(createRideDisplay.getDriverId()));
+            }catch (Exception e){
+                //catch
+            }
 
             rideEntity.setPickUpDateTime(createRideDisplay.getDate());
             rideEntity.setPickUpLocation(createRideDisplay.getPickUpLocation());
@@ -104,8 +108,12 @@ public class RideService implements IRideService {
             rideEntity.setNumberOfLuggage(createRideDisplay.getNumberOfLuggage());
 
             List<UtilityEntity> utilityEntities = new ArrayList<>();
-            for (int i = 0; i < createRideDisplay.getUtilityEntity().size(); i++) {
-                utilityEntities.add(utilityMapper.convertUtility(createRideDisplay.getUtilityEntity().get(i)));
+            try {
+                for (int i = 0; i < createRideDisplay.getUtilityEntity().size(); i++) {
+                    utilityEntities.add(utilityMapper.convertUtility(createRideDisplay.getUtilityEntity().get(i)));
+                }
+            } catch (NullPointerException e){
+                LOGGER.log(Level.WARNING, e.toString(), e);
             }
             rideEntity.setUtilityEntities(utilityEntities);
 
