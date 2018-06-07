@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,8 +32,10 @@ public class CareInstitutionController {
      */
     @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public CareinstitutionEntity getCareInstitutionById(@PathVariable int id) {
-        return careInstitutionService.findById(id);
+    public List<CareinstitutionEntity> getCareInstitutionById(@PathVariable int id) {
+        List<CareinstitutionEntity> careinstitutionEntities =  new ArrayList<>();
+        careinstitutionEntities.add(careInstitutionService.findById(id));
+        return careinstitutionEntities;
     }
 
     /**
