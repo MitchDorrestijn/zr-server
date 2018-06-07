@@ -84,12 +84,12 @@ public class ClientService implements IClientservice {
             clientcareinstitutionEntity.setActive(true);
             clientCareInstitutionDAO.add(clientcareinstitutionEntity);
 
-//            for (String s : createClientDisplay.getLimitations()) {
-//                ClientLimitationEntity clientlimitationEntity = new ClientLimitationEntity();
-//                clientlimitationEntity.setClientId(createClientDisplay.getClient().getClientId());
-//                clientlimitationEntity.setLimitation(s);
-//                clientlimitationDAO.add(clientlimitationEntity);
- //           }
+            for (String s : createClientDisplay.getLimitations()) {
+                ClientLimitationEntity clientlimitationEntity = new ClientLimitationEntity();
+                clientlimitationEntity.setClientId(clientDAO.latestId());
+                clientlimitationEntity.setLimitation(s);
+                clientlimitationDAO.add(clientlimitationEntity);
+            }
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         }
