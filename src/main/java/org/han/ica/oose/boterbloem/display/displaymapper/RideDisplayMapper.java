@@ -55,14 +55,20 @@ public class RideDisplayMapper {
      */
     public List<RideOverviewDisplay> getPaymentsAtCareinstitution(int id) {
         List<Ride> rides = rideMapper.getAllRidesByInstitution(id);
+        System.out.println(rides.size());
         List<RideOverviewDisplay> rideOverviewDisplays = new ArrayList<>();
-
         for (Ride ride : rides) {
             RideOverviewDisplay rideOverviewDisplay = new RideOverviewDisplay();
             rideOverviewDisplay.setpriceOfRide(ride.getPriceOfRide());
-            rideOverviewDisplay.setId(ride.getDriver().getId());
-            rideOverviewDisplay.setDriverName(ride.getDriver().getFirstName() + " " + ride.getDriver().getLastName());
-            rideOverviewDisplay.setAccountnr(ride.getDriver().getAccountnr());
+            if (ride.getDriver() == null) {
+                rideOverviewDisplay.setId(0);
+                rideOverviewDisplay.setDriverName("");
+                rideOverviewDisplay.setAccountnr("");
+            } else {
+                rideOverviewDisplay.setId(ride.getDriver().getId());
+                rideOverviewDisplay.setDriverName(ride.getDriver().getFirstName() + " " + ride.getDriver().getLastName());
+                rideOverviewDisplay.setAccountnr(ride.getDriver().getAccountnr());
+            }
             rideOverviewDisplay.setPaymentDescription(ride.getPaymentDescription());
             rideOverviewDisplay.setPaymentDueBefore((ride.getPaymentDueBefore()));
             rideOverviewDisplay.setPaymentStatus(ride.getPaymentStatus());

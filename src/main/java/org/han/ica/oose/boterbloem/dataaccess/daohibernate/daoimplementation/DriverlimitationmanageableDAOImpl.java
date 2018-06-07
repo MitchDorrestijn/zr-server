@@ -31,7 +31,7 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
             return new ArrayList<>();
-        }finally {
+        } finally {
             em.close();
         }
     }
@@ -50,10 +50,10 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
                 driverlimitationmanageableEntity.setDriverId(driverId);
                 driverlimitationmanageableEntity.setLimitation(limitation);
                 add(driverlimitationmanageableEntity);
-                getEntityManager().flush();
+                em.flush();
             } catch (Exception e) {
                 LOGGER.log(Level.WARNING, e.getMessage());
-            }finally {
+            } finally {
                 em.close();
             }
         }

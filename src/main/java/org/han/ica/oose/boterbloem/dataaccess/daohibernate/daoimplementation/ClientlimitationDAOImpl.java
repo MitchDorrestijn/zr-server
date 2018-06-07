@@ -61,7 +61,6 @@ public class ClientlimitationDAOImpl extends GenericDAOImpl<ClientLimitationEnti
     public void updateClientLimitations(List<String> limitations, int clientId) {
         EntityManager em = getEntityManagerFactory().createEntityManager();
         em.createQuery("DELETE FROM ClientLimitationEntity WHERE clientId  = :clientId").setParameter("clientId", clientId).executeUpdate();
-
         for (String limitation : limitations) {
             try {
                 ClientLimitationEntity clientLimitationEntity = new ClientLimitationEntity();
