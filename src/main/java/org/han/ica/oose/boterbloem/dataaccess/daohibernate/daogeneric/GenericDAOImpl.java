@@ -12,9 +12,10 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
     private Class<T> classImpl;
 
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
-    private EntityManager em = entityManagerFactory.createEntityManager();
+    private EntityManager em;
 
     public GenericDAOImpl(Class<T> classImpl) {
+        em = entityManagerFactory.createEntityManager();
         this.classImpl = classImpl;
     }
 
