@@ -115,6 +115,7 @@ public class DriverMapper extends UserMapper {
         driver.setDriverCars(setDriverCarsByDriverId(driverEntity.getDriverId()));
         driver.setTotalEarned(rideDAO.totalEarned(driverEntity.getDriverId()));
         driver.setTotalRides(rideDAO.totalRideClient(driverEntity.getDriverId()));
+        driver.setId(driverEntity.getDriverId());
 
         return driver;
     }
@@ -141,9 +142,6 @@ public class DriverMapper extends UserMapper {
      */
     private List<DriverCar> setDriverCarsByDriverId(int driverId) {
         List<DriverCar> driverCars = new ArrayList<>();
-        for (DrivercarEntity driverCarEntity : drivercarDAO.drivercarEntityListByDriverId(driverId)) {
-            driverCars.add(driverCarMapper.extractDriverCar(driverCarEntity));
-        }
         return driverCars;
     }
 }

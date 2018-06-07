@@ -1,19 +1,20 @@
 package org.han.ica.oose.boterbloem.domain.domainobjects;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ride {
     private Timestamp pickUpDateTime;
     private String pickUpLocation;
     private String dropOffLocation;
-    private List<Utility> utilities;
+    private List<Utility> utilities = new ArrayList<>();
     private Driver driver;
     private Client client;
     private String paymentDescription;
     private String paymentStatus;
-    private Date paymentDueBefore;
+    private String paymentDueBefore;
     private float priceOfRide;
     //How many people are in the car besides the driver + client
     private int numberOfcompanions;
@@ -84,10 +85,14 @@ public class Ride {
         return utilities;
     }
 
+    public void setUtilities(List<Utility> utilities) {
+        this.utilities = utilities;
+    }
+
     /**
-     * Setter for property 'utilities'.
+     * Adder for property 'utilities'.
      *
-     * @param utility Value to set for property 'utilities'.
+     * @param utility Value to add for property 'utilities'.
      */
     public void addUtility(Utility utility) {
         this.utilities.add(utility);
@@ -170,7 +175,7 @@ public class Ride {
      *
      * @return Value for property 'paymentDueBefore'.
      */
-    public Date getPaymentDueBefore() {
+    public String getPaymentDueBefore() {
         return paymentDueBefore;
     }
 
@@ -179,7 +184,7 @@ public class Ride {
      *
      * @param paymentDueBefore Value to set for property 'paymentDueBefore'.
      */
-    public void setPaymentDueBefore(Date paymentDueBefore) {
+    public void setPaymentDueBefore(String paymentDueBefore) {
         this.paymentDueBefore = paymentDueBefore;
     }
 

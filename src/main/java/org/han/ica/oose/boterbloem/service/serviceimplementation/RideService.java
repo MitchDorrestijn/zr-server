@@ -66,6 +66,7 @@ public class RideService implements IRideService {
 
                     display.setDriverName(driverName);
                     display.setClientName(clientName);
+                    display.setDriverId(ride.getDriverEntity().getDriverId());
                 } catch (NullPointerException e) {
                     display.setDriverName("Geen chauffeur gevonden");
                 }
@@ -132,6 +133,9 @@ public class RideService implements IRideService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(CreateRideDisplay ride) {
         RideDisplayMapper rideDisplayMapper = new RideDisplayMapper();
@@ -142,6 +146,17 @@ public class RideService implements IRideService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<RideOverviewDisplay> getPaymentsAtCareInstitution(int id) {
+        return rideDisplayMapper.getPaymentsAtCareinstitution(id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<RidesByCareinstitutionDisplay> getRidesFromCareInstitution(int careId) {
         return rideDisplayMapper.getAllRidesByInstitution(careId);
