@@ -28,6 +28,7 @@ public class ClientController {
 
     /**
      * GET Client by Id
+     *
      * @param id of Client
      * @return Client
      */
@@ -39,16 +40,18 @@ public class ClientController {
 
     /**
      * GET all Clients
+     *
      * @return list of Clients
      */
     @AdminAuthorization
     @RequestMapping(value = "/clienten", method = RequestMethod.GET)
-    public List <ClientDisplay> getAllClients() {
+    public List<ClientDisplay> getAllClients() {
         return clientService.getAllClients();
     }
 
     /**
      * GET Client-details by specific client
+     *
      * @param id of Client
      * @return Client-details
      */
@@ -60,16 +63,19 @@ public class ClientController {
 
     /**
      * POST new Client
+     *
      * @param createClientDisplay = new Client
      */
     @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/addClient", method = RequestMethod.POST)
     public void addClient(@RequestBody CreateClientDisplay createClientDisplay) {
+        System.out.println(createClientDisplay.getClient());
         clientService.createClient(createClientDisplay);
     }
 
     /**
      * UPDATE Client
+     *
      * @param clientDetailDisplay = Client
      */
     @AdminAndCareInstitutionAuthorization
@@ -80,6 +86,7 @@ public class ClientController {
 
     /**
      * DELETE Client by Id
+     *
      * @param id of Client
      */
     @AdminAndCareInstitutionAuthorization
@@ -90,6 +97,7 @@ public class ClientController {
 
     /**
      * Get all the clients from a specific care institution
+     *
      * @return a list of information from the clients of a specifice care institution
      */
     @AdminAndCareInstitutionAuthorization
