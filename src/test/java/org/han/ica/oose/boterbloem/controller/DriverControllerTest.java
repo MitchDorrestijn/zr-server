@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import static org.mockito.Mockito.when;
  * TODO: This is unable to be tested correctly, as the driver part of the application isn't refactored to mappers
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@ActiveProfiles("test")
 public class DriverControllerTest {
     private DriverCar driverCarA = new DriverCar();
     private DriverCar driverCarB = new DriverCar();
