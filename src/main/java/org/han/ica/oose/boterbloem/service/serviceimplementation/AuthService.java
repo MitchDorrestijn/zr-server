@@ -3,6 +3,7 @@ package org.han.ica.oose.boterbloem.service.serviceimplementation;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IAuthUsersDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.AuthUsersDAOImpl;
 import org.han.ica.oose.boterbloem.domain.domainmappers.AuthenticationMapper;
+import org.han.ica.oose.boterbloem.domain.domainmappers.JwtUserMapper;
 import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
 import org.han.ica.oose.boterbloem.dataaccess.entities.AuthUsersEntity;
 import org.han.ica.oose.boterbloem.service.IAuthService;
@@ -16,20 +17,7 @@ public class AuthService implements IAuthService {
     private static final Logger LOGGER = Logger.getLogger(AuthService.class.getName());
     private AuthenticationMapper authenticationMapper = new AuthenticationMapper();
     private IAuthUsersDAO authUsersDAO = new AuthUsersDAOImpl();
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean userIsValid(String userName){
-
-        AuthUsersEntity authUsersEntity = authUsersDAO.findByUserName(userName);
-        if(authUsersEntity.getUserName() != null){
-            return true;
-        } else {
-            return false;
-        }
-    }
+    private JwtUserMapper jwtUserMapper = new JwtUserMapper();
 
     /**
      * {@inheritDoc}
@@ -59,19 +47,10 @@ public class AuthService implements IAuthService {
      * {@inheritDoc}
      */
     @Override
-    public String findUserRoleByUsername(String userName) {
-        AuthUsersEntity authUsersEntity = authUsersDAO.findByUserName(userName);
-        return authUsersEntity.getRole();
+    public JwtUser findByUsername(String userName) {
+        return jwtUserMapper.setJwtUserValues(authUsersDAO.findByUserName(userName));
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int findCareInstitutionIdByUsername(String userName) {
-        AuthUsersEntity authUsersEntity = authUsersDAO.findByUserName(userName);
-        return authUsersEntity.getCareInstitutionId();
-    }
 
     /**
      * {@inheritDoc}
@@ -80,6 +59,7 @@ public class AuthService implements IAuthService {
     public List<JwtUser> getAllAuthenticatedUsers() {
         return authenticationMapper.getAllAuthenticatedUsers();
     }
+
 
     /**
      * {@inheritDoc}
@@ -93,4 +73,5 @@ public class AuthService implements IAuthService {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
     }
+
 }
