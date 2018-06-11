@@ -3,6 +3,7 @@ package org.han.ica.oose.boterbloem.domain.domainobjects;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.lang.reflect.Field;
@@ -14,7 +15,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@ActiveProfiles("test")
 public class RideTest {
 
     @Test
@@ -219,8 +220,8 @@ public class RideTest {
     @Test
     public void testSetterPaymentDueBefore() throws NoSuchFieldException, IllegalAccessException {
         final Ride ride = new Ride();
-        Date date = new Date(System.currentTimeMillis());
-        ride.setPaymentDueBefore(date.toString());
+        String date = "2018-04-10";
+        ride.setPaymentDueBefore(date);
 
         final Field field = ride.getClass().getDeclaredField("paymentDueBefore");
         field.setAccessible(true);

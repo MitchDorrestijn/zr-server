@@ -33,7 +33,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
         if (authService.userIsValid(userDetails.getUsername()) == false) {
-          //  throw new UserNotFoundException("USER DOES NOT EXISTS");
+            throw new UserNotFoundException("USER DOES NOT EXISTS");
         }
     }
 
