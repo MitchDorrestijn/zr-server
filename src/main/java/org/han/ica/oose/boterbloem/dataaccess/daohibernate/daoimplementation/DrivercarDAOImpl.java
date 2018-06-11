@@ -5,6 +5,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAO
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercarEntityPK;
 
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
 
     @SuppressWarnings("unchecked")
     public DrivercarEntity findCarById(int driverId) {
+
         try {
             String utility;
             utility = getUtility(driverId);
@@ -54,7 +56,7 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
 
     private String getUtility(int driverId) {
         try {
-            return (String) this.getEntityManager().createQuery("SELECT utility FROM DrivercarEntity dr WHERE dr.driverId = :driverId").setParameter("driverId", driverId).getSingleResult();
+            return (String) getEntityManager().createQuery("SELECT utility FROM DrivercarEntity dr WHERE dr.driverId = :driverId").setParameter("driverId", driverId).getSingleResult();
         } catch (NoResultException e) {
             return "";
         }
@@ -72,7 +74,6 @@ public class DrivercarDAOImpl extends GenericDAOImpl<DrivercarEntity> implements
             LOGGER.log(Level.WARNING, e.getMessage());
             return new ArrayList<>();
         }
-
     }
 
 }

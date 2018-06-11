@@ -37,5 +37,4 @@ public class TokenController {
     public boolean tokenExists(@RequestParam("token") String token) {
         return authService.tokenExists(token);
     }
-
 }

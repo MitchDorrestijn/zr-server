@@ -75,7 +75,8 @@ public class ClientDisplayMapper {
         client.setPKB(c.getPKB());
         try {
             if (distance > c.getPKB()) {
-                priceToPay = (distance * DISTANCE_MULTIPLIER);
+                //This is for rounding off the price to 2 decimals
+                priceToPay = (double)Math.round((distance * DISTANCE_MULTIPLIER) * 100) / 100;
                 client.setTotalMeters(distance);
                 client.setPriceToPay(priceToPay);
                 client.setWarningPKB(true);

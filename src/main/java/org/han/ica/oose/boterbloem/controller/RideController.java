@@ -53,7 +53,7 @@ public class RideController {
      *
      * @return list of Rides
      */
-    @AdminAuthorization
+    @AdminAndCareInstitutionAuthorization
     @RequestMapping(value = "/getAllRides", method = RequestMethod.GET)
     public List<RideDisplay> getAllRides() {
         return rideService.getAllRides();

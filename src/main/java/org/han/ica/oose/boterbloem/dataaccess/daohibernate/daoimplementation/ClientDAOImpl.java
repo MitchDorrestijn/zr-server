@@ -6,6 +6,7 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientcareinstitutionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,8 +25,13 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
 
     @Override
     public void removeById(int clientId) {
-        getEntityManager().createQuery("UPDATE ClientcareinstitutionEntity SET ClientcareinstitutionEntity .active = false " +
-                "WHERE ClientcareinstitutionEntity.clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
+        try {
+            getEntityManager().createQuery("UPDATE ClientcareinstitutionEntity SET ClientcareinstitutionEntity .active = false " +
+                    "WHERE ClientcareinstitutionEntity.clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
+            getEntityManager().getTransaction().commit();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
     }
 
     /**
@@ -46,5 +52,14 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return clientEntities;
+    }
+
+    public int latestId() {
+        try {
+            return ((Number) getEntityManager().createQuery("SELECT MAX(clientId) FROM ClientEntity").getSingleResult()).intValue();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
+        return 0;
     }
 }

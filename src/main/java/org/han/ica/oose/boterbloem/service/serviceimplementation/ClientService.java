@@ -7,6 +7,7 @@ import org.han.ica.oose.boterbloem.display.displaymapper.ClientDisplayMapper;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateClientDisplay;
+import org.han.ica.oose.boterbloem.domain.domainobjects.User;
 import org.han.ica.oose.boterbloem.service.IClientservice;
 
 import java.util.List;
@@ -69,23 +70,23 @@ public class ClientService implements IClientservice {
      */
     @Override
     public void createClient(CreateClientDisplay createClientDisplay) {
+        System.out.println(createClientDisplay.getClient());
         try {
-            userDAO.add(createClientDisplay.getClientEntity().getUserEntity());
-            clientDAO.add(createClientDisplay.getClientEntity());
+            clientDAO.add(createClientDisplay.getClient());
             ClientUtilityEntity clientUtilityEntity = new ClientUtilityEntity();
-            clientUtilityEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
+            clientUtilityEntity.setClientId(clientDAO.latestId());
             clientUtilityEntity.setUtility(createClientDisplay.getUtility());
             clientUtilityDAO.add(clientUtilityEntity);
 
             ClientcareinstitutionEntity clientcareinstitutionEntity = new ClientcareinstitutionEntity();
-            clientcareinstitutionEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
-            clientcareinstitutionEntity.setCareInstitutionId(1);
+            clientcareinstitutionEntity.setClientId(clientDAO.latestId());
+            clientcareinstitutionEntity.setCareInstitutionId(createClientDisplay.getCareId());
             clientcareinstitutionEntity.setActive(true);
             clientCareInstitutionDAO.add(clientcareinstitutionEntity);
 
             for (String s : createClientDisplay.getLimitations()) {
                 ClientLimitationEntity clientlimitationEntity = new ClientLimitationEntity();
-                clientlimitationEntity.setClientId(createClientDisplay.getClientEntity().getClientId());
+                clientlimitationEntity.setClientId(clientDAO.latestId());
                 clientlimitationEntity.setLimitation(s);
                 clientlimitationDAO.add(clientlimitationEntity);
             }
@@ -100,8 +101,9 @@ public class ClientService implements IClientservice {
     @Override
     public void updateClient(ClientDetailDisplay clientDetailDisplay) {
         int clientId = clientDetailDisplay.getClient().getClientId();
-        if (!clientDetailDisplay.getClient().equals(clientDAO.findById(clientId))) {
+        if (!clientDetailDisplay.getClient().equals(clientDAO.findById(clientId)) || !clientDetailDisplay.getClient().getUserEntity().equals(userDAO.findById(clientId))) {
             clientDAO.update(clientDetailDisplay.getClient());
+            userDAO.update(clientDetailDisplay.getClient().getUserEntity());
         }
         if (!clientDetailDisplay.getLimitations().equals(clientlimitationDAO.getByClientId(clientId))) {
             clientlimitationDAO.updateClientLimitations(clientDetailDisplay.getLimitations(), clientId);

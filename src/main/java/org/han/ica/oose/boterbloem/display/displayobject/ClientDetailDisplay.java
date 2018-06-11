@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ClientDetailDisplay {
     private ClientEntity client;
+    int careId;
     private List<String> limitations;
 
     /**

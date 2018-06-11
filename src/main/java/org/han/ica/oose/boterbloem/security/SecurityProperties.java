@@ -11,13 +11,14 @@ import java.util.logging.Logger;
  */
 public class SecurityProperties {
     private static final Logger LOGGER = Logger.getLogger(SecurityProperties.class.getName());
+    private final String PROPERTIES_FILE_NAME = "application.properties";
 
     /**
      * Gets the content of the application.properties file
      * @return the content of the application.prperties file
      */
     private InputStream getApplicationProperties() {
-        return JwtGenerator.class.getClassLoader().getResourceAsStream("application.properties");
+        return JwtGenerator.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
     }
 
     /**

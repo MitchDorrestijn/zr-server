@@ -1,6 +1,5 @@
 package org.han.ica.oose.boterbloem.controller;
 
-
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
@@ -11,9 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@ActiveProfiles("test")
 public class ClientControllerTest {
 
     private Client clientA = new Client();
@@ -41,7 +40,6 @@ public class ClientControllerTest {
 
     private ClientController clientController = new ClientController();
     private ClientService clientService = mock(ClientService.class);
-
 
     @Before
     public void setup() {
@@ -93,8 +91,6 @@ public class ClientControllerTest {
 
     @Test
     public void getClientById() {
-
-
         when(clientService.findById(1)).thenReturn(clientEntity);
         ClientEntity testClient = clientController.getClientById(1);
         assertEquals(1, testClient.getClientId());

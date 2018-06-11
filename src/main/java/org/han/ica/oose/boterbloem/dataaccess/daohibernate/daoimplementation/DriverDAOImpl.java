@@ -6,6 +6,7 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.DriverEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,14 +25,27 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
         super(DriverEntity.class);
     }
 
-    public int latestId(){
-        return ((Number) getEntityManager().createQuery("SELECT MAX(driverId) FROM DriverEntity").getSingleResult()).intValue();
+    public int latestId() {
+        try {
+            return ((Number) getEntityManager().createQuery("SELECT MAX(driverId) FROM DriverEntity").getSingleResult()).intValue();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
+        return 0;
     }
 
     @Override
     public void deleteDriver(int driverId) {
-        getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET DrivercareinstitutionEntity.active = false " +
-                "WHERE DrivercareinstitutionEntity.driverId = :driverId").setParameter("driverId", driverId).getResultList();
+        try {
+            if (!getEntityManager().getTransaction().isActive()) {
+                getEntityManager().getTransaction().begin();
+            }
+            getEntityManager().createQuery("UPDATE DrivercareinstitutionEntity SET DrivercareinstitutionEntity.active = false " +
+                    "WHERE DrivercareinstitutionEntity.driverId = :driverId").setParameter("driverId", driverId).getResultList();
+            getEntityManager().getTransaction().commit();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
     }
 
     /**
@@ -48,7 +62,7 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
             for (DrivercareinstitutionEntity dr : drivercareinstitutionEntities) {
                 driverEntities.add(findById(dr.getDriverId()));
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return driverEntities;

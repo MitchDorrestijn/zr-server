@@ -102,6 +102,7 @@ public class AuthService implements IAuthService {
     public void deleteAuthenticatedUser(String userName) {
         try {
             AuthUsersEntity authenticatedUserToBeRemoved = authUsersDAO.findByUserName(userName);
+            System.out.println(authenticatedUserToBeRemoved.getUserName());
             authUsersDAO.remove(authenticatedUserToBeRemoved);
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);

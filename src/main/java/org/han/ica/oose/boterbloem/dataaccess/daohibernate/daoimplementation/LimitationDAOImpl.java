@@ -4,6 +4,9 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.ILimitationDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.LimitationEntity;
 
+import javax.persistence.EntityManager;
+import java.util.logging.Level;
+
 public class LimitationDAOImpl extends GenericDAOImpl<LimitationEntity> implements ILimitationDAO {
 
     /**
@@ -16,7 +19,12 @@ public class LimitationDAOImpl extends GenericDAOImpl<LimitationEntity> implemen
 
     @Override
     public LimitationEntity findByName(String name) {
-        return (LimitationEntity) getEntityManager().createQuery("FROM LimitationEntity "+
-                "WHERE name = :name").setParameter("name", name).getSingleResult();
+        try {
+            return (LimitationEntity) getEntityManager().createQuery("FROM LimitationEntity " +
+                    "WHERE name = :name").setParameter("name", name).getSingleResult();
+        }catch (Exception e){
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new LimitationEntity();
+        }
     }
 }

@@ -8,16 +8,16 @@ import java.util.List;
 public class CreateDriverDisplay {
 
     private DriverEntity driver;
-    private DrivercarEntity drivercarEntity;
+    private DrivercarEntity drivercar;
     private int careInstitutionId;
-    private List<String> limitationEntities;
+    private List<String> limitations;
 
-    public List<String> getLimitationEntities() {
-        return limitationEntities;
+    public List<String> getLimitations() {
+        return limitations;
     }
 
-    public void setLimitationEntities(List<String> limitationEntities) {
-        this.limitationEntities = limitationEntities;
+    public void setLimitations(List<String> limitations) {
+        this.limitations = limitations;
     }
 
     public DriverEntity getDriver() {
@@ -28,12 +28,12 @@ public class CreateDriverDisplay {
         this.driver = driver;
     }
 
-    public DrivercarEntity getDrivercarEntity() {
-        return drivercarEntity;
+    public DrivercarEntity getDrivercar() {
+        return drivercar;
     }
 
-    public void setDrivercarEntity(DrivercarEntity drivercarEntity) {
-        this.drivercarEntity = drivercarEntity;
+    public void setDrivercar(DrivercarEntity drivercar) {
+        this.drivercar = drivercar;
     }
 
     public int getCareInstitutionId() {

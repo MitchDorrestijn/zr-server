@@ -5,6 +5,9 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IUserDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.UserEntity;
 
+import javax.persistence.EntityManager;
+import java.util.logging.Level;
+
 public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements IUserDAO {
 
     /**
@@ -15,7 +18,12 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements IUserDAO 
     }
 
     public String driverNameById(int id) {
-        return ((String) getEntityManager().createQuery("SELECT firstName FROM UserEntity WHERE id = :id").setParameter("id", id).getSingleResult());
+        try {
+            return ((String) getEntityManager().createQuery("SELECT firstName FROM UserEntity WHERE id = :id").setParameter("id", id).getSingleResult());
+        }catch (Exception e){
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return "";
+        }
     }
 
 }

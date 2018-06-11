@@ -4,6 +4,7 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDriverlimitationmana
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DriverlimitationmanageableEntity;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,7 +36,11 @@ public class DriverlimitationmanageableDAOImpl extends GenericDAOImpl<Driverlimi
     @Override
     public void updateDriverLimitations(List<String> limitations, int driverId) {
         try {
+            if (!getEntityManager().getTransaction().isActive()) {
+                getEntityManager().getTransaction().begin();
+            }
             getEntityManager().createQuery("DELETE FROM DriverlimitationmanageableEntity WHERE driverId  = :driverId").setParameter("driverId", driverId).executeUpdate();
+            getEntityManager().getTransaction().commit();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
         }

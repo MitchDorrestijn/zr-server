@@ -12,6 +12,7 @@ import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitution
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.SQLException;
@@ -23,7 +24,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@ActiveProfiles("test")
 public class CareInstitutionMapperTest extends CareInstitutionServiceTest {
 
     private CareInstitution careInstitutionA = new CareInstitution();
