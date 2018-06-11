@@ -33,20 +33,18 @@ public interface IAuthService {
     boolean tokenExists(String token);
 
     /**
-     * This method finds the user role based on the given user credentials
+     * This method finds the user role based on the given user name
      * @param userName the username of the user
-     * @param password the bassword of the user
      * @return the user role
      */
-    String findUserRoleByUsernameAndPassword(String userName, String password);
+    String findUserRoleByUsername(String userName);
 
     /**
      * This method finds the careInstitution that belongs to the user
      * @param userName the username of the user
-     * @param password the password of the user
      * @return the careInstitutionId of the user
      */
-    int findCareInstitutionIdByUsernameAndPassword(String userName, String password);
+    int findCareInstitutionIdByUsername(String userName);
 
     /**
      * This method gets all the authenticated users

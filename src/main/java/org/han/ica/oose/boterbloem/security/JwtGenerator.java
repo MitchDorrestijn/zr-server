@@ -22,10 +22,10 @@ public class JwtGenerator {
      * @return a new JWT
      */
     public String generate(JwtUser jwtUser) {
-        if (authService.userIsValid(jwtUser.getUserName())) {
-            jwtUser.setRole(authService.findUserRoleByUsernameAndPassword(jwtUser.getUserName(), jwtUser.getPassword()));
-            jwtUser.setCareInstitutionId(authService.findCareInstitutionIdByUsernameAndPassword(jwtUser.getUserName(), jwtUser.getPassword()));
+        jwtUser.setRole(authService.findUserRoleByUsername(jwtUser.getUserName()));
+        jwtUser.setCareInstitutionId(authService.findCareInstitutionIdByUsername(jwtUser.getUserName()));
 
+        if (jwtUser.getRole() != null) {
             Claims claims = Jwts.claims()
                     .setSubject(jwtUser.getUserName());
             claims.put("role", jwtUser.getRole());
@@ -41,7 +41,7 @@ public class JwtGenerator {
 
             return theToken;
         } else {
-         throw new UserNotFoundException("USER DOES NOT EXIST OR CREDENTIALS ARE NOT VALID");
+            throw new UserNotFoundException("USER DOES NOT EXIST OR CREDENTIALS ARE NOT VALID");
         }
     }
 }
