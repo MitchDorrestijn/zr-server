@@ -11,4 +11,11 @@ public interface IAuthUsersDAO extends IGenericDAO<AuthUsersEntity> {
      * @return
      */
     AuthUsersEntity findByUserName(String userName);
+
+    /**
+     * Find if the token exist
+     * @param token token
+     * @return true if the token exists
+     */
+    boolean findIfTokenExist(String token);
 }
