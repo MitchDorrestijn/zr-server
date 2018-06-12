@@ -22,8 +22,7 @@ public class JwtGenerator {
      * @return a new JWT
      */
     public String generate(JwtUser jwtUser) {
-        jwtUser.setRole(authService.findUserRoleByUsername(jwtUser.getUserName()));
-        jwtUser.setCareInstitutionId(authService.findCareInstitutionIdByUsername(jwtUser.getUserName()));
+        jwtUser = authService.findByUsername(jwtUser.getUserName());
 
         if (jwtUser.getRole() != null) {
             Claims claims = Jwts.claims()

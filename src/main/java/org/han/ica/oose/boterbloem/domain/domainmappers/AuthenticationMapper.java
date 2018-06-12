@@ -24,7 +24,6 @@ public class AuthenticationMapper {
                 JwtUser jwtUser = new JwtUser();
                 jwtUser.setUserName(entity.getUserName());
                 jwtUser.setRole(entity.getRole());
-              //  jwtUser.setEmail(entity.getEmail());
                 jwtUsers.add(jwtUser);
             }
         } catch (Exception e) {
