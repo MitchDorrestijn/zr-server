@@ -22,11 +22,25 @@ public class AuthUsersDAOImpl extends GenericDAOImpl<AuthUsersEntity> implements
     @Override
     public AuthUsersEntity findByUserName(String userName) {
         try {
-            return (AuthUsersEntity) getEntityManager().createQuery("FROM AuthUsersEntity " +
-                    "WHERE userName = :userName").setParameter("userName", userName).getSingleResult();
+            return getEntityManager().find(AuthUsersEntity.class, userName);
+        } catch (NullPointerException e){
+            LOGGER.log(Level.WARNING, e.getMessage());
+            return new AuthUsersEntity();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean findIfTokenExist(String token){
+        try {
+            return (getEntityManager().createQuery("FROM AuthUsersEntity " +
+                    "WHERE latestToken = :latestToken").setParameter("latestToken", token).getSingleResult() != null);
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
         }
-        return new AuthUsersEntity();
+        return false;
     }
+
 }
