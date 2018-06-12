@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.controller;
 
+import org.han.ica.oose.boterbloem.JpaTestConfig;
 import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Address;
 import org.han.ica.oose.boterbloem.domain.domainobjects.CareInstitution;
@@ -18,7 +19,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-public class CareInstitutionControllerTest {
+public class CareInstitutionControllerTest extends JpaTestConfig {
 
     private List<CareInstitution> careInstitutions = new ArrayList<>();
     private CareInstitutionService careInstitutionService = mock(CareInstitutionService.class);

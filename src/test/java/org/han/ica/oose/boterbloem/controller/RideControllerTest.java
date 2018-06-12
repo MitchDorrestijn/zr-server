@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.controller;
 
+import org.han.ica.oose.boterbloem.JpaTestConfig;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
@@ -25,7 +26,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-public class RideControllerTest {
+public class RideControllerTest extends JpaTestConfig {
     protected List<Utility> utilities = new ArrayList<>();
     protected List<Ride> rides = new ArrayList<>();
     private RideController rideController = mock(RideController.class);
