@@ -1,20 +1,12 @@
 package org.han.ica.oose.boterbloem.controller;
 
-import org.han.ica.oose.boterbloem.config.JwtSecurityConfig;
 import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Address;
 import org.han.ica.oose.boterbloem.domain.domainobjects.CareInstitution;
-import org.han.ica.oose.boterbloem.security.SecurityProperties;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitutionService;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.security.access.SecurityConfig;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -70,14 +62,14 @@ public class CareInstitutionControllerTest {
     public void getCareInstitutionById(){
         when(careInstitutionService.findById(4)).thenReturn(careinstitutionEntity);
         List<CareinstitutionEntity> testCareinstitutionEntity = careInstitutionController.getCareInstitutionById(4);
-        assertEquals(4,testCareinstitutionEntity.get(1).getId());
+       assertEquals(4,testCareinstitutionEntity.get(0).getId());
     }
 
     @Test
     public void getCareInstitutionByIdFailed(){
         when(careInstitutionService.findById(4)).thenReturn(careinstitutionEntity);
         List<CareinstitutionEntity> testCareinstitutionEntity = careInstitutionController.getCareInstitutionById(4);
-        assertNotEquals(5,testCareinstitutionEntity.get(1).getId());
+        assertNotEquals(5,testCareinstitutionEntity.get(0).getId());
     }
 
     @Test
@@ -128,7 +120,7 @@ public class CareInstitutionControllerTest {
         careInstitutionController.addCareInstitution(test);
         when(careInstitutionService.findById(10)).thenReturn(toBeAdded);
         List<CareinstitutionEntity> testCareInstitution = careInstitutionController.getCareInstitutionById(10);
-        assertEquals(10,testCareInstitution.get(1).getId());
+        assertEquals(10,testCareInstitution.get(0).getId());
     }
 
     @Test
@@ -145,7 +137,7 @@ public class CareInstitutionControllerTest {
         careInstitutionController.addCareInstitution(test);
         when(careInstitutionService.findById(10)).thenReturn(toBeAdded);
         List<CareinstitutionEntity> testCareInstitution = careInstitutionController.getCareInstitutionById(10);
-        assertNotEquals(11,testCareInstitution.get(1).getId());
+        assertNotEquals(11,testCareInstitution.get(0).getId());
     }
 
 }
