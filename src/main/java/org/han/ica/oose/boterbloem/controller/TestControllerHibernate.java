@@ -25,7 +25,6 @@ public class TestControllerHibernate {
     private IRatingsDAO ratingsDAO = new RatingsDAOImpl();
     private DriverService dr = new DriverService();
     private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl();
-    private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
     private IClientDAO dao = new ClientDAOImpl();
 
 
