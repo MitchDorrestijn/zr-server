@@ -71,12 +71,11 @@ public class AuthUsersEntity {
                 Objects.equals(password, that.password) &&
                 Objects.equals(role, that.role) &&
                 Objects.equals(careInstitutionId, that.careInstitutionId) &&
-                Objects.equals(latestToken, that.latestToken);// &&
-           //     Objects.equals(email, that.email);
+                Objects.equals(latestToken, that.latestToken);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, password, role, careInstitutionId, latestToken); //email);
+        return Objects.hash(userName, password, role, careInstitutionId, latestToken);
     }
 }

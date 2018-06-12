@@ -5,7 +5,6 @@ import org.han.ica.oose.boterbloem.security.AdminAndCareInstitutionAuthorization
 import org.han.ica.oose.boterbloem.service.IUtilityService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

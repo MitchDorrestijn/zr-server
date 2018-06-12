@@ -7,10 +7,7 @@ import org.han.ica.oose.boterbloem.security.AdminAndCareInstitutionAuthorization
 import org.han.ica.oose.boterbloem.security.AdminAuthorization;
 import org.han.ica.oose.boterbloem.service.ICareInstitutionService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitutionService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 

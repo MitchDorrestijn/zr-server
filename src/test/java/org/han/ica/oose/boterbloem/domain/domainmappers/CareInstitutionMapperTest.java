@@ -4,18 +4,13 @@ package org.han.ica.oose.boterbloem.domain.domainmappers;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.ICareinstitutionDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.CareinstitutionDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
-import org.han.ica.oose.boterbloem.domain.domainmappers.CareinstitutionMapper;
-import org.han.ica.oose.boterbloem.domain.domainobjects.Address;
 import org.han.ica.oose.boterbloem.domain.domainobjects.CareInstitution;
 import org.han.ica.oose.boterbloem.service.CareInstitutionServiceTest;
-import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitutionService;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +37,7 @@ public class CareInstitutionMapperTest extends CareInstitutionServiceTest {
     private ICareinstitutionDAO careinstitutionDAO = mock(CareinstitutionDAOImpl.class);
 
     @Before
-    public void setup() throws SQLException {
+    public void setup()  {
         careInstitutionServiceTest.setup();
         careinstitutionEntities.add(careinstitutionEntityA);
         careinstitutionEntities.add(careinstitutionEntityB);
@@ -50,7 +45,7 @@ public class CareInstitutionMapperTest extends CareInstitutionServiceTest {
     }
 
     @Test
-    public void getAllCareInstitutionTest() throws SQLException {
+    public void getAllCareInstitutionTest() {
         when(careinstitutionDAO.findAll()).thenReturn(careinstitutionEntities);
         careinstitutionMapper.getAllCareinstitution();
         List<CareInstitution> testList = careinstitutionMapper.getAllCareinstitution();
@@ -58,7 +53,7 @@ public class CareInstitutionMapperTest extends CareInstitutionServiceTest {
     }
 
     @Test
-    public void getAllCareInstitutionTestFailed() throws SQLException {
+    public void getAllCareInstitutionTestFailed()  {
         when(careinstitutionDAO.findAll()).thenReturn(careinstitutionEntities);
         careinstitutionMapper.getAllCareinstitution();
         List<CareInstitution> testList = careinstitutionMapper.getAllCareinstitution();

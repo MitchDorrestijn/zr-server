@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.controller;
 
+import org.han.ica.oose.boterbloem.JpaTestConfig;
 import org.han.ica.oose.boterbloem.display.displaymapper.DriverDisplayMapper;
 import org.han.ica.oose.boterbloem.display.displayobject.DriverDisplay;
 import org.han.ica.oose.boterbloem.domain.domainmappers.DriverMapper;
@@ -25,7 +26,7 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-public class DriverControllerTest {
+public class DriverControllerTest extends JpaTestConfig {
     private DriverCar driverCarA = new DriverCar();
     private DriverCar driverCarB = new DriverCar();
     private DriverCar driverCarC = new DriverCar();

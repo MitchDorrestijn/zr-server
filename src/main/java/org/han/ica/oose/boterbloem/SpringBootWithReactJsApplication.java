@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.ComponentScan;
 
 
-@ComponentScan("org.han.ica.oose.boterbloem")
+
 @SpringBootApplication
 public class SpringBootWithReactJsApplication extends SpringBootServletInitializer {
 
@@ -17,8 +16,11 @@ public class SpringBootWithReactJsApplication extends SpringBootServletInitializ
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(SpringBootWithReactJsApplication.class);
+        return application.sources(applicationClass);
     }
+
+    private static Class<SpringBootWithReactJsApplication> applicationClass = SpringBootWithReactJsApplication.class;
+
 }
 
 

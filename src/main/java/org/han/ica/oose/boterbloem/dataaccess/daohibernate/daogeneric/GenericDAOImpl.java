@@ -78,7 +78,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             return entity;
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-        //    em.getTransaction().rollback();
 
         }
         return null;
@@ -96,7 +95,6 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
             return entities;
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
-            //em.getTransaction().rollback();
 
         }
         return new ArrayList<>();

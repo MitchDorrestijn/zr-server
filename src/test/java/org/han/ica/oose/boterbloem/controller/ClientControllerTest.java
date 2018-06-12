@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.controller;
 
+import org.han.ica.oose.boterbloem.JpaTestConfig;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
@@ -22,7 +23,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-public class ClientControllerTest {
+public class ClientControllerTest extends JpaTestConfig {
 
     private Client clientA = new Client();
     private Client clientB = new Client();

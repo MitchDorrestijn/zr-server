@@ -67,5 +67,6 @@ public class DriverDAOImpl extends GenericDAOImpl<DriverEntity> implements IDriv
         }
         return driverEntities;
     }
+
 }
 
