@@ -53,9 +53,8 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-               //     .antMatchers(HttpMethod.OPTIONS, securityProperties.getDefaultAntPattern()).permitAll()
-                  //  .antMatchers(securityProperties.getDefaultAntPattern()).access("hasRole('" + Roles.ROLE_ADMIN.toString() + "') or hasRole('"+ Roles.ROLE_ZORGINSTELLING.toString() +"')")
-                .antMatchers("/").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, securityProperties.getDefaultAntPattern()).permitAll()
+                .antMatchers(securityProperties.getDefaultAntPattern()).access("hasRole('" + Roles.ROLE_ADMIN.toString() + "') or hasRole('"+ Roles.ROLE_ZORGINSTELLING.toString() +"')")
                 .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
