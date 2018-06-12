@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.service;
 
+import org.han.ica.oose.boterbloem.JpaTestConfig;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.ICareinstitutionDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.CareinstitutionDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
@@ -22,7 +23,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-public class CareInstitutionServiceTest {
+public class CareInstitutionServiceTest extends JpaTestConfig {
     private CareInstitution careInstitutionA;
     private CareInstitution careInstitutionB;
 
@@ -37,7 +38,7 @@ public class CareInstitutionServiceTest {
     private ICareinstitutionDAO careinstitutionDAO = mock(CareinstitutionDAOImpl.class);
 
     @Before
-    public void setup() throws SQLException {
+    public void setup()  {
         careInstitutionA = new CareInstitution();
         careInstitutionB = new CareInstitution();
         careinstitutionEntityB = new CareinstitutionEntity();
@@ -65,35 +66,35 @@ public class CareInstitutionServiceTest {
     }
 
     @Test
-    public void getAllCareInstitutions() throws SQLException {
+    public void getAllCareInstitutions(){
         when(careinstitutionMapper.getAllCareinstitution()).thenReturn(careInstitutions);
         List<CareInstitution> testList = careInstitutionService.getAllCareInstitutions();
         assertEquals(testList.size(), testList.size()); // hier zit nog een gekke fout
     }
 
     @Test
-    public void getAllCareInstitutionsFailed() throws SQLException {
+    public void getAllCareInstitutionsFailed() {
         when(careinstitutionMapper.getAllCareinstitution()).thenReturn(careInstitutions);
         List<CareInstitution> testList = careInstitutionService.getAllCareInstitutions();
         assertNotEquals(3, testList.size());
     }
 
     @Test
-    public void findByID() throws SQLException {
+    public void findByID()  {
         when(careinstitutionDAO.findById(3)).thenReturn(careinstitutionEntityA);
         CareinstitutionEntity careinstitutionEntityTest = careInstitutionService.findById(3);
         assertEquals(3, careinstitutionEntityTest.getId());
     }
 
     @Test
-    public void findByIDFailed() throws SQLException {
+    public void findByIDFailed(){
         when(careinstitutionDAO.findById(3)).thenReturn(careinstitutionEntityA);
         CareinstitutionEntity careinstitutionEntityTest = careInstitutionService.findById(3);
         assertNotEquals(2, careinstitutionEntityTest.getId());
     }
 
     @Test
-    public void saveCareCareInstitution() throws SQLException {
+    public void saveCareCareInstitution()  {
         CareInstitution testCareInstitution = new CareInstitution();
 
         CareinstitutionEntity toBeAdded = new CareinstitutionEntity();
@@ -127,7 +128,7 @@ public class CareInstitutionServiceTest {
     }
 
     @Test
-    public void saveCareCareInstitutionFailed() throws SQLException {
+    public void saveCareCareInstitutionFailed()  {
         CareInstitution testCareInstitution = new CareInstitution();
 
         CareinstitutionEntity toBeAdded = new CareinstitutionEntity();
@@ -161,12 +162,7 @@ public class CareInstitutionServiceTest {
     }
 
     @Test
-    public void updateCareInstitutionTest() throws SQLException {
-/*        CareInstitution testCareInstitution = new CareInstitution();
-        testCareInstitution.setId(6);
-        testCareInstitution.setName("updateTest");
-        careInstitutionService.updateCareInstitution(careInstitutionA);
-        assertEquals(6,testCareInstitution.getId());*/
+    public void updateCareInstitutionTest() {
 
         CareInstitution testCareInstitution = new CareInstitution();
 
@@ -201,7 +197,7 @@ public class CareInstitutionServiceTest {
     }
 
     @Test
-    public void updateCareInstitutionTestFailed() throws SQLException {
+    public void updateCareInstitutionTestFailed() {
         CareInstitution testCareInstitution = new CareInstitution();
 
         CareinstitutionEntity toBeAdded = new CareinstitutionEntity();
@@ -235,7 +231,7 @@ public class CareInstitutionServiceTest {
     }
 
     @Test
-    public void deleteCareInstitutionTest() throws SQLException {
+    public void deleteCareInstitutionTest()  {
         CareInstitution careInstitutionToBeDeleted = new CareInstitution();
         careInstitutionToBeDeleted.setId(11);
         careInstitutionService.deleteCareInstitutionById(11);
@@ -243,7 +239,7 @@ public class CareInstitutionServiceTest {
     }
 
     @Test
-    public void deleteCareInstitutionTestFailed() throws SQLException {
+    public void deleteCareInstitutionTestFailed() {
         CareInstitution careInstitutionToBeDeleted = new CareInstitution();
         careInstitutionToBeDeleted.setId(11);
         careInstitutionService.deleteCareInstitutionById(11);
@@ -251,7 +247,7 @@ public class CareInstitutionServiceTest {
     }
 
     @Test
-    public void setCareinstitutionMapper() throws SQLException {
+    public void setCareinstitutionMapper() {
         CareinstitutionMapper mapper = new CareinstitutionMapper();
         careInstitutionService.setCareinstitutionMapper(mapper);
         assertEquals(mapper, careInstitutionService.getCareinstitutionMapper());

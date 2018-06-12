@@ -6,7 +6,6 @@ import org.han.ica.oose.boterbloem.security.AdminAndCareInstitutionAuthorization
 import org.han.ica.oose.boterbloem.service.IDriverRideService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.DriverRideService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

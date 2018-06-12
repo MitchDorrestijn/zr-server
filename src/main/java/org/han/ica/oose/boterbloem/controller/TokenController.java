@@ -1,7 +1,6 @@
 package org.han.ica.oose.boterbloem.controller;
 
 import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
-import org.han.ica.oose.boterbloem.security.AdminAuthorization;
 import org.han.ica.oose.boterbloem.security.JwtGenerator;
 import org.han.ica.oose.boterbloem.service.IAuthService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.AuthService;

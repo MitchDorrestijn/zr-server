@@ -7,7 +7,6 @@ import org.han.ica.oose.boterbloem.security.AdminAuthorization;
 import org.han.ica.oose.boterbloem.service.ILimitationService;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.LimitationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

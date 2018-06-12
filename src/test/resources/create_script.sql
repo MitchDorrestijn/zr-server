@@ -199,9 +199,9 @@ CREATE TABLE IF NOT EXISTS `clientLimitation` (
     ON UPDATE NO ACTION,
   CONSTRAINT clientLimitationLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
 
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
 
-    ON UPDATE CASCADE
+    ON UPDATE NO ACTION
 
 );
 
@@ -249,9 +249,9 @@ CREATE TABLE IF NOT EXISTS `driverLimitationManageable` (
     ON UPDATE NO ACTION,
   CONSTRAINT driverLimitationManageableLimitation FOREIGN KEY (limitation) REFERENCES limitation (name)
 
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
 
-    ON UPDATE CASCADE
+    ON UPDATE NO ACTION
 
 );
 
@@ -311,10 +311,12 @@ CREATE TABLE IF NOT EXISTS `driverClientPreference` (
 
 );
 
+-- -----------------------------------------------------
+
+-- Table careInstitution
 
 -- -----------------------------------------------------
--- Table careInstitution
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `careInstitution` (
 
   id   INT(11)      NOT NULL AUTO_INCREMENT,
@@ -332,6 +334,7 @@ CREATE TABLE IF NOT EXISTS `careInstitution` (
   PRIMARY KEY (id)
 
 );
+
 -- -----------------------------------------------------
 
 -- Table clientCareInstitution
@@ -438,11 +441,18 @@ CREATE TABLE IF NOT EXISTS `ride` (
 
   priceOfRide           FLOAT        NOT NULL,
 
+  warning                 BOOLEAN      NULL,
+
+  assignedDriver          BOOLEAN      NOT NUlL,
+
+  fixedRide               BOOLEAN      NOT NULL ,
+
   paymentDescription      VARCHAR(255) NULL,
 
   paymentStatus           VARCHAR(255) NULL,
 
   paymentDueBefore        DATE         NULL,
+
 
   PRIMARY KEY (id),
 
@@ -656,4 +666,20 @@ CREATE TABLE IF NOT EXISTS `clientUtility` (
 
     ON UPDATE NO ACTION
 
+);
+
+-- -----------------------------------------------------
+
+-- Table authUsers
+
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `authUsers` (
+    userName			      VARCHAR(255)	NOT NULL,
+    password			      VARCHAR(255)	NOT NULL,
+    role				        VARCHAR(255)	NOT NULL,
+    careInstitutionId	  INT     			NULL,
+    latestToken			    VARCHAR(1000)	NULL,
+    email               VARCHAR(255)  NULL,
+	  PRIMARY KEY (userName)
 );
