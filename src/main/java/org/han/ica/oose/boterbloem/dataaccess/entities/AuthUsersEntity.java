@@ -11,7 +11,6 @@ public class AuthUsersEntity {
     private String role;
     private Integer careInstitutionId;
     private String latestToken;
-  //  private String email;
 
     @Id
     @Column(name = "userName")
@@ -62,18 +61,6 @@ public class AuthUsersEntity {
     public void setLatestToken(String latestToken) {
         this.latestToken = latestToken;
     }
-
-/*
-    @Basic
-    @Column(name = "email")
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-*/
 
     @Override
     public boolean equals(Object o) {
