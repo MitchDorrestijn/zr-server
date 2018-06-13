@@ -11,7 +11,6 @@ import java.lang.reflect.Field;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("test")
 public class LocationTest {
 
     @Test
