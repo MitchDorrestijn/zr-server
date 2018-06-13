@@ -70,16 +70,15 @@ public class CareInstitutionServiceTest extends JpaTestConfig {
 
     @Test
     public void getAllCareInstitutions(){
-        when(careinstitutionMapper.getAllCareinstitution()).thenReturn(careInstitutions);
         List<CareInstitution> testList = careInstitutionService.getAllCareInstitutions();
-        assertEquals(testList.size(), testList.size()); // hier zit nog een gekke fout
+
+      assertEquals(5,testList.size()); // hier zit nog een gekke fout
     }
 
     @Test
     public void getAllCareInstitutionsFailed() {
-        when(careinstitutionMapper.getAllCareinstitution()).thenReturn(careInstitutions);
         List<CareInstitution> testList = careInstitutionService.getAllCareInstitutions();
-        assertNotEquals(3, testList.size());
+       assertNotEquals(3, testList.size());
     }
 
     @Test

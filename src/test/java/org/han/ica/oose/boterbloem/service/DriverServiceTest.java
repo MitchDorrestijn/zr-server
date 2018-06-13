@@ -28,7 +28,7 @@ import java.util.List;
 
 
 @RunWith(MockitoJUnitRunner.class)
-@WithMockUser(username="Alex",password = "Qwerty123",roles={"ADMIN","CAREINSTITUTION"})
+@WithMockUser(username="Mitch",password = "Qwerty123",roles={"ADMIN","CAREINSTITUTION"})
 public class DriverServiceTest extends JpaTestConfig {
 
 
