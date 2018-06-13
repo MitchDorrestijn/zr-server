@@ -35,19 +35,23 @@ public class CareInstitutionMapperTest extends CareInstitutionServiceTest {
     private List<CareinstitutionEntity> careinstitutionEntities = new ArrayList<>();
 
     private CareinstitutionMapper careinstitutionMapper = new CareinstitutionMapper();
-    private ICareinstitutionDAO careinstitutionDAO = mock(CareinstitutionDAOImpl.class);
+    private ICareinstitutionDAO careinstitutionDAO = new CareinstitutionDAOImpl();
 
     @Before
     public void setup()  {
         careInstitutionServiceTest.setup();
         careinstitutionEntities.add(careinstitutionEntityA);
         careinstitutionEntities.add(careinstitutionEntityB);
+        careinstitutionDAO.setEntityManager(em);
         careinstitutionMapper.setCareinstitutionDAO(careinstitutionDAO);
+
     }
 
     @Test
     public void getAllCareInstitutionTest() {
-        when(careinstitutionDAO.findAll()).thenReturn(careinstitutionEntities);
+        ICareinstitutionDAO careinstitutionDAOMock =  mock(CareinstitutionDAOImpl.class);
+        careinstitutionMapper.setCareinstitutionDAO(careinstitutionDAOMock);
+        when(careinstitutionDAOMock.findAll()).thenReturn(careinstitutionEntities);
         careinstitutionMapper.getAllCareinstitution();
         List<CareInstitution> testList = careinstitutionMapper.getAllCareinstitution();
         assertEquals(2,testList.size());
@@ -55,7 +59,9 @@ public class CareInstitutionMapperTest extends CareInstitutionServiceTest {
 
     @Test
     public void getAllCareInstitutionTestFailed()  {
-        when(careinstitutionDAO.findAll()).thenReturn(careinstitutionEntities);
+        ICareinstitutionDAO careinstitutionDAOMock =  mock(CareinstitutionDAOImpl.class);
+        careinstitutionMapper.setCareinstitutionDAO(careinstitutionDAOMock);
+        when(careinstitutionDAOMock.findAll()).thenReturn(careinstitutionEntities);
         careinstitutionMapper.getAllCareinstitution();
         List<CareInstitution> testList = careinstitutionMapper.getAllCareinstitution();
         assertNotEquals(200,testList.size());

@@ -119,5 +119,8 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
         return em;
     }
 
+    public void setEntityManager(EntityManager em){
+        this.em = em;
+    }
 
 }

@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 public interface IGenericDAO<T> {
@@ -43,5 +44,7 @@ public interface IGenericDAO<T> {
      * flushes the entitymanager
      */
     void flush();
+
+    void setEntityManager(EntityManager em);
 
 }
