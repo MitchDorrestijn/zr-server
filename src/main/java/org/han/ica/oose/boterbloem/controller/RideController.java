@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/rest/ride")
 public class RideController {
 
-    private IRideService rideService = new RideService();
+    protected IRideService rideService = new RideService();
 
     @Autowired
     RideController() {

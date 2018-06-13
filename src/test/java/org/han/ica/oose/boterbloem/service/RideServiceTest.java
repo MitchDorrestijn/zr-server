@@ -5,11 +5,8 @@ import org.han.ica.oose.boterbloem.display.displayobject.RideDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.RideOverviewDisplay;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.RideService;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -21,7 +18,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @WithMockUser(username="Alex",password = "Qwerty123",roles={"ADMIN","CAREINSTITUTION"})
 public class RideServiceTest extends RideControllerTest {
-    RideService rideService = mock(RideService.class);
+    private RideService rideService = mock(RideService.class);
 
     @Before
     public void setup() {
@@ -29,14 +26,14 @@ public class RideServiceTest extends RideControllerTest {
     }
 
     @Override
-    public void testGetAllRides() {
+    public void getAllRidesTest() {
         when(rideService.getAllRides()).thenReturn(rideDisplays);
         List<RideDisplay> rideDisplays = rideService.getAllRides();
         assertEquals(this.rideDisplays, rideDisplays);
     }
 
     @Override
-    public void testGetRideOverviews() {
+    public void getRideOverviewsTest() {
         when(rideService.getRideOverview()).thenReturn(rideOverviewDisplays);
         List<RideOverviewDisplay> rideOverviewDisplays = rideService.getRideOverview();
         assertEquals(this.rideOverviewDisplays, rideOverviewDisplays);
