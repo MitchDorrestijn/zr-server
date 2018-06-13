@@ -8,7 +8,7 @@
 
         <properties>
             <!-- Configuring JDBC properties -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:zorgrit&amp;INIT=RUNSCRIPT FROM 'classpath:resources/create_script.sql'\&amp;RUNSCRIPT FROM 'classpath:resources/insert_script.sql"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:zorgrit&amp;INIT=RUNSCRIPT FROM 'classpath:resources/create_script.sql'\&amp;RUNSCRIPT FROM 'classpath:resources/insert_script.sql&amp;allowPublicKeyRetrieval=true"/>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
 
             <!-- Hibernate properties -->
