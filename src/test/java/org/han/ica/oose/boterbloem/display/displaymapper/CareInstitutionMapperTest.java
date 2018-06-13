@@ -10,6 +10,7 @@ import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitution
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("test")
+@WithMockUser(username="Alex",password = "Qwerty123",roles={"ADMIN","CAREINSTITUTION"})
 public class CareInstitutionMapperTest {
 
     @Test

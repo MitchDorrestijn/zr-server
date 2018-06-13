@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -25,7 +26,7 @@ import static org.mockito.Mockito.when;
  * TODO: This is unable to be tested correctly, as the driver part of the application isn't refactored to mappers
  */
 @RunWith(SpringRunner.class)
-@ActiveProfiles("test")
+@WithMockUser(username="Alex",password = "Qwerty123",roles={"ADMIN","CAREINSTITUTION"})
 public class DriverControllerTest extends JpaTestConfig {
     private DriverCar driverCarA = new DriverCar();
     private DriverCar driverCarB = new DriverCar();
