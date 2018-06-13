@@ -112,7 +112,7 @@ public class DriverServiceTest extends JpaTestConfig {
 
         DriverEntity driverEntity =  new DriverEntity();
         UserEntity userEntity  = new UserEntity();
-        userEntity.setLastName("asd");
+        userEntity.setFirstName("asd");
         userEntity.setLastName("asd");
         userEntity.setEmail("asd");
         driverEntity.setUserEntity(userEntity);
@@ -128,8 +128,7 @@ public class DriverServiceTest extends JpaTestConfig {
         driverService.createChauffeur(createDriverDisplay);
 
         int latestId = driverDao.latestId();
-
-     //   assertEquals("asd",driverDao.findById(latestId).getUserEntity().getFirstName());
+        assertEquals("asd",driverDao.findById(latestId).getUserEntity().getFirstName());
 }
 
 }
