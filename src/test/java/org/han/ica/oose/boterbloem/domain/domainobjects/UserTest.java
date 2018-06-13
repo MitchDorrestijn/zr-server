@@ -12,7 +12,6 @@ import java.sql.Date;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("test")
 public class UserTest {
 
     @Test

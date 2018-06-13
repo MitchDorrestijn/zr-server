@@ -13,7 +13,6 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("test")
 public class DriverTest extends UserTest {
 
     @Test

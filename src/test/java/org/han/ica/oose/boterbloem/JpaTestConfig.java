@@ -7,6 +7,8 @@ import org.h2.tools.RunScript;
 import org.hibernate.Session;
 import org.hibernate.jdbc.Work;
 import org.junit.AfterClass;
+import org.springframework.security.test.context.support.WithMockUser;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,7 +19,6 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
 public class JpaTestConfig {
 
     protected static EntityManagerFactory emf;
@@ -27,6 +28,7 @@ public class JpaTestConfig {
     public static void init() throws FileNotFoundException, SQLException {
         emf = Persistence.createEntityManagerFactory("mnf-pu-test");
         em = emf.createEntityManager();
+
     }
 
     @Before
