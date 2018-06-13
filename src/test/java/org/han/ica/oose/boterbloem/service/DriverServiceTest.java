@@ -28,9 +28,10 @@ public class DriverServiceTest extends JpaTestConfig {
     private DriverService driverService = new DriverService();
     IDrivercarDAO drivercarDAO =  new DrivercarDAOImpl();
 
+
     @Before
     public void setup() throws SQLException {
-
+        drivercarDAO.setEntityManager(em);
     }
 
     @Test

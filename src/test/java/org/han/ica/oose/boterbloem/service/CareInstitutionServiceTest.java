@@ -11,10 +11,8 @@ import org.han.ica.oose.boterbloem.service.serviceimplementation.CareInstitution
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +62,7 @@ public class CareInstitutionServiceTest extends JpaTestConfig {
         careinstitutionEntities.add(careinstitutionEntityB);
 
         careInstitutionService.setCareinstitutionMapper(careinstitutionMapper);
+        careInstitutionService.setCareinstitutionDAO(careinstitutionDAO);
     }
 
     @Test
@@ -82,16 +81,12 @@ public class CareInstitutionServiceTest extends JpaTestConfig {
 
     @Test
     public void findByID()  {
-        when(careinstitutionDAO.findById(3)).thenReturn(careinstitutionEntityA);
-        CareinstitutionEntity careinstitutionEntityTest = careInstitutionService.findById(3);
-        assertEquals(3, careinstitutionEntityTest.getId());
+        assertEquals(3,em.find(CareinstitutionEntity.class, 3).getId());
     }
 
     @Test
     public void findByIDFailed(){
-        when(careinstitutionDAO.findById(3)).thenReturn(careinstitutionEntityA);
-        CareinstitutionEntity careinstitutionEntityTest = careInstitutionService.findById(3);
-        assertNotEquals(2, careinstitutionEntityTest.getId());
+        assertNotEquals(4,em.find(CareinstitutionEntity.class, 3).getId());
     }
 
     @Test
