@@ -1,6 +1,7 @@
 package org.han.ica.oose.boterbloem.domain.domainmappers;
 
 
+import org.han.ica.oose.boterbloem.JpaTestConfig;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.ICareinstitutionDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.CareinstitutionDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
@@ -21,7 +22,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @WithMockUser(username="Alex",password = "Qwerty123",roles={"ADMIN","CAREINSTITUTION"})
-public class CareInstitutionMapperTest extends CareInstitutionServiceTest {
+public class CareInstitutionMapperTest extends JpaTestConfig {
 
     private CareInstitution careInstitutionA = new CareInstitution();
     private CareInstitution careInstitutionB = new CareInstitution();
@@ -39,7 +40,6 @@ public class CareInstitutionMapperTest extends CareInstitutionServiceTest {
 
     @Before
     public void setup()  {
-        careInstitutionServiceTest.setup();
         careinstitutionEntities.add(careinstitutionEntityA);
         careinstitutionEntities.add(careinstitutionEntityB);
         careinstitutionDAO.setEntityManager(em);
@@ -49,20 +49,14 @@ public class CareInstitutionMapperTest extends CareInstitutionServiceTest {
 
     @Test
     public void getAllCareInstitutionTest() {
-        ICareinstitutionDAO careinstitutionDAOMock =  mock(CareinstitutionDAOImpl.class);
-        careinstitutionMapper.setCareinstitutionDAO(careinstitutionDAOMock);
-        when(careinstitutionDAOMock.findAll()).thenReturn(careinstitutionEntities);
-        careinstitutionMapper.getAllCareinstitution();
+
         List<CareInstitution> testList = careinstitutionMapper.getAllCareinstitution();
-        assertEquals(2,testList.size());
+        System.out.println(testList.size());
+        assertEquals(5,testList.size());
     }
 
     @Test
     public void getAllCareInstitutionTestFailed()  {
-        ICareinstitutionDAO careinstitutionDAOMock =  mock(CareinstitutionDAOImpl.class);
-        careinstitutionMapper.setCareinstitutionDAO(careinstitutionDAOMock);
-        when(careinstitutionDAOMock.findAll()).thenReturn(careinstitutionEntities);
-        careinstitutionMapper.getAllCareinstitution();
         List<CareInstitution> testList = careinstitutionMapper.getAllCareinstitution();
         assertNotEquals(200,testList.size());
     }
