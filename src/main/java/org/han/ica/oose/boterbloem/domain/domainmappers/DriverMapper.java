@@ -144,4 +144,49 @@ public class DriverMapper extends UserMapper {
         List<DriverCar> driverCars = new ArrayList<>();
         return driverCars;
     }
+
+    /**
+     * Setter for property 'driverDAO'.
+     *
+     * @param driverDAO Value to set for property 'driverDAO'.
+     */
+    public void setDriverDAO(IDriverDAO driverDAO) {
+        this.driverDAO = driverDAO;
+    }
+
+    /**
+     * Setter for property 'drivercarDAO'.
+     *
+     * @param drivercarDAO Value to set for property 'drivercarDAO'.
+     */
+    public void setDrivercarDAO(IDrivercarDAO drivercarDAO) {
+        this.drivercarDAO = drivercarDAO;
+    }
+
+    /**
+     * Setter for property 'ratingsDAO'.
+     *
+     * @param ratingsDAO Value to set for property 'ratingsDAO'.
+     */
+    public void setRatingsDAO(IRatingsDAO ratingsDAO) {
+        this.ratingsDAO = ratingsDAO;
+    }
+
+    /**
+     * Setter for property 'rideDAO'.
+     *
+     * @param rideDAO Value to set for property 'rideDAO'.
+     */
+    public void setRideDAO(IRideDAO rideDAO) {
+        this.rideDAO = rideDAO;
+    }
+
+    /**
+     * Setter for property 'driverCarMapper'.
+     *
+     * @param driverCarMapper Value to set for property 'driverCarMapper'.
+     */
+    public void setDriverCarMapper(DriverCarMapper driverCarMapper) {
+        this.driverCarMapper = driverCarMapper;
+    }
 }

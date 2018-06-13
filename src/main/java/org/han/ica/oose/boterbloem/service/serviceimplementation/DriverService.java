@@ -132,4 +132,58 @@ public class DriverService implements IDriverService {
         createDriverDisplay.setLimitations(asd);
         return createDriverDisplay;
     }
+
+    /**
+     * Setter for property 'driverDao'.
+     *
+     * @param driverDao Value to set for property 'driverDao'.
+     */
+    public void setDriverDao(IDriverDAO driverDao) {
+        this.driverDao = driverDao;
+    }
+
+    /**
+     * Setter for property 'drivercarDAO'.
+     *
+     * @param drivercarDAO Value to set for property 'drivercarDAO'.
+     */
+    public void setDrivercarDAO(IDrivercarDAO drivercarDAO) {
+        this.drivercarDAO = drivercarDAO;
+    }
+
+    /**
+     * Setter for property 'drivercareinstitutionDAO'.
+     *
+     * @param drivercareinstitutionDAO Value to set for property 'drivercareinstitutionDAO'.
+     */
+    public void setDrivercareinstitutionDAO(IDrivercareinstitutionDAO drivercareinstitutionDAO) {
+        this.drivercareinstitutionDAO = drivercareinstitutionDAO;
+    }
+
+    /**
+     * Setter for property 'driverlimitationmanageableDAO'.
+     *
+     * @param driverlimitationmanageableDAO Value to set for property 'driverlimitationmanageableDAO'.
+     */
+    public void setDriverlimitationmanageableDAO(IDriverlimitationmanageableDAO driverlimitationmanageableDAO) {
+        this.driverlimitationmanageableDAO = driverlimitationmanageableDAO;
+    }
+
+    /**
+     * Setter for property 'driverMapper'.
+     *
+     * @param driverMapper Value to set for property 'driverMapper'.
+     */
+    public void setDriverMapper(DriverMapper driverMapper) {
+        this.driverMapper = driverMapper;
+    }
+
+    /**
+     * Setter for property 'userDAO'.
+     *
+     * @param userDAO Value to set for property 'userDAO'.
+     */
+    public void setUserDAO(IUserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 }
