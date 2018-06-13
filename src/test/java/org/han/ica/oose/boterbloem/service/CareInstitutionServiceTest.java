@@ -33,8 +33,8 @@ public class CareInstitutionServiceTest extends JpaTestConfig {
     private List<CareinstitutionEntity> careinstitutionEntities;
 
     private CareInstitutionService careInstitutionService = new CareInstitutionService();
-    private CareinstitutionMapper careinstitutionMapper = mock(CareinstitutionMapper.class);
-    private ICareinstitutionDAO careinstitutionDAO = mock(CareinstitutionDAOImpl.class);
+    private CareinstitutionMapper careinstitutionMapper = new CareinstitutionMapper();
+    private ICareinstitutionDAO careinstitutionDAO = new CareinstitutionDAOImpl();
 
     @Before
     public void setup()  {
@@ -60,8 +60,11 @@ public class CareInstitutionServiceTest extends JpaTestConfig {
 
         careinstitutionEntities.add(careinstitutionEntityA);
         careinstitutionEntities.add(careinstitutionEntityB);
+        careinstitutionDAO.setEntityManager(em);
 
+        careinstitutionMapper.setCareinstitutionDAO(careinstitutionDAO);
         careInstitutionService.setCareinstitutionMapper(careinstitutionMapper);
+
         careInstitutionService.setCareinstitutionDAO(careinstitutionDAO);
     }
 
@@ -118,7 +121,6 @@ public class CareInstitutionServiceTest extends JpaTestConfig {
         testCareInstitution.setId(toBeAdded.getId());
         testCareInstitution.setAddresses(test);
         careInstitutionService.saveCareInstitution(testCareInstitution);
-        when(careinstitutionDAO.findById(10)).thenReturn(toBeAdded);
         CareinstitutionEntity testCareInstitutionEntity = careinstitutionDAO.findById(10);
         assertEquals(10, testCareInstitutionEntity.getId());
     }
@@ -152,7 +154,6 @@ public class CareInstitutionServiceTest extends JpaTestConfig {
         testCareInstitution.setId(toBeAdded.getId());
         testCareInstitution.setAddresses(test);
         careInstitutionService.saveCareInstitution(testCareInstitution);
-        when(careinstitutionDAO.findById(10)).thenReturn(toBeAdded);
         CareinstitutionEntity testCareInstitutionEntity = careinstitutionDAO.findById(10);
         assertNotEquals(11, testCareInstitutionEntity.getId());
     }
@@ -187,7 +188,6 @@ public class CareInstitutionServiceTest extends JpaTestConfig {
         testCareInstitution.setId(toBeAdded.getId());
         testCareInstitution.setAddresses(test);
         careInstitutionService.updateCareInstitution(testCareInstitution);
-        when(careinstitutionDAO.findById(10)).thenReturn(toBeAdded);
         CareinstitutionEntity testCareInstitutionEntity = careinstitutionDAO.findById(10);
         assertEquals(10, testCareInstitutionEntity.getId());
     }
@@ -221,7 +221,6 @@ public class CareInstitutionServiceTest extends JpaTestConfig {
         testCareInstitution.setId(toBeAdded.getId());
         testCareInstitution.setAddresses(test);
         careInstitutionService.updateCareInstitution(testCareInstitution);
-        when(careinstitutionDAO.findById(10)).thenReturn(toBeAdded);
         CareinstitutionEntity testCareInstitutionEntity = careinstitutionDAO.findById(10);
         assertNotEquals(11, testCareInstitutionEntity.getId());
     }
