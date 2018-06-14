@@ -31,4 +31,13 @@ public class AuthenticationMapper {
         }
         return jwtUsers;
     }
+
+    /**
+     * Setter for property 'authUsersDAO'.
+     *
+     * @param authUsersDAO Value to set for property 'authUsersDAO'.
+     */
+    public void setAuthUsersDAO(IAuthUsersDAO authUsersDAO) {
+        this.authUsersDAO = authUsersDAO;
+    }
 }

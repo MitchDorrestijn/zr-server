@@ -36,4 +36,22 @@ public class TokenController {
     public boolean tokenExists(@RequestParam("token") String token) {
         return authService.tokenExists(token);
     }
+
+    /**
+     * Setter for property 'jwtGenerator'.
+     *
+     * @param jwtGenerator Value to set for property 'jwtGenerator'.
+     */
+    public void setJwtGenerator(JwtGenerator jwtGenerator) {
+        this.jwtGenerator = jwtGenerator;
+    }
+
+    /**
+     * Setter for property 'authService'.
+     *
+     * @param authService Value to set for property 'authService'.
+     */
+    public void setAuthService(IAuthService authService) {
+        this.authService = authService;
+    }
 }

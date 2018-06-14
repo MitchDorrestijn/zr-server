@@ -145,4 +145,13 @@ public class JwtUser {
         AuthUsersEntity authUsersEntity = fillAuthUsersEntity(jwtUser);
         authUsersDAO.update(authUsersEntity);
     }
+
+    /**
+     * Setter for property 'authUsersDAO'.
+     *
+     * @param authUsersDAO Value to set for property 'authUsersDAO'.
+     */
+    public void setAuthUsersDAO(IAuthUsersDAO authUsersDAO) {
+        this.authUsersDAO = authUsersDAO;
+    }
 }
