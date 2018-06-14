@@ -1,6 +1,5 @@
 package org.han.ica.oose.boterbloem.display.displayobject;
 
-import org.han.ica.oose.boterbloem.dataaccess.entities.UtilityEntity;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Utility;
 
 import java.sql.Timestamp;

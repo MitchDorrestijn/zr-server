@@ -7,7 +7,6 @@ import org.han.ica.oose.boterbloem.domain.domainmappers.JwtUserMapper;
 import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
 import org.han.ica.oose.boterbloem.dataaccess.entities.AuthUsersEntity;
 import org.han.ica.oose.boterbloem.service.IAuthService;
-import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
 import java.util.logging.Level;

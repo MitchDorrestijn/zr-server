@@ -5,7 +5,6 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAO
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEntityPK;
 
-import javax.persistence.EntityManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

@@ -5,7 +5,6 @@ import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUser;
 import org.han.ica.oose.boterbloem.domain.domainobjects.JwtUserDetails;
 import org.han.ica.oose.boterbloem.service.serviceimplementation.AuthService;
 import org.han.ica.oose.boterbloem.utils.exceptions.JwtTokenIsIncorrectException;
-import org.han.ica.oose.boterbloem.utils.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
@@ -32,6 +31,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
      */
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
+        // does some more authentication checks
     }
 
     /**
