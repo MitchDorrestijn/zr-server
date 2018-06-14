@@ -4,7 +4,6 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IDriverlimitationmana
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.DriverlimitationmanageableEntity;
 
-import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;

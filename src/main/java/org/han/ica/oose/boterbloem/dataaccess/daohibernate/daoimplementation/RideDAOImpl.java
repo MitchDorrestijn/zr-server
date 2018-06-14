@@ -6,7 +6,6 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAO
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;

@@ -6,7 +6,6 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IRideDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.ClientDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.DriverDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RideDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.entities.DriverEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.RideEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.UtilityEntity;
 import org.han.ica.oose.boterbloem.display.displaymapper.RideDisplayMapper;
@@ -18,7 +17,6 @@ import org.han.ica.oose.boterbloem.domain.domainmappers.RideMapper;
 
 import org.han.ica.oose.boterbloem.domain.domainmappers.UtilityMapper;
 
-import org.han.ica.oose.boterbloem.domain.domainobjects.Driver;
 import org.han.ica.oose.boterbloem.service.IRideService;
 
 import java.util.ArrayList;

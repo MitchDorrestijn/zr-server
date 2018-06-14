@@ -1,7 +1,7 @@
 package org.han.ica.oose.boterbloem.domain.domainobjects;
 
 public class Utility {
-    private String utility;
+    private String utilityName;
 
     /**
      * Getter for property 'utility'.
@@ -9,7 +9,7 @@ public class Utility {
      * @return Value for property 'utility'.
      */
     public String getUtility() {
-        return utility;
+        return utilityName;
     }
 
     /**
@@ -18,6 +18,6 @@ public class Utility {
      * @param utility Value to set for property 'utility'.
      */
     public void setUtility(String utility) {
-        this.utility = utility;
+        this.utilityName = utility;
     }
 }

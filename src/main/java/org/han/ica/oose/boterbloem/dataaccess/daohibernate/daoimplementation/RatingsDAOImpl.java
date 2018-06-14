@@ -6,7 +6,6 @@ import org.han.ica.oose.boterbloem.dataaccess.entities.DrivercareinstitutionEnti
 import org.han.ica.oose.boterbloem.dataaccess.entities.RatingsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
