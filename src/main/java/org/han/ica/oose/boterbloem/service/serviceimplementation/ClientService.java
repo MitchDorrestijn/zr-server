@@ -7,7 +7,6 @@ import org.han.ica.oose.boterbloem.display.displaymapper.ClientDisplayMapper;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateClientDisplay;
-import org.han.ica.oose.boterbloem.domain.domainobjects.User;
 import org.han.ica.oose.boterbloem.service.IClientservice;
 
 import java.util.List;
@@ -70,7 +69,6 @@ public class ClientService implements IClientservice {
      */
     @Override
     public void createClient(CreateClientDisplay createClientDisplay) {
-        System.out.println(createClientDisplay.getClient());
         try {
             clientDAO.add(createClientDisplay.getClient());
             ClientUtilityEntity clientUtilityEntity = new ClientUtilityEntity();

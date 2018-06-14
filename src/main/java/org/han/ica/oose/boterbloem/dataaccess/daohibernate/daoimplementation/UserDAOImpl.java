@@ -5,7 +5,6 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IUserDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daogeneric.GenericDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.UserEntity;
 
-import javax.persistence.EntityManager;
 import java.util.logging.Level;
 
 public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements IUserDAO {

@@ -87,4 +87,8 @@ public class RatingsMapper {
     public int getAvgRating(int id) {
         return ratingsDAO.getAvgRatings(id);
     }
+
+    public void setRatingsDAO(IRatingsDAO ratingsDAO) {
+        this.ratingsDAO = ratingsDAO;
+    }
 }

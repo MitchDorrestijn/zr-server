@@ -31,4 +31,9 @@ public class RatingsService implements IRatingsService {
         return ratingsMapper.getAllRatingsFromASpecificCareInstitution(careInstitutionId);
     }
 
+    @Override
+    public void setRatingsMapper(RatingsMapper ratingsMapper) {
+        this.ratingsMapper = ratingsMapper;
+    }
+
 }

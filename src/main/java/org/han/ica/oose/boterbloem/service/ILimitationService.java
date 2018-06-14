@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.service;
 
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.ILimitationDAO;
 import org.han.ica.oose.boterbloem.dataaccess.entities.LimitationEntity;
 
 import java.util.List;
@@ -35,4 +36,6 @@ public interface ILimitationService {
      * @param name of Limitation
      */
     void deleteLimitation(String name);
+
+    void setLimitationDAO(ILimitationDAO limitationDAO);
 }

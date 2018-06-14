@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.service;
 
+import org.han.ica.oose.boterbloem.domain.domainmappers.RatingsMapper;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Rating;
 
 import java.util.List;
@@ -25,4 +26,6 @@ public interface IRatingsService {
      * @return A list of all ratings from a specific care institution
      */
     List<List<Rating>> getAllRatingsFromASpecificCareInstitution(int careInstitutionId);
+
+    void setRatingsMapper(RatingsMapper ratingsMapper);
 }

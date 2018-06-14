@@ -21,7 +21,7 @@ public class DriverController {
     private IDriverService driverService = new DriverService();
 
     @Autowired
-    DriverController() {
+    public DriverController() {
         // Empty Constructor for Spring
     }
 
@@ -96,5 +96,14 @@ public class DriverController {
     @RequestMapping(value = "/chauffeurs/zorginstelling/{id}", method = RequestMethod.GET)
     public List <DriverDisplay> getAllDriversFromASpecificCareInstitution(@PathVariable int id) {
         return driverService.getAllDriversFromASpecificCareInstitution(id);
+    }
+
+    /**
+     * Setter for property 'driverService'.
+     *
+     * @param driverService Value to set for property 'driverService'.
+     */
+    public void setDriverService(IDriverService driverService) {
+        this.driverService = driverService;
     }
 }

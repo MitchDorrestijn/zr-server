@@ -43,4 +43,13 @@ public class AuthUserController {
     public void deleteAuthenticatedUser(@PathVariable String userName) {
         authService.deleteAuthenticatedUser(userName);
     }
+
+    /**
+     * Setter for property 'authService'.
+     *
+     * @param authService Value to set for property 'authService'.
+     */
+    public void setAuthService(IAuthService authService) {
+        this.authService = authService;
+    }
 }

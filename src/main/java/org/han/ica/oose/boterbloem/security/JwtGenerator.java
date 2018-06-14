@@ -43,4 +43,22 @@ public class JwtGenerator {
             throw new UserNotFoundException("USER DOES NOT EXIST OR CREDENTIALS ARE NOT VALID");
         }
     }
+
+    /**
+     * Setter for property 'authService'.
+     *
+     * @param authService Value to set for property 'authService'.
+     */
+    public void setAuthService(AuthService authService) {
+        this.authService = authService;
+    }
+
+    /**
+     * Setter for property 'securityProperties'.
+     *
+     * @param securityProperties Value to set for property 'securityProperties'.
+     */
+    public void setSecurityProperties(SecurityProperties securityProperties) {
+        this.securityProperties = securityProperties;
+    }
 }
