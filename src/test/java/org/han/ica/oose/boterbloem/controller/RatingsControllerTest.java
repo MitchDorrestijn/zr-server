@@ -37,21 +37,10 @@ public class RatingsControllerTest extends JpaTestConfig {
         ratingsController.setRatingsService(ratingsService);
     }
 
-    @Test
-    public void testGetAllRatings(){
-        List<Rating> ratingList = ratingsController.getAllRatings();
-        assertEquals(0, ratingList.size());
-    }
 
     @Test
     public void testGetAllRatingsFromASpecificDriverById(){
         List<Rating> ratingList = ratingsController.getAllRatingsFromASpecificDriverById(2);
-        assertEquals(0, ratingList.size());
-    }
-
-    @Test
-    public void testGetAllRatingsFromASpecificCareInstitution(){
-        List<List<Rating>> ratingList = ratingsController.getAllRatingsFromASpecificCareInstitution(2);
         assertEquals(0, ratingList.size());
     }
 }
