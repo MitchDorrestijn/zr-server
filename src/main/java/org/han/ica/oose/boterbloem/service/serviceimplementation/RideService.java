@@ -192,4 +192,58 @@ public class RideService implements IRideService {
     public List<RidesByCareinstitutionDisplay> getRidesFromCareInstitution(int careId) {
         return rideDisplayMapper.getAllRidesByInstitution(careId);
     }
+
+    /**
+     * Setter for property 'rideDAO'.
+     *
+     * @param rideDAO Value to set for property 'rideDAO'.
+     */
+    public void setRideDAO(IRideDAO rideDAO) {
+        this.rideDAO = rideDAO;
+    }
+
+    /**
+     * Setter for property 'clientDAO'.
+     *
+     * @param clientDAO Value to set for property 'clientDAO'.
+     */
+    public void setClientDAO(IClientDAO clientDAO) {
+        this.clientDAO = clientDAO;
+    }
+
+    /**
+     * Setter for property 'driverDAO'.
+     *
+     * @param driverDAO Value to set for property 'driverDAO'.
+     */
+    public void setDriverDAO(IDriverDAO driverDAO) {
+        this.driverDAO = driverDAO;
+    }
+
+    /**
+     * Setter for property 'rideMapper'.
+     *
+     * @param rideMapper Value to set for property 'rideMapper'.
+     */
+    public void setRideMapper(RideMapper rideMapper) {
+        this.rideMapper = rideMapper;
+    }
+
+    /**
+     * Setter for property 'utilityMapper'.
+     *
+     * @param utilityMapper Value to set for property 'utilityMapper'.
+     */
+    public void setUtilityMapper(UtilityMapper utilityMapper) {
+        this.utilityMapper = utilityMapper;
+    }
+
+    /**
+     * Setter for property 'rideDisplayMapper'.
+     *
+     * @param rideDisplayMapper Value to set for property 'rideDisplayMapper'.
+     */
+    public void setRideDisplayMapper(RideDisplayMapper rideDisplayMapper) {
+        this.rideDisplayMapper = rideDisplayMapper;
+    }
 }
