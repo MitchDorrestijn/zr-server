@@ -58,7 +58,7 @@ public class RideMapper {
     private Ride extractRide(RideEntity rideEntity) {
         Ride ride = new Ride();
         try {
-            setRideData(rideEntity, ride);
+            setRideDataOfRideEntity(rideEntity, ride);
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
         }
@@ -69,7 +69,7 @@ public class RideMapper {
             ride.setPaymentDueBefore(null);
         }
         try {
-            setDetailedData(rideEntity, ride);
+            setDetailedDataOfRideEntity(rideEntity, ride);
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
         }
@@ -77,7 +77,7 @@ public class RideMapper {
         return ride;
     }
 
-    private void setDetailedData(RideEntity rideEntity, Ride ride) {
+    private void setDetailedDataOfRideEntity(RideEntity rideEntity, Ride ride) {
         ride.setPriceOfRide(rideEntity.getPriceOfRide());
         ride.setNumberOfcompanions(rideEntity.getNumberOfcompanions());
         ride.setNumberOfLuggage(rideEntity.getNumberOfLuggage());
@@ -85,7 +85,7 @@ public class RideMapper {
         ride.setCallService(rideEntity.getCallService());
     }
 
-    private void setRideData(RideEntity rideEntity, Ride ride) {
+    private void setRideDataOfRideEntity(RideEntity rideEntity, Ride ride) {
         ride.setPickUpDateTime(rideEntity.getPickUpDateTime());
         ride.setPickUpLocation(rideEntity.getPickUpLocation());
         ride.setDropOffLocation(rideEntity.getDropOffLocation());

@@ -50,10 +50,10 @@ public class RideService implements IRideService {
         try {
             for (RideEntity ride : rideDAO.findAll()) {
                 RideDisplay display = new RideDisplay();
-                setData(ride, display);
+                setDataOfRideEntity(ride, display);
 
-                tryCatchBlock(ride, display);
-                
+                tryCatchBlockThatSetDriverdata(ride, display);
+
                 rideDisplay.add(display);
             }
         } catch (Exception e) {
@@ -62,7 +62,7 @@ public class RideService implements IRideService {
         return rideDisplay;
     }
 
-    private void tryCatchBlock(RideEntity ride, RideDisplay display) {
+    private void tryCatchBlockThatSetDriverdata(RideEntity ride, RideDisplay display) {
         try {
             String driverName = ride.getDriverEntity().getUserEntity().getFirstName() + " " +
                     ride.getDriverEntity().getUserEntity().getLastName();
@@ -78,7 +78,7 @@ public class RideService implements IRideService {
         }
     }
 
-    private void setData(RideEntity ride, RideDisplay display) {
+    private void setDataOfRideEntity(RideEntity ride, RideDisplay display) {
         display.setWarning(ride.getWarning());
         display.setDate(ride.getPickUpDateTime());
         display.setPickUpLocation(ride.getPickUpLocation());

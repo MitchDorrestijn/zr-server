@@ -18,8 +18,8 @@ public class ClientMapper extends UserMapper {
         Address address = new Address();
 
         setAdressData(clientEntity, address);
-        setClientPersonalData(clientEntity, client, address);
-        setClientData(clientEntity, client);
+        setClientPersonalDataOfClientEntity(clientEntity, client, address);
+        setDataOfClientEntity(clientEntity, client);
 
         return client;
     }
@@ -31,7 +31,7 @@ public class ClientMapper extends UserMapper {
         address.setZipCode(clientEntity.getUserEntity().getZipCode());
     }
 
-    private void setClientPersonalData(ClientEntity clientEntity, Client client, Address address) {
+    private void setClientPersonalDataOfClientEntity(ClientEntity clientEntity, Client client, Address address) {
         client.setFirstName(clientEntity.getUserEntity().getFirstName());
         client.setLastName(clientEntity.getUserEntity().getLastName());
         client.setAddress(address);
@@ -42,7 +42,7 @@ public class ClientMapper extends UserMapper {
         client.setPassword(clientEntity.getUserEntity().getPassword());
     }
 
-    private void setClientData(ClientEntity clientEntity, Client client) {
+    private void setDataOfClientEntity(ClientEntity clientEntity, Client client) {
         client.setCompanion(clientEntity.getCompanion());
         client.setWarningPKB(clientEntity.isWarningPKB());
         client.setPkb(clientEntity.getPKB());
