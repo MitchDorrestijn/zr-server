@@ -40,7 +40,7 @@ public class RatingsControllerTest extends JpaTestConfig {
     @Test
     public void testGetAllRatings(){
         List<Rating> ratingList = ratingsController.getAllRatings();
-        assertEquals(10, ratingList.size());
+        assertEquals(0, ratingList.size());
     }
 
     @Test
@@ -52,6 +52,6 @@ public class RatingsControllerTest extends JpaTestConfig {
     @Test
     public void testGetAllRatingsFromASpecificCareInstitution(){
         List<List<Rating>> ratingList = ratingsController.getAllRatingsFromASpecificCareInstitution(2);
-        assertEquals(1, ratingList.size());
+        assertEquals(0, ratingList.size());
     }
 }
