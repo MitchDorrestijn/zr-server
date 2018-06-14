@@ -50,30 +50,40 @@ public class RideService implements IRideService {
         try {
             for (RideEntity ride : rideDAO.findAll()) {
                 RideDisplay display = new RideDisplay();
-                display.setWarning(ride.getWarning());
-                display.setDate(ride.getPickUpDateTime());
-                display.setPickUpLocation(ride.getPickUpLocation());
-                display.setDropOffLocation(ride.getDropOffLocation());
-                display.setAssignedDriver(ride.getAssignedDriver());
-                try {
-                    String driverName = ride.getDriverEntity().getUserEntity().getFirstName() + " " +
-                            ride.getDriverEntity().getUserEntity().getLastName();
+                setDataOfRideEntity(ride, display);
 
-                    String clientName = ride.getClientEntity().getUserEntity().getFirstName() + " " +
-                            ride.getClientEntity().getUserEntity().getLastName();
+                tryCatchBlockThatSetDriverdata(ride, display);
 
-                    display.setDriverName(driverName);
-                    display.setClientName(clientName);
-                    display.setDriverId(ride.getDriverEntity().getDriverId());
-                } catch (NullPointerException e) {
-                    display.setDriverName("Geen chauffeur gevonden");
-                }
                 rideDisplay.add(display);
             }
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
         return rideDisplay;
+    }
+
+    private void tryCatchBlockThatSetDriverdata(RideEntity ride, RideDisplay display) {
+        try {
+            String driverName = ride.getDriverEntity().getUserEntity().getFirstName() + " " +
+                    ride.getDriverEntity().getUserEntity().getLastName();
+
+            String clientName = ride.getClientEntity().getUserEntity().getFirstName() + " " +
+                    ride.getClientEntity().getUserEntity().getLastName();
+
+            display.setDriverName(driverName);
+            display.setClientName(clientName);
+            display.setDriverId(ride.getDriverEntity().getDriverId());
+        } catch (NullPointerException e) {
+            display.setDriverName("Geen chauffeur gevonden");
+        }
+    }
+
+    private void setDataOfRideEntity(RideEntity ride, RideDisplay display) {
+        display.setWarning(ride.getWarning());
+        display.setDate(ride.getPickUpDateTime());
+        display.setPickUpLocation(ride.getPickUpLocation());
+        display.setDropOffLocation(ride.getDropOffLocation());
+        display.setAssignedDriver(ride.getAssignedDriver());
     }
 
     /**
@@ -92,27 +102,15 @@ public class RideService implements IRideService {
         try {
             RideEntity rideEntity = new RideEntity();
             rideEntity.setClientEntity(clientDAO.findById(createRideDisplay.getClientId()));
-            try {
-                rideEntity.setDriverEntity(driverDAO.findById(createRideDisplay.getDriverId()));
-            }catch (Exception e){
-                //catch
-            }
 
-            rideEntity.setPickUpDateTime(createRideDisplay.getDate());
-            rideEntity.setPickUpLocation(createRideDisplay.getPickUpLocation());
-            rideEntity.setDropOffLocation(createRideDisplay.getDropOffLocation());
+            trySettingDriverEntity(createRideDisplay, rideEntity);
 
-            rideEntity.setNumberOfcompanions(createRideDisplay.getNumberOfcompanions());
-            rideEntity.setNumberOfLuggage(createRideDisplay.getNumberOfLuggage());
+            setAdditionalData(createRideDisplay, rideEntity);
 
             List<UtilityEntity> utilityEntities = new ArrayList<>();
-            try {
-                for (int i = 0; i < createRideDisplay.getUtilityEntity().size(); i++) {
-                    utilityEntities.add(utilityMapper.convertUtility(createRideDisplay.getUtilityEntity().get(i)));
-                }
-            } catch (NullPointerException e){
-                LOGGER.log(Level.WARNING, e.toString(), e);
-            }
+
+            tryCreatingADisplay(createRideDisplay, utilityEntities);
+
             rideEntity.setUtilityEntities(utilityEntities);
 
             rideEntity.setReturnRide(createRideDisplay.getReturnRide());
@@ -123,6 +121,33 @@ public class RideService implements IRideService {
 
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
+        }
+    }
+
+    private void tryCreatingADisplay(CreateRideDisplay createRideDisplay, List<UtilityEntity> utilityEntities) {
+        try {
+            for (int i = 0; i < createRideDisplay.getUtilityEntity().size(); i++) {
+                utilityEntities.add(utilityMapper.convertUtility(createRideDisplay.getUtilityEntity().get(i)));
+            }
+        } catch (NullPointerException e){
+            LOGGER.log(Level.WARNING, e.toString(), e);
+        }
+    }
+
+    private void setAdditionalData(CreateRideDisplay createRideDisplay, RideEntity rideEntity) {
+        rideEntity.setPickUpDateTime(createRideDisplay.getDate());
+        rideEntity.setPickUpLocation(createRideDisplay.getPickUpLocation());
+        rideEntity.setDropOffLocation(createRideDisplay.getDropOffLocation());
+
+        rideEntity.setNumberOfcompanions(createRideDisplay.getNumberOfcompanions());
+        rideEntity.setNumberOfLuggage(createRideDisplay.getNumberOfLuggage());
+    }
+
+    private void trySettingDriverEntity(CreateRideDisplay createRideDisplay, RideEntity rideEntity) {
+        try {
+            rideEntity.setDriverEntity(driverDAO.findById(createRideDisplay.getDriverId()));
+        }catch (Exception e){
+            LOGGER.log(Level.WARNING, e.toString(), e);
         }
     }
 

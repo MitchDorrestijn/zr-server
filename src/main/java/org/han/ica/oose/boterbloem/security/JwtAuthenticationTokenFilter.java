@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * This class is responsable for authenticating the heeaders and JWT for a request
@@ -28,7 +29,7 @@ public class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessi
     public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
         String header = httpServletRequest.getHeader("Authorization");
 
-        if(header == "" || !header.startsWith("Token: ")){
+        if(Objects.equals(header, "") || !header.startsWith("Token: ")){
             throw new JwtTokenNotFoundException("JWT NOT FOUND");
         }
 

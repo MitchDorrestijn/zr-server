@@ -36,6 +36,6 @@ public class UtilityControllerTest extends JpaTestConfig {
     @Test
     public void testGetAllUtilities(){
         List<Utility> utilityList = utilityController.getAllUtilities();
-        assertEquals("scootmobiel", utilityList.get(0));
+        assertEquals("scootmobiel", utilityList.get(0).getUtility());
     }
 }
