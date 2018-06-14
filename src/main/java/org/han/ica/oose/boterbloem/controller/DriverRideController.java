@@ -33,4 +33,12 @@ public class DriverRideController {
         return driverRideService.getRidesFromSpecificDriverId(id);
     }
 
+    /**
+     * Setter for property 'driverRideService'.
+     *
+     * @param driverRideService Value to set for property 'driverRideService'.
+     */
+    public void setDriverRideService(IDriverRideService driverRideService) {
+        this.driverRideService = driverRideService;
+    }
 }

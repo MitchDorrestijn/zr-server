@@ -43,4 +43,13 @@ public class DriverRideService implements IDriverRideService {
         }
         return driverRideDisplay;
     }
+
+    /**
+     * Setter for property 'rideDAO'.
+     *
+     * @param rideDAO Value to set for property 'rideDAO'.
+     */
+    public void setRideDAO(IRideDAO rideDAO) {
+        this.rideDAO = rideDAO;
+    }
 }
