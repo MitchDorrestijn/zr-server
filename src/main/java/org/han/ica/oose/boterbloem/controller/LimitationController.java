@@ -83,4 +83,8 @@ public class LimitationController {
     public void deleteLimitation(@PathVariable String name) {
         limitationService.deleteLimitation(name);
     }
+
+    public void setLimitationService(ILimitationService limitationService) {
+        this.limitationService = limitationService;
+    }
 }
