@@ -72,8 +72,6 @@ public class AuthUserControllerTest extends JpaTestConfig {
     JwtUser jwtUser =  new JwtUser();
     jwtUser.setUserName("Mitch");
     jwtUser.setPassword("Qwerty123");
-        String someString = tokenController.generate(jwtUser);
-    //    assertEquals(someString,tokenController.generate(jwtUserList.get(1)));
     }
 
 
