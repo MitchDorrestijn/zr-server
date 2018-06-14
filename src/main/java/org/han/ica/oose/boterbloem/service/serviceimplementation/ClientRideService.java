@@ -49,4 +49,22 @@ public class ClientRideService implements IClientRideService {
         }
         return display;
     }
+
+    /**
+     * Setter for property 'rideDAO'.
+     *
+     * @param rideDAO Value to set for property 'rideDAO'.
+     */
+    public void setRideDAO(IRideDAO rideDAO) {
+        this.rideDAO = rideDAO;
+    }
+
+    /**
+     * Setter for property 'clientDAO'.
+     *
+     * @param clientDAO Value to set for property 'clientDAO'.
+     */
+    public void setClientDAO(IClientDAO clientDAO) {
+        this.clientDAO = clientDAO;
+    }
 }

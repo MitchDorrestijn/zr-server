@@ -33,4 +33,12 @@ public class ClientRideController {
         return clientRideService.getRidesFromSpecificClientById(clientId);
     }
 
+    /**
+     * Setter for property 'clientRideService'.
+     *
+     * @param clientRideService Value to set for property 'clientRideService'.
+     */
+    public void setClientRideService(IClientRideService clientRideService) {
+        this.clientRideService = clientRideService;
+    }
 }

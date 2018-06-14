@@ -57,12 +57,10 @@ public class ClientcareinstitutionDAOImpl extends GenericDAOImpl<Clientcareinsti
     }
 
     public ClientcareinstitutionEntity find(ClientcareinstitutionEntityPK clientcareinstitutionEntityPK) {
-        ClientcareinstitutionEntity clientcareinstitutionEntity = getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
-        return clientcareinstitutionEntity;
+        return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntityPK);
     }
 
     public ClientcareinstitutionEntity findById(ClientcareinstitutionEntity clientcareinstitutionEntity) {
-        ClientcareinstitutionEntity clientcareinstitutionEntityA = getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
-        return clientcareinstitutionEntityA;
+        return getEntityManager().find(ClientcareinstitutionEntity.class, clientcareinstitutionEntity);
     }
 }

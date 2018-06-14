@@ -18,7 +18,7 @@ public class UtilityTest {
         final Utility utility = new Utility();
         utility.setUtility("Wandelstok");
 
-        final Field field = utility.getClass().getDeclaredField("utility");
+        final Field field = utility.getClass().getDeclaredField("utilityName");
         field.setAccessible(true);
 
         assertEquals("Fields didn't match", "Wandelstok", field.get(utility));
@@ -27,7 +27,7 @@ public class UtilityTest {
     @Test
     public void testGetterLimitation() throws NoSuchFieldException, IllegalAccessException {
         final Utility utility = new Utility();
-        final Field field = utility.getClass().getDeclaredField("utility");
+        final Field field = utility.getClass().getDeclaredField("utilityName");
         field.setAccessible(true);
         field.set(utility, "NogEenWandelstok");
 
