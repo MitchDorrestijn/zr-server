@@ -16,11 +16,22 @@ public class ClientMapper extends UserMapper {
         Client client = new Client();
 
         Address address = new Address();
+
+        setAdressData(clientEntity, address);
+        setClientPersonalData(clientEntity, client, address);
+        setClientData(clientEntity, client);
+
+        return client;
+    }
+
+    private void setAdressData(ClientEntity clientEntity, Address address) {
         address.setHouseNumber(clientEntity.getUserEntity().getHouseNumber());
         address.setResidence(clientEntity.getUserEntity().getResidence());
         address.setStreet(clientEntity.getUserEntity().getStreet());
         address.setZipCode(clientEntity.getUserEntity().getZipCode());
+    }
 
+    private void setClientPersonalData(ClientEntity clientEntity, Client client, Address address) {
         client.setFirstName(clientEntity.getUserEntity().getFirstName());
         client.setLastName(clientEntity.getUserEntity().getLastName());
         client.setAddress(address);
@@ -29,21 +40,21 @@ public class ClientMapper extends UserMapper {
         client.setPhoneNumber(clientEntity.getUserEntity().getPhoneNumber());
         client.setFirstTimeProfileCheck(clientEntity.getUserEntity().getFirstTimeProfileCheck());
         client.setPassword(clientEntity.getUserEntity().getPassword());
+    }
 
-
+    private void setClientData(ClientEntity clientEntity, Client client) {
         client.setCompanion(clientEntity.getCompanion());
         client.setWarningPKB(clientEntity.isWarningPKB());
         client.setPkb(clientEntity.getPKB());
         client.setCompanionRequired(clientEntity.getCompanionRequired());
         client.setImage(clientEntity.getImage());
         client.setBankAccount(clientEntity.getBankAccount());
+
         for (String l : clientlimitationDAO.getByClientId(clientEntity.getClientId())) {
             Limitation limitation = new Limitation();
             limitation.setLimitation(l);
             client.addLimitation(limitation);
         }
-
-        return client;
     }
 
     public ClientEntity convertClient(Client client) {

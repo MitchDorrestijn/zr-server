@@ -58,16 +58,7 @@ public class RideMapper {
     private Ride extractRide(RideEntity rideEntity) {
         Ride ride = new Ride();
         try {
-            ride.setPickUpDateTime(rideEntity.getPickUpDateTime());
-            ride.setPickUpLocation(rideEntity.getPickUpLocation());
-            ride.setDropOffLocation(rideEntity.getDropOffLocation());
-            ride.setDriver(driverMapper.extractDriver(rideEntity.getDriverEntity()));
-            ride.setClient(clientMapper.extractClient(rideEntity.getClientEntity()));
-            ride.setPaymentDescription(rideEntity.getPaymentDescription());
-            ride.setPaymentStatus(rideEntity.getPaymentStatus());
-            for (UtilityEntity utilityEntity : rideEntity.getUtilityEntities()) {
-                ride.addUtility(utilityMapper.extractUtility(utilityEntity));
-            }
+            setRideData(rideEntity, ride);
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
         }
@@ -78,16 +69,33 @@ public class RideMapper {
             ride.setPaymentDueBefore(null);
         }
         try {
-            ride.setPriceOfRide(rideEntity.getPriceOfRide());
-            ride.setNumberOfcompanions(rideEntity.getNumberOfcompanions());
-            ride.setNumberOfLuggage(rideEntity.getNumberOfLuggage());
-            ride.setReturnRide(rideEntity.getReturnRide());
-            ride.setCallService(rideEntity.getCallService());
+            setDetailedData(rideEntity, ride);
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
         }
 
         return ride;
+    }
+
+    private void setDetailedData(RideEntity rideEntity, Ride ride) {
+        ride.setPriceOfRide(rideEntity.getPriceOfRide());
+        ride.setNumberOfcompanions(rideEntity.getNumberOfcompanions());
+        ride.setNumberOfLuggage(rideEntity.getNumberOfLuggage());
+        ride.setReturnRide(rideEntity.getReturnRide());
+        ride.setCallService(rideEntity.getCallService());
+    }
+
+    private void setRideData(RideEntity rideEntity, Ride ride) {
+        ride.setPickUpDateTime(rideEntity.getPickUpDateTime());
+        ride.setPickUpLocation(rideEntity.getPickUpLocation());
+        ride.setDropOffLocation(rideEntity.getDropOffLocation());
+        ride.setDriver(driverMapper.extractDriver(rideEntity.getDriverEntity()));
+        ride.setClient(clientMapper.extractClient(rideEntity.getClientEntity()));
+        ride.setPaymentDescription(rideEntity.getPaymentDescription());
+        ride.setPaymentStatus(rideEntity.getPaymentStatus());
+        for (UtilityEntity utilityEntity : rideEntity.getUtilityEntities()) {
+            ride.addUtility(utilityMapper.extractUtility(utilityEntity));
+        }
     }
 
 
@@ -170,26 +178,6 @@ public class RideMapper {
             }
         }
         return rides;
-    }
-
-    /**
-     * Set the driverCars of a driver
-     *
-     * @param driverId id of the driver
-     * @return List of drivercars
-     */
-    private List<DriverCar> setDriverCarsByDriverId(int driverId) {
-        List<DriverCar> driverCars = new ArrayList<>();
-        for (DrivercarEntity driverCarEntities : drivercarDAO.drivercarEntityListByDriverId(driverId)) {
-            DriverCar driverCar = new DriverCar();
-            driverCar.setNumberOfPassengers(driverCarEntities.getNumberOfPassengers());
-            driverCar.setNumberPlate(driverCarEntities.getNumberPlate());
-            driverCar.setSegment(driverCarEntities.getSegment());
-            driverCar.setBrand(driverCarEntities.getBrand());
-            driverCar.setUtility(driverCarEntities.getUtility());
-            driverCars.add(driverCar);
-        }
-        return driverCars;
     }
 
 
