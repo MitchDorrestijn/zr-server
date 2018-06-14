@@ -2,7 +2,7 @@ package org.han.ica.oose.boterbloem.domain.domainobjects;
 
 public class Limitation {
 
-    String limitation;
+    String limitationName;
 
     /**
      * Getter for property 'limitation'.
@@ -10,7 +10,7 @@ public class Limitation {
      * @return Value for property 'limitation'.
      */
     public String getLimitation() {
-        return limitation;
+        return limitationName;
     }
 
     /**
@@ -19,6 +19,6 @@ public class Limitation {
      * @param limitation Value to set for property 'limitation'.
      */
     public void setLimitation(String limitation) {
-        this.limitation = limitation;
+        this.limitationName = limitation;
     }
 }
