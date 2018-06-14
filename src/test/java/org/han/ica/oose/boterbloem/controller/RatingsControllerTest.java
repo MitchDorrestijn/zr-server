@@ -43,17 +43,30 @@ public class RatingsControllerTest extends JpaTestConfig {
     public void testGetAllRatings(){
         List<Rating> ratingList = ratingsController.getAllRatings();
         assertEquals(10, ratingList.size());
+        assertEquals(3, ratingList.get(3).getStars());
+        assertEquals("Koen van Keulen", ratingList.get(3).getClientName());
+        assertEquals("Praatejesmaker", ratingList.get(3).getComment());
+        assertEquals("Mitch Zantingh", ratingList.get(3).getDriverName());
     }
 
     @Test
     public void testGetAllRatingsFromASpecificDriverById(){
         List<Rating> ratingList = ratingsController.getAllRatingsFromASpecificDriverById(1);
         assertEquals(3, ratingList.size());
+        assertEquals(1, ratingList.get(1).getStars());
+        assertEquals("Jan Jansen", ratingList.get(1).getClientName());
+        assertEquals("Hier ga ik niet mee mee rijden, gewoon slecht!", ratingList.get(1).getComment());
+        assertEquals("Wiedo Harkema", ratingList.get(1).getDriverName());
     }
 
     @Test
     public void testGetAllRatingsFromASpecificCareInstitution(){
         List<List<Rating>> ratingList = ratingsController.getAllRatingsFromASpecificCareInstitution(1);
         assertEquals(3, ratingList.size());
+        assertEquals(4, ratingList.get(0).get(0).getStars());
+        assertEquals("Robin Schuiling", ratingList.get(0).get(0).getClientName());
+        assertEquals("Hoang Nguyen", ratingList.get(0).get(0).getDriverName());
+        assertEquals("Hoang Nguyen", ratingList.get(0).get(0).getDriverName());
+
     }
 }
