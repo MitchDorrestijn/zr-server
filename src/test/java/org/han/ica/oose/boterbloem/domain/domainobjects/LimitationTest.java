@@ -17,7 +17,7 @@ public class LimitationTest {
         final Limitation limitation = new Limitation();
         limitation.setLimitation("EenLimitation");
 
-        final Field field = limitation.getClass().getDeclaredField("limitation");
+        final Field field = limitation.getClass().getDeclaredField("limitationName");
         field.setAccessible(true);
 
         assertEquals("Fields didn't match", "EenLimitation", field.get(limitation));
@@ -26,7 +26,7 @@ public class LimitationTest {
     @Test
     public void testGetterLimitation() throws NoSuchFieldException, IllegalAccessException {
         final Limitation limitation = new Limitation();
-        final Field field = limitation.getClass().getDeclaredField("limitation");
+        final Field field = limitation.getClass().getDeclaredField("limitationName");
         field.setAccessible(true);
         field.set(limitation, "NogEenLimitation");
 
