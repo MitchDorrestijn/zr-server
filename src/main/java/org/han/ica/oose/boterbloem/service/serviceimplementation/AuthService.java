@@ -73,4 +73,30 @@ public class AuthService implements IAuthService {
         }
     }
 
+    /**
+     * Setter for property 'authenticationMapper'.
+     *
+     * @param authenticationMapper Value to set for property 'authenticationMapper'.
+     */
+    public void setAuthenticationMapper(AuthenticationMapper authenticationMapper) {
+        this.authenticationMapper = authenticationMapper;
+    }
+
+    /**
+     * Setter for property 'authUsersDAO'.
+     *
+     * @param authUsersDAO Value to set for property 'authUsersDAO'.
+     */
+    public void setAuthUsersDAO(IAuthUsersDAO authUsersDAO) {
+        this.authUsersDAO = authUsersDAO;
+    }
+
+    /**
+     * Setter for property 'jwtUserMapper'.
+     *
+     * @param jwtUserMapper Value to set for property 'jwtUserMapper'.
+     */
+    public void setJwtUserMapper(JwtUserMapper jwtUserMapper) {
+        this.jwtUserMapper = jwtUserMapper;
+    }
 }
