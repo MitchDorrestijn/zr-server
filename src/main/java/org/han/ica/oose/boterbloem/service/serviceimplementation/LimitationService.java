@@ -63,4 +63,9 @@ public class LimitationService implements ILimitationService {
             LOGGER.log(Level.WARNING, e.toString(), e);
         }
     }
+
+    @Override
+    public void setLimitationDAO(ILimitationDAO limitationDAO) {
+        this.limitationDAO = limitationDAO;
+    }
 }
