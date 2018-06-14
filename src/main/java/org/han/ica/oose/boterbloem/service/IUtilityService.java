@@ -1,5 +1,6 @@
 package org.han.ica.oose.boterbloem.service;
 
+import org.han.ica.oose.boterbloem.domain.domainmappers.UtilityMapper;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Utility;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface IUtilityService {
      * @return list of Utilities
      */
     List<Utility> getAllUtilities();
+
+    void setUtilityMapper(UtilityMapper utilityMapper);
 }

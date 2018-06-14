@@ -32,4 +32,8 @@ public class UtilityController {
     public List<Utility> getAllUtilities() {
         return utilityService.getAllUtilities();
     }
+
+    public void setUtilityService(IUtilityService utilityService) {
+        this.utilityService = utilityService;
+    }
 }

@@ -17,4 +17,9 @@ public class UtilityService implements IUtilityService {
     public List<Utility> getAllUtilities() {
         return utilityMapper.getAllUtilities();
     }
+
+    @Override
+    public void setUtilityMapper(UtilityMapper utilityMapper) {
+        this.utilityMapper = utilityMapper;
+    }
 }

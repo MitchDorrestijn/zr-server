@@ -65,4 +65,8 @@ public class UtilityMapper {
         utility.setUtility(u.getName());
         return utility;
     }
+
+    public void setUtilityDAO(IUtilityDAO utilityDAO) {
+        this.utilityDAO = utilityDAO;
+    }
 }
