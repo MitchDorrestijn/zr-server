@@ -106,7 +106,7 @@ public class RideControllerTest extends JpaTestConfig {
     public void getAllRidesTestFailed() {
         when(rideService.getAllRides()).thenReturn(rideDisplays);
         List <RideDisplay> rideDisplay = rideController.getAllRides();
-        assertNotEquals(2, rideDisplay);
+        assertNotEquals(2, rideDisplay.size());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class RideControllerTest extends JpaTestConfig {
     public void getRideOverviewsTestFailed() {
         when(rideService.getRideOverview()).thenReturn(rideOverviewDisplays);
         List <RideOverviewDisplay> rideOverviewDisplay = rideController.getRideOverview();
-        assertNotEquals(2, rideOverviewDisplay);
+        assertNotEquals(2, rideOverviewDisplay.size());
     }
 
     @Test
