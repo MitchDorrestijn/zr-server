@@ -53,4 +53,12 @@ public class RatingsController {
     public List<List<Rating>> getAllRatingsFromASpecificCareInstitution(@PathVariable int careInstitutionId) {
         return ratingsService.getAllRatingsFromASpecificCareInstitution(careInstitutionId);
     }
+
+    /**
+     * Setter for property 'ratingsService'.
+     * @param ratingsService Value to set for property 'ratingsService'.
+     */
+    public void setRatingsService(IRatingsService ratingsService) {
+        this.ratingsService = ratingsService;
+    }
 }
