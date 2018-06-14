@@ -74,4 +74,22 @@ public class ClientMapper extends UserMapper {
 
         return clientEntity;
     }
+
+    /**
+     * Setter for property 'clientlimitationDAO'.
+     *
+     * @param clientlimitationDAO Value to set for property 'clientlimitationDAO'.
+     */
+    public void setClientlimitationDAO(IClientlimitationDAO clientlimitationDAO) {
+        this.clientlimitationDAO = clientlimitationDAO;
+    }
+
+    /**
+     * Setter for property 'limitationMapper'.
+     *
+     * @param limitationMapper Value to set for property 'limitationMapper'.
+     */
+    public void setLimitationMapper(LimitationMapper limitationMapper) {
+        this.limitationMapper = limitationMapper;
+    }
 }
