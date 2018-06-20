@@ -87,15 +87,6 @@ public class ClientDisplayMapper {
     }
 
     /**
-     * Getter for property 'clientDAO'.
-     *
-     * @return Value for property 'clientDAO'.
-     */
-    public IClientDAO getClientDAO() {
-        return clientDAO;
-    }
-
-    /**
      * Setter for property 'clientDAO'.
      *
      * @param clientDAO Value to set for property 'clientDAO'.
