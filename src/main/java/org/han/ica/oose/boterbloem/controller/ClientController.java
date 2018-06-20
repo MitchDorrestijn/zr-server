@@ -103,4 +103,12 @@ public class ClientController {
     public List<ClientDisplay> getAllClientsFromASpecificCareInstitution(@PathVariable int id) {
         return clientService.getAllClientsFromASpecificCareInstitution(id);
     }
+
+    /**
+     * Setter for property 'clientService'.
+     * @param clientService Value to set for property 'clientService'.
+     */
+    public void setClientService(IClientservice clientService) {
+        this.clientService = clientService;
+    }
 }
