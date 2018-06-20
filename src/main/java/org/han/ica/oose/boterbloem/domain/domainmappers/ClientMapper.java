@@ -1,6 +1,8 @@
 package org.han.ica.oose.boterbloem.domain.domainmappers;
 
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientlimitationDAO;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.ClientDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.ClientlimitationDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.UserEntity;
@@ -10,6 +12,7 @@ import org.han.ica.oose.boterbloem.domain.domainobjects.Limitation;
 
 public class ClientMapper extends UserMapper {
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
+    private IClientDAO clientDAO = new ClientDAOImpl();
     private LimitationMapper limitationMapper = new LimitationMapper();
 
     public Client extractClient(ClientEntity clientEntity) {
@@ -92,4 +95,10 @@ public class ClientMapper extends UserMapper {
     public void setLimitationMapper(LimitationMapper limitationMapper) {
         this.limitationMapper = limitationMapper;
     }
+
+    public void setClientDAO(IClientDAO clientDAO) {
+        this.clientDAO = clientDAO;
+    }
+
+
 }

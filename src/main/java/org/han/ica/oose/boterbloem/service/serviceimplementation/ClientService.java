@@ -7,6 +7,7 @@ import org.han.ica.oose.boterbloem.display.displaymapper.ClientDisplayMapper;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateClientDisplay;
+import org.han.ica.oose.boterbloem.domain.domainmappers.ClientMapper;
 import org.han.ica.oose.boterbloem.service.IClientservice;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class ClientService implements IClientservice {
     private IClientcareinstitutionDAO clientCareInstitutionDAO = new ClientcareinstitutionDAOImpl();
     private IClientlimitationDAO clientlimitationDAO = new ClientlimitationDAOImpl();
     private ClientDisplayMapper clientDisplayMapper = new ClientDisplayMapper();
+    private ClientMapper clientMapper = new ClientMapper();
 
     public ClientService() {
         //Empty constructor
@@ -142,4 +144,68 @@ public class ClientService implements IClientservice {
         return clientDisplayMapper.getAllClientsFromASpecificCareInstitution(id);
     }
 
+    @Override
+    public void setClientMapper(ClientMapper clientMapper) {
+        this.clientMapper = clientMapper;
+    }
+
+    /**
+     * Setter for property 'clientDAO'.
+     *
+     * @param clientDAO Value to set for property 'clientDAO'.
+     */
+    @Override
+    public void setClientDAO(IClientDAO clientDAO) {
+        this.clientDAO = clientDAO;
+    }
+
+    /**
+     * Setter for property 'userDAO'.
+     *
+     * @param userDAO Value to set for property 'userDAO'.
+     */
+    @Override
+    public void setUserDAO(IUserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
+    /**
+     * Setter for property 'clientUtilityDAO'.
+     *
+     * @param clientUtilityDAO Value to set for property 'clientUtilityDAO'.
+     */
+    @Override
+    public void setClientUtilityDAO(IClientUtilityDAO clientUtilityDAO) {
+        this.clientUtilityDAO = clientUtilityDAO;
+    }
+
+    /**
+     * Setter for property 'clientCareInstitutionDAO'.
+     *
+     * @param clientCareInstitutionDAO Value to set for property 'clientCareInstitutionDAO'.
+     */
+    @Override
+    public void setClientCareInstitutionDAO(IClientcareinstitutionDAO clientCareInstitutionDAO) {
+        this.clientCareInstitutionDAO = clientCareInstitutionDAO;
+    }
+
+    /**
+     * Setter for property 'clientlimitationDAO'.
+     *
+     * @param clientlimitationDAO Value to set for property 'clientlimitationDAO'.
+     */
+    @Override
+    public void setClientlimitationDAO(IClientlimitationDAO clientlimitationDAO) {
+        this.clientlimitationDAO = clientlimitationDAO;
+    }
+
+    /**
+     * Setter for property 'clientDisplayMapper'.
+     *
+     * @param clientDisplayMapper Value to set for property 'clientDisplayMapper'.
+     */
+    @Override
+    public void setClientDisplayMapper(ClientDisplayMapper clientDisplayMapper) {
+        this.clientDisplayMapper = clientDisplayMapper;
+    }
 }
