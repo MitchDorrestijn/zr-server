@@ -36,24 +36,6 @@ public class ConstructorTests {
         IRidematchesstateDAO ridematchesstateDAO =  new RidematchesstateDAOImpl();
         IUtilityDAO utilityDAO =  new UtilityDAOImpl();
         IRideproposedfordriverDAO rideproposedfordriverDAO =  new RideproposedfordriverDAOImpl();
-        try{
-            System.out.println("Test");
-        }catch (JwtTokenIsIncorrectException e){
-            System.out.println("e");
-        }
-        try{
-            System.out.println("Test");
-        }catch (JwtTokenNotFoundException e){
-            System.out.println("e");
-        }
-        try{
-            System.out.println("Test");
-        }catch (UserNotFoundException e){
-            System.out.println("e");
-        }
-
-
-
 
     }
 

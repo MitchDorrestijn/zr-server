@@ -18,7 +18,6 @@ public class ClientDisplayMapper {
 
     private IClientDAO clientDAO = new ClientDAOImpl();
     private IRideDAO rideDAO = new RideDAOImpl();
-
     private static final double DISTANCE_MULTIPLIER = 0.005;
 
     /**
@@ -61,7 +60,7 @@ public class ClientDisplayMapper {
      * @param c - The clientEntity
      * @return A filled clientDisplay
      */
-    private ClientDisplay fillClientDisplay(ClientEntity c) {
+    public ClientDisplay fillClientDisplay(ClientEntity c) {
         int clientId = c.getClientId();
         ClientDisplay client = new ClientDisplay();
         double priceToPay;
@@ -87,4 +86,39 @@ public class ClientDisplayMapper {
         return client;
     }
 
+    /**
+     * Getter for property 'clientDAO'.
+     *
+     * @return Value for property 'clientDAO'.
+     */
+    public IClientDAO getClientDAO() {
+        return clientDAO;
+    }
+
+    /**
+     * Setter for property 'clientDAO'.
+     *
+     * @param clientDAO Value to set for property 'clientDAO'.
+     */
+    public void setClientDAO(IClientDAO clientDAO) {
+        this.clientDAO = clientDAO;
+    }
+
+    /**
+     * Getter for property 'rideDAO'.
+     *
+     * @return Value for property 'rideDAO'.
+     */
+    public IRideDAO getRideDAO() {
+        return rideDAO;
+    }
+
+    /**
+     * Setter for property 'rideDAO'.
+     *
+     * @param rideDAO Value to set for property 'rideDAO'.
+     */
+    public void setRideDAO(IRideDAO rideDAO) {
+        this.rideDAO = rideDAO;
+    }
 }

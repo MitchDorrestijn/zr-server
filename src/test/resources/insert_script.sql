@@ -6,6 +6,8 @@
 
 
 
+
+
 -- -----------------------------------------------------
 
 -- Insert
@@ -14,7 +16,7 @@
 
 INSERT INTO `utility` (name, priority) VALUES('scootmobiel', 3,);
 
- INSERT INTO `utility` (name, priority) VALUES( 'rolstoel', 2,);
+INSERT INTO `utility` (name, priority) VALUES( 'rolstoel', 2,);
 
 INSERT INTO `utility` (name, priority) VALUES(  'rollator', 1);
 
