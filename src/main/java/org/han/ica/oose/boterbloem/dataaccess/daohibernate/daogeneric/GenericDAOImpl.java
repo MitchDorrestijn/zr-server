@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 
 
-    private static final Logger LOGGER = Logger.getLogger(GenericDAOImpl.class.getName());
+    protected static final Logger LOGGER = Logger.getLogger(GenericDAOImpl.class.getName());
     private Class<T> classImpl;
 
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("zorgrit");
