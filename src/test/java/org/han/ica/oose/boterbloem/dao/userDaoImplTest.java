@@ -28,7 +28,7 @@ public class userDaoImplTest extends JpaTestConfig {
     @Test
     public void driverByNameTest() {
         String name = userDAO.driverNameById(2);
-        assertEquals("robin", name);
+        assertEquals("Robin", name);
     }
 
 }
