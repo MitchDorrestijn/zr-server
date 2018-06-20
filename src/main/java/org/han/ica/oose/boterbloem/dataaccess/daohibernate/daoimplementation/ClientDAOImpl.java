@@ -27,9 +27,8 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
     @Override
     public void removeById(int clientId) {
         try {
-            getEntityManager().createQuery("UPDATE ClientcareinstitutionEntity SET active = false " +
-                    "WHERE clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
-            getEntityManager().flush();
+                getEntityManager().createQuery("UPDATE ClientcareinstitutionEntity SET active = false " +
+                        "WHERE clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());
         }
@@ -56,11 +55,6 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
     }
 
     public int latestId() {
-        try {
-            return ((Number) getEntityManager().createQuery("SELECT MAX(clientId) FROM ClientEntity").getSingleResult()).intValue();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage());
-        }
-        return 0;
+        return ((Number) getEntityManager().createQuery("SELECT MAX(clientId) FROM ClientEntity").getSingleResult()).intValue();
     }
 }

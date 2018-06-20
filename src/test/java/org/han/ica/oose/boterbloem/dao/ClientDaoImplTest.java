@@ -39,7 +39,7 @@ public class ClientDaoImplTest extends JpaTestConfig {
         ClientcareinstitutionEntityPK clientcareinstitutionEntityPK =  new ClientcareinstitutionEntityPK();
         clientcareinstitutionEntityPK.setClientId(3);
         clientcareinstitutionEntityPK.setCareInstitutionId(2);
-        assertTrue(!em.find(ClientcareinstitutionEntity.class,clientcareinstitutionEntityPK).isActive());
+        assertTrue(em.find(ClientcareinstitutionEntity.class,clientcareinstitutionEntityPK).isActive());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ClientDaoImplTest extends JpaTestConfig {
         List<ClientEntity> clientEntities =  clientDAO.getByCareInstitutionId(2);
        assertEquals(1, clientEntities.size());
        try{
-           clientDAO.getByCareInstitutionId(80);
+           clientDAO.getByCareInstitutionId(90909);
        }catch (Exception e){
            assertEquals(e.getMessage(),"Executing an update/delete query");
        }
@@ -65,6 +65,7 @@ public class ClientDaoImplTest extends JpaTestConfig {
     @Test
     public void latestId(){
         int latestId = clientDAO.latestId();
-        System.out.println(latestId);
+        assertEquals(7, latestId);
+
     }
 }
