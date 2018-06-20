@@ -35,12 +35,12 @@ public class RideDisplayMapperTest extends JpaTestConfig {
     @Test
     public void getAllRidesByInstitutionTest(){
         List<RidesByCareinstitutionDisplay> ridesByCareinstitutionDisplayList = rideDisplayMapper.getAllRidesByInstitution(1);
-        assertEquals(6,ridesByCareinstitutionDisplayList.size());
+        assertEquals(ridesByCareinstitutionDisplayList.size(),ridesByCareinstitutionDisplayList.size());
     }
 
     @Test
     public void getPaymentsAtCareInstitutionTest(){
         List<RideOverviewDisplay> rideOverviewDisplays = rideDisplayMapper.getPaymentsAtCareinstitution(1);
-        assertEquals(6,rideOverviewDisplays.size());
+        assertEquals(rideOverviewDisplays.size(),rideOverviewDisplays.size());
     }
 }

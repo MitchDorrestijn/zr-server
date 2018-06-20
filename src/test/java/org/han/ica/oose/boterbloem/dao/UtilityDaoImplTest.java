@@ -32,4 +32,13 @@ public class UtilityDaoImplTest extends JpaTestConfig {
         UtilityEntity utilityEntity = utilityDaoImplTest.findByName("rollator");
         assertEquals("rollator", utilityEntity.getName());
     }
+
+    @Test
+    public void ExeptiontestName(){
+        try{
+            UtilityEntity utilityEntity =  utilityDaoImplTest.findByName("koe");
+        }catch (Exception e){
+            assertEquals(e.getMessage(), "Executing an update/delete query");
+        }
+    }
 }

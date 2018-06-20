@@ -3,6 +3,7 @@ package org.han.ica.oose.boterbloem.dao;
 import org.han.ica.oose.boterbloem.JpaTestConfig;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IUserDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.UserDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.entities.UtilityEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,15 @@ public class userDaoImplTest extends JpaTestConfig {
     public void driverByNameTest() {
         String name = userDAO.driverNameById(2);
         assertEquals("Robin", name);
+    }
+
+    @Test
+    public void ExeptiontestName(){
+        try{
+            String name =  userDAO.driverNameById(80);
+        }catch (Exception e){
+            assertEquals(e.getMessage(), "Executing an update/delete query");
+        }
     }
 
 }
