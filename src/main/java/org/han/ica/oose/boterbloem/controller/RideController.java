@@ -113,4 +113,13 @@ public class RideController {
         rideService.update(ride);
 
     }
+
+    /**
+     * Setter for property 'rideService'.
+     *
+     * @param rideService Value to set for property 'rideService'.
+     */
+    public void setRideService(IRideService rideService) {
+        this.rideService = rideService;
+    }
 }

@@ -76,4 +76,13 @@ public class RideDisplayMapper {
         return rideOverviewDisplays;
 
     }
+
+    /**
+     * Setter for property 'rideMapper'.
+     *
+     * @param rideMapper Value to set for property 'rideMapper'.
+     */
+    public void setRideMapper(RideMapper rideMapper) {
+        this.rideMapper = rideMapper;
+    }
 }

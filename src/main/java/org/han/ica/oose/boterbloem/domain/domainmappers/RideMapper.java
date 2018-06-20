@@ -23,8 +23,8 @@ import java.util.logging.Logger;
 
 public class RideMapper {
     private static final Logger LOGGER = Logger.getLogger(RideMapper.class.getName());
-    private IRideDAO rideDAO = new RideDAOImpl();
 
+    private IRideDAO rideDAO = new RideDAOImpl();
     private IDrivercarDAO drivercarDAO = new DrivercarDAOImpl();
     private UtilityMapper utilityMapper = new UtilityMapper();
     private DriverMapper driverMapper = new DriverMapper();
@@ -180,5 +180,48 @@ public class RideMapper {
         return rides;
     }
 
+    /**
+     * Setter for property 'rideDAO'.
+     *
+     * @param rideDAO Value to set for property 'rideDAO'.
+     */
+    public void setRideDAO(IRideDAO rideDAO) {
+        this.rideDAO = rideDAO;
+    }
 
+    /**
+     * Setter for property 'drivercarDAO'.
+     *
+     * @param drivercarDAO Value to set for property 'drivercarDAO'.
+     */
+    public void setDrivercarDAO(IDrivercarDAO drivercarDAO) {
+        this.drivercarDAO = drivercarDAO;
+    }
+
+    /**
+     * Setter for property 'utilityMapper'.
+     *
+     * @param utilityMapper Value to set for property 'utilityMapper'.
+     */
+    public void setUtilityMapper(UtilityMapper utilityMapper) {
+        this.utilityMapper = utilityMapper;
+    }
+
+    /**
+     * Setter for property 'driverMapper'.
+     *
+     * @param driverMapper Value to set for property 'driverMapper'.
+     */
+    public void setDriverMapper(DriverMapper driverMapper) {
+        this.driverMapper = driverMapper;
+    }
+
+    /**
+     * Setter for property 'clientMapper'.
+     *
+     * @param clientMapper Value to set for property 'clientMapper'.
+     */
+    public void setClientMapper(ClientMapper clientMapper) {
+        this.clientMapper = clientMapper;
+    }
 }
