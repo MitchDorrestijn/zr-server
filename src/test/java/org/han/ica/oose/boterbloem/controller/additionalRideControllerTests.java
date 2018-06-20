@@ -49,41 +49,41 @@ public class additionalRideControllerTests extends JpaTestConfig {
 
     @Before
     public void setup() {
-    rideDAO.setEntityManager(em);
-    clientDAO.setEntityManager(em);
-    driverDAO.setEntityManager(em);
-    drivercarDAO.setEntityManager(em);
-    utilityDAO.setEntityManager(em);
-    ratingsDAO.setEntityManager(em);
-    clientlimitationDAO.setEntityManager(em);
+        rideDAO.setEntityManager(em);
+        clientDAO.setEntityManager(em);
+        driverDAO.setEntityManager(em);
+        drivercarDAO.setEntityManager(em);
+        utilityDAO.setEntityManager(em);
+        ratingsDAO.setEntityManager(em);
+        clientlimitationDAO.setEntityManager(em);
 
 
-    driverMapper.setRideDAO(rideDAO);
-    driverMapper.setRatingsDAO(ratingsDAO);
-    driverMapper.setDriverDAO(driverDAO);
-    driverMapper.setDrivercarDAO(drivercarDAO);
+        driverMapper.setRideDAO(rideDAO);
+        driverMapper.setRatingsDAO(ratingsDAO);
+        driverMapper.setDriverDAO(driverDAO);
+        driverMapper.setDrivercarDAO(drivercarDAO);
 
-    utilityMapper.setUtilityDAO(utilityDAO);
+        utilityMapper.setUtilityDAO(utilityDAO);
 
-    clientMapper.setClientlimitationDAO(clientlimitationDAO);
-    clientMapper.setLimitationMapper(limitationMapper);
+        clientMapper.setClientlimitationDAO(clientlimitationDAO);
+        clientMapper.setLimitationMapper(limitationMapper);
 
-    rideMapper.setRideDAO(rideDAO);
-    rideMapper.setDrivercarDAO(drivercarDAO);
-    rideMapper.setDriverMapper(driverMapper);
-    rideMapper.setUtilityMapper(utilityMapper);
-    rideMapper.setClientMapper(clientMapper);
+        rideMapper.setRideDAO(rideDAO);
+        rideMapper.setDrivercarDAO(drivercarDAO);
+        rideMapper.setDriverMapper(driverMapper);
+        rideMapper.setUtilityMapper(utilityMapper);
+        rideMapper.setClientMapper(clientMapper);
 
-    rideDisplayMapper.setRideMapper(rideMapper);
+        rideDisplayMapper.setRideMapper(rideMapper);
 
-    rideService.setClientDAO(clientDAO);
-    rideService.setDriverDAO(driverDAO);
-    rideService.setRideDAO(rideDAO);
-    rideService.setUtilityMapper(utilityMapper);
-    rideService.setRideDisplayMapper(rideDisplayMapper);
-    rideService.setRideMapper(rideMapper);
+        rideService.setClientDAO(clientDAO);
+        rideService.setDriverDAO(driverDAO);
+        rideService.setRideDAO(rideDAO);
+        rideService.setUtilityMapper(utilityMapper);
+        rideService.setRideDisplayMapper(rideDisplayMapper);
+        rideService.setRideMapper(rideMapper);
 
-    rideController.setRideService(rideService);
+        rideController.setRideService(rideService);
 
     }
 
@@ -102,8 +102,8 @@ public class additionalRideControllerTests extends JpaTestConfig {
     @Test
     public void getCareRide(){
         List<RidesByCareinstitutionDisplay> ridesByCareinstitutionDisplays = rideController.ridesFromCareinstitution(1);
-       assertEquals(5,ridesByCareinstitutionDisplays.size());
-       RideEntity rideEntity = rideController.getRideById(2);
+        assertEquals(5,ridesByCareinstitutionDisplays.size());
+        RideEntity rideEntity = rideController.getRideById(2);
         assertEquals(2,rideEntity.getId());
     }
 
