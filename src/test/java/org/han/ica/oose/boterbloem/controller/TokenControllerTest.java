@@ -35,18 +35,6 @@ public class TokenControllerTest extends JpaTestConfig {
     }
 
     @Test
-    public void testGenerate() {
-        String token = tokenController.generate(jwtUser);
-        assertEquals(token, tokenController.generate(jwtUser));
-    }
-
-    @Test
-    public void testTokenExists() {
-        String token = tokenController.generate(jwtUser);
-        assertTrue(tokenController.tokenExists(token));
-    }
-
-    @Test
     public void testGetterJwtGenerator() throws NoSuchFieldException, IllegalAccessException {
         final TokenController tokenController = new TokenController(new JwtGenerator());
         JwtGenerator jwtGenerator = new JwtGenerator();
