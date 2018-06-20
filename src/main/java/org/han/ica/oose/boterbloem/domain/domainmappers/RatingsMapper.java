@@ -74,7 +74,7 @@ public class RatingsMapper {
      * @param r - The ratingsEntity that will be filled
      * @return A filled RatingsEntity
      */
-    private Rating fillRatingsDomain(RatingsEntity r) {
+    public Rating fillRatingsDomain(RatingsEntity r) {
         UserMapper userMapper = new UserMapper();
         Rating rating = new Rating();
         rating.setClientName(userMapper.findNameById(r.getClientId()));
