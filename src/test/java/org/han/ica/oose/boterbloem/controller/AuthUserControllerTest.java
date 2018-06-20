@@ -49,7 +49,7 @@ public class AuthUserControllerTest extends JpaTestConfig {
     @Test
     public void getAllAuthenticatedUsersTest(){
         List<JwtUser> jwtUserList =  authUserController.getAllAuthenticatedUsers();
-        assertEquals(4,jwtUserList.size());
+        assertEquals(2,jwtUserList.size());
         JwtUser jwtUser =  new JwtUser();
         jwtUser.setRole("ADMIN");
         jwtUser.setUserName("Martijn");
@@ -59,11 +59,11 @@ public class AuthUserControllerTest extends JpaTestConfig {
         jwtUser.setAuthUsersDAO(authUsersDAO);
         authUserController.addAuthenticatedUser(jwtUser);
 
-        assertEquals(4,authUserController.getAllAuthenticatedUsers().size());
+        assertEquals(3,authUserController.getAllAuthenticatedUsers().size());
 
         authUserController.deleteAuthenticatedUser("Martijn");
 
-        assertEquals(3,authUserController.getAllAuthenticatedUsers().size());
+        assertEquals(2,authUserController.getAllAuthenticatedUsers().size());
 
     }
 
