@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClientDAO {
+
+
     private static final Logger LOGGER = Logger.getLogger(ClientDAOImpl.class.getName());
 
     /**
@@ -25,8 +27,8 @@ public class ClientDAOImpl extends GenericDAOImpl<ClientEntity> implements IClie
     @Override
     public void removeById(int clientId) {
         try {
-            getEntityManager().createQuery("UPDATE ClientcareinstitutionEntity SET ClientcareinstitutionEntity .active = false " +
-                    "WHERE ClientcareinstitutionEntity.clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
+            getEntityManager().createQuery("UPDATE ClientcareinstitutionEntity SET active = false " +
+                    "WHERE clientId= :clientId").setParameter("clientId", clientId).executeUpdate();
             getEntityManager().getTransaction().commit();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage());

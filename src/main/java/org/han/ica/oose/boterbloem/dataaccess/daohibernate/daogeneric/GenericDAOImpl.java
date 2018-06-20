@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
+
+
     protected static final Logger LOGGER = Logger.getLogger(GenericDAOImpl.class.getName());
     private Class<T> classImpl;
 
