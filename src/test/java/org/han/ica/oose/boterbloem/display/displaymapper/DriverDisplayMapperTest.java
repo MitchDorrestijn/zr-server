@@ -1,7 +1,9 @@
 package org.han.ica.oose.boterbloem.display.displaymapper;
 
 import org.han.ica.oose.boterbloem.JpaTestConfig;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RatingsDAOImpl;
 import org.han.ica.oose.boterbloem.display.displayobject.DriverDisplay;
+import org.han.ica.oose.boterbloem.domain.domainmappers.RatingsMapper;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Driver;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +18,13 @@ import static org.junit.Assert.assertEquals;
 public class DriverDisplayMapperTest extends JpaTestConfig {
 
     DriverDisplayMapper driverDisplayMapper = new DriverDisplayMapper();
+    RatingsMapper ratingsMapper = new RatingsMapper();
+    RatingsDAOImpl ratingsDAO = new RatingsDAOImpl();
+
     @Before
     public void setup(){
+        ratingsDAO.setEntityManager(em);
+        ratingsMapper.setRatingsDAO(ratingsDAO);
     }
 
     @Test

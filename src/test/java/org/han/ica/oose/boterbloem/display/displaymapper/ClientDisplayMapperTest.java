@@ -4,6 +4,7 @@ import org.han.ica.oose.boterbloem.JpaTestConfig;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.ICareinstitutionDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.CareinstitutionDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.ClientDAOImpl;
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.RideDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.entities.CareinstitutionEntity;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
@@ -33,10 +34,12 @@ public class ClientDisplayMapperTest extends JpaTestConfig {
 
     ClientDisplayMapper clientDisplayMapper = new ClientDisplayMapper();
     ClientDAOImpl clientDAO = new ClientDAOImpl();
-
+    RideDAOImpl rideDAO = new RideDAOImpl();
     @Before
     public void setup(){
         clientDAO.setEntityManager(em);
+        rideDAO.setEntityManager(em);
+        clientDisplayMapper.setRideDAO(rideDAO);
         clientDisplayMapper.setClientDAO(clientDAO);
     }
 
