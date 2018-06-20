@@ -1,9 +1,12 @@
 package org.han.ica.oose.boterbloem.service;
 
+import org.han.ica.oose.boterbloem.dataaccess.daohibernate.*;
 import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
+import org.han.ica.oose.boterbloem.display.displaymapper.ClientDisplayMapper;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDetailDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.ClientDisplay;
 import org.han.ica.oose.boterbloem.display.displayobject.CreateClientDisplay;
+import org.han.ica.oose.boterbloem.domain.domainmappers.ClientMapper;
 
 import java.util.List;
 
@@ -59,4 +62,18 @@ public interface IClientservice {
      * @return list of Clients
      */
     List<ClientDisplay> getAllClientsFromASpecificCareInstitution(int id);
+
+    void setClientMapper(ClientMapper clientMapper);
+
+    void setClientDAO(IClientDAO clientDAO);
+
+    void setUserDAO(IUserDAO userDAO);
+
+    void setClientUtilityDAO(IClientUtilityDAO clientUtilityDAO);
+
+    void setClientCareInstitutionDAO(IClientcareinstitutionDAO clientCareInstitutionDAO);
+
+    void setClientlimitationDAO(IClientlimitationDAO clientlimitationDAO);
+
+    void setClientDisplayMapper(ClientDisplayMapper clientDisplayMapper);
 }
