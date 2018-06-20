@@ -5,7 +5,6 @@ import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.IClientlimitationDAO;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.ClientDAOImpl;
 import org.han.ica.oose.boterbloem.dataaccess.daohibernate.daoimplementation.ClientlimitationDAOImpl;
-import org.han.ica.oose.boterbloem.dataaccess.entities.ClientEntity;
 import org.han.ica.oose.boterbloem.domain.domainobjects.Client;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,37 +37,29 @@ public class ClientMapperTest extends JpaTestConfig {
 
     @Test
     public void extractClientTest() {
-        Client clientA = clientMapper.extractClient(clientDAO.findById(2));
         String expected = client.getCompanion();
-        String actual = clientA.getCompanion();
-
+        String actual = clientMapper.extractClient(clientDAO.findById(2)).getCompanion();
         assertEquals(expected, actual);
     }
 
     @Test
     public void extractClientTestFailed() {
-        Client clientA = clientMapper.extractClient(clientDAO.findById(3));
         String expected = client.getCompanion();
-        String actual = clientA.getCompanion();
-
+        String actual = clientMapper.extractClient(clientDAO.findById(3)).getCompanion();
         assertNotEquals(expected, actual);
     }
 
     @Test
     public void convertClientTest() {
-        ClientEntity clientEntity = clientMapper.convertClient(clientMapper.extractClient(clientDAO.findById(2)));
         String expected = client.getFirstName();
-        String actual = clientEntity.getUserEntity().getFirstName();
-
+        String actual = clientMapper.convertClient(clientMapper.extractClient(clientDAO.findById(2))).getUserEntity().getFirstName();
         assertEquals(expected, actual);
     }
 
     @Test
     public void convertClientTestFailed() {
-        ClientEntity clientEntity = clientMapper.convertClient(clientMapper.extractClient(clientDAO.findById(3)));
         String expected = client.getFirstName();
-        String actual = clientEntity.getUserEntity().getFirstName();
-
+        String actual = clientMapper.convertClient(clientMapper.extractClient(clientDAO.findById(3))).getUserEntity().getFirstName();
         assertNotEquals(expected, actual);
     }
 }
